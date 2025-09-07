@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bs4lluqhp20dt"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 133.0
+offset_top = 56.0
+offset_right = 978.0
+offset_bottom = 503.0
+color = Color(0.135893, 0.368671, 0.134682, 1)
