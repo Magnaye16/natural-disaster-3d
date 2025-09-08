@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dhysk6ewhkf6i"]
 
-[ext_resource type="Script" uid="uid://dl3yw7iesjvi8" path="res://scripts/player_controller.gd" id="1_d4y06"]
+[ext_resource type="Script" uid="uid://dl3yw7iesjvi8" path="res://scripts/3d/PlayerControl/player_controller.gd" id="1_d4y06"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_e6s5b"]
 
@@ -10,6 +10,8 @@ albedo_color = Color(0.843412, 0.400991, 0.0306164, 1)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d4y06"]
 
 [node name="PlayerController" type="CharacterBody3D"]
+floor_constant_speed = true
+floor_snap_length = 0.4
 script = ExtResource("1_d4y06")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

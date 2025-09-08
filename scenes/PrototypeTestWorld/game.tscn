@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dr8urbathufft"]
+[gd_scene load_steps=5 format=3 uid="uid://dr8urbathufft"]
 
-[ext_resource type="PackedScene" uid="uid://dhysk6ewhkf6i" path="res://scenes/player_controller.tscn" id="1_uwrxv"]
-[ext_resource type="Script" uid="uid://bpq1xca0yonr2" path="res://scenes/game.gd" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://dhysk6ewhkf6i" path="res://scenes/PrototypeTestWorld/player_controller.tscn" id="1_041hs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -18,7 +17,6 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="Game" type="Node3D"]
-script = ExtResource("1_yqjtg")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, 0.45829, -0.538489, 0, 0.761538, 0.64812, 0.707107, -0.45829, 0.538489, 0, 0, 0)
@@ -54,9 +52,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.76946, 0, -19.3)
 
 [node name="WorldCam" type="Camera3D" parent="Camera"]
 transform = Transform3D(-0.771625, -0.449775, 0.449775, 0, 0.707107, 0.707107, -0.636078, 0.545621, -0.545621, 27.9, 21.2, -20.7)
-fov = 37.5
+fov = 70.0
 
-[node name="PlayerController" parent="." instance=ExtResource("1_uwrxv")]
+[node name="PlayerController" parent="." instance=ExtResource("1_041hs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.76946, 2.1204, -22.2817)
-JUMP_VELOCITY = 8.0
-GRAVITY_MULTIPLIER = 2.5
+JUMP_VELOCITY = 9.0
+ACCELERATION = 5.0
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(-5.8351, -0.164266, 0.0498519, 0, 4.94263, 0.5, -0.33645, 2.8489, -0.864589, 12.0543, 2.36048, -16.9843)
+use_collision = true
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(-5.8351, -0.232308, 0.0407039, 0, 4.03564, 0.707107, -0.33645, 4.02895, -0.705934, 21.6556, 2.36048, -16.9843)
+use_collision = true
