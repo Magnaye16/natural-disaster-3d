@@ -1,5 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
-.idea/
-.scripts/.idea/
+.vscode/
+
