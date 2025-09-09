@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://wp631s7ycfpo" path="res://Modules/seasons/SeasonManager.gd" id="1_3mvia"]
 [ext_resource type="Script" uid="uid://cnci3edfl40w2" path="res://Modules/seasons/Season.gd" id="2_04nbh"]
-[ext_resource type="Resource" uid="uid://cdvheru0gbojt" path="res://resources/cold_dry.tres" id="3_ixgbl"]
-[ext_resource type="Resource" uid="uid://bn0scxeutrw8v" path="res://resources/hot_dry.tres" id="4_emis2"]
-[ext_resource type="Resource" uid="uid://dk6byn57qsbjh" path="res://resources/rainy.tres" id="5_fui4v"]
-[ext_resource type="Resource" uid="uid://dloxa3vqcd40e" path="res://resources/typhoon.tres" id="6_u4x66"]
+[ext_resource type="Resource" path="res://resources/cold_dry.tres" id="3_ixgbl"]
+[ext_resource type="Resource" path="res://resources/hot_dry.tres" id="4_emis2"]
+[ext_resource type="Resource" path="res://resources/rainy.tres" id="5_fui4v"]
+[ext_resource type="Resource" path="res://resources/typhoon.tres" id="6_u4x66"]
 
 [node name="season_manager" type="Node"]
 script = ExtResource("1_3mvia")

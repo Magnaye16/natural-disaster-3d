@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SeasonCondition" load_steps=3 format=3 uid="uid://cne65n1q7qs5"]
+
+[ext_resource type="Script" uid="uid://ou12jufvhv8g" path="res://Modules/disasters/condition/SeasonCondition.gd" id="1_ny0a4"]
+[ext_resource type="Resource" path="res://resources/season/cold_dry.tres" id="2_gdnta"]
+
+[resource]
+script = ExtResource("1_ny0a4")
+season = ExtResource("2_gdnta")
+operator = 0
+metadata/_custom_type_script = "uid://ou12jufvhv8g"
