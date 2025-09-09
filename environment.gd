@@ -1,11 +1,6 @@
 extends Node2D
 
 
-@export var nextday_button: Button
-@export var plus10_button: Button
-
-#reset buttons
-@export var reset_button: Button
 
 @export var season_texture: TextureRect
 @export var season_label: Label
