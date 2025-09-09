@@ -13,8 +13,13 @@ font_size = 62
 paragraph_spacing = 17.0
 font_size = 63
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("season_texture", "season_label", "day_label", "year_label", "weather_label")]
 script = ExtResource("1_pb8ym")
+season_texture = NodePath("CanvasLayer/Control/PanelContainer/HBoxContainer/season_sprite")
+season_label = NodePath("CanvasLayer/Control/PanelContainer/HBoxContainer/SEASON")
+day_label = NodePath("CanvasLayer/Control/PanelContainer/HBoxContainer/day")
+year_label = NodePath("CanvasLayer/Control/PanelContainer/HBoxContainer/year")
+weather_label = NodePath("CanvasLayer/Control/PanelContainer/HBoxContainer/weather")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = 133.0
