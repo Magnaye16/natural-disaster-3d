@@ -1,4 +1,3 @@
-@tool
 extends Node
 class_name SeasonManager
 
@@ -21,10 +20,12 @@ var current_year: int = 1
 var total_days: int = 1
 
 
-func _ready() -> void:
+
+func init() -> void:
 	for season in seasons:
-		season.rehydrate_posible_weathers()
-		print(seasons)
+		season.init_posible_weathers()
+
+	pick_starting_season(0)
 
 
 func reset() -> void:
@@ -45,13 +46,12 @@ var days_in_year: int = seasons.reduce(
 
 func pick_starting_season(idx: int):
 	if idx < 0 or idx >= seasons.size():
-		push_error("Invalid starting season index.")
+		push_error("Invalid starting season index.:%s"%[idx])
 		return
 	starting_season_idx = idx
 	season_idx = idx
 	season_advanced.emit(get_current_season())
 	print("startting season set to:%s"%get_current_season().name)
-
 
 
 
