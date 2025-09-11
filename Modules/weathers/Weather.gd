@@ -10,7 +10,7 @@ var ambience:String = ""
 @export var probability_modifiers:Array[WeatherProbabiltyModifier]
 @export var probability:float = 1 # Default, can be set per season
 
-func _init()->void:
+func init()->void:
 	print("==== init %s ===="%name)
 
 	var json_path = "res://Modules/weathers/weather_data.json"
@@ -32,7 +32,7 @@ func _init()->void:
 				instance.weather = prob_modifier.get("weather")
 				instance.amount = prob_modifier.get("amount")
 				probability_modifiers.push_back(instance)
-			print("modifiers:",probability_modifiers)
+			#print("modifiers:",probability_modifiers)
 		file.close()
 	else:
 		push_error("Could not open weather data JSON file.")
@@ -41,8 +41,6 @@ func get_computed_probabilty(prev_weather:Weather)->float:
 
 	if prev_weather == null: return probability
 	for probability_modifier in probability_modifiers:
-		print("computing %s => prob:%s * mod:%f"%[probability_modifier.weather,probability,probability_modifier.amount])
-
 		if probability_modifier.weather == prev_weather.name:
 			return probability_modifier.apply(probability)
 	return  probability
