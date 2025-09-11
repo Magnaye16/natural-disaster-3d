@@ -22,16 +22,15 @@ func _possible_weather(season: Season) -> Weather:
 
 	var weight:float  = season.possible_weathers.reduce(
 		func(total: float, weather: Weather):
-			return total + weather.get_computed_probabilty(_prev_weather),0
+			return total + weather.get_computed_probabilty(_current_weather),0
 	)
-
 
 
 	var rand_num: float = randf() * weight
 	var curr_weight: float = 0.0
 
 	for weather in season.possible_weathers:
-		var computed_prob:float = weather.get_computed_probabilty(_prev_weather)
+		var computed_prob:float = weather.get_computed_probabilty(_current_weather)
 		print("===============\n%s computed prob:%f"%[weather,computed_prob])
 
 		curr_weight += computed_prob
