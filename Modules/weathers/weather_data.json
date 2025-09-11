@@ -48,7 +48,7 @@
 	"probability_modifiers": [
 	  {
 		"weather": "CloudyWeather",
-		"amount": 1.2
+		"amount": 1.5
 	  },
 	  {
 		"weather": "RainyWeather",
@@ -56,7 +56,11 @@
 	  },
 	  {
 		"weather": "SunnyWeather",
-		"amount": 1.2
+		"amount": 1
+	  },
+	 {
+		"weather": "StormyWeather",
+		"amount": 0
 	  }
 	]
   },
