@@ -14,10 +14,10 @@ class_name Season
 func _to_string() -> String:
 	return name
 
-func rehydrate_posible_weathers():
+func init_posible_weathers():
 	print("posible weathers ",possible_weathers)
 	for weather in possible_weathers:
-		weather._init()
+		weather.init()
 
 func season_from_string(weather_class_name:String)->Season:
 	var path = "res://Modules/weathers/types/%s.gd" % weather_class_name
