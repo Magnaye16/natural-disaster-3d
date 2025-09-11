@@ -15,10 +15,6 @@ run/main_scene="uid://c1w0ur7ysrfxq"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
-[autoload]
-
-Season_manager="*res://Modules/seasons/season_manager_autoload.tscn"
-
 [dotnet]
 
 project/assembly_name="Natural disaster 3D"
