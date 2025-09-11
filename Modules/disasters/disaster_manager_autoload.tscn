@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1o5w2xuibtjw"]
+[gd_scene load_steps=2 format=3 uid="uid://d1o5w2xuibtjw"]
 
 [ext_resource type="Script" uid="uid://crgmdcqk7oc5a" path="res://Modules/disasters/DisasterManager.gd" id="1_y1oce"]
-[ext_resource type="Script" uid="uid://tmm5svpuagun" path="res://Modules/disasters/DisasterBase.gd" id="2_kdobd"]
-[ext_resource type="Resource" uid="uid://c83y3udtodb0c" path="res://resources/disaster/Flood.tres" id="3_b52ku"]
 
 [node name="DisasterManager" type="Node"]
 script = ExtResource("1_y1oce")
-disasters = Array[ExtResource("2_kdobd")]([ExtResource("3_b52ku")])
 metadata/_custom_type_script = "uid://crgmdcqk7oc5a"
