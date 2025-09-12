@@ -9,17 +9,15 @@ extends Resource
 @export var effects: Array[DisasterEffect] = []
 
 func can_trigger(context: Dictionary) -> bool:
-    if randf() > chance:
-        return false
-    
-    for condition in conditions:
-        if not condition.is_met(context):
-            return false
-    
-    return true
+	if randf() > chance:
+		return false
+	
+	for condition in conditions:
+		if not condition.is_met(context):
+			return false
+	
+	return true
 
 func trigger(context: Dictionary) -> void:
-    for effect in effects:
-        effect.apply(context)
-
-
+	for effect in effects:
+		effect.apply(context)

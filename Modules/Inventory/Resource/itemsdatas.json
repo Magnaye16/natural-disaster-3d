@@ -1,0 +1,16 @@
+
+
+{
+	"Potion":{
+		"name":"Potion",
+		"type":"Consumable",
+		"texture":"res://src/Item_icon/icon1.png",
+		"effect":"heal"
+	},
+	"Antidote":{
+		"name":"Antidote",
+		"type":"Consumable",
+		"texture":"res://src/Item_icon/icon3.png",
+		"effect":"heal"
+	}
+}

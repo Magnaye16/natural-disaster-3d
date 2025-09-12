@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcmns2k3u5453"]
+
+[ext_resource type="Script" uid="uid://cmds8easci5xd" path="res://Modules/Inventory/Script/Inventory_Hotbar.gd" id="1_142v0"]
+[ext_resource type="PackedScene" uid="uid://dvfur23ui5p72" path="res://Modules/Inventory/Scene/Inventory_Slot.tscn" id="1_455xh"]
+
+[node name="Inventory_hotbar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_142v0")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -537.5
+offset_top = -135.0
+offset_right = 723.5
+offset_bottom = -18.0001
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.855, 0.855)
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 10
+
+[node name="Inventory_Slot" parent="GridContainer" instance=ExtResource("1_455xh")]
+layout_mode = 2
+
+[node name="Inventory_Slot2" parent="GridContainer" instance=ExtResource("1_455xh")]
+layout_mode = 2
+
+[node name="Inventory_Slot3" parent="GridContainer" instance=ExtResource("1_455xh")]
+layout_mode = 2
+
+[node name="Inventory_Slot4" parent="GridContainer" instance=ExtResource("1_455xh")]
+layout_mode = 2
+
+[node name="Inventory_Slot5" parent="GridContainer" instance=ExtResource("1_455xh")]
+layout_mode = 2
+
+[node name="Inventory_Slot6" parent="GridContainer" instance=ExtResource("1_455xh")]
+layout_mode = 2
+
+[node name="Inventory_Slot7" parent="GridContainer" instance=ExtResource("1_455xh")]
+layout_mode = 2
+
+[node name="Inventory_Slot8" parent="GridContainer" instance=ExtResource("1_455xh")]
+layout_mode = 2
+
+[node name="Inventory_Slot9" parent="GridContainer" instance=ExtResource("1_455xh")]
+layout_mode = 2
+
+[node name="Inventory_Slot10" parent="GridContainer" instance=ExtResource("1_455xh")]
+layout_mode = 2
