@@ -8,13 +8,13 @@ extends DisasterCondition
 
 func is_met(_context: Dictionary) -> bool:
 
-    match operator:
-        OPERATOR.EQUAL:
-            return Season_manager.get_current_season() == season
+	match operator:
+		OPERATOR.EQUAL:
+			return Season_manager.get_current_season() == season
 
-        OPERATOR.NOT_EQUAL:
-            return Season_manager.get_current_season() != season
+		OPERATOR.NOT_EQUAL:
+			return Season_manager.get_current_season() != season
 
-        _:
-            push_error("INVALID OPERATOR %s"%OPERATOR.keys()[operator])
-            return false
+		_:
+			push_error("INVALID OPERATOR %s"%OPERATOR.keys()[operator])
+			return false
