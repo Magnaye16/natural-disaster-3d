@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://cv64losnxwqso"]
+[gd_scene load_steps=21 format=4 uid="uid://cv64losnxwqso"]
 
 [ext_resource type="Script" uid="uid://dvmgoo7j1j83f" path="res://Modules/Inventory/Script/Main.gd" id="1_yg4ot"]
 [ext_resource type="Texture2D" uid="uid://b52fx53i6ijjs" path="res://src/imgs/Tilesets/Water.png" id="2_h3nmf"]
@@ -8,9 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://l57ngeblcyjj" path="res://src/imgs/Tilesets/Wooden House.png" id="6_vm4ek"]
 [ext_resource type="Texture2D" uid="uid://bppfktlqcdikv" path="res://src/imgs/Tilesets/Paths.png" id="7_4qtod"]
 [ext_resource type="PackedScene" uid="uid://bpwa1iqyxhpxa" path="res://Modules/Inventory/Scene/Player.tscn" id="8_hueuk"]
-[ext_resource type="PackedScene" uid="uid://dsu5r1be85w0h" path="res://Modules/Inventory/Scene/Inventory_Item.tscn" id="9_6a8me"]
-[ext_resource type="Texture2D" uid="uid://cpsjaebpas6w4" path="res://src/Item_icon/icon1.png" id="10_yg4ot"]
-[ext_resource type="Texture2D" uid="uid://dtir5kmhydso1" path="res://src/Item_icon/icon20.png" id="11_vm4ek"]
+[ext_resource type="PackedScene" uid="uid://dsu5r1be85w0h" path="res://Modules/Inventory/Scene/Item.tscn" id="9_6a8me"]
+[ext_resource type="Script" uid="uid://cmy8p48lmqgby" path="res://Modules/Inventory/Script/Item_resource.gd" id="10_0ye4e"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_s8ogb"]
 tile_data = PackedInt32Array(0, 65541, 0, 65536, 65541, 1, 1, 131077, 0, 65537, 131077, 1)
@@ -466,6 +465,22 @@ sources/6 = SubResource("TileSetAtlasSource_0arjm")
 sources/7 = SubResource("TileSetAtlasSource_s2bhh")
 pattern_0 = SubResource("TileMapPattern_s8ogb")
 
+[sub_resource type="Resource" id="Resource_0ye4e"]
+script = ExtResource("10_0ye4e")
+item_Name = "Potion"
+item_Qty = 1
+item_Type = ""
+item_Effect = ""
+metadata/_custom_type_script = "uid://cmy8p48lmqgby"
+
+[sub_resource type="Resource" id="Resource_p1a15"]
+script = ExtResource("10_0ye4e")
+item_Name = "Antidote"
+item_Qty = 1
+item_Type = ""
+item_Effect = ""
+metadata/_custom_type_script = "uid://cmy8p48lmqgby"
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_yg4ot")
 
@@ -489,6 +504,7 @@ tile_map_data = PackedByteArray("AAA6ACUAAwACAAAAAAA6ACQAAwACAAAAAAA6ACMAAwAAAAA
 tile_set = SubResource("TileSet_7hmu2")
 
 [node name="Paths" type="TileMapLayer" parent="TileMap"]
+visible = false
 use_parent_material = true
 tile_map_data = PackedByteArray("AAAEAAcABwABAAIAAAAFAAcABwACAAMAAAAGAAcABwACAAMAAAAHAAcABwACAAMAAAAIAAcABwACAAMAAAAJAAcABwACAAMAAAAKAAcABwACAAMAAAALAAcABwACAAMAAAAMAAcABwACAAMAAAANAAcABwACAAMAAAAOAAcABwACAAMAAAAPAAcABwACAAMAAAAQAAcABwACAAMAAAARAAcABwACAAMAAAASAAcABwACAAMAAAATAAcABwACAAMAAAAUAAcABwACAAMAAAAVAAcABwACAAMAAAAWAAcABwACAAMAAAAXAAcABwACAAMAAAAYAAcABwACAAMAAAAZAAcABwACAAMAAAAaAAcABwACAAEAAAAQAAgABwAAAAEAAAAQAAkABwAAAAEAAAAQAAoABwAAAAEAAAAQAAsABwAAAAEAAAAQAAwABwAAAAEAAAAQAA0ABwAAAAEAAAAQAA4ABwAAAAEAAAAQAA8ABwACAAIAAAAPAA8ABwACAAMAAAAOAA8ABwACAAMAAAANAA8ABwACAAMAAAAMAA8ABwACAAMAAAALAA8ABwACAAMAAAAJAA8ABwACAAMAAAAIAA8ABwACAAMAAAAHAA8ABwACAAMAAAAGAA8ABwACAAMAAAAKAA8ABwACAAMAAAALABAABwAAAAEAAAALABEABwAAAAEAAAALABIABwAAAAEAAAALABMABwAAAAEAAAALABQABwAAAAEAAAALABUABwAAAAEAAAALABYABwACAAIAAAAKABYABwACAAMAAAAJABYABwACAAMAAAAIABYABwACAAMAAAAaAAgABwAAAAEAAAAaAAkABwAAAAEAAAAaAAoABwAAAAEAAAAaAAsABwAAAAEAAAAaAAwABwAAAAEAAAAaAA0ABwAAAAEAAAAaAA4ABwAAAAEAAAAaAA8ABwABAAIAAAAbAA8ABwACAAMAAAAcAA8ABwACAAMAAAAdAA8ABwACAAMAAAAeAA8ABwACAAMAAAAfAA8ABwACAAMAAAAgAA8ABwACAAMAAAAhAA8ABwACAAMAAAAiAA8ABwACAAMAAAAjAA8ABwACAAMAAAAkAA8ABwACAAMAAAAlAA8ABwACAAMAAAAmAA8ABwACAAMAAAAnAA8ABwACAAMAAAAoAA8ABwACAAMAAAApAA8ABwACAAMAAAAqAA8ABwACAAMAAAArAA8ABwACAAMAAAAsAA8ABwACAAMAAAAtAA8ABwACAAMAAAAuAA8ABwACAAMAAAAvAA8ABwACAAMAAAAwAA8ABwACAAMAAAAxAA8ABwACAAMAAAAyAA8ABwACAAMAAAAzAA8ABwACAAMAAAA0AA8ABwACAAMAAAA1AA8ABwACAAMAAAA2AA8ABwACAAMAAAA3AA8ABwACAAMAAAA4AA8ABwACAAMAAAA5AA8ABwACAAMAAAA6AA8ABwACAAMAAAA7AA8ABwACAAMAAAA4AA4ABwAAAAEAAAA4AA0ABwAAAAEAAAA4AAwABwAAAAEAAAA4AAsABwAAAAEAAAA4AAoABwAAAAEAAAA4AAkABwAAAAEAAAA4AAgABwAAAAEAAAA4AAcABwAAAAEAAAA4AAYABwAAAAEAAAA4AAUABwABAAEAAAA5AAUABwACAAMAAAA6AAUABwACAAMAAAA5ABYABwACAAMAAAA4ABYABwABAAIAAAA4ABUABwAAAAEAAAA4ABQABwAAAAEAAAA4ABMABwAAAAEAAAA4ABIABwAAAAEAAAA4ABEABwAAAAEAAAA4ABAABwAAAAEAAAAJAAYABwAAAAEAAAAJAAUABwAAAAEAAAAUAAYABwAAAAEAAAAUAAUABwAAAAEAAAAEAAYABwAAAAEAAAAEAAUABwAAAAEAAAAEAAQABwAAAAEAAAAsAAMABQABAAAAAAAsAAQABQABAAEAAAAtAAMABQACAAAAAAAtAAQABQACAAEAAAAqAAEABQABAAAAAAAqAAIABQABAAEAAAArAAEABQACAAAAAAArAAIABQACAAEAAAAoAAEABQABAAAAAAAoAAIABQABAAEAAAApAAEABQACAAAAAAApAAIABQACAAEAAAAoAAMABQABAAAAAAAoAAQABQABAAEAAAApAAMABQACAAAAAAApAAQABQACAAEAAAAkAAMABQABAAAAAAAkAAQABQABAAEAAAAlAAMABQACAAAAAAAlAAQABQACAAEAAAAkAAEABQABAAAAAAAkAAIABQABAAEAAAAlAAEABQACAAAAAAAlAAIABQACAAEAAAAnAAQABQAEAAIAAAAlAAUABQAEAAIAAAAmAAMABQADAAIAAAAnAAEABQADAAIAAAAuAAEABQADAAIAAAArAAUABQAFAAIAAAAsAAAABQAAAAAAAAAsAAEABQAAAAEAAAAjAAMABQAAAAAAAAAjAAQABQAAAAEAAAA=")
 tile_set = SubResource("TileSet_7hmu2")
@@ -502,23 +518,14 @@ tile_set = SubResource("TileSet_7hmu2")
 process_mode = 1
 position = Vector2(611, 252)
 
-[node name="Inventory_item2" parent="." instance=ExtResource("9_6a8me")]
-position = Vector2(545, 279)
-item_Type = "Consumable"
-item_Name = "Healing Potion"
-item_Texture = ExtResource("10_yg4ot")
-item_Effect = "Heal"
+[node name="Item" parent="." instance=ExtResource("9_6a8me")]
+position = Vector2(560, 291)
+item_resource = SubResource("Resource_0ye4e")
 
-[node name="Inventory_item3" parent="." instance=ExtResource("9_6a8me")]
-position = Vector2(517, 279)
-item_Type = "Consumable"
-item_Name = "Healing Potion"
-item_Texture = ExtResource("10_yg4ot")
-item_Effect = "Heal"
+[node name="Item2" parent="." instance=ExtResource("9_6a8me")]
+position = Vector2(619, 321)
+item_resource = SubResource("Resource_p1a15")
 
-[node name="Inventory_item4" parent="." instance=ExtResource("9_6a8me")]
-position = Vector2(499, 323)
-item_Type = "Currency"
-item_Name = "coin"
-item_Texture = ExtResource("11_vm4ek")
-item_Effect = "Money"
+[node name="Item3" parent="." instance=ExtResource("9_6a8me")]
+position = Vector2(644, 270)
+item_resource = SubResource("Resource_p1a15")
