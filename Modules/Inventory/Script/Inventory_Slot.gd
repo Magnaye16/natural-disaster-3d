@@ -2,15 +2,15 @@ extends Control
 class_name Inventoryslot
 
 
-@onready var icon = $InnerBorder/ItemIcon
-@onready var quantity_Label = $InnerBorder/ItemQTY
-@onready var details_Panel = $DetailsPanel
-@onready var item_Name = $DetailsPanel/ItemName
-@onready var item_Type = $DetailsPanel/ItemType
-@onready var item_Effect = $DetailsPanel/ItemEffect
-@onready var usage_Panel = $UsagePanel
+@onready var icon = $OuterBorder/InnerBorder/ItemIcon
+@onready var quantity_Label = $OuterBorder/InnerBorder/ItemQTY
+@onready var details_Panel = $OuterBorder/DetailsPanel
+@onready var item_Name = $OuterBorder/DetailsPanel/ItemName
+@onready var item_Type = $OuterBorder/DetailsPanel/ItemType
+@onready var item_Effect  =$OuterBorder/DetailsPanel/ItemEffect
+@onready var usage_Panel = $OuterBorder/UsagePanel
 
-var item = null
+var item:ItemResource = null
 
 func _on_item_button_pressed():
 	if item != null:
@@ -28,14 +28,14 @@ func set_empty():
 	icon.texture = null
 	quantity_Label.text = ""
 
-func set_item(new_Item):
+func set_item(new_Item:ItemResource):
 	item = new_Item
-	icon.texture = new_Item["texture"]
-	quantity_Label.text = str(item["quantity"])
-	item_Name.text = str(item["name"])
-	item_Type.text = str(item["type"])
-	if item["effect"] != "":
-		item_Effect.text = str("+ ", item["effect"])
+	icon.texture = new_Item.item_Texture
+	quantity_Label.text = str(item.item_Qty)
+	item_Name.text = str(item.item_Name)
+	item_Type.text = str(item.item_Type)
+	if item.item_Effect != "":
+		item_Effect.text = str("+ ", item.item_Effect)
 	else:
 		item_Effect.text = ""
 
@@ -46,17 +46,17 @@ func _on_drop_button_pressed():
 		var drop_Offset = Vector2(0,50)
 		
 		drop_Offset = drop_Offset.rotated(Global.player_Node.rotation)
-		Global.drop_Item(item, drop_Position + drop_Offset)
-		Global.remove_Item(item["name"], item["effect"])
+		Global.player_Node.inventory.remove_Item(item)
+		Global.player_Node.inventory.drop_Item(item, drop_Position + drop_Offset)
 		usage_Panel.visible = false
 
 
 func _on_use_button_pressed():
 	usage_Panel.visible = false
-	if item != null and item["effect"] != "":
+	if item != null and item.item_Effect != "":
 		if Global.player_Node:
-			Global.player_Node.apply_Item_effect()
-			Global.remove_Item(item["name"], item["effect"])
+			Global.player_Node.apply_Item_effect(item)
+			Global.player_Node.inventory.remove_Item(item)
 			
 		else:
 			print("Player not found")
