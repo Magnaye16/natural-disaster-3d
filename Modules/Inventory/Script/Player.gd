@@ -1,16 +1,21 @@
-extends CharacterBody2D
-
+extends Entity
+class_name  Player
 #variables
 var speed = 150
-
-
+#@onready var inventory:Inventory = $Inventory
 @onready var animated_Sprite = $AnimatedSprite2D
 @onready var interact_UI = $InteractUI
-@onready var inventoryUI = $InventoryUI
+@onready var inventoryUI:InventoryUI = $InventoryUI
+@onready var invetorygridui:InventoryGridUI = $InventoryUI/ColorRect/Inventory_Grid_UI
+@onready var inventory_hotbar: InventoryHotbar = $Hotbar/Inventory_hotbar
 
 func _ready():
+	inventory = $Inventory
 	Global.set_Player_reference(self)
+	invetorygridui.init()
+	inventory_hotbar.init()
 	
+	print("player")
 
 func get_Input():
 	var input_Direction = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
@@ -24,6 +29,12 @@ func _physics_process(delta):
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_add"):
 		$"Interactable_area-detector".interact()
+	
+	if event.is_action_pressed("ui_inventory"):
+		inventory_hotbar.visible =!inventory_hotbar.visible
+		inventoryUI.visible = !inventoryUI.visible
+		#get_tree().paused = !get_tree().paused
+
 func update_Animation():
 	if velocity == Vector2.ZERO:
 		animated_Sprite.play("Idle")
@@ -39,10 +50,7 @@ func update_Animation():
 			else:
 				animated_Sprite.play("walk_up")
 
-func _input(event):
-	if event.is_action_pressed("ui_inventory"):
-		inventoryUI.visible = !inventoryUI.visible
-		#get_tree().paused = !get_tree().paused
+	
 
 func apply_Item_effect(item):
 	match item["effect"]:
@@ -57,8 +65,6 @@ func apply_Item_effect(item):
 func _on_interactable_areadetector_interactable_contacted() -> void:
 	$InteractUI.show()
 	
-
-
 func _on_interactable_areadetector_interactable_exited() -> void:
 	$InteractUI.hide()
 	

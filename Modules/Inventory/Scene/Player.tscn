@@ -1,11 +1,13 @@
-[gd_scene load_steps=34 format=3 uid="uid://bpwa1iqyxhpxa"]
+[gd_scene load_steps=36 format=3 uid="uid://bpwa1iqyxhpxa"]
 
 [ext_resource type="Script" uid="uid://cw8rykfot2nmc" path="res://Modules/Inventory/Script/Player.gd" id="1_6l3be"]
 [ext_resource type="Texture2D" uid="uid://0flrot5hrf4a" path="res://src/imgs/sprites/chars/person.png" id="2_3eeal"]
 [ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://src/Fonts/ARCADECLASSIC.TTF" id="3_jvxg0"]
+[ext_resource type="Script" uid="uid://bleiuyto6apeq" path="res://Modules/Inventory/Script/Inventory_UI.gd" id="4_l2e0d"]
 [ext_resource type="PackedScene" uid="uid://bi2pog25w52tj" path="res://Modules/Inventory/Scene/Inventory_UI.tscn" id="4_mud5u"]
 [ext_resource type="PackedScene" uid="uid://de647vytqiwg3" path="res://Modules/Inventory/Scene/interactable_area_detector.tscn" id="5_3nacs"]
 [ext_resource type="Script" uid="uid://dqpn8josc5nfs" path="res://Modules/Inventory/Script/Inventory.gd" id="6_6a1d6"]
+[ext_resource type="PackedScene" uid="uid://bcmns2k3u5453" path="res://Modules/Inventory/Scene/Inventory_hotbar.tscn" id="8_c4hvf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jvxg0"]
 atlas = ExtResource("2_3eeal")
@@ -261,6 +263,7 @@ metadata/_edit_group_ = true
 
 [node name="InventoryUI" type="CanvasLayer" parent="."]
 visible = false
+script = ExtResource("4_l2e0d")
 
 [node name="ColorRect" type="ColorRect" parent="InventoryUI"]
 anchors_preset = 15
@@ -284,12 +287,17 @@ theme_override_fonts/font = ExtResource("3_jvxg0")
 theme_override_font_sizes/font_size = 60
 text = "Inventory"
 
-[node name="Inventory_UI" parent="InventoryUI/ColorRect" instance=ExtResource("4_mud5u")]
+[node name="Inventory_Grid_UI" parent="InventoryUI/ColorRect" instance=ExtResource("4_mud5u")]
+layout_mode = 1
 
 [node name="Interactable_area-detector" parent="." instance=ExtResource("5_3nacs")]
 
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("6_6a1d6")
+
+[node name="Hotbar" type="CanvasLayer" parent="."]
+
+[node name="Inventory_hotbar" parent="Hotbar" instance=ExtResource("8_c4hvf")]
 
 [connection signal="interactable_contacted" from="Interactable_area-detector" to="." method="_on_interactable_areadetector_interactable_contacted"]
 [connection signal="interactable_exited" from="Interactable_area-detector" to="." method="_on_interactable_areadetector_interactable_exited"]
