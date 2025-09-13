@@ -61,7 +61,7 @@ func _on_interactable_area_interacted(entity):
 	pickup_Item(entity)
 
 func set_item_resource(val:ItemResource):
-		if val == null:return
+		if val == null or  Engine.is_editor_hint():return
 		item_resource = val
 		item_resource.init()
 		item_Name = item_resource.item_Name
