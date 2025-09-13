@@ -1,14 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1w0ur7ysrfxq"]
+[gd_scene load_steps=2 format=3 uid="uid://c1w0ur7ysrfxq"]
 
-[ext_resource type="Script" uid="uid://h0ffaerfhy1p" path="res://scripts/Command/2DGameHandler.gd" id="1_3iet1"]
 [ext_resource type="PackedScene" uid="uid://qmf3o77i7blr" path="res://scenes/2d/2dplayer.tscn" id="1_nduc7"]
 
-[node name="2Dgame" type="Node2D" node_paths=PackedStringArray("entity")]
-script = ExtResource("1_3iet1")
-entity = NodePath("Player")
+[node name="2Dgame" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_nduc7")]
-motion_mode = 0
 
 [node name="WorldCam" type="Camera2D" parent="."]
 position = Vector2(118, 58)
