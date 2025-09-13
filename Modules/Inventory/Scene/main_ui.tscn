@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcald3shxb12n"]
+
+[ext_resource type="PackedScene" uid="uid://dqnfb71785qi0" path="res://Modules/Inventory/Scene/healthbar.tscn" id="1_cb4y7"]
+
+[node name="main_ui" type="CanvasLayer"]
+
+[node name="healthbar" parent="." instance=ExtResource("1_cb4y7")]

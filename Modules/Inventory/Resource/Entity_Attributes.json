@@ -1,0 +1,21 @@
+{
+	"Player":{
+		"name":"player",
+		"health":"100",
+		"stamina":"100",
+		"sprite_texture":"res://src/imgs/sprites/chars/person.png",
+		"speed":"150",
+		"luck":"150"
+	},
+	"Npc":{
+		"name":"npc",
+		"health":"100",
+		"stamina":"100",
+		"sprite_texture":"res://src/imgs/sprites/chars/person.png",
+		"speed":"150"
+	},
+	"elements":{
+		"name":"",
+		"health":"50"
+	}
+}
