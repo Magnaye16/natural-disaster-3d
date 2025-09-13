@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://de647vytqiwg3"]
+
+[ext_resource type="Script" uid="uid://dbahayjvbjkrb" path="res://Modules/Inventory/Script/interactable_area_detector.gd" id="1_eao6f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tpyi0"]
+size = Vector2(11, 15)
+
+[node name="Interactable_area-detector" type="Area2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_eao6f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 12.5)
+shape = SubResource("RectangleShape2D_tpyi0")
+
+[connection signal="area_entered" from="." to="." method="_on_contact"]
+[connection signal="area_exited" from="." to="." method="_on_exit"]

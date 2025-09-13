@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsu5r1be85w0h"]
+
+[ext_resource type="Script" uid="uid://dk10slks0eqr7" path="res://Modules/Inventory/Script/Item.gd" id="1_dpyjg"]
+[ext_resource type="PackedScene" uid="uid://c8w25y8t3ednj" path="res://Modules/Inventory/Scene/interactable_area.tscn" id="2_stl11"]
+
+[node name="Item" type="Node2D" groups=["Items"]]
+script = ExtResource("1_dpyjg")
+
+[node name="Interactable_area" parent="." instance=ExtResource("2_stl11")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[connection signal="contacted" from="Interactable_area" to="." method="_on_area_2d_body_entered"]
+[connection signal="exit_contacteds" from="Interactable_area" to="." method="_on_area_2d_body_exited"]
+[connection signal="interacted" from="Interactable_area" to="." method="_on_interactable_area_interacted"]
