@@ -21,10 +21,9 @@ var total_days: int = 1
 
 
 
-func init() -> void:
+func _ready() -> void:
 	for season in seasons:
 		season.init_posible_weathers()
-
 	pick_starting_season(0)
 
 
@@ -52,7 +51,6 @@ func pick_starting_season(idx: int):
 	season_idx = idx
 	season_advanced.emit(get_current_season())
 	print("startting season set to:%s"%get_current_season().name)
-
 
 
 func advance_day(days: int = 1):
