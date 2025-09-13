@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1o5w2xuibtjw"]
-
-[ext_resource type="Script" uid="uid://crgmdcqk7oc5a" path="res://Modules/disasters/DisasterManager.gd" id="1_y1oce"]
-
-[node name="DisasterManager" type="Node"]
-script = ExtResource("1_y1oce")
-metadata/_custom_type_script = "uid://crgmdcqk7oc5a"
