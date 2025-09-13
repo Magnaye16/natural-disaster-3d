@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bs4lluqhp20dt"]
+[gd_scene load_steps=10 format=3 uid="uid://bs4lluqhp20dt"]
 
 [ext_resource type="Script" uid="uid://djc826y05514t" path="res://environment.gd" id="1_pb8ym"]
 [ext_resource type="Texture2D" uid="uid://cdqm3g1qjxmkx" path="res://icon.svg" id="2_gco2m"]
@@ -6,17 +6,6 @@
 [ext_resource type="Script" uid="uid://c16uvferikfqs" path="res://Modules/weathers/weatherManager.gd" id="4_abhyg"]
 [ext_resource type="Script" uid="uid://wp631s7ycfpo" path="res://Modules/seasons/SeasonManager.gd" id="5_vme4q"]
 [ext_resource type="Script" uid="uid://crgmdcqk7oc5a" path="res://Modules/disasters/DisasterManager.gd" id="6_bjvlb"]
-[ext_resource type="Script" uid="uid://cnci3edfl40w2" path="res://Modules/seasons/Season.gd" id="6_ryb1f"]
-[ext_resource type="Script" uid="uid://p50j2ilr6fwb" path="res://Modules/weathers/Weather.gd" id="7_73jau"]
-[ext_resource type="Script" uid="uid://bmivl5a3ito2x" path="res://Modules/weathers/weatherProbabilityModifier.gd" id="8_q8rkj"]
-[ext_resource type="Script" uid="uid://b6pklnnrt8dyy" path="res://Modules/weathers/types/CloudyWeather.gd" id="9_cs61k"]
-[ext_resource type="Script" uid="uid://ch5cdbtwhl7ni" path="res://Modules/seasons/types/ColdDrySeason.gd" id="10_3bly1"]
-[ext_resource type="Script" uid="uid://dbx78oo8nyhuo" path="res://Modules/weathers/types/SunnyWeather.gd" id="11_3bly1"]
-[ext_resource type="Script" uid="uid://dh5ns3erxqod3" path="res://Modules/seasons/types/HotDrySeason.gd" id="11_cs61k"]
-[ext_resource type="Script" uid="uid://dp48hqpkgpvml" path="res://Modules/seasons/types/RainySeason.gd" id="12_3bly1"]
-[ext_resource type="Script" uid="uid://dts7pqo3eqg7k" path="res://Modules/weathers/types/RainyWeather.gd" id="13_b6t21"]
-[ext_resource type="Script" uid="uid://erhjy0dottow" path="res://Modules/seasons/types/TyphoonSeason.gd" id="13_uo75p"]
-[ext_resource type="Script" uid="uid://i6fdecjoihb3" path="res://Modules/weathers/types/StormyWeather.gd" id="15_b6t21"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pb8ym"]
 bg_color = Color(0, 0, 0, 0.576471)
@@ -27,94 +16,6 @@ font_size = 62
 [sub_resource type="LabelSettings" id="LabelSettings_gco2m"]
 paragraph_spacing = 17.0
 font_size = 63
-
-[sub_resource type="Resource" id="Resource_uo75p"]
-script = ExtResource("9_cs61k")
-probability_modifiers = Array[ExtResource("8_q8rkj")]([])
-probability = 1.0
-metadata/_custom_type_script = "uid://b6pklnnrt8dyy"
-
-[sub_resource type="Resource" id="Resource_b6t21"]
-script = ExtResource("10_3bly1")
-name = ""
-total_days = 30
-possible_weathers = Array[ExtResource("7_73jau")]([SubResource("Resource_uo75p")])
-metadata/_custom_type_script = "uid://ch5cdbtwhl7ni"
-
-[sub_resource type="Resource" id="Resource_aan70"]
-script = ExtResource("11_3bly1")
-probability_modifiers = Array[ExtResource("8_q8rkj")]([])
-probability = 3.0
-metadata/_custom_type_script = "uid://dbx78oo8nyhuo"
-
-[sub_resource type="Resource" id="Resource_8raf8"]
-script = ExtResource("9_cs61k")
-probability_modifiers = Array[ExtResource("8_q8rkj")]([])
-probability = 1.0
-metadata/_custom_type_script = "uid://b6pklnnrt8dyy"
-
-[sub_resource type="Resource" id="Resource_qh6j7"]
-script = ExtResource("11_cs61k")
-name = ""
-total_days = 30
-possible_weathers = Array[ExtResource("7_73jau")]([SubResource("Resource_aan70"), SubResource("Resource_8raf8")])
-metadata/_custom_type_script = "uid://dh5ns3erxqod3"
-
-[sub_resource type="Resource" id="Resource_vmvdu"]
-script = ExtResource("13_b6t21")
-probability_modifiers = Array[ExtResource("8_q8rkj")]([])
-probability = 4.0
-metadata/_custom_type_script = "uid://dts7pqo3eqg7k"
-
-[sub_resource type="Resource" id="Resource_lpx4q"]
-script = ExtResource("9_cs61k")
-probability_modifiers = Array[ExtResource("8_q8rkj")]([])
-probability = 2.0
-metadata/_custom_type_script = "uid://b6pklnnrt8dyy"
-
-[sub_resource type="Resource" id="Resource_6cbq1"]
-script = ExtResource("11_3bly1")
-probability_modifiers = Array[ExtResource("8_q8rkj")]([])
-probability = 1.0
-metadata/_custom_type_script = "uid://dbx78oo8nyhuo"
-
-[sub_resource type="Resource" id="Resource_aok7b"]
-script = ExtResource("12_3bly1")
-name = ""
-total_days = 30
-possible_weathers = Array[ExtResource("7_73jau")]([SubResource("Resource_vmvdu"), SubResource("Resource_lpx4q"), SubResource("Resource_6cbq1")])
-metadata/_custom_type_script = "uid://dp48hqpkgpvml"
-
-[sub_resource type="Resource" id="Resource_8ipfu"]
-script = ExtResource("11_3bly1")
-probability_modifiers = Array[ExtResource("8_q8rkj")]([])
-probability = 0.5
-metadata/_custom_type_script = "uid://dbx78oo8nyhuo"
-
-[sub_resource type="Resource" id="Resource_shx30"]
-script = ExtResource("9_cs61k")
-probability_modifiers = Array[ExtResource("8_q8rkj")]([])
-probability = 2.0
-metadata/_custom_type_script = "uid://b6pklnnrt8dyy"
-
-[sub_resource type="Resource" id="Resource_fwv1b"]
-script = ExtResource("15_b6t21")
-probability_modifiers = Array[ExtResource("8_q8rkj")]([])
-probability = 4.0
-metadata/_custom_type_script = "uid://i6fdecjoihb3"
-
-[sub_resource type="Resource" id="Resource_6xm17"]
-script = ExtResource("13_b6t21")
-probability_modifiers = Array[ExtResource("8_q8rkj")]([])
-probability = 3.0
-metadata/_custom_type_script = "uid://dts7pqo3eqg7k"
-
-[sub_resource type="Resource" id="Resource_8yrfl"]
-script = ExtResource("13_uo75p")
-name = ""
-total_days = 30
-possible_weathers = Array[ExtResource("7_73jau")]([SubResource("Resource_8ipfu"), SubResource("Resource_shx30"), SubResource("Resource_fwv1b"), SubResource("Resource_6xm17")])
-metadata/_custom_type_script = "uid://erhjy0dottow"
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("season_texture", "season_label", "day_label", "year_label", "weather_label", "game_manager")]
 script = ExtResource("1_pb8ym")
@@ -273,7 +174,6 @@ metadata/_custom_type_script = "uid://c16uvferikfqs"
 
 [node name="SeasonManager" type="Node" parent="GameManager"]
 script = ExtResource("5_vme4q")
-seasons = Array[ExtResource("6_ryb1f")]([SubResource("Resource_b6t21"), SubResource("Resource_qh6j7"), SubResource("Resource_aok7b"), SubResource("Resource_8yrfl")])
 metadata/_custom_type_script = "uid://wp631s7ycfpo"
 
 [node name="DisasterManager" type="Node" parent="GameManager"]
