@@ -6,12 +6,9 @@ extends Node2D
 @export var weather_label: Label
 
 
-var game_manager:GameManager = GameManager.new()
-
+@export var game_manager:GameManager
 
 func _ready():
-	game_manager.init()
-
 	game_manager.season_manager.day_advanced.connect(
 		func(day): day_label.text = "%s"%day
 )
