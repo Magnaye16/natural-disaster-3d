@@ -1,12 +1,118 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpr5qs50xywtl"]
+[gd_scene load_steps=29 format=3 uid="uid://bpr5qs50xywtl"]
 
 [ext_resource type="Script" uid="uid://wp631s7ycfpo" path="res://Modules/seasons/SeasonManager.gd" id="1_3mvia"]
 [ext_resource type="Script" uid="uid://cnci3edfl40w2" path="res://Modules/seasons/Season.gd" id="2_04nbh"]
-[ext_resource type="Resource" uid="uid://cdvheru0gbojt" path="res://resources/cold_dry.tres" id="3_ixgbl"]
-[ext_resource type="Resource" uid="uid://bn0scxeutrw8v" path="res://resources/hot_dry.tres" id="4_emis2"]
-[ext_resource type="Resource" uid="uid://dk6byn57qsbjh" path="res://resources/rainy.tres" id="5_fui4v"]
-[ext_resource type="Resource" uid="uid://dloxa3vqcd40e" path="res://resources/typhoon.tres" id="6_u4x66"]
+[ext_resource type="Script" uid="uid://p50j2ilr6fwb" path="res://Modules/weathers/Weather.gd" id="3_3mvia"]
+[ext_resource type="Script" uid="uid://dh5ns3erxqod3" path="res://Modules/seasons/types/HotDrySeason.gd" id="4_04nbh"]
+[ext_resource type="Script" uid="uid://bmivl5a3ito2x" path="res://Modules/weathers/weatherProbabilityModifier.gd" id="4_7o0cw"]
+[ext_resource type="Script" uid="uid://dts7pqo3eqg7k" path="res://Modules/weathers/types/RainyWeather.gd" id="4_fui4v"]
+[ext_resource type="Script" uid="uid://ch5cdbtwhl7ni" path="res://Modules/seasons/types/ColdDrySeason.gd" id="4_ixgbl"]
+[ext_resource type="Script" uid="uid://dp48hqpkgpvml" path="res://Modules/seasons/types/RainySeason.gd" id="5_ixgbl"]
+[ext_resource type="Script" uid="uid://dbx78oo8nyhuo" path="res://Modules/weathers/types/SunnyWeather.gd" id="5_u4x66"]
+[ext_resource type="Script" uid="uid://b6pklnnrt8dyy" path="res://Modules/weathers/types/CloudyWeather.gd" id="6_7o0cw"]
+[ext_resource type="Script" uid="uid://erhjy0dottow" path="res://Modules/seasons/types/TyphoonSeason.gd" id="6_emis2"]
+[ext_resource type="Script" uid="uid://i6fdecjoihb3" path="res://Modules/weathers/types/StormyWeather.gd" id="10_u4x66"]
+
+[sub_resource type="Resource" id="Resource_ixgbl"]
+script = ExtResource("6_7o0cw")
+probability_modifiers = Array[ExtResource("4_7o0cw")]([])
+probability = 2.0
+metadata/_custom_type_script = "uid://b6pklnnrt8dyy"
+
+[sub_resource type="Resource" id="Resource_emis2"]
+script = ExtResource("4_fui4v")
+probability_modifiers = Array[ExtResource("4_7o0cw")]([])
+probability = 3.0
+metadata/_custom_type_script = "uid://dts7pqo3eqg7k"
+
+[sub_resource type="Resource" id="Resource_fui4v"]
+script = ExtResource("5_u4x66")
+probability_modifiers = Array[ExtResource("4_7o0cw")]([])
+probability = 1.0
+metadata/_custom_type_script = "uid://dbx78oo8nyhuo"
+
+[sub_resource type="Resource" id="Resource_u4x66"]
+script = ExtResource("5_ixgbl")
+name = ""
+total_days = 30
+possible_weathers = Array[ExtResource("3_3mvia")]([SubResource("Resource_ixgbl"), SubResource("Resource_emis2"), SubResource("Resource_fui4v")])
+metadata/_custom_type_script = "uid://dp48hqpkgpvml"
+
+[sub_resource type="Resource" id="Resource_7o0cw"]
+script = ExtResource("6_7o0cw")
+probability_modifiers = Array[ExtResource("4_7o0cw")]([])
+probability = 1.0
+metadata/_custom_type_script = "uid://b6pklnnrt8dyy"
+
+[sub_resource type="Resource" id="Resource_p5dfe"]
+script = ExtResource("4_fui4v")
+probability_modifiers = Array[ExtResource("4_7o0cw")]([])
+probability = 2.0
+metadata/_custom_type_script = "uid://dts7pqo3eqg7k"
+
+[sub_resource type="Resource" id="Resource_dndsx"]
+script = ExtResource("10_u4x66")
+probability_modifiers = Array[ExtResource("4_7o0cw")]([])
+probability = 2.0
+metadata/_custom_type_script = "uid://i6fdecjoihb3"
+
+[sub_resource type="Resource" id="Resource_qu54f"]
+script = ExtResource("5_u4x66")
+probability_modifiers = Array[ExtResource("4_7o0cw")]([])
+probability = 1.0
+metadata/_custom_type_script = "uid://dbx78oo8nyhuo"
+
+[sub_resource type="Resource" id="Resource_wikrr"]
+script = ExtResource("6_emis2")
+name = ""
+total_days = 30
+possible_weathers = Array[ExtResource("3_3mvia")]([SubResource("Resource_7o0cw"), SubResource("Resource_p5dfe"), SubResource("Resource_dndsx"), SubResource("Resource_qu54f")])
+metadata/_custom_type_script = "uid://erhjy0dottow"
+
+[sub_resource type="Resource" id="Resource_0ralc"]
+script = ExtResource("6_7o0cw")
+probability_modifiers = Array[ExtResource("4_7o0cw")]([])
+probability = 3.0
+metadata/_custom_type_script = "uid://b6pklnnrt8dyy"
+
+[sub_resource type="Resource" id="Resource_c30oy"]
+script = ExtResource("4_fui4v")
+probability_modifiers = Array[ExtResource("4_7o0cw")]([])
+probability = 1.0
+metadata/_custom_type_script = "uid://dts7pqo3eqg7k"
+
+[sub_resource type="Resource" id="Resource_ll47d"]
+script = ExtResource("5_u4x66")
+probability_modifiers = Array[ExtResource("4_7o0cw")]([])
+probability = 1.0
+metadata/_custom_type_script = "uid://dbx78oo8nyhuo"
+
+[sub_resource type="Resource" id="Resource_25i7w"]
+script = ExtResource("4_ixgbl")
+name = ""
+total_days = 30
+possible_weathers = Array[ExtResource("3_3mvia")]([SubResource("Resource_0ralc"), SubResource("Resource_c30oy"), SubResource("Resource_ll47d")])
+metadata/_custom_type_script = "uid://ch5cdbtwhl7ni"
+
+[sub_resource type="Resource" id="Resource_lr36j"]
+script = ExtResource("5_u4x66")
+probability_modifiers = Array[ExtResource("4_7o0cw")]([])
+probability = 2.0
+metadata/_custom_type_script = "uid://dbx78oo8nyhuo"
+
+[sub_resource type="Resource" id="Resource_fo71h"]
+script = ExtResource("6_7o0cw")
+probability_modifiers = Array[ExtResource("4_7o0cw")]([])
+probability = 1.0
+metadata/_custom_type_script = "uid://b6pklnnrt8dyy"
+
+[sub_resource type="Resource" id="Resource_22qpy"]
+script = ExtResource("4_04nbh")
+name = ""
+total_days = 30
+possible_weathers = Array[ExtResource("3_3mvia")]([SubResource("Resource_lr36j"), SubResource("Resource_fo71h")])
+metadata/_custom_type_script = "uid://dh5ns3erxqod3"
 
 [node name="season_manager" type="Node"]
 script = ExtResource("1_3mvia")
-seasons = Array[ExtResource("2_04nbh")]([ExtResource("3_ixgbl"), ExtResource("4_emis2"), ExtResource("5_fui4v"), ExtResource("6_u4x66")])
+seasons = Array[ExtResource("2_04nbh")]([SubResource("Resource_u4x66"), SubResource("Resource_wikrr"), SubResource("Resource_25i7w"), SubResource("Resource_22qpy")])

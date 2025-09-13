@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Season" load_steps=2 format=3 uid="uid://dk6byn57qsbjh"]
-
-[ext_resource type="Script" uid="uid://cnci3edfl40w2" path="res://Modules/seasons/Season.gd" id="1_75bi4"]
-
-[resource]
-script = ExtResource("1_75bi4")
-name = "Rainy dry"
-total_days = 30
-metadata/_custom_type_script = "uid://cnci3edfl40w2"

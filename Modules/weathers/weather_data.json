@@ -1,0 +1,90 @@
+{
+  "CloudyWeather": {
+	"description": "Clouds cover the sky, reducing sunlight and creating a gray atmosphere.",
+	"icon_path": "res://assets/cloudy.png",
+	 "probability_modifiers": [
+	  {
+		"weather": "CloudyWeather",
+		"amount": 0.5
+	  },
+	 {
+		"weather": "RainyWeather",
+		"amount": 2
+	  },
+	  {
+		"weather": "SunnyWeather",
+		"amount": 1
+	  },
+	 {
+		"weather": "StormyWeather",
+		"amount": 1.5
+	  }
+	]
+
+  },
+
+  "RainyWeather": {
+	"description": "Persistent rainfall, soaking the ground and lowering visibility.",
+	"icon_path": "res://assets/rainy.png",
+	"probability_modifiers": [
+	  {
+		"weather": "CloudyWeather",
+		"amount": 1.6
+	  },
+	  {
+		"weather": "RainyWeather",
+		"amount": 1.5
+	  },
+	  {
+		"weather": "SunnyWeather",
+		"amount": 0
+	  }
+	]
+  },
+
+  "SunnyWeather": {
+	"description": "Clear skies and bright sunlight, with little to no cloud cover.",
+	"icon_path": "res://assets/sunny.png",
+	"probability_modifiers": [
+	  {
+		"weather": "CloudyWeather",
+		"amount": 1.5
+	  },
+	  {
+		"weather": "RainyWeather",
+		"amount": 0
+	  },
+	  {
+		"weather": "SunnyWeather",
+		"amount": 1
+	  },
+	 {
+		"weather": "StormyWeather",
+		"amount": 0
+	  }
+	]
+  },
+
+  "StormyWeather": {
+	"description": "Thunderstorms with strong winds, lightning, and heavy rain.",
+	"icon_path": "res://assets/stormy.png",
+	"probability_modifiers": [
+	  {
+		"weather": "CloudyWeather",
+		"amount": 1
+	  },
+	  {
+		"weather": "RainyWeather",
+		"amount": 2
+	  },
+	  {
+		"weather": "SunnyWeather",
+		"amount": 0
+	  },
+	  {
+		"weather": "StormyWeather",
+		"amount": 1.5
+	  }
+	]
+  }
+}

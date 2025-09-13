@@ -1,0 +1,2 @@
+class_name ColdDrySeason
+extends Season
