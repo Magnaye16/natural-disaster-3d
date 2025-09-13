@@ -1,16 +1,9 @@
 class_name GameManager
-extends Node2D
+extends Node
 
-@export var weather_manager: WeatherManager = WeatherManager.new()
-@export var season_manager:SeasonManager = preload("res://Modules/seasons/season_manager_autoload.tscn").instantiate()
-@export var disaster_manager:DisasterManager = preload("res://Modules/disasters/disaster_manager_autoload.tscn").instantiate()
-
-
-
-
-func init() -> void:
-	season_manager.init()
-
+@export var weather_manager: WeatherManager
+@export var season_manager:SeasonManager
+@export var disaster_manager:DisasterManager
 
 
 func get_current_season()->Season:
