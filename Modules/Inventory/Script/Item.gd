@@ -11,12 +11,8 @@ var item_Texture: Texture
 var item_Effect = ""
 static var scene_path: String = "res://Modules/Inventory/Scene/Item.tscn"
 
-
 # Scene-Tree Node references
 @onready var icon_Sprite = $Sprite2D
-
-# Variables
-var player_in_range = false
 
 func _ready():
 	# Set the texture to reflect in the game
@@ -25,32 +21,12 @@ func _ready():
 		item_resource = item_resource
 
 
-
-
 # Add item to inventory
 func pickup_Item(entity:Entity):
-
 	if entity.inventory == null:
 		return
 	if entity.inventory.add_Item(item_resource):
 		self.queue_free()
-
-# If player is in range, show UI and make item pickable
-func _on_area_2d_body_entered(body):
-	player_in_range = true
-	body.interact_UI.visible = true
-
-# If player is in range, hide UI and don't make item pickable
-func _on_area_2d_body_exited(body):
-	player_in_range = false
-	body.interact_UI.visible = false
-
-
-
-
-func _on_interactable_area_interacted(entity):
-
-	pickup_Item(entity)
 
 func set_item_resource(val:ItemResource):
 		if val == null or  Engine.is_editor_hint():return
@@ -61,3 +37,7 @@ func set_item_resource(val:ItemResource):
 		item_Effect = item_resource.item_Effect
 		item_Type = item_resource.item_Type
 		print("set itemresource")
+
+
+func _on_interactable_component_interacted(entity: Entity) -> void:
+		pickup_Item(entity)

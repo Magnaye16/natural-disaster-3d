@@ -80,8 +80,8 @@ hit_btn={
 
 [layer_names]
 
-2d_physics/layer_2="Interact_area_detector"
-2d_physics/layer_3="Interact_area"
+2d_physics/layer_2="interactor_component"
+2d_physics/layer_3="interactable_component"
 2d_physics/layer_4="player_hurtbox"
 2d_physics/layer_5="entity_hurtbox"
 

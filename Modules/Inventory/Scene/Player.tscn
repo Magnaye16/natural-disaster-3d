@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cw8rykfot2nmc" path="res://Modules/Inventory/Script/Player.gd" id="1_6l3be"]
 [ext_resource type="Texture2D" uid="uid://0flrot5hrf4a" path="res://src/imgs/sprites/chars/person.png" id="2_3eeal"]
-[ext_resource type="PackedScene" path="res://Modules/Inventory/Scene/interactable_area_detector.tscn" id="5_3nacs"]
 [ext_resource type="Script" uid="uid://dqpn8josc5nfs" path="res://Modules/Inventory/Script/Inventory.gd" id="6_6a1d6"]
 [ext_resource type="Script" uid="uid://bw645jlbwlb5l" path="res://Modules/Command/Controller/PlayerController.gd" id="7_l2e0d"]
 [ext_resource type="Script" uid="uid://c48rqlry15rsq" path="res://Modules/Components/MovementComponent.gd" id="8_c4hvf"]
+[ext_resource type="PackedScene" uid="uid://besiwigokw2yn" path="res://Modules/Inventory/Scene/interactor_component.tscn" id="8_nm665"]
 [ext_resource type="Script" uid="uid://b5wt7sbobq760" path="res://Modules/Inventory/Component/HealthComponent/HealthComponent.gd" id="9_nm665"]
 [ext_resource type="Script" uid="uid://6fhpn2hvo65i" path="res://Modules/Inventory/Component/HealthComponent/HurtBoxComponent.gd" id="10_csims"]
 
@@ -236,8 +236,6 @@ shape = SubResource("CapsuleShape2D_c4hvf")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
 
-[node name="InteractorComponent" parent="." instance=ExtResource("5_3nacs")]
-
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("6_6a1d6")
 
@@ -263,10 +261,12 @@ metadata/_custom_type_script = "uid://bw645jlbwlb5l"
 [node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("entity")]
 script = ExtResource("8_c4hvf")
 entity = NodePath("..")
-speed = 200.0
+speed = 100.0
 acceleration = 400.0
 friction = 500.0
 metadata/_custom_type_script = "uid://c48rqlry15rsq"
 
-[connection signal="interactable_contacted" from="InteractorComponent" to="." method="_on_interactable_areadetector_interactable_contacted"]
-[connection signal="interactable_exited" from="InteractorComponent" to="." method="_on_interactable_areadetector_interactable_exited"]
+[node name="interactor_component" parent="." instance=ExtResource("8_nm665")]
+
+[connection signal="interactable_contacted" from="interactor_component" to="." method="_on_interactor_component_interactable_contacted"]
+[connection signal="interactable_exited" from="interactor_component" to="." method="_on_interactor_component_interactable_exited"]

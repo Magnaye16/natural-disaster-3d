@@ -11,5 +11,4 @@ func _init(reciever_:MovementComponent,dir_:Vector2)->void:
 
 
 func execute():
-	print(dir)
 	reciever.set_movement_direction(dir)

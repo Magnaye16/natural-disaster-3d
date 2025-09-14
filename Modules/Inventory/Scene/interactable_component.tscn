@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://c8w25y8t3ednj"]
 
-[ext_resource type="Script" uid="uid://dbahayjvbjkrb" path="res://Modules/Inventory/Script/interactable_area_detector.gd" id="1_jb5ip"]
+[ext_resource type="Script" uid="uid://duiytml84u6fx" path="res://Modules/Inventory/Script/interactable_component.gd" id="1_juoe5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i2aur"]
 
-[node name="Interactable_area" type="Area2D"]
+[node name="interactable_component" type="Area2D"]
 collision_layer = 4
 collision_mask = 0
-script = ExtResource("1_jb5ip")
+script = ExtResource("1_juoe5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.645988, 0.774811)

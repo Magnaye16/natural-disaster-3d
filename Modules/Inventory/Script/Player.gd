@@ -14,6 +14,7 @@ var speed = 150
 signal interactable_found
 signal interactable_lost
 
+
 signal inventory_requested
 
 
@@ -27,8 +28,7 @@ func _physics_process(delta):
 	update_Animation()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_add"):
-		$InteractorComponent.interact()
+
 
 	if Input.is_action_just_pressed("hit_btn"):
 		print("plapalpalpal")
@@ -54,7 +54,6 @@ func update_Animation():
 				animated_Sprite.play("walk_up")
 
 
-
 func apply_Item_effect(item):
 	match item["effect"]:
 		"Stamina":
@@ -65,9 +64,10 @@ func apply_Item_effect(item):
 			print("Inventory size increase ", Global.inventory.size())
 
 
-func _on_interactable_areadetector_interactable_contacted() -> void:
+func _on_interactor_component_interactable_contacted() -> void:
+	print("ff")
 	interactable_found.emit()
 
 
-func _on_interactable_areadetector_interactable_exited() -> void:
+func _on_interactor_component_interactable_exited() -> void:
 	interactable_lost.emit()

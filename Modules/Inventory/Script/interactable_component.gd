@@ -3,7 +3,7 @@ class_name InteractableComponent
 
 signal contacted
 signal exit_contacteds
-signal interacted(entity)
+signal interacted(entity:Entity)
 
 #func contact(area:Area2D):
 	#contacted.emit()
