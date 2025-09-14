@@ -1,0 +1,274 @@
+[gd_scene load_steps=37 format=3 uid="uid://bs4lluqhp20dt"]
+
+[ext_resource type="Script" uid="uid://djc826y05514t" path="res://environment.gd" id="1_w0vwb"]
+[ext_resource type="Texture2D" uid="uid://cdqm3g1qjxmkx" path="res://icon.svg" id="2_ap48k"]
+[ext_resource type="Script" uid="uid://bhh103ve148q2" path="res://Modules/MapManager/map_manager.gd" id="3_wbnf2"]
+[ext_resource type="PackedScene" uid="uid://cv64losnxwqso" path="res://Modules/Inventory/Scene/Main.tscn" id="4_01ftw"]
+[ext_resource type="Script" uid="uid://cj3lx2o5mbx44" path="res://Modules/gameManager/game_manager.gd" id="5_twqns"]
+[ext_resource type="Script" uid="uid://c16uvferikfqs" path="res://Modules/weathers/weatherManager.gd" id="6_42up0"]
+[ext_resource type="Script" uid="uid://wp631s7ycfpo" path="res://Modules/seasons/SeasonManager.gd" id="7_fowpm"]
+[ext_resource type="Script" uid="uid://cnci3edfl40w2" path="res://Modules/seasons/Season.gd" id="8_xjgbd"]
+[ext_resource type="Script" uid="uid://p50j2ilr6fwb" path="res://Modules/weathers/Weather.gd" id="9_b8268"]
+[ext_resource type="Script" uid="uid://bmivl5a3ito2x" path="res://Modules/weathers/weatherProbabilityModifier.gd" id="10_krmta"]
+[ext_resource type="Script" uid="uid://b6pklnnrt8dyy" path="res://Modules/weathers/types/CloudyWeather.gd" id="11_urq11"]
+[ext_resource type="Script" uid="uid://ch5cdbtwhl7ni" path="res://Modules/seasons/types/ColdDrySeason.gd" id="12_disfg"]
+[ext_resource type="Script" uid="uid://dbx78oo8nyhuo" path="res://Modules/weathers/types/SunnyWeather.gd" id="13_gjemw"]
+[ext_resource type="Script" uid="uid://dh5ns3erxqod3" path="res://Modules/seasons/types/HotDrySeason.gd" id="14_6aabe"]
+[ext_resource type="Script" uid="uid://dts7pqo3eqg7k" path="res://Modules/weathers/types/RainyWeather.gd" id="15_j1mf4"]
+[ext_resource type="Script" uid="uid://dp48hqpkgpvml" path="res://Modules/seasons/types/RainySeason.gd" id="16_c7sog"]
+[ext_resource type="Script" uid="uid://i6fdecjoihb3" path="res://Modules/weathers/types/StormyWeather.gd" id="17_44hf1"]
+[ext_resource type="Script" uid="uid://erhjy0dottow" path="res://Modules/seasons/types/TyphoonSeason.gd" id="18_hhjt4"]
+[ext_resource type="Script" uid="uid://crgmdcqk7oc5a" path="res://Modules/disasters/DisasterManager.gd" id="19_4s0sq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pb8ym"]
+bg_color = Color(0, 0, 0, 0.576471)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pb8ym"]
+font_size = 40
+
+[sub_resource type="Resource" id="Resource_w0vwb"]
+script = ExtResource("11_urq11")
+probability_modifiers = Array[ExtResource("10_krmta")]([])
+probability = 1.0
+metadata/_custom_type_script = "uid://b6pklnnrt8dyy"
+
+[sub_resource type="Resource" id="Resource_uo75p"]
+script = ExtResource("11_urq11")
+probability_modifiers = Array[ExtResource("10_krmta")]([])
+probability = 1.0
+metadata/_custom_type_script = "uid://b6pklnnrt8dyy"
+
+[sub_resource type="Resource" id="Resource_b6t21"]
+script = ExtResource("12_disfg")
+name = ""
+total_days = 30
+possible_weathers = Array[ExtResource("9_b8268")]([SubResource("Resource_uo75p")])
+metadata/_custom_type_script = "uid://ch5cdbtwhl7ni"
+
+[sub_resource type="Resource" id="Resource_aan70"]
+script = ExtResource("13_gjemw")
+probability_modifiers = Array[ExtResource("10_krmta")]([])
+probability = 3.0
+metadata/_custom_type_script = "uid://dbx78oo8nyhuo"
+
+[sub_resource type="Resource" id="Resource_8raf8"]
+script = ExtResource("11_urq11")
+probability_modifiers = Array[ExtResource("10_krmta")]([])
+probability = 1.0
+metadata/_custom_type_script = "uid://b6pklnnrt8dyy"
+
+[sub_resource type="Resource" id="Resource_qh6j7"]
+script = ExtResource("14_6aabe")
+name = ""
+total_days = 30
+possible_weathers = Array[ExtResource("9_b8268")]([SubResource("Resource_aan70"), SubResource("Resource_8raf8")])
+metadata/_custom_type_script = "uid://dh5ns3erxqod3"
+
+[sub_resource type="Resource" id="Resource_vmvdu"]
+script = ExtResource("15_j1mf4")
+probability_modifiers = Array[ExtResource("10_krmta")]([])
+probability = 4.0
+metadata/_custom_type_script = "uid://dts7pqo3eqg7k"
+
+[sub_resource type="Resource" id="Resource_lpx4q"]
+script = ExtResource("11_urq11")
+probability_modifiers = Array[ExtResource("10_krmta")]([])
+probability = 2.0
+metadata/_custom_type_script = "uid://b6pklnnrt8dyy"
+
+[sub_resource type="Resource" id="Resource_6cbq1"]
+script = ExtResource("13_gjemw")
+probability_modifiers = Array[ExtResource("10_krmta")]([])
+probability = 1.0
+metadata/_custom_type_script = "uid://dbx78oo8nyhuo"
+
+[sub_resource type="Resource" id="Resource_aok7b"]
+script = ExtResource("16_c7sog")
+name = ""
+total_days = 30
+possible_weathers = Array[ExtResource("9_b8268")]([SubResource("Resource_vmvdu"), SubResource("Resource_lpx4q"), SubResource("Resource_6cbq1")])
+metadata/_custom_type_script = "uid://dp48hqpkgpvml"
+
+[sub_resource type="Resource" id="Resource_8ipfu"]
+script = ExtResource("13_gjemw")
+probability_modifiers = Array[ExtResource("10_krmta")]([])
+probability = 0.5
+metadata/_custom_type_script = "uid://dbx78oo8nyhuo"
+
+[sub_resource type="Resource" id="Resource_shx30"]
+script = ExtResource("11_urq11")
+probability_modifiers = Array[ExtResource("10_krmta")]([])
+probability = 2.0
+metadata/_custom_type_script = "uid://b6pklnnrt8dyy"
+
+[sub_resource type="Resource" id="Resource_fwv1b"]
+script = ExtResource("17_44hf1")
+probability_modifiers = Array[ExtResource("10_krmta")]([])
+probability = 4.0
+metadata/_custom_type_script = "uid://i6fdecjoihb3"
+
+[sub_resource type="Resource" id="Resource_6xm17"]
+script = ExtResource("15_j1mf4")
+probability_modifiers = Array[ExtResource("10_krmta")]([])
+probability = 3.0
+metadata/_custom_type_script = "uid://dts7pqo3eqg7k"
+
+[sub_resource type="Resource" id="Resource_8yrfl"]
+script = ExtResource("18_hhjt4")
+name = ""
+total_days = 30
+possible_weathers = Array[ExtResource("9_b8268")]([SubResource("Resource_8ipfu"), SubResource("Resource_shx30"), SubResource("Resource_fwv1b"), SubResource("Resource_6xm17")])
+metadata/_custom_type_script = "uid://erhjy0dottow"
+
+[node name="Main_game" type="Node2D" node_paths=PackedStringArray("season_texture", "season_label", "day_label", "year_label", "weather_label", "game_manager")]
+script = ExtResource("1_w0vwb")
+season_texture = NodePath("Main_UI/season_weather_disaster_debug_ui/PanelContainer/HBoxContainer/season_sprite")
+season_label = NodePath("Main_UI/season_weather_disaster_debug_ui/PanelContainer/HBoxContainer/SEASON")
+day_label = NodePath("Main_UI/season_weather_disaster_debug_ui/PanelContainer/HBoxContainer/day")
+year_label = NodePath("Main_UI/season_weather_disaster_debug_ui/PanelContainer/HBoxContainer/year")
+weather_label = NodePath("Main_UI/season_weather_disaster_debug_ui/PanelContainer/HBoxContainer/weather")
+game_manager = NodePath("GameManager")
+
+[node name="Main_UI" type="CanvasLayer" parent="."]
+
+[node name="season_weather_disaster_debug_ui" type="Control" parent="Main_UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Main_UI/season_weather_disaster_debug_ui"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -12.0
+offset_bottom = 55.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pb8ym")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main_UI/season_weather_disaster_debug_ui/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 88
+alignment = 1
+
+[node name="season_sprite" type="TextureRect" parent="Main_UI/season_weather_disaster_debug_ui/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_ap48k")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SEASON" type="Label" parent="Main_UI/season_weather_disaster_debug_ui/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cool dry"
+label_settings = SubResource("LabelSettings_pb8ym")
+
+[node name="day" type="Label" parent="Main_UI/season_weather_disaster_debug_ui/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "01"
+label_settings = SubResource("LabelSettings_pb8ym")
+
+[node name="year" type="Label" parent="Main_UI/season_weather_disaster_debug_ui/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "01"
+label_settings = SubResource("LabelSettings_pb8ym")
+
+[node name="weather" type="Label" parent="Main_UI/season_weather_disaster_debug_ui/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SUNNY"
+label_settings = SubResource("LabelSettings_pb8ym")
+
+[node name="disaster" type="Label" parent="Main_UI/season_weather_disaster_debug_ui"]
+layout_mode = 2
+offset_left = 881.0
+offset_top = 43.0
+offset_right = 1152.0
+offset_bottom = 156.0
+size_flags_horizontal = 3
+text = "disaster:none
+"
+label_settings = SubResource("LabelSettings_pb8ym")
+
+[node name="nextday" type="Button" parent="Main_UI/season_weather_disaster_debug_ui"]
+layout_mode = 0
+offset_left = 1011.0
+offset_top = 97.0
+offset_right = 1144.0
+offset_bottom = 145.0
+theme_override_font_sizes/font_size = 29
+text = "nextday"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main_UI/season_weather_disaster_debug_ui"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 345.0
+offset_top = -591.0
+offset_right = -313.0
+offset_bottom = -547.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 43
+
+[node name="cool dry" type="Button" parent="Main_UI/season_weather_disaster_debug_ui/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "cool dry
+"
+
+[node name="hot dry" type="Button" parent="Main_UI/season_weather_disaster_debug_ui/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "hot dry
+"
+
+[node name="rainy" type="Button" parent="Main_UI/season_weather_disaster_debug_ui/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "rainy"
+
+[node name="typhoon" type="Button" parent="Main_UI/season_weather_disaster_debug_ui/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "typhoon
+"
+
+[node name="MapManager" type="Node2D" parent="."]
+script = ExtResource("3_wbnf2")
+
+[node name="Main" parent="MapManager" instance=ExtResource("4_01ftw")]
+
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("weather_manager", "season_manager", "disaster_manager")]
+script = ExtResource("5_twqns")
+weather_manager = NodePath("WeatherManager")
+season_manager = NodePath("SeasonManager")
+disaster_manager = NodePath("DisasterManager")
+metadata/_custom_type_script = "uid://cj3lx2o5mbx44"
+
+[node name="WeatherManager" type="Node" parent="GameManager"]
+script = ExtResource("6_42up0")
+_current_weather = SubResource("Resource_w0vwb")
+metadata/_custom_type_script = "uid://c16uvferikfqs"
+
+[node name="SeasonManager" type="Node" parent="GameManager"]
+script = ExtResource("7_fowpm")
+seasons = Array[ExtResource("8_xjgbd")]([SubResource("Resource_b6t21"), SubResource("Resource_qh6j7"), SubResource("Resource_aok7b"), SubResource("Resource_8yrfl")])
+metadata/_custom_type_script = "uid://wp631s7ycfpo"
+
+[node name="DisasterManager" type="Node" parent="GameManager"]
+script = ExtResource("19_4s0sq")
+metadata/_custom_type_script = "uid://crgmdcqk7oc5a"
+
+[connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/nextday" to="." method="advance_day"]
+[connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/cool dry" to="." method="set_starting_cool"]
+[connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/hot dry" to="." method="set_starting_hot"]
+[connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/rainy" to="." method="set_starting_rainy"]
+[connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/typhoon" to="." method="set_starting_typhoon"]
