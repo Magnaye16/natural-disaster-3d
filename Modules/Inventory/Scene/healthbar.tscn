@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwdt7y5cnn3th"]
+[gd_scene load_steps=3 format=3 uid="uid://dqnfb71785qi0"]
 
 [ext_resource type="Texture2D" uid="uid://b34gl36ormauc" path="res://src/Item_icon/icon29.png" id="1_ni5ls"]
 [ext_resource type="Script" uid="uid://gutnkunogu0i" path="res://Modules/Inventory/Scene/healthbar.gd" id="1_o686k"]

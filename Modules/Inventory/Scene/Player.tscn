@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bpwa1iqyxhpxa"]
+[gd_scene load_steps=36 format=3 uid="uid://catpjydr4qypx"]
 
 [ext_resource type="Script" uid="uid://cw8rykfot2nmc" path="res://Modules/Inventory/Script/Player.gd" id="1_6l3be"]
 [ext_resource type="Texture2D" uid="uid://0flrot5hrf4a" path="res://src/imgs/sprites/chars/person.png" id="2_3eeal"]
@@ -279,7 +279,6 @@ shape = SubResource("RectangleShape2D_2ob74")
 [node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("entity")]
 script = SubResource("GDScript_csims")
 entity = NodePath("..")
-metadata/_custom_type_script = "uid://cgnaijxxyj6ds"
 
 [connection signal="interactable_contacted" from="InteractorComponent" to="." method="_on_interactable_areadetector_interactable_contacted"]
 [connection signal="interactable_exited" from="InteractorComponent" to="." method="_on_interactable_areadetector_interactable_exited"]
