@@ -13,6 +13,6 @@ enum OPERATOR{
 
 @export var operator:OPERATOR
 
-func is_met(_context: Dictionary) -> bool:
+func is_met(game_manager: GameManager) -> bool:
 	assert(false,"You need to implement this")
 	return true

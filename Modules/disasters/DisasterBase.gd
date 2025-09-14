@@ -8,16 +8,21 @@ extends Resource
 @export var conditions: Array[DisasterCondition] = []
 @export var effects: Array[DisasterEffect] = []
 
-func can_trigger(context: Dictionary) -> bool:
+
+func s():
+	effects = effects.filter(func (f:DisasterEffect):return not f.is_done())
+
+
+func can_trigger(game_manager: GameManager) -> bool:
 	if randf() > chance:
 		return false
 
 	for condition in conditions:
-		if not condition.is_met(context):
+		if not condition.is_met(game_manager):
 			return false
 
 	return true
 
-func trigger(context: Dictionary) -> void:
+func trigger(game_manager: GameManager) -> void:
 	for effect in effects:
-		effect.apply(context)
+		effect.apply(game_manager)

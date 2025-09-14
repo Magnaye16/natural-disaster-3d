@@ -1,5 +1,6 @@
 class_name GameManager
 extends Node
+extends Node
 
 @export var weather_manager: WeatherManager
 @export var season_manager:SeasonManager
