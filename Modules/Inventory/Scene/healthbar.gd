@@ -16,7 +16,7 @@ func _ready() -> void:
 	max_value = player.healthComponent.max_value
 	set_val(player.healthComponent.value)
 
-	player.healthComponent.updated.connect(set_val.bind)
+	player.healthComponent.updated.connect(set_val)
 
 func set_val(val:int):
 	value = val
