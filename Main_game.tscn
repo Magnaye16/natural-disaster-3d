@@ -20,12 +20,6 @@
 [ext_resource type="Script" uid="uid://erhjy0dottow" path="res://Modules/seasons/types/TyphoonSeason.gd" id="18_hhjt4"]
 [ext_resource type="Script" uid="uid://crgmdcqk7oc5a" path="res://Modules/disasters/DisasterManager.gd" id="19_4s0sq"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pb8ym"]
-bg_color = Color(0, 0, 0, 0.576471)
-
-[sub_resource type="LabelSettings" id="LabelSettings_pb8ym"]
-font_size = 40
-
 [sub_resource type="Resource" id="Resource_w0vwb"]
 script = ExtResource("11_urq11")
 probability_modifiers = Array[ExtResource("10_krmta")]([])
@@ -120,6 +114,12 @@ total_days = 30
 possible_weathers = Array[ExtResource("9_b8268")]([SubResource("Resource_8ipfu"), SubResource("Resource_shx30"), SubResource("Resource_fwv1b"), SubResource("Resource_6xm17")])
 metadata/_custom_type_script = "uid://erhjy0dottow"
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pb8ym"]
+bg_color = Color(0, 0, 0, 0.576471)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pb8ym"]
+font_size = 40
+
 [node name="Main_game" type="Node2D" node_paths=PackedStringArray("season_texture", "season_label", "day_label", "year_label", "weather_label", "game_manager")]
 script = ExtResource("1_w0vwb")
 season_texture = NodePath("Main_UI/season_weather_disaster_debug_ui/PanelContainer/HBoxContainer/season_sprite")
@@ -128,6 +128,32 @@ day_label = NodePath("Main_UI/season_weather_disaster_debug_ui/PanelContainer/HB
 year_label = NodePath("Main_UI/season_weather_disaster_debug_ui/PanelContainer/HBoxContainer/year")
 weather_label = NodePath("Main_UI/season_weather_disaster_debug_ui/PanelContainer/HBoxContainer/weather")
 game_manager = NodePath("GameManager")
+
+[node name="MapManager" type="Node2D" parent="."]
+script = ExtResource("3_wbnf2")
+
+[node name="Main" parent="MapManager" instance=ExtResource("4_01ftw")]
+
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("weather_manager", "season_manager", "disaster_manager")]
+script = ExtResource("5_twqns")
+weather_manager = NodePath("WeatherManager")
+season_manager = NodePath("SeasonManager")
+disaster_manager = NodePath("DisasterManager")
+metadata/_custom_type_script = "uid://cj3lx2o5mbx44"
+
+[node name="WeatherManager" type="Node" parent="GameManager"]
+script = ExtResource("6_42up0")
+_current_weather = SubResource("Resource_w0vwb")
+metadata/_custom_type_script = "uid://c16uvferikfqs"
+
+[node name="SeasonManager" type="Node" parent="GameManager"]
+script = ExtResource("7_fowpm")
+seasons = Array[ExtResource("8_xjgbd")]([SubResource("Resource_b6t21"), SubResource("Resource_qh6j7"), SubResource("Resource_aok7b"), SubResource("Resource_8yrfl")])
+metadata/_custom_type_script = "uid://wp631s7ycfpo"
+
+[node name="DisasterManager" type="Node" parent="GameManager"]
+script = ExtResource("19_4s0sq")
+metadata/_custom_type_script = "uid://crgmdcqk7oc5a"
 
 [node name="Main_UI" type="CanvasLayer" parent="."]
 
@@ -240,32 +266,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "typhoon
 "
-
-[node name="MapManager" type="Node2D" parent="."]
-script = ExtResource("3_wbnf2")
-
-[node name="Main" parent="MapManager" instance=ExtResource("4_01ftw")]
-
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("weather_manager", "season_manager", "disaster_manager")]
-script = ExtResource("5_twqns")
-weather_manager = NodePath("WeatherManager")
-season_manager = NodePath("SeasonManager")
-disaster_manager = NodePath("DisasterManager")
-metadata/_custom_type_script = "uid://cj3lx2o5mbx44"
-
-[node name="WeatherManager" type="Node" parent="GameManager"]
-script = ExtResource("6_42up0")
-_current_weather = SubResource("Resource_w0vwb")
-metadata/_custom_type_script = "uid://c16uvferikfqs"
-
-[node name="SeasonManager" type="Node" parent="GameManager"]
-script = ExtResource("7_fowpm")
-seasons = Array[ExtResource("8_xjgbd")]([SubResource("Resource_b6t21"), SubResource("Resource_qh6j7"), SubResource("Resource_aok7b"), SubResource("Resource_8yrfl")])
-metadata/_custom_type_script = "uid://wp631s7ycfpo"
-
-[node name="DisasterManager" type="Node" parent="GameManager"]
-script = ExtResource("19_4s0sq")
-metadata/_custom_type_script = "uid://crgmdcqk7oc5a"
 
 [connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/nextday" to="." method="advance_day"]
 [connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/cool dry" to="." method="set_starting_cool"]
