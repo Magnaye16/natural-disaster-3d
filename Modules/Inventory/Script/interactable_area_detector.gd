@@ -11,7 +11,7 @@ var interacted_area:InteractableArea
 func interact():
 	if interacted_area == null : return
 	interacted_area.interact(get_parent())
-	
+
 
 func _on_contact(area:Area2D):
 	interactable_contacted.emit()

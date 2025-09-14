@@ -3,20 +3,21 @@ class_name InventoryHotbar
 
 
 @onready var grid_Container = $GridContainer
-@onready var player_inventory:Inventory =$"../../Inventory"
+@onready var player_inventory:Inventory
 
-func init():
-	#await get_parent().ready 
-	#print( Global.player_Node)
-	Global.player_Node.inventory.inventory_Updated.connect(_on_inventory_updated)
+func _ready() -> void:
+	await  get_tree().process_frame
+
+	player_inventory = (get_tree().get_first_node_in_group("player") as Player).inventory
+	player_inventory.inventory_Updated.connect(_on_inventory_updated)
 	_on_inventory_updated()
 
- 	
+
 func _on_inventory_updated():
-	clear_Grid_container() 
+	clear_Grid_container()
 	#add slot for each inventory position
 	var i: = 0
-	for item in player_inventory.contents: 
+	for item in player_inventory.contents:
 		if i == 10: return
 		i += 1
 		var slot = player_inventory.inventory_Slot_scene.instantiate()

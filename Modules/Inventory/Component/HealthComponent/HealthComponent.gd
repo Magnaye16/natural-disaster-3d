@@ -1,17 +1,17 @@
 extends Node
 class_name HealthComponent
 
-var value:int = 5
-@export var max_value:int = 10
+var value:int = 1
+@export var max_value:int = 3
 
 signal updated(HP)
 signal depleted
 
 func _ready() -> void:
 	set_HP(max_value)
-	
+
 func set_HP(_value:int):
-	value = _value 
+	value = _value
 	updated.emit(value)
 
 func apply_DMG(DMG:int):

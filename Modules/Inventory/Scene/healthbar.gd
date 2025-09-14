@@ -9,9 +9,15 @@ var player:Player
 @onready var grid_container: GridContainer = $GridContainer
 
 func _ready() -> void:
-	player = Global.player_Node
-	update()
-	
+	await  get_tree().process_frame
+	player = get_tree().get_first_node_in_group("player")
+
+
+	max_value = player.healthComponent.max_value
+	set_val(player.healthComponent.value)
+
+	player.healthComponent.updated.connect(set_val.bind)
+
 func set_val(val:int):
 	value = val
 	update()
@@ -20,14 +26,14 @@ func disable_heart(heart:TextureRect,disable:bool=true):
 	heart.modulate = Color.BLACK if disable else Color.WHITE
 
 func update():
-	clear_hearts() 
+	clear_hearts()
 	display_hearts()
-	
+
 func clear_hearts():
 	for i in range(grid_container.get_child_count()):
-		
+
 		var child = grid_container.get_child(i)
-		
+
 		if i < max_value:
 			disable_heart(child)
 			continue
@@ -37,4 +43,3 @@ func display_hearts():
 	for i in range(min(value,max_value)):
 		var child = grid_container.get_child(i)
 		disable_heart(child,false)
-		

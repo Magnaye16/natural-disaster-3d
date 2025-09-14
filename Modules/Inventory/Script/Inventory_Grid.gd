@@ -3,19 +3,18 @@ class_name InventoryGridUI
 
 
 @onready var grid_Container = $GridContainer
-@onready var player_inventory:Inventory =$"../../../Inventory"
+@onready var player_inventory:Inventory
 
 
 # Called when the node enters the scene tree for the first time.
-func init():
-	#await get_parent().ready 
-	#print( Global.player_Node)
-	Global.player_Node.inventory.inventory_Updated.connect(_on_inventory_updated)
+func _ready() -> void:
+	await get_tree().process_frame
+	player_inventory = (get_tree().get_first_node_in_group("player") as Player).inventory
 	_on_inventory_updated()
 
 #update the inventory UI
 func _on_inventory_updated():
-	clear_Grid_container() 
+	clear_Grid_container()
 	#add slot for each inventory position
 	for item in player_inventory.contents:
 		var slot = player_inventory.inventory_Slot_scene.instantiate()

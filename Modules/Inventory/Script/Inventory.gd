@@ -45,10 +45,10 @@ func adjust_Drop_position(position):
 	var radius = 100
 	var nearby_Items = get_tree().get_nodes_in_group("Items")
 	for item in nearby_Items:
-		if item.global_position.distance_to(position) < radius: 
+		if item.global_position.distance_to(position) < radius:
 			var random_offset = Vector2(randf_range(-radius, radius), randf_range(-radius, radius))
 			position += random_offset
-			break 
+			break
 	return position
 
 func drop_Item(item_Data:ItemResource, drop_Position):
@@ -59,5 +59,3 @@ func drop_Item(item_Data:ItemResource, drop_Position):
 	drop_Position = adjust_Drop_position(drop_Position)
 	item_Instance.global_position = drop_Position
 	get_tree().current_scene.add_child(item_Instance)
-	
-	

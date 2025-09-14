@@ -9,7 +9,3 @@ script = ExtResource("1_dpyjg")
 [node name="Interactable_area" parent="." instance=ExtResource("2_stl11")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-
-[connection signal="contacted" from="Interactable_area" to="." method="_on_area_2d_body_entered"]
-[connection signal="exit_contacteds" from="Interactable_area" to="." method="_on_area_2d_body_exited"]
-[connection signal="interacted" from="Interactable_area" to="." method="_on_interactable_area_interacted"]

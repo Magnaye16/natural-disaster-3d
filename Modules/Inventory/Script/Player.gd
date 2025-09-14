@@ -3,33 +3,19 @@ class_name  Player
 #variables
 var speed = 150
 #@onready var inventory:Inventory = $Inventory
+
+
+@export var inventory : Inventory
 @onready var animated_Sprite = $AnimatedSprite2D
-@onready var interact_UI = $InteractUI
-@onready var inventoryUI:InventoryUI = $InventoryUI
-@onready var invetorygridui:InventoryGridUI = $InventoryUI/ColorRect/Inventory_Grid_UI
-@onready var inventory_hotbar: InventoryHotbar = $Hotbar/Inventory_hotbar
+@export var healthComponent:HealthComponent
 
 
 
-func _ready():
+signal interactable_found
+signal interactable_lost
 
-	var barui:HealthBar = (get_tree().get_first_node_in_group("healthbar") as HealthBar)
+signal inventory_requested
 
-	barui.max_value = ($HealthComponent as HealthComponent ).max_value
-	barui.value = ($HealthComponent as HealthComponent ).value
-
-
-	($HealthComponent as HealthComponent ).updated.connect(
-		func(val:int):
-			barui.value = val
-	)
-
-
-	inventory = $Inventory
-	invetorygridui.init()
-	inventory_hotbar.init()
-
-	print("player")
 
 func get_Input():
 	var input_Direction = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
@@ -42,15 +28,15 @@ func _physics_process(delta):
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_add"):
-		$"Interactable_area-detector".interact()
+		$InteractorComponent.interact()
 
 	if Input.is_action_just_pressed("hit_btn"):
+		print("plapalpalpal")
 		($HealthComponent as HealthComponent).apply_DMG(1)
 
+
 	if event.is_action_pressed("ui_inventory"):
-		inventory_hotbar.visible =!inventory_hotbar.visible
-		inventoryUI.visible = !inventoryUI.visible
-		#get_tree().paused = !get_tree().paused
+		inventory_requested.emit()
 
 func update_Animation():
 	if velocity == Vector2.ZERO:
@@ -80,7 +66,8 @@ func apply_Item_effect(item):
 
 
 func _on_interactable_areadetector_interactable_contacted() -> void:
-	$InteractUI.show()
+	interactable_found.emit()
+
 
 func _on_interactable_areadetector_interactable_exited() -> void:
-	$InteractUI.hide()
+	interactable_lost.emit()
