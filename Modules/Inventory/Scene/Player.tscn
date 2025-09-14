@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bpwa1iqyxhpxa"]
+[gd_scene load_steps=41 format=3 uid="uid://bpwa1iqyxhpxa"]
 
 [ext_resource type="Script" uid="uid://cw8rykfot2nmc" path="res://Modules/Inventory/Script/Player.gd" id="1_6l3be"]
 [ext_resource type="Texture2D" uid="uid://0flrot5hrf4a" path="res://src/imgs/sprites/chars/person.png" id="2_3eeal"]
@@ -8,6 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://de647vytqiwg3" path="res://Modules/Inventory/Scene/interactable_area_detector.tscn" id="5_3nacs"]
 [ext_resource type="Script" uid="uid://dqpn8josc5nfs" path="res://Modules/Inventory/Script/Inventory.gd" id="6_6a1d6"]
 [ext_resource type="PackedScene" uid="uid://bcmns2k3u5453" path="res://Modules/Inventory/Scene/Inventory_hotbar.tscn" id="8_c4hvf"]
+[ext_resource type="Script" uid="uid://b5wt7sbobq760" path="res://Modules/Inventory/Component/HealthComponent/HealthComponent.gd" id="9_nm665"]
+[ext_resource type="Script" uid="uid://6fhpn2hvo65i" path="res://Modules/Inventory/Component/HealthComponent/HurtBoxComponent.gd" id="10_csims"]
+[ext_resource type="Script" uid="uid://cgnaijxxyj6ds" path="res://Modules/Inventory/Component/MovementComponent/MovementComponent.gd" id="11_2ob74"]
+[ext_resource type="Script" uid="uid://0u2uvg8o5ktl" path="res://Modules/Inventory/Component/MovementComponent/PlayerController.gd" id="12_qaupq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jvxg0"]
 atlas = ExtResource("2_3eeal")
@@ -214,6 +218,9 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3eeal"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ob74"]
+size = Vector2(10, 24)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_6l3be")
 
@@ -298,6 +305,29 @@ script = ExtResource("6_6a1d6")
 [node name="Hotbar" type="CanvasLayer" parent="."]
 
 [node name="Inventory_hotbar" parent="Hotbar" instance=ExtResource("8_c4hvf")]
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("9_nm665")
+metadata/_custom_type_script = "uid://b5wt7sbobq760"
+
+[node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+script = ExtResource("10_csims")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://6fhpn2hvo65i"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_2ob74")
+
+[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("entity")]
+script = ExtResource("11_2ob74")
+entity = NodePath("..")
+metadata/_custom_type_script = "uid://cgnaijxxyj6ds"
+
+[node name="PlayerController" type="Node" parent="." node_paths=PackedStringArray("entity")]
+script = ExtResource("12_qaupq")
+entity = NodePath("..")
+metadata/_custom_type_script = "uid://0u2uvg8o5ktl"
 
 [connection signal="interactable_contacted" from="Interactable_area-detector" to="." method="_on_interactable_areadetector_interactable_contacted"]
 [connection signal="interactable_exited" from="Interactable_area-detector" to="." method="_on_interactable_areadetector_interactable_exited"]

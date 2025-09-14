@@ -1,6 +1,5 @@
-[gd_scene load_steps=21 format=4 uid="uid://cv64losnxwqso"]
+[gd_scene load_steps=18 format=4 uid="uid://cv64losnxwqso"]
 
-[ext_resource type="Script" uid="uid://dvmgoo7j1j83f" path="res://Modules/Inventory/Script/Main.gd" id="1_yg4ot"]
 [ext_resource type="Texture2D" uid="uid://b52fx53i6ijjs" path="res://src/imgs/Tilesets/Water.png" id="2_h3nmf"]
 [ext_resource type="Texture2D" uid="uid://dt0mgjlxok6xg" path="res://src/imgs/Tilesets/Grass.png" id="3_hueuk"]
 [ext_resource type="Texture2D" uid="uid://qtm0taw020w8" path="res://src/imgs/Tilesets/Tilled Dirt.png" id="4_6a8me"]
@@ -9,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bppfktlqcdikv" path="res://src/imgs/Tilesets/Paths.png" id="7_4qtod"]
 [ext_resource type="PackedScene" uid="uid://bpwa1iqyxhpxa" path="res://Modules/Inventory/Scene/Player.tscn" id="8_hueuk"]
 [ext_resource type="PackedScene" uid="uid://dsu5r1be85w0h" path="res://Modules/Inventory/Scene/Item.tscn" id="9_6a8me"]
-[ext_resource type="Script" uid="uid://cmy8p48lmqgby" path="res://Modules/Inventory/Script/Item_resource.gd" id="10_0ye4e"]
+[ext_resource type="PackedScene" uid="uid://dcald3shxb12n" path="res://Modules/Inventory/Scene/main_ui.tscn" id="9_aacrx"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_s8ogb"]
 tile_data = PackedInt32Array(0, 65541, 0, 65536, 65541, 1, 1, 131077, 0, 65537, 131077, 1)
@@ -465,24 +464,7 @@ sources/6 = SubResource("TileSetAtlasSource_0arjm")
 sources/7 = SubResource("TileSetAtlasSource_s2bhh")
 pattern_0 = SubResource("TileMapPattern_s8ogb")
 
-[sub_resource type="Resource" id="Resource_0ye4e"]
-script = ExtResource("10_0ye4e")
-item_Name = "Potion"
-item_Qty = 1
-item_Type = ""
-item_Effect = ""
-metadata/_custom_type_script = "uid://cmy8p48lmqgby"
-
-[sub_resource type="Resource" id="Resource_p1a15"]
-script = ExtResource("10_0ye4e")
-item_Name = "Antidote"
-item_Qty = 1
-item_Type = ""
-item_Effect = ""
-metadata/_custom_type_script = "uid://cmy8p48lmqgby"
-
 [node name="Main" type="Node2D"]
-script = ExtResource("1_yg4ot")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_7hmu2")
@@ -520,12 +502,11 @@ position = Vector2(611, 252)
 
 [node name="Item" parent="." instance=ExtResource("9_6a8me")]
 position = Vector2(560, 291)
-item_resource = SubResource("Resource_0ye4e")
 
 [node name="Item2" parent="." instance=ExtResource("9_6a8me")]
 position = Vector2(619, 321)
-item_resource = SubResource("Resource_p1a15")
 
 [node name="Item3" parent="." instance=ExtResource("9_6a8me")]
 position = Vector2(644, 270)
-item_resource = SubResource("Resource_p1a15")
+
+[node name="main_ui" parent="." instance=ExtResource("9_aacrx")]
