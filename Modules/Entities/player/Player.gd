@@ -25,10 +25,9 @@ func set_movement_direction(direction: Vector2) -> void:
 
 func _ready() -> void:
 	print("Hello")
-	set_controller(PlayerController.new(self))
+	# set_controller(PlayerController.new(self))
 
 func _physics_process(delta: float) -> void:
-	print("Hello!")
 	_move(delta)
 	move_and_slide()
 	

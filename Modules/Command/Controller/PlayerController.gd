@@ -5,4 +5,4 @@ func _physics_process(_delta: float) -> void:
 						MoveDirection.MOVE_LEFT, MoveDirection.MOVE_RIGHT,
 						MoveDirection.MOVE_UP, MoveDirection.MOVE_DOWN,)
 	print(direction)
-	move_command.execute(entity, direction)
+	# move_command.execute(entity, direction)

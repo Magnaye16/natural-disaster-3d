@@ -14,7 +14,7 @@ func _ready():
 	Global.set_Player_reference(self)
 	invetorygridui.init()
 	inventory_hotbar.init()
-	
+
 	print("player")
 
 func get_Input():
@@ -29,7 +29,7 @@ func _physics_process(delta):
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_add"):
 		$"Interactable_area-detector".interact()
-	
+
 	if event.is_action_pressed("ui_inventory"):
 		inventory_hotbar.visible =!inventory_hotbar.visible
 		inventoryUI.visible = !inventoryUI.visible
@@ -50,7 +50,7 @@ func update_Animation():
 			else:
 				animated_Sprite.play("walk_up")
 
-	
+
 
 func apply_Item_effect(item):
 	match item["effect"]:
@@ -64,7 +64,6 @@ func apply_Item_effect(item):
 
 func _on_interactable_areadetector_interactable_contacted() -> void:
 	$InteractUI.show()
-	
+
 func _on_interactable_areadetector_interactable_exited() -> void:
 	$InteractUI.hide()
-	
