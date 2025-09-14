@@ -135,8 +135,12 @@ game_manager = NodePath("GameManager")
 
 [node name="MapManager" type="Node2D" parent="."]
 script = ExtResource("3_wbnf2")
+metadata/_edit_group_ = true
 
 [node name="Main" parent="MapManager" instance=ExtResource("4_01ftw")]
+
+[node name="Water" parent="MapManager/Main/TileMap" index="0"]
+metadata/_edit_group_ = true
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("weather_manager", "season_manager", "disaster_manager")]
 script = ExtResource("5_twqns")
@@ -273,6 +277,52 @@ text = "typhoon
 
 [node name="Inventory_hotbar" parent="Main_UI" instance=ExtResource("20_ap48k")]
 
+[node name="interactableTooltip" type="ColorRect" parent="Main_UI"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -337.0
+offset_top = -197.0
+offset_right = -37.0
+offset_bottom = -147.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(0.192157, 0.376471, 0.321569, 0.831373)
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Main_UI/interactableTooltip"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = -11.5
+offset_right = 74.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("21_twqns")
+theme_override_font_sizes/font_size = 30
+text = "Press \"E\" to pick up"
+metadata/_edit_group_ = true
+
+[node name="healthbar" parent="Main_UI" instance=ExtResource("23_twqns")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+offset_left = 33.0
+offset_top = -183.0
+offset_right = 33.0
+offset_bottom = -183.0
+grow_horizontal = 1
+grow_vertical = 0
+scale = Vector2(1.3, 1.3)
+
 [node name="InventoryUi" type="ColorRect" parent="Main_UI"]
 visible = false
 anchors_preset = 15
@@ -298,49 +348,6 @@ text = "Inventory"
 
 [node name="Inventory_Grid_UI" parent="Main_UI/InventoryUi" instance=ExtResource("23_fowpm")]
 layout_mode = 1
-
-[node name="ColorRect" type="ColorRect" parent="Main_UI"]
-visible = false
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -300.0
-offset_top = -50.0
-grow_horizontal = 0
-grow_vertical = 0
-color = Color(0.192157, 0.376471, 0.321569, 0.831373)
-
-[node name="Label" type="Label" parent="Main_UI/ColorRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -74.5
-offset_top = -11.5
-offset_right = 74.5
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("21_twqns")
-theme_override_font_sizes/font_size = 30
-text = "Press \"E\" to pick up"
-metadata/_edit_group_ = true
-
-[node name="healthbar" parent="Main_UI" instance=ExtResource("23_twqns")]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_right = 0.0
-offset_left = 33.0
-offset_top = -182.0
-offset_right = 33.0
-offset_bottom = -182.0
-grow_horizontal = 1
-grow_vertical = 0
-scale = Vector2(1.3, 1.3)
 
 [connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/nextday" to="." method="advance_day"]
 [connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/cool dry" to="." method="set_starting_cool"]
