@@ -1,4 +1,0 @@
-class_name Command extends Resource
-
-func execute():
-	pass
