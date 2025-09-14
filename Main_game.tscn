@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bs4lluqhp20dt"]
+[gd_scene load_steps=37 format=3 uid="uid://dastsqlbcs4fe"]
 
 [ext_resource type="Script" uid="uid://djc826y05514t" path="res://environment.gd" id="1_w0vwb"]
 [ext_resource type="Texture2D" uid="uid://cdqm3g1qjxmkx" path="res://icon.svg" id="2_ap48k"]
@@ -272,3 +272,5 @@ text = "typhoon
 [connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/hot dry" to="." method="set_starting_hot"]
 [connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/rainy" to="." method="set_starting_rainy"]
 [connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/typhoon" to="." method="set_starting_typhoon"]
+
+[editable path="MapManager/Main"]

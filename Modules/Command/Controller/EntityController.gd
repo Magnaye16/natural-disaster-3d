@@ -1,4 +1,4 @@
-﻿class_name EntityController extends Node
+class_name EntityController extends Node
 
 var entity: Entity
 
@@ -6,4 +6,3 @@ var entity: Entity
 
 # func _init(_entity: Entity) -> void:
 # 	entity = _entity
-

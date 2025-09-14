@@ -44,7 +44,7 @@ func _on_drop_button_pressed():
 	if item != null:
 		var drop_Position = Global.player_Node.global_position
 		var drop_Offset = Vector2(0,50)
-		
+
 		drop_Offset = drop_Offset.rotated(Global.player_Node.rotation)
 		Global.player_Node.inventory.remove_Item(item)
 		Global.player_Node.inventory.drop_Item(item, drop_Position + drop_Offset)
@@ -57,6 +57,6 @@ func _on_use_button_pressed():
 		if Global.player_Node:
 			Global.player_Node.apply_Item_effect(item)
 			Global.player_Node.inventory.remove_Item(item)
-			
+
 		else:
 			print("Player not found")

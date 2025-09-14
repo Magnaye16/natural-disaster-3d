@@ -11,4 +11,3 @@ func _init(reciever_:MoveCommand,dir_:Vector2)->void:
 
 func execute():
 	reciever.set_movement_direction(dir)
-

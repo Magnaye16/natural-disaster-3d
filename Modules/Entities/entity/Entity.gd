@@ -4,4 +4,3 @@ var inventory : Inventory = null
 
 func set_movement_direction(_direction: Vector2) -> void:
 	pass
-	

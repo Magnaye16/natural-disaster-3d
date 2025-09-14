@@ -4,7 +4,7 @@ class_name Item
 
 @export var item_resource:ItemResource:
 	set = set_item_resource
-	
+
 # Item details for editor window
 var item_Type = ""
 var item_Name = ""
@@ -24,9 +24,9 @@ func _ready():
 	if not Engine.is_editor_hint():
 		icon_Sprite.texture = item_Texture
 		item_resource = item_resource
-	
-	
-	
+
+
+
 
 func _process(_delta):
 	# Set the texture to reflect in the editor
@@ -52,12 +52,12 @@ func _on_area_2d_body_entered(body):
 func _on_area_2d_body_exited(body):
 	player_in_range = false
 	body.interact_UI.visible = false
-		
-	
+
+
 
 
 func _on_interactable_area_interacted(entity):
-	
+
 	pickup_Item(entity)
 
 func set_item_resource(val:ItemResource):
@@ -69,5 +69,3 @@ func set_item_resource(val:ItemResource):
 		item_Effect = item_resource.item_Effect
 		item_Type = item_resource.item_Type
 		print("set itemresource")
-	
-	

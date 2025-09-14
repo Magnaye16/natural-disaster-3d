@@ -1,4 +1,3 @@
-# disaster.gd
 class_name Disaster
 extends Resource
 

@@ -1,17 +1,16 @@
-[gd_scene load_steps=41 format=3 uid="uid://bpwa1iqyxhpxa"]
+[gd_scene load_steps=40 format=3 uid="uid://bpwa1iqyxhpxa"]
 
 [ext_resource type="Script" uid="uid://cw8rykfot2nmc" path="res://Modules/Inventory/Script/Player.gd" id="1_6l3be"]
 [ext_resource type="Texture2D" uid="uid://0flrot5hrf4a" path="res://src/imgs/sprites/chars/person.png" id="2_3eeal"]
 [ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://src/Fonts/ARCADECLASSIC.TTF" id="3_jvxg0"]
 [ext_resource type="Script" uid="uid://bleiuyto6apeq" path="res://Modules/Inventory/Script/Inventory_UI.gd" id="4_l2e0d"]
 [ext_resource type="PackedScene" uid="uid://bi2pog25w52tj" path="res://Modules/Inventory/Scene/Inventory_UI.tscn" id="4_mud5u"]
-[ext_resource type="PackedScene" uid="uid://de647vytqiwg3" path="res://Modules/Inventory/Scene/interactable_area_detector.tscn" id="5_3nacs"]
+[ext_resource type="PackedScene" path="res://Modules/Inventory/Scene/interactable_area_detector.tscn" id="5_3nacs"]
 [ext_resource type="Script" uid="uid://dqpn8josc5nfs" path="res://Modules/Inventory/Script/Inventory.gd" id="6_6a1d6"]
 [ext_resource type="PackedScene" uid="uid://bcmns2k3u5453" path="res://Modules/Inventory/Scene/Inventory_hotbar.tscn" id="8_c4hvf"]
 [ext_resource type="Script" uid="uid://b5wt7sbobq760" path="res://Modules/Inventory/Component/HealthComponent/HealthComponent.gd" id="9_nm665"]
 [ext_resource type="Script" uid="uid://6fhpn2hvo65i" path="res://Modules/Inventory/Component/HealthComponent/HurtBoxComponent.gd" id="10_csims"]
 [ext_resource type="Script" uid="uid://cgnaijxxyj6ds" path="res://Modules/Inventory/Component/MovementComponent/MovementComponent.gd" id="11_2ob74"]
-[ext_resource type="Script" uid="uid://0u2uvg8o5ktl" path="res://Modules/Inventory/Component/MovementComponent/PlayerController.gd" id="12_qaupq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jvxg0"]
 atlas = ExtResource("2_3eeal")
@@ -221,6 +220,50 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ob74"]
 size = Vector2(10, 24)
 
+[sub_resource type="GDScript" id="GDScript_csims"]
+script/source = "extends Node
+class_name MovementComponent
+
+@export var speed : float = 400.0
+@export var acceleration : float = 7000.0
+@export var friction : float = 7000
+@export var entity:CharacterBody2D
+
+
+var move_direction : Vector2 = Vector2.ZERO # Save the move_direction so when we use cmd pattern we just change this
+
+func _physics_process(delta: float) -> void:
+
+	move(delta)
+	entity.move_and_slide()
+
+func set_movement_direction(direction: Vector2) -> void:
+	move_direction = direction
+
+func move(delta: float) -> void:
+	if move_direction:
+		entity.velocity = entity.velocity.lerp(move_direction * speed, 1 - exp(-acceleration * delta))
+	else:
+		entity.velocity = entity.velocity.move_toward(Vector2.ZERO, friction * delta)
+"
+
+[sub_resource type="GDScript" id="GDScript_2ob74"]
+script/source = "extends Node
+class_name PlayerController
+
+@export var entity :Entity
+
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	var move_direction = Input.get_vector(
+							 MoveDirection.MOVE_LEFT, MoveDirection.MOVE_RIGHT,
+							 MoveDirection.MOVE_UP, MoveDirection.MOVE_DOWN)
+	var move_command = MoveCommand.new(entity, move_direction)
+	move_command.execute()
+"
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_6l3be")
 
@@ -320,12 +363,12 @@ position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_2ob74")
 
 [node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("entity")]
-script = ExtResource("11_2ob74")
+script = SubResource("GDScript_csims")
 entity = NodePath("..")
 metadata/_custom_type_script = "uid://cgnaijxxyj6ds"
 
 [node name="PlayerController" type="Node" parent="." node_paths=PackedStringArray("entity")]
-script = ExtResource("12_qaupq")
+script = SubResource("GDScript_2ob74")
 entity = NodePath("..")
 metadata/_custom_type_script = "uid://0u2uvg8o5ktl"
 

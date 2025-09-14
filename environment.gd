@@ -10,7 +10,6 @@ extends Node2D
 
 
 func _ready():
-	game_manager.init()
 
 	game_manager.season_manager.day_advanced.connect(
 		func(day): day_label.text = "%s"%day
