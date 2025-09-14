@@ -1,8 +1,8 @@
-﻿class_name PlayerController extends EntityController
+class_name PlayerController extends EntityController
+
+@export var movemen_comp:MovementComponent
+
 
 func _physics_process(_delta: float) -> void:
-	var direction : Vector2 = Input.get_vector(
-						MoveDirection.MOVE_LEFT, MoveDirection.MOVE_RIGHT,
-						MoveDirection.MOVE_UP, MoveDirection.MOVE_DOWN,)
-	print(direction)
-	# move_command.execute(entity, direction)
+	var input_Direction = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
+	MoveCommand.new(movemen_comp,input_Direction).execute()

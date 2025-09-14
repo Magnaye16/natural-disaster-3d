@@ -1,5 +1,5 @@
 extends Area2D
-class_name InteractableArea
+class_name InteractableComponent
 
 signal contacted
 signal exit_contacteds
@@ -11,5 +11,5 @@ signal interacted(entity)
 #func exit_contact(area:Area2D):
 	#exit_contacteds.emit()
 
-func interact(entity):
+func interact(entity:Entity):
 	interacted.emit(entity)

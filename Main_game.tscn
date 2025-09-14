@@ -1,6 +1,5 @@
-[gd_scene load_steps=41 format=3 uid="uid://dastsqlbcs4fe"]
+[gd_scene load_steps=40 format=3 uid="uid://dastsqlbcs4fe"]
 
-[ext_resource type="Script" uid="uid://djc826y05514t" path="res://environment.gd" id="1_w0vwb"]
 [ext_resource type="Texture2D" uid="uid://cdqm3g1qjxmkx" path="res://icon.svg" id="2_ap48k"]
 [ext_resource type="Script" uid="uid://bhh103ve148q2" path="res://Modules/MapManager/map_manager.gd" id="3_wbnf2"]
 [ext_resource type="PackedScene" path="res://Modules/Inventory/Scene/Main.tscn" id="4_01ftw"]
@@ -124,14 +123,7 @@ bg_color = Color(0, 0, 0, 0.576471)
 [sub_resource type="LabelSettings" id="LabelSettings_pb8ym"]
 font_size = 40
 
-[node name="Main_game" type="Node2D" node_paths=PackedStringArray("season_texture", "season_label", "day_label", "year_label", "weather_label", "game_manager")]
-script = ExtResource("1_w0vwb")
-season_texture = NodePath("Main_UI/season_weather_disaster_debug_ui/PanelContainer/HBoxContainer/season_sprite")
-season_label = NodePath("Main_UI/season_weather_disaster_debug_ui/PanelContainer/HBoxContainer/SEASON")
-day_label = NodePath("Main_UI/season_weather_disaster_debug_ui/PanelContainer/HBoxContainer/day")
-year_label = NodePath("Main_UI/season_weather_disaster_debug_ui/PanelContainer/HBoxContainer/year")
-weather_label = NodePath("Main_UI/season_weather_disaster_debug_ui/PanelContainer/HBoxContainer/weather")
-game_manager = NodePath("GameManager")
+[node name="Main_game" type="Node2D"]
 
 [node name="MapManager" type="Node2D" parent="."]
 script = ExtResource("3_wbnf2")

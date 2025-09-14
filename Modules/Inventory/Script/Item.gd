@@ -1,4 +1,3 @@
-@tool
 extends Node2D
 class_name Item
 
@@ -27,13 +26,6 @@ func _ready():
 
 
 
-
-func _process(_delta):
-	# Set the texture to reflect in the editor
-	if Engine.is_editor_hint():
-		icon_Sprite.texture = item_Texture
-	# Add item to inventory if player presses "E" within range
- #Input.is_action_just_pressed("ui_add"):
 
 # Add item to inventory
 func pickup_Item(entity:Entity):

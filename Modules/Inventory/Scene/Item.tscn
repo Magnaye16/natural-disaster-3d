@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsu5r1be85w0h"]
+[gd_scene load_steps=4 format=3 uid="uid://dsu5r1be85w0h"]
 
 [ext_resource type="Script" uid="uid://dk10slks0eqr7" path="res://Modules/Inventory/Script/Item.gd" id="1_dpyjg"]
 [ext_resource type="PackedScene" uid="uid://c8w25y8t3ednj" path="res://Modules/Inventory/Scene/interactable_area.tscn" id="2_stl11"]
+[ext_resource type="Script" uid="uid://duiytml84u6fx" path="res://Modules/Inventory/Script/Interactable_area.gd" id="3_1qabr"]
 
 [node name="Item" type="Node2D" groups=["Items"]]
 script = ExtResource("1_dpyjg")
 
-[node name="Interactable_area" parent="." instance=ExtResource("2_stl11")]
+[node name="interactable_component" parent="." instance=ExtResource("2_stl11")]
+script = ExtResource("3_1qabr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

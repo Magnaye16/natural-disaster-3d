@@ -17,9 +17,9 @@ signal interactable_lost
 signal inventory_requested
 
 
-func get_Input():
-	var input_Direction = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
-	velocity = input_Direction * speed
+#func get_Input():
+	#
+	#velocity = input_Direction * speed
 
 func _physics_process(delta):
 	#get_Input()

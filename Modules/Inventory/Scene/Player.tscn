@@ -1,9 +1,11 @@
-[gd_scene load_steps=36 format=3 uid="uid://catpjydr4qypx"]
+[gd_scene load_steps=37 format=3 uid="uid://catpjydr4qypx"]
 
 [ext_resource type="Script" uid="uid://cw8rykfot2nmc" path="res://Modules/Inventory/Script/Player.gd" id="1_6l3be"]
 [ext_resource type="Texture2D" uid="uid://0flrot5hrf4a" path="res://src/imgs/sprites/chars/person.png" id="2_3eeal"]
 [ext_resource type="PackedScene" path="res://Modules/Inventory/Scene/interactable_area_detector.tscn" id="5_3nacs"]
 [ext_resource type="Script" uid="uid://dqpn8josc5nfs" path="res://Modules/Inventory/Script/Inventory.gd" id="6_6a1d6"]
+[ext_resource type="Script" uid="uid://bw645jlbwlb5l" path="res://Modules/Command/Controller/PlayerController.gd" id="7_l2e0d"]
+[ext_resource type="Script" uid="uid://c48rqlry15rsq" path="res://Modules/Components/MovementComponent.gd" id="8_c4hvf"]
 [ext_resource type="Script" uid="uid://b5wt7sbobq760" path="res://Modules/Inventory/Component/HealthComponent/HealthComponent.gd" id="9_nm665"]
 [ext_resource type="Script" uid="uid://6fhpn2hvo65i" path="res://Modules/Inventory/Component/HealthComponent/HurtBoxComponent.gd" id="10_csims"]
 
@@ -210,37 +212,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3eeal"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c4hvf"]
+radius = 4.0
+height = 12.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ob74"]
 size = Vector2(10, 24)
-
-[sub_resource type="GDScript" id="GDScript_csims"]
-script/source = "extends Node
-class_name MovementComponent
-
-@export var speed : float = 400.0
-@export var acceleration : float = 7000.0
-@export var friction : float = 7000
-@export var entity:CharacterBody2D
-
-
-var move_direction : Vector2 = Vector2.ZERO # Save the move_direction so when we use cmd pattern we just change this
-
-func _physics_process(delta: float) -> void:
-
-	move(delta)
-	entity.move_and_slide()
-
-func set_movement_direction(direction: Vector2) -> void:
-	move_direction = direction
-
-func move(delta: float) -> void:
-	if move_direction:
-		entity.velocity = entity.velocity.lerp(move_direction * speed, 1 - exp(-acceleration * delta))
-	else:
-		entity.velocity = entity.velocity.move_toward(Vector2.ZERO, friction * delta)
-"
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inventory", "healthComponent") groups=["player"]]
 script = ExtResource("1_6l3be")
@@ -252,8 +229,9 @@ sprite_frames = SubResource("SpriteFrames_6l3be")
 animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
-shape = SubResource("CircleShape2D_3eeal")
+position = Vector2(0, 7)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_c4hvf")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
@@ -268,6 +246,7 @@ script = ExtResource("9_nm665")
 metadata/_custom_type_script = "uid://b5wt7sbobq760"
 
 [node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+visible = false
 script = ExtResource("10_csims")
 health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://6fhpn2hvo65i"
@@ -276,9 +255,18 @@ metadata/_custom_type_script = "uid://6fhpn2hvo65i"
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_2ob74")
 
+[node name="PlayerController" type="Node" parent="." node_paths=PackedStringArray("movemen_comp")]
+script = ExtResource("7_l2e0d")
+movemen_comp = NodePath("../MovementComponent")
+metadata/_custom_type_script = "uid://bw645jlbwlb5l"
+
 [node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("entity")]
-script = SubResource("GDScript_csims")
+script = ExtResource("8_c4hvf")
 entity = NodePath("..")
+speed = 200.0
+acceleration = 400.0
+friction = 500.0
+metadata/_custom_type_script = "uid://c48rqlry15rsq"
 
 [connection signal="interactable_contacted" from="InteractorComponent" to="." method="_on_interactable_areadetector_interactable_contacted"]
 [connection signal="interactable_exited" from="InteractorComponent" to="." method="_on_interactable_areadetector_interactable_exited"]

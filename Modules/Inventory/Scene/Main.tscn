@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c2wdfmtqsxkl1" path="res://src/imgs/Tilesets/Basic Grass Biom things 1.png" id="5_yg4ot"]
 [ext_resource type="Texture2D" uid="uid://l57ngeblcyjj" path="res://src/imgs/Tilesets/Wooden House.png" id="6_vm4ek"]
 [ext_resource type="Texture2D" uid="uid://bppfktlqcdikv" path="res://src/imgs/Tilesets/Paths.png" id="7_4qtod"]
-[ext_resource type="PackedScene" uid="uid://bpwa1iqyxhpxa" path="res://Modules/Inventory/Scene/Player.tscn" id="8_hueuk"]
+[ext_resource type="PackedScene" uid="uid://catpjydr4qypx" path="res://Modules/Inventory/Scene/Player.tscn" id="8_hueuk"]
 [ext_resource type="PackedScene" uid="uid://dsu5r1be85w0h" path="res://Modules/Inventory/Scene/Item.tscn" id="9_6a8me"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_s8ogb"]

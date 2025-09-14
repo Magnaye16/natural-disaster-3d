@@ -1,22 +1,22 @@
 extends Area2D
-class_name InteractableAreaDetector
+class_name InteractorComponent
 
 
 signal interactable_contacted
 signal interactable_exited
 
-var interacted_area:InteractableArea
+var interactable:InteractableComponent
 
 
 func interact():
-	if interacted_area == null : return
-	interacted_area.interact(get_parent())
+	if interactable == null : return
+	interactable.interact(get_parent())
 
 
-func _on_contact(area:Area2D):
+func _on_contact(_interactable:InteractableComponent):
 	interactable_contacted.emit()
-	interacted_area = area
+	interactable = _interactable
 
-func _on_exit(area:Area2D):
+func _on_exit(_interactable:InteractableComponent):
 	interactable_exited.emit()
-	interacted_area = null
+	interactable = null
