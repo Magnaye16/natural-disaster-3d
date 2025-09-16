@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bh1r8knha0xvk"]
+
+[ext_resource type="Shader" uid="uid://br1jlfe7nkq0h" path="res://Main_game.gdshader" id="1_gg0uo"]
+
+[resource]
+shader = ExtResource("1_gg0uo")
+shader_parameter/dim_strength = 0.5
+shader_parameter/flash_strength = 0.0
+shader_parameter/tint_color = Color(0.104028, 0.135133, 0.208355, 1)
