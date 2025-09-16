@@ -1,8 +1,9 @@
-[gd_scene load_steps=41 format=3 uid="uid://dastsqlbcs4fe"]
+[gd_scene load_steps=43 format=3 uid="uid://dastsqlbcs4fe"]
 
+[ext_resource type="Material" uid="uid://bh1r8knha0xvk" path="res://src/Main_game.tres" id="1_42up0"]
 [ext_resource type="Texture2D" uid="uid://cdqm3g1qjxmkx" path="res://icon.svg" id="2_ap48k"]
 [ext_resource type="Script" uid="uid://bhh103ve148q2" path="res://Modules/MapManager/map_manager.gd" id="3_wbnf2"]
-[ext_resource type="PackedScene" path="res://Modules/Inventory/Scene/Main.tscn" id="4_01ftw"]
+[ext_resource type="PackedScene" uid="uid://cv64losnxwqso" path="res://Modules/Inventory/Scene/Main.tscn" id="4_01ftw"]
 [ext_resource type="Script" uid="uid://cj3lx2o5mbx44" path="res://Modules/gameManager/game_manager.gd" id="5_twqns"]
 [ext_resource type="Script" uid="uid://c16uvferikfqs" path="res://Modules/weathers/weatherManager.gd" id="6_42up0"]
 [ext_resource type="Script" uid="uid://wp631s7ycfpo" path="res://Modules/seasons/SeasonManager.gd" id="7_fowpm"]
@@ -19,6 +20,7 @@
 [ext_resource type="Script" uid="uid://erhjy0dottow" path="res://Modules/seasons/types/TyphoonSeason.gd" id="18_hhjt4"]
 [ext_resource type="Script" uid="uid://5k3l37mcdgwu" path="res://Modules/UI/main_ui.gd" id="18_twqns"]
 [ext_resource type="Script" uid="uid://crgmdcqk7oc5a" path="res://Modules/disasters/DisasterManager.gd" id="19_4s0sq"]
+[ext_resource type="Script" uid="uid://boola4hp3ojxa" path="res://main_camera.gd" id="19_fowpm"]
 [ext_resource type="PackedScene" uid="uid://bcmns2k3u5453" path="res://Modules/Inventory/Scene/Inventory_hotbar.tscn" id="20_ap48k"]
 [ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://src/Fonts/ARCADECLASSIC.TTF" id="21_twqns"]
 [ext_resource type="PackedScene" uid="uid://bi2pog25w52tj" path="res://Modules/Inventory/Scene/Inventory_UI.tscn" id="23_fowpm"]
@@ -126,15 +128,6 @@ font_size = 40
 
 [node name="Main_game" type="Node2D"]
 
-[node name="MapManager" type="Node2D" parent="."]
-script = ExtResource("3_wbnf2")
-metadata/_edit_group_ = true
-
-[node name="Main" parent="MapManager" instance=ExtResource("4_01ftw")]
-
-[node name="Water" parent="MapManager/Main/TileMap" index="0"]
-metadata/_edit_group_ = true
-
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("weather_manager", "season_manager", "disaster_manager")]
 script = ExtResource("5_twqns")
 weather_manager = NodePath("WeatherManager")
@@ -156,6 +149,47 @@ metadata/_custom_type_script = "uid://wp631s7ycfpo"
 script = ExtResource("19_4s0sq")
 metadata/_custom_type_script = "uid://crgmdcqk7oc5a"
 
+[node name="Main_viewport" type="CanvasLayer" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Main_viewport"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+mouse_target = true
+
+[node name="MapManager" type="SubViewport" parent="Main_viewport/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+script = ExtResource("3_wbnf2")
+metadata/_edit_group_ = true
+
+[node name="Main" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("4_01ftw")]
+texture_filter = 1
+
+[node name="Camera2D" type="Camera2D" parent="Main_viewport/SubViewportContainer/MapManager"]
+material = ExtResource("1_42up0")
+zoom = Vector2(3, 3)
+script = ExtResource("19_fowpm")
+follow_speed = 6.0
+
+[node name="TextureRect" type="ColorRect" parent="Main_viewport/SubViewportContainer/MapManager"]
+z_index = 7
+z_as_relative = false
+material = ExtResource("1_42up0")
+custom_minimum_size = Vector2(0, 34)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
 [node name="Main_UI" type="CanvasLayer" parent="."]
 script = ExtResource("18_twqns")
 
@@ -166,6 +200,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="Main_UI/season_weather_disaster_debug_ui"]
 layout_mode = 1
@@ -270,6 +306,8 @@ text = "typhoon
 "
 
 [node name="Inventory_hotbar" parent="Main_UI" instance=ExtResource("20_ap48k")]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="interactableTooltip" type="ColorRect" parent="Main_UI"]
 anchors_preset = 3
@@ -284,6 +322,7 @@ offset_bottom = -147.0
 grow_horizontal = 0
 grow_vertical = 0
 color = Color(0.192157, 0.376471, 0.321569, 0.831373)
+metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="Main_UI/interactableTooltip"]
@@ -315,6 +354,8 @@ offset_bottom = -183.0
 grow_horizontal = 1
 grow_vertical = 0
 scale = Vector2(1.3, 1.3)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="InventoryUi" type="ColorRect" parent="Main_UI"]
 visible = false
@@ -324,6 +365,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.192157, 0.376471, 0.321569, 1)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="Main_UI/InventoryUi"]
 layout_mode = 1
@@ -348,4 +391,4 @@ layout_mode = 1
 [connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/rainy" to="." method="set_starting_rainy"]
 [connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/typhoon" to="." method="set_starting_typhoon"]
 
-[editable path="MapManager/Main"]
+[editable path="Main_viewport/SubViewportContainer/MapManager/Main"]
