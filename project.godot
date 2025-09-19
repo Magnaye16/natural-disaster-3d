@@ -30,6 +30,7 @@ project/assembly_name="Natural disaster 3D"
 [global_group]
 
 healthbar=""
+shader=""
 
 [input]
 
