@@ -29,95 +29,72 @@
 
 [sub_resource type="Resource" id="Resource_w0vwb"]
 script = ExtResource("11_urq11")
-probability_modifiers = Array[ExtResource("10_krmta")]([])
-probability = 1.0
 metadata/_custom_type_script = "uid://b6pklnnrt8dyy"
 
 [sub_resource type="Resource" id="Resource_uo75p"]
 script = ExtResource("11_urq11")
-probability_modifiers = Array[ExtResource("10_krmta")]([])
-probability = 1.0
 metadata/_custom_type_script = "uid://b6pklnnrt8dyy"
 
 [sub_resource type="Resource" id="Resource_b6t21"]
 script = ExtResource("12_disfg")
-name = ""
-total_days = 30
 possible_weathers = Array[ExtResource("9_b8268")]([SubResource("Resource_uo75p")])
 metadata/_custom_type_script = "uid://ch5cdbtwhl7ni"
 
 [sub_resource type="Resource" id="Resource_aan70"]
 script = ExtResource("13_gjemw")
-probability_modifiers = Array[ExtResource("10_krmta")]([])
 probability = 3.0
 metadata/_custom_type_script = "uid://dbx78oo8nyhuo"
 
 [sub_resource type="Resource" id="Resource_8raf8"]
 script = ExtResource("11_urq11")
-probability_modifiers = Array[ExtResource("10_krmta")]([])
-probability = 1.0
 metadata/_custom_type_script = "uid://b6pklnnrt8dyy"
 
 [sub_resource type="Resource" id="Resource_qh6j7"]
 script = ExtResource("14_6aabe")
-name = ""
-total_days = 30
 possible_weathers = Array[ExtResource("9_b8268")]([SubResource("Resource_aan70"), SubResource("Resource_8raf8")])
 metadata/_custom_type_script = "uid://dh5ns3erxqod3"
 
 [sub_resource type="Resource" id="Resource_vmvdu"]
 script = ExtResource("15_j1mf4")
-probability_modifiers = Array[ExtResource("10_krmta")]([])
 probability = 4.0
 metadata/_custom_type_script = "uid://dts7pqo3eqg7k"
 
 [sub_resource type="Resource" id="Resource_lpx4q"]
 script = ExtResource("11_urq11")
-probability_modifiers = Array[ExtResource("10_krmta")]([])
 probability = 2.0
 metadata/_custom_type_script = "uid://b6pklnnrt8dyy"
 
 [sub_resource type="Resource" id="Resource_6cbq1"]
 script = ExtResource("13_gjemw")
-probability_modifiers = Array[ExtResource("10_krmta")]([])
-probability = 1.0
 metadata/_custom_type_script = "uid://dbx78oo8nyhuo"
 
 [sub_resource type="Resource" id="Resource_aok7b"]
 script = ExtResource("16_c7sog")
-name = ""
-total_days = 30
 possible_weathers = Array[ExtResource("9_b8268")]([SubResource("Resource_vmvdu"), SubResource("Resource_lpx4q"), SubResource("Resource_6cbq1")])
 metadata/_custom_type_script = "uid://dp48hqpkgpvml"
 
 [sub_resource type="Resource" id="Resource_8ipfu"]
 script = ExtResource("13_gjemw")
-probability_modifiers = Array[ExtResource("10_krmta")]([])
 probability = 0.5
 metadata/_custom_type_script = "uid://dbx78oo8nyhuo"
 
 [sub_resource type="Resource" id="Resource_shx30"]
 script = ExtResource("11_urq11")
-probability_modifiers = Array[ExtResource("10_krmta")]([])
 probability = 2.0
 metadata/_custom_type_script = "uid://b6pklnnrt8dyy"
 
 [sub_resource type="Resource" id="Resource_fwv1b"]
 script = ExtResource("17_44hf1")
-probability_modifiers = Array[ExtResource("10_krmta")]([])
 probability = 4.0
 metadata/_custom_type_script = "uid://i6fdecjoihb3"
 
 [sub_resource type="Resource" id="Resource_6xm17"]
 script = ExtResource("15_j1mf4")
-probability_modifiers = Array[ExtResource("10_krmta")]([])
 probability = 3.0
 metadata/_custom_type_script = "uid://dts7pqo3eqg7k"
 
 [sub_resource type="Resource" id="Resource_8yrfl"]
 script = ExtResource("18_hhjt4")
-name = ""
-total_days = 30
 possible_weathers = Array[ExtResource("9_b8268")]([SubResource("Resource_8ipfu"), SubResource("Resource_shx30"), SubResource("Resource_fwv1b"), SubResource("Resource_6xm17")])
 metadata/_custom_type_script = "uid://erhjy0dottow"
 
@@ -264,7 +241,7 @@ text = "SUNNY"
 label_settings = SubResource("LabelSettings_pb8ym")
 
 [node name="disaster" type="Label" parent="Main_UI/season_weather_disaster_debug_ui"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 881.0
 offset_top = 43.0
 offset_right = 1152.0
