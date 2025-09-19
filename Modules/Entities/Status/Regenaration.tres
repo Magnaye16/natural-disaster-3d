@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Status" load_steps=2 format=3 uid="uid://dwnk6l2vu28q7"]
+
+[ext_resource type="Script" uid="uid://dp3d6ucdo4gf6" path="res://Modules/Entities/Status/Status_Template.gd" id="1_pyf6w"]
+
+[resource]
+script = ExtResource("1_pyf6w")
+status_types = Array[int]([2])
+flat_addition = 2
+Duration = 1.0
+metadata/_custom_type_script = "uid://dp3d6ucdo4gf6"

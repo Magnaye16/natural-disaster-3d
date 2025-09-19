@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Status" load_steps=2 format=3 uid="uid://6xa8o7r5m1mk"]
+
+[ext_resource type="Script" uid="uid://dp3d6ucdo4gf6" path="res://Modules/Entities/Status/Status_Template.gd" id="1_5lj1i"]
+
+[resource]
+script = ExtResource("1_5lj1i")
+status_types = Array[int]([0])
+metadata/_custom_type_script = "uid://dp3d6ucdo4gf6"
