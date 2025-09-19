@@ -15,6 +15,3 @@ func set_controller(controller: EntityController) -> void:
 	# A child must be sacrificed to the mines
 	_controller = controller
 	_controller_container.add_child(controller)
-
-
-
