@@ -6,4 +6,4 @@
 shader = ExtResource("1_gg0uo")
 shader_parameter/dim_strength = 0.5
 shader_parameter/flash_strength = 0.0
-shader_parameter/tint_color = Color(0.104028, 0.135133, 0.208355, 1)
+shader_parameter/tint_color = Color(0.06584764, 0.08655653, 0.14280188, 1)
