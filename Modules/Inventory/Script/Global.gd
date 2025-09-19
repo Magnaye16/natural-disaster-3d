@@ -2,8 +2,5 @@ extends Node
 
 
 
-var player_Node:Player = null
-
-
-func set_Player_reference(player):
-	player_Node = player
+var player_Node:Player:
+	get:return get_tree().get_first_node_in_group("player")

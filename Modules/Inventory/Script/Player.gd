@@ -37,6 +37,13 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("ui_inventory"):
 		inventory_requested.emit()
+	
+	if Input.is_key_pressed(KEY_0):
+		apply_status(preload("uid://dvrca2v7avjus"))
+		
+	if Input.is_key_pressed(KEY_9):
+		apply_status(preload("uid://dwnk6l2vu28q7"))
+
 
 func update_Animation():
 	if velocity == Vector2.ZERO:
