@@ -1,21 +1,33 @@
 shader_type canvas_item;
 
-uniform float dim_strength : hint_range(0.0, 0.8) = 0.5;  // base dimming (0 = normal, 1 = fully dark)
-uniform float flash_strength : hint_range(0.0, 1.0) = 0.0; // lightning flash strength
-uniform vec4 tint_color : source_color = vec4(0.1, 0.15, 0.2, 1.0); // gloomy tint
+// 🌑 Dimming (0 = normal, 0.8 = darkest)
+uniform float dim_strength : hint_range(0.0, 0.8) = 0.5;
+
+// ⚡ Flash (0 = normal, 1 = full white)
+uniform float flash_strength : hint_range(0.0, 1.0) = 0.0;
+
+// 🌈 Tint sampled from gradient
+uniform sampler2D GRADIENT : source_color, filter_linear_mipmap;
+uniform float tint_pos : hint_range(0.0, 1.0) = 0.5; // where to sample in gradient
+uniform float tint_strength : hint_range(0.0, 1.0) = 0.5; // blend amount
+
+// 🖼️ Screen input
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
-
-
 void fragment() {
-    // Base scene color
+    // Step 1: Screen base
     vec4 screen_color = texture(SCREEN_TEXTURE, SCREEN_UV);
 
-    // Apply dimming (dark overlay with tint)
-    vec3 dimmed = mix(screen_color.rgb, tint_color.rgb, dim_strength);
+    // Step 2: Sample one tint color from gradient
+    vec4 tint_color = texture(GRADIENT, vec2(tint_pos, 0.0));
 
-    // Apply lightning flash (brightens toward white)
-    vec3 flashed = mix(dimmed, vec3(1.0), flash_strength);
+    // Overlay tint (lerp between original and flat tint color)
+    vec4 tinted = screen_color + (tint_color) * (tint_strength/2.0);
 
-    COLOR = vec4(flashed, screen_color.a);
+    // Step 3: Apply dimming (blend towards black)
+    vec4 dimmed = mix(tinted, vec4(0.0, 0.0, 0.0, 1.0), min(dim_strength,0.8));
+
+    // Step 4: Apply flash (blend towards white)
+    vec4 flash_color = vec4(1.0, 1.0, 1.0, 1.0);
+    COLOR = mix(dimmed, flash_color, flash_strength);
 }
