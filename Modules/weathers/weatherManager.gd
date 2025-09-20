@@ -3,6 +3,7 @@ extends Node
 
 @export var _prev_weather:Weather
 @export var _current_weather: Weather
+@export var shader_texture:ShaderTexture
 
 
 signal weather_advanced(weather)

@@ -1,5 +1,6 @@
-extends Resource
+@abstract
 class_name Weather
+extends Resource
 
 var name: String :
 	get:return get_script().get_global_name()
@@ -38,7 +39,6 @@ func init()->void:
 		push_error("Could not open weather data JSON file.")
 
 func get_computed_probabilty(prev_weather:Weather)->float:
-
 	if prev_weather == null: return probability
 	for probability_modifier in probability_modifiers:
 		if probability_modifier.weather == prev_weather.name:
@@ -47,3 +47,6 @@ func get_computed_probabilty(prev_weather:Weather)->float:
 
 func _to_string() -> String:
 	return name
+
+@abstract
+func apply_effect(manager:WeatherManager)->void
