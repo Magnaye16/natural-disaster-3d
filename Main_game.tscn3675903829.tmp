@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://dastsqlbcs4fe"]
+[gd_scene load_steps=56 format=3 uid="uid://dastsqlbcs4fe"]
 
 [ext_resource type="Material" uid="uid://bh1r8knha0xvk" path="res://src/Main_game.tres" id="1_42up0"]
 [ext_resource type="Texture2D" uid="uid://cdqm3g1qjxmkx" path="res://icon.svg" id="2_ap48k"]
@@ -102,8 +102,12 @@ possible_weathers = Array[ExtResource("9_b8268")]([SubResource("Resource_8ipfu")
 metadata/_custom_type_script = "uid://erhjy0dottow"
 
 [sub_resource type="Curve" id="Curve_krmta"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.27992278, 0.04343152), -0.9482409, -0.9482409, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.79002154), 0.0, 0.0, 0, 0, Vector2(0.1891892, 0.03876531), -0.9482409, -0.9482409, 0, 0, Vector2(1, 0.80402017), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_disfg"]
+offsets = PackedFloat32Array(0, 0.14087301, 0.5119048, 0.88095236, 1)
+colors = PackedColorArray(0.203125, 0, 0.07141113, 1, 0.29859376, 0.22913024, 0.42242002, 1, 1, 0.9944458, 0.64453125, 1, 1, 0.3515625, 0, 1, 0.84765625, 0.10595703, 0.10595703, 1)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_disfg"]
 particles_animation = true
@@ -183,9 +187,9 @@ metadata/_custom_type_script = "uid://crgmdcqk7oc5a"
 
 [node name="DayNightManager" type="Node" parent="GameManager" node_paths=PackedStringArray("shader_texture")]
 script = ExtResource("16_xjgbd")
-ticks_per_hour = 15
 shader_texture = NodePath("../../Main_viewport/shader_texture")
 curve = SubResource("Curve_krmta")
+tint_gradient = SubResource("Gradient_disfg")
 metadata/_custom_type_script = "uid://cevw2pyn1p0ru"
 
 [node name="Main_viewport" type="CanvasLayer" parent="."]
