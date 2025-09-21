@@ -17,13 +17,7 @@ func _ready() -> void:
 	STATUS_TYPES.HEALTH_REGEN_SPEED:($HealthRegenSpeedStatusContainer )
 }
 
-
-
 func apply_status(status: Status) -> void:
 	assert(status.status_types.size() > 0, "status empty")
-	#if status.status_types.has(STATUS_TYPES.MOVEMENT_SPEED):
-		#($MovementStatusContainer as StatusContainer).add_status(status)
 	for status_type in status.status_types:
 		(container.get(status_type) as StatusContainer ).add_status(status)
-		
-		
