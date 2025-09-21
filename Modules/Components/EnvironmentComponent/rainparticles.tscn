@@ -11,7 +11,8 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="Gradient" id="Gradient_7txwb"]
-colors = PackedColorArray(1, 1, 1, 0.9431818, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0.3, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_disfg"]
 gradient = SubResource("Gradient_7txwb")
@@ -19,13 +20,13 @@ gradient = SubResource("Gradient_7txwb")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t0h8y"]
 particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
-color = Color(1, 1, 1, 0.5411765)
 color_ramp = SubResource("GradientTexture1D_disfg")
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
 [sub_resource type="Gradient" id="Gradient_32036"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+metadata/_snap_enabled = true
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_urq11"]
 gradient = SubResource("Gradient_32036")
@@ -34,7 +35,7 @@ width = 10
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ar7cn"]
 lifetime_randomness = 0.61
 emission_shape_offset = Vector3(100, -200, 0)
-emission_shape_scale = Vector3(2, 2, 1)
+emission_shape_scale = Vector3(3, 2, 1)
 emission_shape = 3
 emission_box_extents = Vector3(100, 100, 1)
 angle_min = 1.0728835e-05
@@ -44,19 +45,19 @@ spread = 0.0
 initial_velocity_min = -100.0
 initial_velocity_max = -100.0
 gravity = Vector3(0, 0, 0)
-color = Color(1, 1, 1, 0.58431375)
+color = Color(0.97, 0.9965, 1, 0.8392157)
 color_ramp = SubResource("GradientTexture1D_urq11")
 sub_emitter_mode = 2
 sub_emitter_amount_at_end = 1
 
-[node name="rainparticles" type="Marker2D"]
+[node name="rainComponent" type="Marker2D"]
 script = ExtResource("1_j2xjf")
 
 [node name="splash" type="GPUParticles2D" parent="."]
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_asvt3")
 emitting = false
-amount = 200
+amount = 400
 texture = ExtResource("2_mhcfg")
 lifetime = 0.7
 randomness = 1.0
@@ -66,14 +67,14 @@ process_material = SubResource("ParticleProcessMaterial_t0h8y")
 [node name="rain" type="GPUParticles2D" parent="."]
 texture_filter = 1
 texture_repeat = 1
-amount = 300
+emitting = false
+amount = 500
 sub_emitter = NodePath("../splash")
 texture = ExtResource("3_6bdjn")
 lifetime = 3.0
-preprocess = 5.0
-speed_scale = 4.0
+speed_scale = 7.02
 use_fixed_seed = true
 seed = 1958436577
 trail_enabled = true
-trail_lifetime = 0.2
+trail_lifetime = 0.4
 process_material = SubResource("ParticleProcessMaterial_ar7cn")
