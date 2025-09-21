@@ -25,3 +25,18 @@ func advance_day() -> void:
 
 func advance_weather()->void:
 	weather_manager.advance_weather(season_manager.get_current_season())
+
+
+func _on_cool_dry_pressed() -> void:
+	set_starting_season("CoolDry")
+
+
+func _on_hot_dry_pressed() -> void:
+	set_starting_season("HotDry")
+
+func _on_rainy_pressed() -> void:
+	set_starting_season("Rainy")
+
+
+func _on_typhoon_pressed() -> void:
+		set_starting_season("Typhoon")

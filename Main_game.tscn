@@ -145,7 +145,7 @@ spread = 0.0
 initial_velocity_min = -100.0
 initial_velocity_max = -100.0
 gravity = Vector3(0, 0, 0)
-color = Color(1, 1, 1, 0.44313726)
+color = Color(1, 1, 1, 0.58431375)
 color_ramp = SubResource("GradientTexture1D_urq11")
 sub_emitter_mode = 2
 sub_emitter_amount_at_end = 1
@@ -235,7 +235,7 @@ process_material = SubResource("ParticleProcessMaterial_gjemw")
 [node name="rain" type="GPUParticles2D" parent="Main_viewport/SubViewportContainer/MapManager/Camera2D/Marker2D"]
 texture_filter = 1
 texture_repeat = 1
-amount = 500
+amount = 300
 sub_emitter = NodePath("../splash")
 texture = ExtResource("22_urq11")
 lifetime = 3.0
@@ -460,10 +460,13 @@ text = "Inventory"
 [node name="Inventory_Grid_UI" parent="Main_UI/InventoryUi" instance=ExtResource("23_fowpm")]
 layout_mode = 1
 
-[connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/nextday" to="." method="advance_day"]
-[connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/cool dry" to="." method="set_starting_cool"]
-[connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/hot dry" to="." method="set_starting_hot"]
-[connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/rainy" to="." method="set_starting_rainy"]
-[connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/typhoon" to="." method="set_starting_typhoon"]
+[connection signal="day_advanced" from="GameManager/SeasonManager" to="Main_UI" method="_on_season_manager_day_advanced"]
+[connection signal="season_advanced" from="GameManager/SeasonManager" to="Main_UI" method="_on_season_manager_season_advanced"]
+[connection signal="year_advanced" from="GameManager/SeasonManager" to="Main_UI" method="_on_season_manager_year_advanced"]
+[connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/nextday" to="GameManager" method="advance_day"]
+[connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/cool dry" to="GameManager" method="_on_cool_dry_pressed"]
+[connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/hot dry" to="GameManager" method="_on_hot_dry_pressed"]
+[connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/rainy" to="GameManager" method="_on_rainy_pressed"]
+[connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/typhoon" to="GameManager" method="_on_typhoon_pressed"]
 
 [editable path="Main_viewport/SubViewportContainer/MapManager/Main"]

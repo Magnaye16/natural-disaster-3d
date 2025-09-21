@@ -15,7 +15,6 @@ func _to_string() -> String:
 	return name
 
 func init_posible_weathers():
-	print("posible weathers ",possible_weathers)
 	for weather in possible_weathers:
 		weather.init()
 
