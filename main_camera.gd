@@ -13,7 +13,7 @@ func _ready() -> void:
 
 var _shake_offset: Vector2 = Vector2.ZERO
 func _process(delta: float) -> void:
-	if not is_instance_valid(Player):return
+	if not is_instance_valid(target):return
 	var base_pos  = global_position.lerp(target.global_position, follow_speed * delta)
 	global_position = base_pos + _shake_offset
 
