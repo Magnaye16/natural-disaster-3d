@@ -3,8 +3,8 @@
 [ext_resource type="Shader" uid="uid://br1jlfe7nkq0h" path="res://Main_game.gdshader" id="1_gg0uo"]
 
 [sub_resource type="Gradient" id="Gradient_disfg"]
-offsets = PackedFloat32Array(0, 0.19026549, 0.4181416, 0.59513277, 0.8318584)
-colors = PackedColorArray(1, 0.9140625, 0, 1, 1, 0.9513403, 0.5703125, 1, 1, 0.9193879, 0.08147321, 1, 1, 0, 0, 1, 0.0078125, 0, 1, 1)
+offsets = PackedFloat32Array(0.10619469, 0.48893806, 0.8783186)
+colors = PackedColorArray(1, 0.9140625, 0, 1, 1, 0, 0, 1, 0.0078125, 0, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_amor7"]
 gradient = SubResource("Gradient_disfg")
@@ -15,5 +15,5 @@ shader = ExtResource("1_gg0uo")
 shader_parameter/dim_strength = 0.80000001192093
 shader_parameter/flash_strength = 0.0
 shader_parameter/GRADIENT = SubResource("GradientTexture1D_amor7")
-shader_parameter/tint_pos = 0.866000041135
-shader_parameter/tint_strength = 1.0
+shader_parameter/tint_pos = 0.0
+shader_parameter/tint_strength = 0.4800000228
