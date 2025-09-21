@@ -17,7 +17,7 @@ func can_trigger(game_manager: GameManager) -> bool:
 		return false
 
 	for condition in conditions:
-		if not condition.is_met(game_manager):
+		if condition.is_met(game_manager):
 			return false
 
 	return true
