@@ -5,6 +5,16 @@ extends Node
 @export var season_manager:SeasonManager
 @export var disaster_manager:DisasterManager
 
+@export var global_cam:GlobalCamera
+
+
+
+
+func _unhandled_key_input(_event: InputEvent) -> void:
+	if Input.is_key_pressed(KEY_P):
+		preload("uid://c0ftsqgnde17p").new().apply(self)
+
+
 
 func get_current_season()->Season:
 	return season_manager.get_current_season()
