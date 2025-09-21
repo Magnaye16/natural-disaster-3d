@@ -110,13 +110,12 @@ font_size = 40
 
 [node name="Main_game" type="Node2D"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("weather_manager", "season_manager", "disaster_manager", "global_cam")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("weather_manager", "season_manager", "disaster_manager")]
 unique_name_in_owner = true
 script = ExtResource("5_twqns")
 weather_manager = NodePath("WeatherManager")
 season_manager = NodePath("SeasonManager")
 disaster_manager = NodePath("DisasterManager")
-global_cam = NodePath("../Main_viewport/SubViewportContainer/MapManager/Main/Camera2D")
 metadata/_custom_type_script = "uid://cj3lx2o5mbx44"
 
 [node name="WeatherManager" type="Node" parent="GameManager" node_paths=PackedStringArray("shader_texture")]
@@ -164,7 +163,6 @@ script = ExtResource("3_wbnf2")
 metadata/_edit_group_ = true
 
 [node name="Main" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("4_01ftw")]
-texture_filter = 1
 
 [node name="shader_texture" type="ColorRect" parent="Main_viewport" groups=["shader"]]
 z_index = 7
@@ -387,5 +385,3 @@ layout_mode = 1
 [connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/hot dry" to="GameManager" method="_on_hot_dry_pressed"]
 [connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/rainy" to="GameManager" method="_on_rainy_pressed"]
 [connection signal="pressed" from="Main_UI/season_weather_disaster_debug_ui/HBoxContainer/typhoon" to="GameManager" method="_on_typhoon_pressed"]
-
-[editable path="Main_viewport/SubViewportContainer/MapManager/Main"]

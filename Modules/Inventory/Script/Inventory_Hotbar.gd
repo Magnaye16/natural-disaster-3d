@@ -8,9 +8,11 @@ class_name InventoryHotbar
 func _ready() -> void:
 	await  get_tree().process_frame
 
-	player_inventory = (get_tree().get_first_node_in_group("player") as Player).inventory
-	player_inventory.inventory_Updated.connect(_on_inventory_updated)
-	_on_inventory_updated()
+	var player = (get_tree().get_first_node_in_group("player") as Player)
+	if player:
+		player_inventory = player.inventory
+		player_inventory.inventory_Updated.connect(_on_inventory_updated)
+		_on_inventory_updated()
 
 
 func _on_inventory_updated():

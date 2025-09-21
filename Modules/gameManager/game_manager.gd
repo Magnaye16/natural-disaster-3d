@@ -5,9 +5,6 @@ extends Node
 @export var season_manager:SeasonManager
 @export var disaster_manager:DisasterManager
 
-@export var global_cam:GlobalCamera
-
-
 
 
 func _unhandled_key_input(_event: InputEvent) -> void:

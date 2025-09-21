@@ -9,7 +9,10 @@ class_name InventoryGridUI
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().process_frame
-	player_inventory = (get_tree().get_first_node_in_group("player") as Player).inventory
+	var player:Player = (get_tree().get_first_node_in_group("player") as Player)
+	if not player:return
+	player_inventory = player.inventory
+
 	_on_inventory_updated()
 
 #update the inventory UI

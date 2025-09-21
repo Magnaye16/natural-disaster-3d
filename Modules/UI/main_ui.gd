@@ -8,6 +8,9 @@ func _ready() -> void:
 	await get_tree().process_frame
 	interactable_tooltip.hide()
 	var player:Player = get_tree().get_first_node_in_group("player") as Player
+
+	if not player:return
+
 	player.interactable_found.connect(
 		interactable_tooltip.show
 	)
