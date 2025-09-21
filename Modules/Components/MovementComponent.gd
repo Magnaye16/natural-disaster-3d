@@ -7,7 +7,6 @@ extends Node
 @export var friction : float = 100
 @export var status_multiplier:StatusContainer = StatusContainer.new()
 
-
 var move_direction : Vector2 = Vector2.ZERO # Save the move_direction so when we use cmd pattern we just change this
 
 var velocity:Vector2:

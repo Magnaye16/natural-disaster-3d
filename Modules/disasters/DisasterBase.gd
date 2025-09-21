@@ -1,10 +1,11 @@
+@abstract
 class_name Disaster
 extends Resource
 
 @export var disaster_name: String
 @export var description: String
 @export var chance: float = 0.1
-@export var conditions: Array[DisasterCondition] = []
+#@export var condition: DisasterCondition
 @export var effects: Array[DisasterEffect] = []
 
 
@@ -15,12 +16,12 @@ func s():
 func can_trigger(game_manager: GameManager) -> bool:
 	if randf() > chance:
 		return false
+	if _condition(game_manager):
+		return true
+	return false
 
-	for condition in conditions:
-		if condition.is_met(game_manager):
-			return false
-
-	return true
+@abstract
+func _condition(game_manager:GameManager)->bool
 
 func trigger(game_manager: GameManager) -> void:
 	for effect in effects:

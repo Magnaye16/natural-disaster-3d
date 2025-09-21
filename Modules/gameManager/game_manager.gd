@@ -7,6 +7,10 @@ extends Node
 
 
 
+
+
+
+
 func _unhandled_key_input(_event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_P):
 		preload("uid://c0ftsqgnde17p").new().apply(self)

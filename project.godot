@@ -32,6 +32,9 @@ project/assembly_name="Natural disaster 3D"
 healthbar=""
 shader=""
 global_camera=""
+player=""
+entity=""
+disaster_detector=""
 
 [input]
 

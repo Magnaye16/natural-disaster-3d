@@ -18,8 +18,12 @@ func _physics_process(_delta):
 	update_Animation()
 
 func _unhandled_input(event: InputEvent) -> void:
+
+
 	if Input.is_action_just_pressed("hit_btn"):
+		print("plapalpalpal")
 		($HealthComponent as HealthComponent).apply_DMG(1)
+
 
 	if event.is_action_pressed("ui_inventory"):
 		inventory_requested.emit()
@@ -45,7 +49,6 @@ func update_Animation():
 				animated_Sprite.play("walk_down")
 			else:
 				animated_Sprite.play("walk_up")
-
 
 
 func _on_interactor_component_interactable_contacted() -> void:

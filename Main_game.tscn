@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dastsqlbcs4fe"]
+[gd_scene load_steps=46 format=3 uid="uid://dastsqlbcs4fe"]
 
 [ext_resource type="Material" uid="uid://bh1r8knha0xvk" path="res://src/Main_game.tres" id="1_42up0"]
 [ext_resource type="Texture2D" uid="uid://cdqm3g1qjxmkx" path="res://icon.svg" id="2_ap48k"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://dbx78oo8nyhuo" path="res://Modules/weathers/types/SunnyWeather.gd" id="13_gjemw"]
 [ext_resource type="Script" uid="uid://dh5ns3erxqod3" path="res://Modules/seasons/types/HotDrySeason.gd" id="14_6aabe"]
 [ext_resource type="Script" uid="uid://dts7pqo3eqg7k" path="res://Modules/weathers/types/RainyWeather.gd" id="15_j1mf4"]
+[ext_resource type="Script" uid="uid://tmm5svpuagun" path="res://Modules/disasters/DisasterBase.gd" id="16_b8268"]
 [ext_resource type="Script" uid="uid://dp48hqpkgpvml" path="res://Modules/seasons/types/RainySeason.gd" id="16_c7sog"]
 [ext_resource type="Script" uid="uid://cevw2pyn1p0ru" path="res://Modules/Components/DayNightCycle/DayNightManager.gd" id="16_xjgbd"]
 [ext_resource type="Script" uid="uid://i6fdecjoihb3" path="res://Modules/weathers/types/StormyWeather.gd" id="17_44hf1"]
@@ -131,6 +132,7 @@ metadata/_custom_type_script = "uid://wp631s7ycfpo"
 
 [node name="DisasterManager" type="Node" parent="GameManager"]
 script = ExtResource("19_4s0sq")
+disasters = Array[ExtResource("16_b8268")]([null])
 metadata/_custom_type_script = "uid://crgmdcqk7oc5a"
 
 [node name="DayNightManager" type="Node" parent="GameManager" node_paths=PackedStringArray("shader_texture")]
