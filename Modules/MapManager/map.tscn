@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ees2xw0pmuvh"]
+
+[ext_resource type="Script" uid="uid://boola4hp3ojxa" path="res://main_camera.gd" id="1_l2mql"]
+[ext_resource type="PackedScene" uid="uid://ceb7pu6fs56q0" path="res://Modules/Components/EnvironmentComponent/rainparticles.tscn" id="2_j8wp2"]
+
+[node name="MAP" type="Node2D"]
+
+[node name="Camera2D2" type="Camera2D" parent="." groups=["global_camera"]]
+position = Vector2(611, 252)
+zoom = Vector2(3, 3)
+script = ExtResource("1_l2mql")
+follow_speed = 7.0
+
+[node name="rainComponent2" parent="." instance=ExtResource("2_j8wp2")]
+position = Vector2(611, 252)
