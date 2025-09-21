@@ -1,15 +1,13 @@
 extends Area2D
 class_name InteractableComponent
 
+@warning_ignore("unused_signal")
 signal contacted
+@warning_ignore("unused_signal")
 signal exit_contacteds
 signal interacted(entity:Entity)
 
-#func contact(area:Area2D):
-	#contacted.emit()
-#
-#func exit_contact(area:Area2D):
-	#exit_contacteds.emit()
+
 
 func interact(entity:Entity):
 	interacted.emit(entity)
