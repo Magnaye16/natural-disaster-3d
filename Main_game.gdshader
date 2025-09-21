@@ -17,7 +17,7 @@ void fragment() {
 
     vec4 tinted = screen_color + (tint_color) * (tint_strength/2.0);
 
-    vec4 dimmed = mix(tinted, vec4(0.0, 0.0, 0.0, 1.0), min(dim_strength,0.9));
+    vec4 dimmed = mix(tinted, vec4(0.0, 0.0, 0.0, 1.0), clamp(dim_strength,0.2,0.9));
 
     vec4 flash_color = vec4(1.0, 1.0, 1.0, 1.0);
     COLOR = mix(dimmed, flash_color, flash_strength);
