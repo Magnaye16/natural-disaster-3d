@@ -2,7 +2,6 @@ extends Weather
 class_name StormyWeather
 
 
-static var _instance:Weather
 
-func apply_effect(manager:WeatherManager)->void:
+func apply_effect(_manager:WeatherManager)->void:
 	pass
