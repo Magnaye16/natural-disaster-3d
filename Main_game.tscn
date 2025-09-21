@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://dastsqlbcs4fe"]
+[gd_scene load_steps=45 format=3 uid="uid://dastsqlbcs4fe"]
 
 [ext_resource type="Material" uid="uid://bh1r8knha0xvk" path="res://src/Main_game.tres" id="1_42up0"]
 [ext_resource type="Texture2D" uid="uid://cdqm3g1qjxmkx" path="res://icon.svg" id="2_ap48k"]
@@ -21,11 +21,8 @@
 [ext_resource type="Script" uid="uid://erhjy0dottow" path="res://Modules/seasons/types/TyphoonSeason.gd" id="18_hhjt4"]
 [ext_resource type="Script" uid="uid://5k3l37mcdgwu" path="res://Modules/UI/main_ui.gd" id="18_twqns"]
 [ext_resource type="Script" uid="uid://crgmdcqk7oc5a" path="res://Modules/disasters/DisasterManager.gd" id="19_4s0sq"]
-[ext_resource type="Script" uid="uid://boola4hp3ojxa" path="res://main_camera.gd" id="19_fowpm"]
 [ext_resource type="PackedScene" uid="uid://bcmns2k3u5453" path="res://Modules/Inventory/Scene/Inventory_hotbar.tscn" id="20_ap48k"]
-[ext_resource type="Texture2D" uid="uid://dy1gbckyaeaws" path="res://src/imgs/sprites/environment/rain_splash_texutre-sheet.png" id="21_krmta"]
 [ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://src/Fonts/ARCADECLASSIC.TTF" id="21_twqns"]
-[ext_resource type="Texture2D" uid="uid://bfkn4ww33b62t" path="res://src/imgs/sprites/environment/rain_texutre.png" id="22_urq11"]
 [ext_resource type="PackedScene" uid="uid://bi2pog25w52tj" path="res://Modules/Inventory/Scene/Inventory_UI.tscn" id="23_fowpm"]
 [ext_resource type="PackedScene" uid="uid://dqnfb71785qi0" path="res://Modules/Inventory/Scene/healthbar.tscn" id="23_twqns"]
 [ext_resource type="Script" uid="uid://b64qqdccfis2t" path="res://Modules/Components/shader_texture.gd" id="23_urq11"]
@@ -105,51 +102,6 @@ metadata/_custom_type_script = "uid://erhjy0dottow"
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.27992278, 0.04343152), -0.9482409, -0.9482409, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_disfg"]
-particles_animation = true
-particles_anim_h_frames = 7
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="Gradient" id="Gradient_urq11"]
-colors = PackedColorArray(1, 1, 1, 0.9431818, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_disfg"]
-gradient = SubResource("Gradient_urq11")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gjemw"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 0, 0)
-color = Color(1, 1, 1, 0.5411765)
-color_ramp = SubResource("GradientTexture1D_disfg")
-anim_speed_min = 1.0
-anim_speed_max = 1.0
-
-[sub_resource type="Gradient" id="Gradient_krmta"]
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_urq11"]
-gradient = SubResource("Gradient_krmta")
-width = 10
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c7sog"]
-lifetime_randomness = 0.61
-emission_shape_offset = Vector3(100, -200, 0)
-emission_shape_scale = Vector3(2, 2, 1)
-emission_shape = 3
-emission_box_extents = Vector3(100, 100, 1)
-angle_min = 1.0728835e-05
-angle_max = 1.0728835e-05
-direction = Vector3(1, -2, 0)
-spread = 0.0
-initial_velocity_min = -100.0
-initial_velocity_max = -100.0
-gravity = Vector3(0, 0, 0)
-color = Color(1, 1, 1, 0.58431375)
-color_ramp = SubResource("GradientTexture1D_urq11")
-sub_emitter_mode = 2
-sub_emitter_amount_at_end = 1
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pb8ym"]
 bg_color = Color(0, 0, 0, 0.576471)
 
@@ -158,12 +110,13 @@ font_size = 40
 
 [node name="Main_game" type="Node2D"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("weather_manager", "season_manager", "disaster_manager")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("weather_manager", "season_manager", "disaster_manager", "global_cam")]
 unique_name_in_owner = true
 script = ExtResource("5_twqns")
 weather_manager = NodePath("WeatherManager")
 season_manager = NodePath("SeasonManager")
 disaster_manager = NodePath("DisasterManager")
+global_cam = NodePath("../Main_viewport/SubViewportContainer/MapManager/Main/Camera2D")
 metadata/_custom_type_script = "uid://cj3lx2o5mbx44"
 
 [node name="WeatherManager" type="Node" parent="GameManager" node_paths=PackedStringArray("shader_texture")]
@@ -212,40 +165,6 @@ metadata/_edit_group_ = true
 
 [node name="Main" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("4_01ftw")]
 texture_filter = 1
-
-[node name="Camera2D" type="Camera2D" parent="Main_viewport/SubViewportContainer/MapManager"]
-position = Vector2(611, 252)
-zoom = Vector2(3, 3)
-script = ExtResource("19_fowpm")
-follow_speed = 7.0
-
-[node name="Marker2D" type="Marker2D" parent="Main_viewport/SubViewportContainer/MapManager/Camera2D"]
-
-[node name="splash" type="GPUParticles2D" parent="Main_viewport/SubViewportContainer/MapManager/Camera2D/Marker2D"]
-texture_filter = 1
-material = SubResource("CanvasItemMaterial_disfg")
-emitting = false
-amount = 200
-texture = ExtResource("21_krmta")
-lifetime = 0.7
-randomness = 1.0
-visibility_rect = Rect2(-100, -100, 1000, 200)
-process_material = SubResource("ParticleProcessMaterial_gjemw")
-
-[node name="rain" type="GPUParticles2D" parent="Main_viewport/SubViewportContainer/MapManager/Camera2D/Marker2D"]
-texture_filter = 1
-texture_repeat = 1
-amount = 300
-sub_emitter = NodePath("../splash")
-texture = ExtResource("22_urq11")
-lifetime = 3.0
-preprocess = 5.0
-speed_scale = 4.0
-use_fixed_seed = true
-seed = 1958436577
-trail_enabled = true
-trail_lifetime = 0.2
-process_material = SubResource("ParticleProcessMaterial_c7sog")
 
 [node name="shader_texture" type="ColorRect" parent="Main_viewport" groups=["shader"]]
 z_index = 7

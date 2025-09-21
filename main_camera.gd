@@ -1,13 +1,10 @@
 extends Camera2D
+class_name GlobalCamera
 
 @export var follow_speed: float = 5.0
 
 var target: Player
 
-
-func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_key_pressed(KEY_SPACE):
-		shake(3, 1, 200)
 
 func _ready() -> void:
 	await get_tree().process_frame
@@ -23,7 +20,7 @@ func _process(delta: float) -> void:
 
 var _shake_tween: Tween
 
-func shake(intensity: float = 10.0, duration: float = 1.0, frequency: float = 8.0) -> void:
+func shake(intensity: float = 2.0, duration: float = 1.0, frequency: float = 50.0) -> void:
 	if _shake_tween and _shake_tween.is_running():
 		_shake_tween.kill()
 
@@ -33,6 +30,7 @@ func shake(intensity: float = 10.0, duration: float = 1.0, frequency: float = 8.
 
 	var step = duration / frequency
 	for i in range(int(frequency)):
+		@warning_ignore("shadowed_variable_base_class")
 		var offset = Vector2(
 			randf_range(-intensity, intensity),
 			randf_range(-intensity, intensity)
