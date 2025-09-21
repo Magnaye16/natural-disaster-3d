@@ -10,7 +10,7 @@ class_name InventoryGridUI
 func _ready() -> void:
 	await get_tree().process_frame
 	var player:Player = (get_tree().get_first_node_in_group("player") as Player)
-	if not player:return
+	if not player or not player.inventory:return
 	player_inventory = player.inventory
 
 	_on_inventory_updated()

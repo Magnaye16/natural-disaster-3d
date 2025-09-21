@@ -11,7 +11,7 @@ var player:Player
 func _ready() -> void:
 	await  get_tree().process_frame
 	player = get_tree().get_first_node_in_group("player")
-	if not player:return
+	if not player or not player.healthComponent:return
 
 	max_value = player.healthComponent.max_value
 	set_val(player.healthComponent.value)
