@@ -2,8 +2,6 @@ extends Entity
 class_name  Player
 #variables
 var speed = 150
-#@onready var inventory:Inventory = $Inventory
-
 
 @export var inventory : Inventory
 @onready var animated_Sprite = $AnimatedSprite2D
@@ -37,17 +35,17 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("ui_inventory"):
 		inventory_requested.emit()
-	
+
 	if Input.is_key_pressed(KEY_0):
 		apply_status(preload("uid://dvrca2v7avjus"))
-		
+
 	if Input.is_key_pressed(KEY_9):
 		apply_status(preload("uid://dwnk6l2vu28q7"))
 
 
 func update_Animation():
 	if velocity == Vector2.ZERO:
-		animated_Sprite.play("Idle")
+		animated_Sprite.set_frame_and_progress(5,1)
 	else:
 		if abs(velocity.x) > abs(velocity.y):
 			if velocity.x > 0:
@@ -61,18 +59,8 @@ func update_Animation():
 				animated_Sprite.play("walk_up")
 
 
-func apply_Item_effect(item):
-	match item["effect"]:
-		"Stamina":
-			speed += 50
-			print("Speed Inceased to ", speed)
-		"Slot Boost":
-			Global.increased_Inventory_size(5)
-			print("Inventory size increase ", Global.inventory.size())
-
 
 func _on_interactor_component_interactable_contacted() -> void:
-	print("ff")
 	interactable_found.emit()
 
 
