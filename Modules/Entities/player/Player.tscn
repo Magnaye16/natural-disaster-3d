@@ -1,85 +1,17 @@
-[gd_scene load_steps=46 format=3 uid="uid://catpjydr4qypx"]
+[gd_scene load_steps=46 format=3 uid="uid://dabvby2oye6tp"]
 
+[ext_resource type="Script" uid="uid://ca8pmu6s4iate" path="res://Modules/Entities/player/Player.gd" id="1_6l3be"]
 [ext_resource type="Texture2D" uid="uid://0flrot5hrf4a" path="res://src/imgs/sprites/chars/person.png" id="2_3eeal"]
 [ext_resource type="Shader" uid="uid://dgox3oy7ki2ng" path="res://Modules/Entities/entity/cast_shadow.gdshader" id="2_iay8i"]
 [ext_resource type="Texture2D" uid="uid://cdqm3g1qjxmkx" path="res://icon.svg" id="3_iay8i"]
+[ext_resource type="Script" uid="uid://dqpn8josc5nfs" path="res://Modules/Inventory/Script/Inventory.gd" id="5_iay8i"]
+[ext_resource type="Script" uid="uid://b5wt7sbobq760" path="res://Modules/Components/HealthComponent/HealthComponent.gd" id="6_xyvnq"]
 [ext_resource type="Script" uid="uid://bw645jlbwlb5l" path="res://Modules/Command/Controller/PlayerController.gd" id="7_l2e0d"]
 [ext_resource type="Script" uid="uid://c48rqlry15rsq" path="res://Modules/Components/MovementComponent.gd" id="8_c4hvf"]
 [ext_resource type="PackedScene" uid="uid://besiwigokw2yn" path="res://Modules/Components/InteractionComponents/interactor_component.tscn" id="8_nm665"]
 [ext_resource type="Script" uid="uid://ds0mapqlqyu8m" path="res://Modules/Entities/Status/Status_Manager.gd" id="9_csims"]
 [ext_resource type="Script" uid="uid://cpfjhdr0kceht" path="res://Modules/Entities/Status/StatusContainer.gd" id="10_2ob74"]
 [ext_resource type="Script" uid="uid://6fhpn2hvo65i" path="res://Modules/Components/HealthComponent/HurtBoxComponent.gd" id="10_csims"]
-
-[sub_resource type="GDScript" id="GDScript_xeana"]
-script/source = "extends Entity
-class_name  Player
-#variables
-var speed = 150
-
-@export var inventory : Inventory
-@onready var animated_Sprite = $AnimatedSprite2D
-@export var healthComponent:HealthComponent
-
-
-
-signal interactable_found
-signal interactable_lost
-
-
-signal inventory_requested
-
-
-#func get_Input():
-	#
-	#velocity = input_Direction * speed
-
-func _physics_process(_delta):
-	#get_Input()
-	#move_and_slide()
-	update_Animation()
-
-func _unhandled_input(event: InputEvent) -> void:
-
-
-	if Input.is_action_just_pressed(\"hit_btn\"):
-		print(\"plapalpalpal\")
-		($HealthComponent as HealthComponent).apply_DMG(1)
-
-
-	if event.is_action_pressed(\"ui_inventory\"):
-		inventory_requested.emit()
-
-	if Input.is_key_pressed(KEY_0):
-		apply_status(preload(\"uid://dvrca2v7avjus\"))
-
-	if Input.is_key_pressed(KEY_9):
-		apply_status(preload(\"uid://dwnk6l2vu28q7\"))
-
-
-func update_Animation():
-	if velocity == Vector2.ZERO:
-		animated_Sprite.set_frame_and_progress(5,1)
-	else:
-		if abs(velocity.x) > abs(velocity.y):
-			if velocity.x > 0:
-				animated_Sprite.play(\"walk_right\")
-			else:
-				animated_Sprite.play(\"walk_left\")
-		else:
-			if velocity.y > 0:
-				animated_Sprite.play(\"walk_down\")
-			else:
-				animated_Sprite.play(\"walk_up\")
-
-
-
-func _on_interactor_component_interactable_contacted() -> void:
-	interactable_found.emit()
-
-
-func _on_interactor_component_interactable_exited() -> void:
-	interactable_lost.emit()
-"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xyvnq"]
 shader = ExtResource("2_iay8i")
@@ -321,121 +253,12 @@ animations = [{
 radius = 4.0
 height = 12.0
 
-[sub_resource type="GDScript" id="GDScript_yu8vi"]
-script/source = "extends Node
-class_name Inventory
-const inventorysize = 30
-var contents:Array[ItemResource] = []
-
-signal inventory_Updated
-
-@onready var inventory_Slot_scene = preload(\"res://Modules/Inventory/Scene/Inventory_Slot.tscn\")
-
-func _ready():
-	#Initialize the contents with 3D slots
-	contents.resize(inventorysize)
-
-func add_Item(item:ItemResource)->bool:
-	for i in range(contents.size()):
-		if contents[i] != null and contents[i].item_Name== item.item_Name and contents[i].item_Effect == item.item_Effect:
-			contents[i].item_Qty += item.item_Qty
-			inventory_Updated.emit()
-			print(\"item added \", contents)
-			return true
-		elif contents[i] == null:
-			contents[i] = item
-			inventory_Updated.emit()
-			print(\"item added \", contents)
-			return true
-	# If no suitable slot found:
-	return false
-
-func remove_Item(item:ItemResource):
-	for i in range (contents.size()):
-		if contents[i] != null and contents[i].item_Name== item.item_Name and contents[i].item_Effect == item.item_Effect:
-			contents[i].item_Qty -= 1
-			if contents[i].item_Qty <= 0:
-				contents[i] = null
-			inventory_Updated.emit()
-			return true
-	return false
-
-func increased_Inventory_size(extra_Slot):
-	contents.resize(contents.size() + extra_Slot)
-	inventory_Updated.emit()
-
-
-func adjust_Drop_position(position):
-	var radius = 100
-	var nearby_Items = get_tree().get_nodes_in_group(\"Items\")
-	for item in nearby_Items:
-		if item.global_position.distance_to(position) < radius:
-			var random_offset = Vector2(randf_range(-radius, radius), randf_range(-radius, radius))
-			position += random_offset
-			break
-	return position
-
-func drop_Item(item_Data:ItemResource, drop_Position):
-	var item_Scene = load(Item.scene_path)
-	var item_Instance:Item = item_Scene.instantiate()
-	item_Data.item_Qty = 1
-	item_Instance.set_item_resource(item_Data)
-	drop_Position = adjust_Drop_position(drop_Position)
-	item_Instance.global_position = drop_Position
-	get_tree().current_scene.add_child(item_Instance)
-"
-
-[sub_resource type="GDScript" id="GDScript_iay8i"]
-script/source = "extends Node
-class_name HealthComponent
-
-var value:int = 1
-@export var max_value:int = 3
-@export var natural_regen_time:float = 5
-var natural_regen:int = 1
-var ticks:float = 1
-@export var status_multiplier:StatusContainer
-const MIN_HEALTH_REGEN:int = 1
-
-signal updated(HP)
-signal depleted
-
-func _ready() -> void:
-	set_HP(max_value)
-
-func _process(delta: float) -> void:
-	if value < max_value: 
-		ticks += delta
-	
-	if ticks > natural_regen_time:
-
-		natural_regen = status_multiplier.compute_value(natural_regen)
-		print(natural_regen)
-		natural_regen = max(MIN_HEALTH_REGEN, natural_regen)
-		
-		
-		set_HP(value + natural_regen)
-		ticks = 0
-
-
-
-func set_HP(_value:int):
-	value = _value
-	updated.emit(value)
-
-func apply_DMG(DMG:int):
-	value -= DMG
-	updated.emit(value)
-	if value > 0 :return
-	depleted.emit()
-"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ob74"]
 size = Vector2(10, 24)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inventory", "healthComponent") groups=["player"]]
 collision_mask = 0
-script = SubResource("GDScript_xeana")
+script = ExtResource("1_6l3be")
 inventory = NodePath("Inventory")
 healthComponent = NodePath("HealthComponent")
 
@@ -455,39 +278,15 @@ position = Vector2(0, 7)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_c4hvf")
 
-[node name="Inventory" type="Node" parent="."]
-script = SubResource("GDScript_yu8vi")
-
-[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("status_multiplier")]
-script = SubResource("GDScript_iay8i")
-max_value = 10
-natural_regen_time = 3.0
-status_multiplier = NodePath("../StatusManager/HealthRegenStatusContainer")
-metadata/_custom_type_script = "uid://b5wt7sbobq760"
-
 [node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 visible = false
 script = ExtResource("10_csims")
-health_component = NodePath("../HealthComponent")
+health_component = NodePath("")
 metadata/_custom_type_script = "uid://6fhpn2hvo65i"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_2ob74")
-
-[node name="PlayerController" type="Node" parent="." node_paths=PackedStringArray("movemen_comp")]
-script = ExtResource("7_l2e0d")
-movemen_comp = NodePath("../MovementComponent")
-metadata/_custom_type_script = "uid://bw645jlbwlb5l"
-
-[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("entity", "status_multiplier")]
-script = ExtResource("8_c4hvf")
-entity = NodePath("..")
-speed = 100.0
-acceleration = 400.0
-friction = 500.0
-status_multiplier = NodePath("../StatusManager/MovementSpeedStatusContainer")
-metadata/_custom_type_script = "uid://c48rqlry15rsq"
 
 [node name="interactor_component" parent="." instance=ExtResource("8_nm665")]
 
@@ -506,6 +305,27 @@ metadata/_custom_type_script = "uid://cpfjhdr0kceht"
 [node name="HealthRegenStatusContainer" type="Node" parent="StatusManager"]
 script = ExtResource("10_2ob74")
 metadata/_custom_type_script = "uid://cpfjhdr0kceht"
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("6_xyvnq")
+metadata/_custom_type_script = "uid://b5wt7sbobq760"
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("5_iay8i")
+metadata/_custom_type_script = "uid://dqpn8josc5nfs"
+
+[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("entity", "status_multiplier")]
+script = ExtResource("8_c4hvf")
+entity = NodePath("..")
+acceleration = 5.0
+friction = 300.0
+status_multiplier = NodePath("../StatusManager/MovementSpeedStatusContainer")
+metadata/_custom_type_script = "uid://c48rqlry15rsq"
+
+[node name="PlayerController" type="Node" parent="." node_paths=PackedStringArray("movemen_comp")]
+script = ExtResource("7_l2e0d")
+movemen_comp = NodePath("../MovementComponent")
+metadata/_custom_type_script = "uid://bw645jlbwlb5l"
 
 [connection signal="interactable_contacted" from="interactor_component" to="." method="_on_interactor_component_interactable_contacted"]
 [connection signal="interactable_exited" from="interactor_component" to="." method="_on_interactor_component_interactable_exited"]
