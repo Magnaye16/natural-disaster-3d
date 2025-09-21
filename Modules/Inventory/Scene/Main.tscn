@@ -511,5 +511,6 @@ zoom = Vector2(3, 3)
 script = ExtResource("9_p1a15")
 follow_speed = 7.0
 
-[node name="rainparticles" parent="." instance=ExtResource("10_0ye4e")]
+[node name="rainComponent" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("10_0ye4e")]
 position = Vector2(611, 252)
+camera = NodePath("../Camera2D")
