@@ -1,6 +1,8 @@
 class_name Entity extends CharacterBody2D
 
+@onready var component_manager: Node2D = $ComponentManager
 
 
 func apply_status(status: Status) -> void:
-	(%StatusManager as StatusManager).apply_status(status)
+	(component_manager.get_component(StatusManagerComponent)
+	as StatusManagerComponent).apply_status(status)
