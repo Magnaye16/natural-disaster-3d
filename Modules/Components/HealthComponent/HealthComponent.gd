@@ -16,16 +16,15 @@ func _ready() -> void:
 	set_HP(max_value)
 
 func _process(delta: float) -> void:
-	if value < max_value: 
+	if value < max_value:
 		ticks += delta
-	
-	if ticks > natural_regen_time:
 
-		natural_regen = status_multiplier.compute_value(natural_regen)
-		print(natural_regen)
+	if ticks > natural_regen_time:
+		if status_multiplier:
+			natural_regen = status_multiplier.compute_value(natural_regen)
 		natural_regen = max(MIN_HEALTH_REGEN, natural_regen)
-		
-		
+
+
 		set_HP(value + natural_regen)
 		ticks = 0
 

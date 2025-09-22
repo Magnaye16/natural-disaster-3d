@@ -1,14 +1,17 @@
-class_name MoveCommand extends Command
+
+class_name MoveCommand
+extends Command
 
 
-var reciever:MovementComponent
-var dir:Vector2
+class Params extends CommandParams:
+	var direction: Vector2
 
 
-func _init(reciever_:MovementComponent,dir_:Vector2)->void:
-	reciever = reciever_
-	dir = dir_
 
+func execute(entity:Node,param:CommandParams) -> void:
 
-func execute():
-	reciever.set_movement_direction(dir)
+	var comp_mgr = entity.get_node("ComponentManager") as ComponentManager
+	var move_comp:MovementComponent = comp_mgr.get_component(MovementComponent)
+
+	if move_comp:
+		move_comp.set_movement_direction(param.direction)

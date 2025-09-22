@@ -1,5 +1,5 @@
 extends Node
-class_name StatusManager
+class_name StatusManagerComponent
 
 var status_array :Array[Status]
 enum STATUS_TYPES {

@@ -13,9 +13,7 @@ var velocity:Vector2:
 	get():return entity.velocity
 	set(val):entity.velocity = val
 
-func _physics_process(delta: float) -> void:
-	_move(delta)
-	entity.move_and_slide()
+
 
 func _move(delta: float) -> void:
 	if move_direction:
@@ -24,9 +22,12 @@ func _move(delta: float) -> void:
 		for stat in status_multiplier.status_array:
 			product_speed = stat.apply_multiplier(product_speed)
 		speed = max(0.1, speed)
-		velocity = velocity.lerp(move_direction * product_speed, 1 - exp(-acceleration * delta))
+		velocity = velocity.lerp(move_direction * product_speed, acceleration * delta)
+
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 
 func set_movement_direction(direction: Vector2) -> void:
 	move_direction = direction
+	_move(0.01)
+	entity.move_and_slide()

@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://b0swruhjk24p0"]
+
+[ext_resource type="Shader" uid="uid://dgox3oy7ki2ng" path="res://Modules/Entities/entity/cast_shadow.gdshader" id="1_xxyhl"]
+[ext_resource type="Texture2D" uid="uid://br6h7514itwa3" path="res://src/Item_icon/icon2.png" id="2_8anmm"]
+[ext_resource type="Script" uid="uid://nma6bluc30p8" path="res://Modules/disasters/debree.gd" id="3_vnadd"]
+[ext_resource type="Script" uid="uid://phnt8n8hoqi5" path="res://Modules/Components/HurtComponent/hitComponent.gd" id="4_6v5fd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xxyhl"]
+resource_local_to_scene = true
+shader = ExtResource("1_xxyhl")
+shader_parameter/radius = 0.3
+shader_parameter/alpha = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7txwb"]
+
+[node name="debree" type="Sprite2D"]
+material = SubResource("ShaderMaterial_xxyhl")
+texture = ExtResource("2_8anmm")
+script = ExtResource("3_vnadd")
+
+[node name="main spritr" type="Sprite2D" parent="."]
+position = Vector2(0, -100)
+texture = ExtResource("2_8anmm")
+
+[node name="HitComponent" type="Area2D" parent="main spritr"]
+position = Vector2(0, 1)
+collision_layer = 0
+collision_mask = 8
+monitoring = false
+monitorable = false
+script = ExtResource("4_6v5fd")
+metadata/_custom_type_script = "uid://phnt8n8hoqi5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="main spritr/HitComponent"]
+shape = SubResource("CircleShape2D_7txwb")
+
+[connection signal="area_entered" from="main spritr/HitComponent" to="main spritr/HitComponent" method="_on_area_entered"]
+[connection signal="hit" from="main spritr/HitComponent" to="." method="_on_hit_component_hit"]
