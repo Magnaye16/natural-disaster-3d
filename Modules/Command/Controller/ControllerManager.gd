@@ -2,12 +2,11 @@ class_name ControllerManager
 extends Node
 
 var active_controller: BaseController = null
-var controllers: Dictionary[String,BaseController]
+@export var controllers: Dictionary[String,BaseController]
 
 func _ready() -> void:
 	set_process(false)
 	_cache_children()
-
 
 func _cache_children():
 	for child in get_children():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dabvby2oye6tp"]
+[gd_scene load_steps=52 format=3 uid="uid://dabvby2oye6tp"]
 
 [ext_resource type="Script" uid="uid://ca8pmu6s4iate" path="res://Modules/Entities/player/Player.gd" id="1_6l3be"]
 [ext_resource type="Texture2D" uid="uid://0flrot5hrf4a" path="res://src/imgs/sprites/chars/person.png" id="2_3eeal"]
@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://6fhpn2hvo65i" path="res://Modules/Components/HealthComponent/HurtBoxComponent.gd" id="10_csims"]
 [ext_resource type="Script" uid="uid://b75tptmnffbfl" path="res://Modules/Components/DisasterDetector/disaster_detector.gd" id="13_lmolj"]
 [ext_resource type="PackedScene" uid="uid://6qjeq4jtygd" path="res://Modules/Components/EnvironmentComponent/Fire/FireComponent.tscn" id="14_y3nja"]
-[ext_resource type="Script" path="res://Modules/Command/Controller/ControllerManager.gd" id="15_vyat6"]
+[ext_resource type="Script" uid="uid://tgwgeopexuvj" path="res://Modules/Command/Controller/ControllerManager.gd" id="15_vyat6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xyvnq"]
 shader = ExtResource("2_iay8i")
@@ -25,6 +25,14 @@ shader_parameter/alpha = 0.2750000130625
 [sub_resource type="AtlasTexture" id="AtlasTexture_jvxg0"]
 atlas = ExtResource("2_3eeal")
 region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyat6"]
+atlas = ExtResource("2_3eeal")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdu0r"]
+atlas = ExtResource("2_3eeal")
+region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mud5u"]
 atlas = ExtResource("2_3eeal")
@@ -146,6 +154,17 @@ animations = [{
 }],
 "loop": false,
 "name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyat6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdu0r")
+}],
+"loop": false,
+"name": &"crouch_front",
 "speed": 5.0
 }, {
 "frames": [{
@@ -274,7 +293,7 @@ texture = ExtResource("3_iay8i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6l3be")
-animation = &"walk_down"
+animation = &"crouch_front"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
 visible = false
