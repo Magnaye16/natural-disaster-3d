@@ -35,6 +35,7 @@ global_camera=""
 player=""
 entity=""
 disaster_detector=""
+map_manager=""
 
 [input]
 
