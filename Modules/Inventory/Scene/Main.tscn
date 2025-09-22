@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dabvby2oye6tp" path="res://Modules/Entities/player/Player.tscn" id="8_hueuk"]
 [ext_resource type="Script" uid="uid://boola4hp3ojxa" path="res://main_camera.gd" id="9_p1a15"]
 [ext_resource type="PackedScene" uid="uid://ceb7pu6fs56q0" path="res://Modules/Components/EnvironmentComponent/rainparticles.tscn" id="10_0ye4e"]
-[ext_resource type="Script" uid="uid://pxsxks2srmxj" path="res://Modules/disasters/DebreeSpawner.gd" id="11_p1a15"]
+[ext_resource type="Script" path="res://Modules/disasters/DebreeSpawner.gd" id="11_p1a15"]
 [ext_resource type="Texture2D" uid="uid://buw6lx2nxbwjg" path="res://src/Item_icon/icon32.png" id="14_7txwb"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_s8ogb"]

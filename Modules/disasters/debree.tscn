@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://b0swruhjk24p0"]
 
-[ext_resource type="Shader" uid="uid://dgox3oy7ki2ng" path="res://Modules/Entities/entity/cast_shadow.gdshader" id="1_xxyhl"]
+[ext_resource type="Shader" path="res://Modules/Entities/entity/cast_shadow.gdshader" id="1_xxyhl"]
 [ext_resource type="Texture2D" uid="uid://br6h7514itwa3" path="res://src/Item_icon/icon2.png" id="2_8anmm"]
-[ext_resource type="Script" uid="uid://nma6bluc30p8" path="res://Modules/disasters/debree.gd" id="3_vnadd"]
+[ext_resource type="Script" path="res://Modules/disasters/debree.gd" id="3_vnadd"]
 [ext_resource type="Script" uid="uid://phnt8n8hoqi5" path="res://Modules/Components/HurtComponent/hitComponent.gd" id="4_6v5fd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xxyhl"]
