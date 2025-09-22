@@ -26,7 +26,7 @@ func animate_sprite():
 	tween.set_parallel(false)
 
 	tween.tween_callback(func():$"main spritr/HitComponent".monitoring = true)
-	tween.tween_callback(func():$"main spritr/HitComponent".monitoring = false)
+	tween.tween_callback(func():$"main spritr/HitComponent".monitoring = false).set_delay(0.2)
 	tween.tween_property(main_spritr,"modulate:a",0,1)
 
 func animate_shadow():
