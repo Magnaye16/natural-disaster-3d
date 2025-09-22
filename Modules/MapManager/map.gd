@@ -1,0 +1,32 @@
+extends Node2D
+class_name Map
+
+@export var always_reload: bool = false
+@export var package:PlayerCamPackage
+
+@warning_ignore("unused_private_class_variable")
+var _last_player_position:Vector2
+
+
+func entry_map()->void:
+	_activate()
+
+func activate(new_package:PlayerCamPackage)->void:
+	_activate()
+	package = new_package
+	add_child(package)
+	package.enter_map()
+
+func _activate()->void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	show()
+
+func deactivate()->void:
+	hide()
+	package.exit_map()
+	remove_child(package)
+	process_mode = Node.PROCESS_MODE_DISABLED
+
+func clean():
+	package.queue_free()
+	deactivate()
