@@ -1,5 +1,5 @@
 extends Node
-class_name DisasterDetector
+class_name DisasterDetectorComponent
 
 
 signal disaster_detected(disaster:Disaster)
