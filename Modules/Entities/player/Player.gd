@@ -33,6 +33,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if Input.is_key_pressed(KEY_9):
 		apply_status(preload("uid://dwnk6l2vu28q7"))
+		
+	if Input.is_key_pressed(KEY_8):
+		apply_status(preload("uid://6xa8o7r5m1mk"))
 
 
 func update_Animation():
