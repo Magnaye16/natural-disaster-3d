@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://d41vjxdfvy6v"]
+
+[ext_resource type="Script" uid="uid://q3hno0qq3ey6" path="res://Modules/Components/EnvironmentComponent/Fire/FireScene.gd" id="1_3t4jk"]
+[ext_resource type="Texture2D" uid="uid://82rd8kadpr4r" path="res://src/Item_icon/fire_column_medium/fire_column_medium_3.png" id="1_8robf"]
+[ext_resource type="Texture2D" uid="uid://xibmcdejqngt" path="res://src/Item_icon/fire_column_medium/fire_column_medium_4.png" id="2_3t4jk"]
+[ext_resource type="Texture2D" uid="uid://bvbnx4jveh06q" path="res://src/Item_icon/fire_column_medium/fire_column_medium_5.png" id="3_xvwld"]
+[ext_resource type="Texture2D" uid="uid://q06pqys4rfsk" path="res://src/Item_icon/fire_column_medium/fire_column_medium_6.png" id="4_fkn71"]
+[ext_resource type="Texture2D" uid="uid://l06ku4nx45mi" path="res://src/Item_icon/fire_column_medium/fire_column_medium_7.png" id="5_43fwt"]
+[ext_resource type="Texture2D" uid="uid://3qe66vcev53u" path="res://src/Item_icon/fire_column_medium/fire_column_medium_8.png" id="6_0js70"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gfavs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8robf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3t4jk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xvwld")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fkn71")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_43fwt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0js70")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hh5l2"]
+
+[node name="FireScene" type="Node2D"]
+script = ExtResource("1_3t4jk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -29)
+sprite_frames = SubResource("SpriteFrames_gfavs")
+autoplay = "default"
+frame_progress = 0.18772992
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_hh5l2")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

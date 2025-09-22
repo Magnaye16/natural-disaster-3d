@@ -1,7 +1,9 @@
 extends Node
 class_name StatusContainer
 
-var status_array :Array[Status]
+var status_array :Array[Status] 
+
+
 
 
 
@@ -37,8 +39,17 @@ func stack_status(status:Status)->void:
 		existing_stat.Duration += status.Duration
 		return
 
-	add_status(status)
+	check_stackable_status(status)
 
+func check_stackable_status(status:Status):
+	if !status.Stackable:
+		var index = status_array.find_custom(func(s):return s.Name == status.Name)
+		if index < 0:
+			add_status(status)
+		else:
+			status_array.get(index).Duration += status.Duration
+		
+	
 func add_status(status:Status):
 	if (status.flat_addition !=0):
 		status_array.insert(0,status)

@@ -1,39 +1,36 @@
 extends Node2D
 class_name FireComponent
 
-@export var status_multiplier:StatusContainer
+@export var status_container:StatusContainer
 @export var Health:HealthComponent
-var Damage:int = 1
+var Damage:int = 0
 var ticks:float = 0
-var duration: float = 1
+var duration: float = 0.5
+
+
 
 
 func _process(_delta: float) -> void:
 	#if Damage < Health.max_value:
-	if !Health: return 
+	if status_container.status_array.is_empty():
+		hide()
+	else:
+		print(status_container.status_array.get(0).Duration)
+		show()
 	ticks += _delta
 	
 	if ticks > duration:
-
-		if status_multiplier:
-			Damage = status_multiplier.compute_value(Damage)
-			print(Damage)
+		var Product_Damage
+		if status_container:
+			Product_Damage = status_container.compute_value(Damage)
+			
 		
-		
-		Health.apply_DMG(Damage)
+		Health.apply_DMG(Product_Damage)
 		ticks = 0
 
-func apply_damage_fire_status():
-	#take burn status then compute the damage value and update the health 
-	#re-apply the status when interacted by the player
-	pass
+func apply_damage_fire_status(status:Status):
+	status_container.check_stackable_status(status)
+	print(status)
 	
-
-
-func _on_interactable_component_interacted(_entity: Entity) -> void:
-	pass 
-
-
-func _on_interactable_component_contacted() -> void:
-	#apply_fire_status()
-	pass 
+	
+	
