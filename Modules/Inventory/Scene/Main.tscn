@@ -507,8 +507,8 @@ sources/0 = SubResource("TileSetAtlasSource_t0h8y")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_asvt3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1a15"]
-size = Vector2(330.75, 210.875)
+[sub_resource type="CircleShape2D" id="CircleShape2D_p1a15"]
+radius = 48.83966
 
 [node name="Main" type="Node2D"]
 use_parent_material = true
@@ -575,5 +575,4 @@ position = Vector2(611.5, 251.75)
 script = ExtResource("11_p1a15")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D"]
-visible = false
-shape = SubResource("RectangleShape2D_p1a15")
+shape = SubResource("CircleShape2D_p1a15")
