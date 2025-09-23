@@ -38,9 +38,9 @@ func _move(delta: float) -> void:
 		# Apply status multipliers to speed
 		for stat in status_multiplier.status_array:
 			product_speed = stat.apply_multiplier(product_speed)
-		# Make sure speed never drops too low
-		product_speed = max(0.1, product_speed * get_tile_speed()) 
-		# Accelerate towards target velocity
+
+		product_speed = max(0.1, product_speed)
+
 		velocity = velocity.lerp(move_direction * product_speed, acceleration * delta)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, get_tile_friction() * delta)

@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://ees2xw0pmuvh"]
+
+[ext_resource type="Script" uid="uid://cy8yog0apqm2" path="res://Modules/MapManager/map.gd" id="1_18ddi"]
+[ext_resource type="PackedScene" uid="uid://ceb7pu6fs56q0" path="res://Modules/Components/EnvironmentComponent/rainparticles.tscn" id="2_qnkao"]
+[ext_resource type="PackedScene" uid="uid://d41vjxdfvy6v" path="res://Modules/Components/EnvironmentComponent/Fire/FireScene.tscn" id="3_7ucfc"]
+[ext_resource type="Script" uid="uid://dxv57et4ndi4p" path="res://Modules/MapManager/package.gd" id="4_d512a"]
+[ext_resource type="Script" uid="uid://boola4hp3ojxa" path="res://main_camera.gd" id="5_7g6sp"]
+[ext_resource type="PackedScene" uid="uid://dabvby2oye6tp" path="res://Modules/Entities/player/Player.tscn" id="6_t5gdg"]
+
+[node name="MAP2" type="Node2D" node_paths=PackedStringArray("package")]
+script = ExtResource("1_18ddi")
+package = NodePath("Package")
+
+[node name="rainComponent2" parent="." instance=ExtResource("2_qnkao")]
+position = Vector2(611, 252)
+
+[node name="FireScene" parent="." instance=ExtResource("3_7ucfc")]
+position = Vector2(101, -1)
+
+[node name="FireScene2" parent="." instance=ExtResource("3_7ucfc")]
+position = Vector2(567, 317)
+
+[node name="Package" type="Node2D" parent="."]
+script = ExtResource("4_d512a")
+
+[node name="GlobalCamera" type="Camera2D" parent="Package"]
+script = ExtResource("5_7g6sp")
+metadata/_custom_type_script = "uid://boola4hp3ojxa"
+
+[node name="Player" parent="Package" instance=ExtResource("6_t5gdg")]
+position = Vector2(556, 237)
+metadata/_edit_group_ = true
