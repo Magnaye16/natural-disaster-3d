@@ -6,6 +6,7 @@ var speed = 150
 @export var inventory : Inventory
 @onready var animated_Sprite = $AnimatedSprite2D
 @export var healthComponent:HealthComponent
+@onready var progress_bar: ProgressBar = $ProgressBar
 
 
 signal interactable_found
