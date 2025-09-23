@@ -3,13 +3,18 @@ class_name Map
 
 @export var always_reload: bool = false
 @export var package:PlayerCamPackage
+@export var Tile_manager:Tilemap_manager
 
 @warning_ignore("unused_private_class_variable")
 var _last_player_position:Vector2
 
+func _ready() -> void:
+	if get_parent() is not MapManager:
+		package.enter_map()
 
 func entry_map()->void:
 	_activate()
+	package.enter_map()
 
 func activate(new_package:PlayerCamPackage)->void:
 	_activate()
