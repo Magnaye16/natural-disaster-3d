@@ -32,7 +32,7 @@ var velocity:Vector2:
 		#velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 	#
 	#
-	
+
 func _move(delta: float) -> void:
 	if move_direction:
 		var product_speed: float = speed
@@ -45,7 +45,7 @@ func _move(delta: float) -> void:
 		velocity = velocity.lerp(move_direction * product_speed, acceleration * delta)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, get_tile_friction() * delta)
-	
+
 
 
 func get_tile_speed():
@@ -65,6 +65,6 @@ func get_tile_friction():
 
 
 func set_movement_direction(direction: Vector2) -> void:
-	move_direction = direction
+	move_direction = direction.normalized()
 	_move(0.01)
 	entity.move_and_slide()
