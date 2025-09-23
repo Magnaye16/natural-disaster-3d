@@ -3,7 +3,7 @@
 [ext_resource type="Material" uid="uid://bh1r8knha0xvk" path="res://src/Main_game.tres" id="1_42up0"]
 [ext_resource type="Texture2D" uid="uid://cdqm3g1qjxmkx" path="res://icon.svg" id="2_ap48k"]
 [ext_resource type="Script" uid="uid://bhh103ve148q2" path="res://Modules/MapManager/map_manager.gd" id="3_wbnf2"]
-[ext_resource type="PackedScene" path="res://Modules/Inventory/Scene/Main.tscn" id="4_01ftw"]
+[ext_resource type="PackedScene" uid="uid://cv64losnxwqso" path="res://Modules/Inventory/Scene/Main.tscn" id="4_01ftw"]
 [ext_resource type="Script" uid="uid://cj3lx2o5mbx44" path="res://Modules/gameManager/game_manager.gd" id="5_twqns"]
 [ext_resource type="Script" uid="uid://c16uvferikfqs" path="res://Modules/weathers/weatherManager.gd" id="6_42up0"]
 [ext_resource type="Script" uid="uid://wp631s7ycfpo" path="res://Modules/seasons/SeasonManager.gd" id="7_fowpm"]
@@ -28,7 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://ees2xw0pmuvh" path="res://Modules/MapManager/maps/map.tscn" id="21_urq11"]
 [ext_resource type="PackedScene" uid="uid://bi2pog25w52tj" path="res://Modules/Inventory/Scene/Inventory_UI.tscn" id="23_fowpm"]
 [ext_resource type="PackedScene" uid="uid://dqnfb71785qi0" path="res://Modules/Inventory/Scene/healthbar.tscn" id="23_twqns"]
-[ext_resource type="Script" path="res://Modules/Components/shader_texture.gd" id="23_urq11"]
+[ext_resource type="Script" uid="uid://b64qqdccfis2t" path="res://Modules/Components/shader_texture.gd" id="23_urq11"]
 
 [sub_resource type="Resource" id="Resource_w0vwb"]
 script = ExtResource("11_urq11")
@@ -163,9 +163,9 @@ render_target_update_mode = 4
 script = ExtResource("3_wbnf2")
 metadata/_custom_type_script = "uid://bhh103ve148q2"
 
-[node name="MAP" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("21_urq11")]
-
 [node name="Main" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("4_01ftw")]
+
+[node name="MAP" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("21_urq11")]
 
 [node name="shader_texture" type="ColorRect" parent="Main_viewport" groups=["shader"]]
 z_index = 7
