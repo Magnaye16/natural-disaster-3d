@@ -10,9 +10,10 @@ var _last_player_position:Vector2
 
 func _ready() -> void:
 	if get_parent() is not MapManager:
-		package.enter_map()
+		entry_map()
 
 func entry_map()->void:
+	_last_player_position = package.player.global_position
 	_activate()
 	package.enter_map()
 
