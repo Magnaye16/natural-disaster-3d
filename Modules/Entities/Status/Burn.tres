@@ -6,6 +6,6 @@
 script = ExtResource("1_5lj1i")
 status_types = Array[int]([0])
 flat_addition = 1
-Duration = 5.0
+Duration = 1.0
 Stackable = false
 metadata/_custom_type_script = "uid://dp3d6ucdo4gf6"
