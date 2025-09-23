@@ -15,7 +15,7 @@ func _process(_delta: float) -> void:
 	if status_container.status_array.is_empty():
 		hide()
 	else:
-		print(status_container.status_array.get(0).Duration)
+		#print(status_container.status_array.get(0).Duration)
 		show()
 	ticks += _delta
 	
@@ -27,10 +27,14 @@ func _process(_delta: float) -> void:
 		
 		Health.apply_DMG(Product_Damage)
 		ticks = 0
+	
+	
 
 func apply_damage_fire_status(status:Status):
 	status_container.check_stackable_status(status)
-	print(status)
-	
-	
+	$Area2D.set_deferred("monitoring", false)
+	print("invi")
+	await get_tree().create_timer(duration).timeout
+	$Area2D.set_deferred("monitoring", true)
+	print("not invi")
 	

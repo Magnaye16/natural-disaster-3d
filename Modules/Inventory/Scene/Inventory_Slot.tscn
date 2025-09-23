@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dvfur23ui5p72"]
 
-[ext_resource type="Script" uid="uid://dlxrhtbgg6k4i" path="res://Modules/Inventory/Script/Inventory_Slot.gd" id="1_8owcx"]
+[ext_resource type="Script" uid="uid://dlxrhtbgg6k4i" path="res://Modules/GlobalScript/Inventory_Slot.gd" id="1_8owcx"]
 [ext_resource type="Texture2D" uid="uid://vrb1ndxsqx7k" path="res://src/Item_icon/icon3.png" id="2_u2upy"]
 [ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://src/Fonts/ARCADECLASSIC.TTF" id="3_w1raw"]
 
@@ -11,9 +11,9 @@ content_margin_right = 10.0
 content_margin_bottom = 10.0
 bg_color = Color(0.518833, 0.94656, 0.605972, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qcyfj"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u2upy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qcyfj"]
 
 [node name="Inventory_Slot" type="Control"]
 custom_minimum_size = Vector2(117, 117)
@@ -104,8 +104,8 @@ text = "Effect"
 
 [node name="ItemButton" type="Button" parent="OuterBorder"]
 layout_mode = 2
-theme_override_styles/hover = SubResource("StyleBoxEmpty_qcyfj")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_u2upy")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qcyfj")
 
 [node name="UsagePanel" type="ColorRect" parent="OuterBorder"]
 visible = false

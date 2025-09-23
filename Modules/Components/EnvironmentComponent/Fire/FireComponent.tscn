@@ -36,7 +36,7 @@ status_container = NodePath("StatusContainer")
 position = Vector2(0, -29)
 sprite_frames = SubResource("SpriteFrames_b8ire")
 autoplay = "default"
-frame_progress = 0.36606118
+frame_progress = 0.7432445
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false

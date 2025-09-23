@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bi2pog25w52tj"]
 
-[ext_resource type="Script" uid="uid://dbybs30hsrnkm" path="res://Modules/Inventory/Script/Inventory_Grid.gd" id="1_sqbu2"]
+[ext_resource type="Script" uid="uid://dbybs30hsrnkm" path="res://Modules/GlobalScript/Inventory_Grid.gd" id="1_sqbu2"]
 [ext_resource type="PackedScene" uid="uid://dvfur23ui5p72" path="res://Modules/Inventory/Scene/Inventory_Slot.tscn" id="2_mrmtm"]
 
 [node name="Inventory_Grid_UI" type="Control"]

@@ -4,7 +4,6 @@
 
 [resource]
 script = ExtResource("1_pyf6w")
-Name = "Regeneration"
 status_types = Array[int]([2])
 flat_addition = 2
 Duration = 1.0

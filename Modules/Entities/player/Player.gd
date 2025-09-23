@@ -17,6 +17,7 @@ func _ready() -> void:
 	add_to_group("player")
 
 func _physics_process(_delta):
+	
 	update_Animation()
 
 func _unhandled_input(event: InputEvent) -> void:
