@@ -24,8 +24,8 @@ func _process(_delta: float) -> void:
 
 		Health.apply_DMG(Product_Damage)
 		ticks = 0
-	
-	
+
+
 
 func apply_damage_fire_status(status:Status):
 	status_container.check_stackable_status(status)
@@ -34,4 +34,3 @@ func apply_damage_fire_status(status:Status):
 	await get_tree().create_timer(duration).timeout
 	$Area2D.set_deferred("monitoring", true)
 	print("not invi")
-	

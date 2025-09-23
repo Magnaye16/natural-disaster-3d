@@ -31,7 +31,7 @@ var velocity:Vector2:
 		#velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 	#
 	#
-	
+
 func _move(delta: float) -> void:
 	if move_direction:
 		var product_speed: float = speed
@@ -44,7 +44,7 @@ func _move(delta: float) -> void:
 		velocity = velocity.lerp(move_direction * product_speed, acceleration * delta)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, get_tile_friction() * delta)
-	
+
 
 
 func get_tile_speed():
@@ -82,7 +82,7 @@ func _get_tile_data_from_tilemap(custom_data_name: StringName, tile: TileMapLaye
 	var tile_data = data.get_custom_data(custom_data_name)
 	#print("Custom data [", custom_data_name, "] = ", tile_data)
 	return tile_data
-	
+
 func set_movement_direction(direction: Vector2) -> void:
 	move_direction = direction
 	_move(0.01)
