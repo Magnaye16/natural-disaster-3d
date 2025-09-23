@@ -1,15 +1,18 @@
 extends Resource
 class_name Status
 
-
+@export var Name:String
 @export var status_types:Array[StatusManagerComponent.STATUS_TYPES]
 @export var flat_addition:int
 @export var Multiplier:float
 @export var Duration:float
+@export var Stackable:bool = true
+
 var Current_duration:float
 
 signal finished(status)
 signal updated
+
 
 func update_duration(delta:float):
 	Current_duration += delta

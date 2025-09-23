@@ -2,7 +2,7 @@ extends Node
 class_name HealthComponent
 
 var value:int = 1
-@export var max_value:int = 3
+@export var max_value:int = 10
 @export var natural_regen_time:float = 5
 var natural_regen:int = 1
 var ticks:float = 1

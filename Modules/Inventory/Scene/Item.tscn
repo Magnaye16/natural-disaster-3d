@@ -7,9 +7,6 @@
 [sub_resource type="Resource" id="Resource_75egc"]
 script = ExtResource("2_1qabr")
 item_Name = "Potion"
-item_Qty = 1
-item_Type = ""
-item_Effect = ""
 metadata/_custom_type_script = "uid://cmy8p48lmqgby"
 
 [node name="Item" type="Node2D" groups=["Items"]]
