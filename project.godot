@@ -90,8 +90,6 @@ hit_btn={
 2d_physics/layer_3="interactable_component"
 2d_physics/layer_4="player_hurtbox"
 2d_physics/layer_5="entity_hurtbox"
-2d_physics/layer_6="fire_source"
-2d_physics/layer_7="fire_receiver"
 
 [rendering]
 

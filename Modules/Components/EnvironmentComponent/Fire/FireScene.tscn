@@ -43,7 +43,7 @@ script = ExtResource("1_3t4jk")
 position = Vector2(0, -29)
 sprite_frames = SubResource("SpriteFrames_gfavs")
 autoplay = "default"
-frame_progress = 0.18772992
+frame_progress = 0.23023163
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 32

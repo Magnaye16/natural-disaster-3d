@@ -15,6 +15,7 @@ signal inventory_requested
 
 
 func _physics_process(_delta):
+	
 	update_Animation()
 
 func _unhandled_input(event: InputEvent) -> void:

@@ -4,7 +4,6 @@
 
 [resource]
 script = ExtResource("1_6k8cx")
-Name = "Slow"
 status_types = Array[int]([0])
 Multiplier = 0.6
 Duration = 1.0

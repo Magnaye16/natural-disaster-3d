@@ -12,7 +12,7 @@ func compute_value(value:float):
 
 	for stat in status_array:
 			product_value = stat.apply_multiplier(product_value)
-			print("Product f", product_value)
+			#print("Product f", product_value)
 	return product_value
 
 
