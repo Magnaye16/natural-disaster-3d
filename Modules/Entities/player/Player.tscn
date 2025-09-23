@@ -5,7 +5,7 @@
 [ext_resource type="Shader" uid="uid://dgox3oy7ki2ng" path="res://Modules/Entities/entity/cast_shadow.gdshader" id="2_iay8i"]
 [ext_resource type="Texture2D" uid="uid://cdqm3g1qjxmkx" path="res://icon.svg" id="3_iay8i"]
 [ext_resource type="Script" uid="uid://dqpn8josc5nfs" path="res://Modules/GlobalScript/Inventory.gd" id="5_iay8i"]
-[ext_resource type="Script" uid="uid://dj6310rxj4ok8" path="res://Modules/Components/componentManager.gd" id="5_x4sun"]
+[ext_resource type="Script" path="res://Modules/Components/componentManager.gd" id="5_x4sun"]
 [ext_resource type="Script" uid="uid://b5wt7sbobq760" path="res://Modules/Components/HealthComponent/HealthComponent.gd" id="6_xyvnq"]
 [ext_resource type="Script" uid="uid://bw645jlbwlb5l" path="res://Modules/Command/Controller/PlayerController.gd" id="7_l2e0d"]
 [ext_resource type="Script" uid="uid://c48rqlry15rsq" path="res://Modules/Components/MovementComponent.gd" id="8_c4hvf"]
@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://b75tptmnffbfl" path="res://Modules/Components/DisasterDetector/disaster_detector.gd" id="13_lmolj"]
 [ext_resource type="PackedScene" uid="uid://6qjeq4jtygd" path="res://Modules/Components/EnvironmentComponent/Fire/FireComponent.tscn" id="14_y3nja"]
 [ext_resource type="Script" uid="uid://tgwgeopexuvj" path="res://Modules/Command/Controller/ControllerManager.gd" id="15_vyat6"]
-[ext_resource type="Script" uid="uid://ynjek7qxm25f" path="res://Modules/Entities/player/ShakingController.gd" id="17_rdu0r"]
+[ext_resource type="Script" path="res://Modules/Entities/player/ShakingController.gd" id="17_rdu0r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xyvnq"]
 shader = ExtResource("2_iay8i")
@@ -298,6 +298,10 @@ texture = ExtResource("3_iay8i")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6l3be")
 animation = &"crouch_front"
+
+[node name="Label" type="Label" parent="AnimatedSprite2D"]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
 visible = false
