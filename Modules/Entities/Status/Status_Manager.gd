@@ -21,3 +21,8 @@ func apply_status(status: Status) -> void:
 	assert(status.status_types.size() > 0, "status empty")
 	for status_type in status.status_types:
 		(container.get(status_type) as StatusContainer ).add_status(status)
+
+func remove_status(status: Status) -> void:
+	assert(status.status_types.size() > 0, "status empty")
+	for status_type in status.status_types:
+		(container.get(status_type) as StatusContainer ).remove_status(status)
