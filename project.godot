@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://Modules/Inventory/Script/Global.gd"
+Global="*res://Modules/GlobalScript/Global.gd"
 
 [display]
 

@@ -51,7 +51,7 @@ func get_tile_speed():
 	var tile_speed = get_tile_data(&"Tile_speed")
 	print("Tile friction under player: ", tile_speed)
 	if tile_speed == null:
-		tile_speed = 0  # fall back to default
+		tile_speed = 1  # fall back to default
 	return tile_speed
 
 
