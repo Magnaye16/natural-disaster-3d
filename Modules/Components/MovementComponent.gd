@@ -21,7 +21,9 @@ func _move(delta: float) -> void:
 
 		for stat in status_multiplier.status_array:
 			product_speed = stat.apply_multiplier(product_speed)
-		speed = max(0.1, speed)
+
+		product_speed = max(0.1, product_speed)
+
 		velocity = velocity.lerp(move_direction * product_speed, acceleration * delta)
 
 	else:
