@@ -2,12 +2,13 @@ class_name ControllerManager
 extends Node
 
 var active_controller: BaseController = null
-var controllers: Dictionary[String,BaseController]
+@export var controllers: Dictionary[String,BaseController]
+@export var manager_owner:Entity
 
 func _ready() -> void:
 	set_process(false)
 	_cache_children()
-
+	manager_owner = get_parent()
 
 func _cache_children():
 	for child in get_children():
@@ -31,8 +32,11 @@ func set_controller(ctrl: BaseController) -> void:
 	active_controller = ctrl
 
 func _process(_delta: float) -> void:
+	await  get_tree().process_frame
 	if active_controller == null:
 		set_process(false)
 		return
+	active_controller.__process()
 
-	active_controller._process_commands()
+func _unhandled_key_input(_event: InputEvent) -> void:
+	active_controller.__input()

@@ -7,14 +7,20 @@ extends Node
 
 
 
+func _ready() -> void:
+	generate_disaster()
 
 
+func generate_disaster():
+	await  get_tree().create_timer(10).timeout
+	if disaster_manager.curr_disaster == null:
+		disaster_manager.try_generate_disaster(self)
+	generate_disaster()
 
 
 func _unhandled_key_input(_event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_P):
 		preload("uid://c0ftsqgnde17p").new().apply(self)
-
 
 
 func get_current_season()->Season:

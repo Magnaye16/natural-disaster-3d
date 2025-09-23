@@ -1,2 +1,0 @@
-extends Disaster
-class_name EarthQuake

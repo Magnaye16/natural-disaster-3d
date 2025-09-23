@@ -1,9 +1,9 @@
-[gd_scene load_steps=46 format=3 uid="uid://dastsqlbcs4fe"]
+[gd_scene load_steps=48 format=3 uid="uid://dastsqlbcs4fe"]
 
 [ext_resource type="Material" uid="uid://bh1r8knha0xvk" path="res://src/Main_game.tres" id="1_42up0"]
 [ext_resource type="Texture2D" uid="uid://cdqm3g1qjxmkx" path="res://icon.svg" id="2_ap48k"]
 [ext_resource type="Script" uid="uid://bhh103ve148q2" path="res://Modules/MapManager/map_manager.gd" id="3_wbnf2"]
-[ext_resource type="PackedScene" uid="uid://cv64losnxwqso" path="res://Modules/Inventory/Scene/Main.tscn" id="4_01ftw"]
+[ext_resource type="PackedScene" path="res://Modules/Inventory/Scene/Main.tscn" id="4_01ftw"]
 [ext_resource type="Script" uid="uid://cj3lx2o5mbx44" path="res://Modules/gameManager/game_manager.gd" id="5_twqns"]
 [ext_resource type="Script" uid="uid://c16uvferikfqs" path="res://Modules/weathers/weatherManager.gd" id="6_42up0"]
 [ext_resource type="Script" uid="uid://wp631s7ycfpo" path="res://Modules/seasons/SeasonManager.gd" id="7_fowpm"]
@@ -19,14 +19,16 @@
 [ext_resource type="Script" uid="uid://dp48hqpkgpvml" path="res://Modules/seasons/types/RainySeason.gd" id="16_c7sog"]
 [ext_resource type="Script" uid="uid://cevw2pyn1p0ru" path="res://Modules/Components/DayNightCycle/DayNightManager.gd" id="16_xjgbd"]
 [ext_resource type="Script" uid="uid://i6fdecjoihb3" path="res://Modules/weathers/types/StormyWeather.gd" id="17_44hf1"]
+[ext_resource type="Resource" uid="uid://ba2ldxg65c8ee" path="res://Modules/disasters/res/earquake.tres" id="17_krmta"]
 [ext_resource type="Script" uid="uid://erhjy0dottow" path="res://Modules/seasons/types/TyphoonSeason.gd" id="18_hhjt4"]
-[ext_resource type="Script" uid="uid://5k3l37mcdgwu" path="res://Modules/UI/main_ui.gd" id="18_twqns"]
+[ext_resource type="Script" uid="uid://5k3l37mcdgwu" path="res://UI/main_ui.gd" id="18_twqns"]
 [ext_resource type="Script" uid="uid://crgmdcqk7oc5a" path="res://Modules/disasters/DisasterManager.gd" id="19_4s0sq"]
 [ext_resource type="PackedScene" uid="uid://bcmns2k3u5453" path="res://Modules/Inventory/Scene/Inventory_hotbar.tscn" id="20_ap48k"]
 [ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://src/Fonts/ARCADECLASSIC.TTF" id="21_twqns"]
+[ext_resource type="PackedScene" uid="uid://ees2xw0pmuvh" path="res://Modules/MapManager/maps/map.tscn" id="21_urq11"]
 [ext_resource type="PackedScene" uid="uid://bi2pog25w52tj" path="res://Modules/Inventory/Scene/Inventory_UI.tscn" id="23_fowpm"]
 [ext_resource type="PackedScene" uid="uid://dqnfb71785qi0" path="res://Modules/Inventory/Scene/healthbar.tscn" id="23_twqns"]
-[ext_resource type="Script" uid="uid://b64qqdccfis2t" path="res://Modules/Components/shader_texture.gd" id="23_urq11"]
+[ext_resource type="Script" path="res://Modules/Components/shader_texture.gd" id="23_urq11"]
 
 [sub_resource type="Resource" id="Resource_w0vwb"]
 script = ExtResource("11_urq11")
@@ -132,7 +134,7 @@ metadata/_custom_type_script = "uid://wp631s7ycfpo"
 
 [node name="DisasterManager" type="Node" parent="GameManager"]
 script = ExtResource("19_4s0sq")
-disasters = Array[ExtResource("16_b8268")]([null])
+disasters = Array[ExtResource("16_b8268")]([ExtResource("17_krmta")])
 metadata/_custom_type_script = "uid://crgmdcqk7oc5a"
 
 [node name="DayNightManager" type="Node" parent="GameManager" node_paths=PackedStringArray("shader_texture")]
@@ -154,15 +156,14 @@ grow_vertical = 2
 stretch = true
 mouse_target = true
 
-[node name="MapManager" type="SubViewport" parent="Main_viewport/SubViewportContainer"]
+[node name="MapManager" type="SubViewport" parent="Main_viewport/SubViewportContainer" groups=["map_manager"]]
 handle_input_locally = false
-snap_2d_transforms_to_pixel = true
-snap_2d_vertices_to_pixel = true
-canvas_item_default_texture_filter = 0
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 script = ExtResource("3_wbnf2")
-metadata/_edit_group_ = true
+metadata/_custom_type_script = "uid://bhh103ve148q2"
+
+[node name="MAP" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("21_urq11")]
 
 [node name="Main" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("4_01ftw")]
 

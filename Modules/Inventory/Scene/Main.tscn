@@ -1,5 +1,6 @@
-[gd_scene load_steps=25 format=4 uid="uid://cv64losnxwqso"]
+[gd_scene load_steps=24 format=4 uid="uid://cv64losnxwqso"]
 
+[ext_resource type="Script" uid="uid://cy8yog0apqm2" path="res://Modules/MapManager/map.gd" id="1_p1a15"]
 [ext_resource type="Texture2D" uid="uid://b52fx53i6ijjs" path="res://src/imgs/Tilesets/Water.png" id="2_h3nmf"]
 [ext_resource type="Texture2D" uid="uid://dt0mgjlxok6xg" path="res://src/imgs/Tilesets/Grass.png" id="3_hueuk"]
 [ext_resource type="Texture2D" uid="uid://qtm0taw020w8" path="res://src/imgs/Tilesets/Tilled Dirt.png" id="4_6a8me"]
@@ -7,11 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://l57ngeblcyjj" path="res://src/imgs/Tilesets/Wooden House.png" id="6_vm4ek"]
 [ext_resource type="Texture2D" uid="uid://bppfktlqcdikv" path="res://src/imgs/Tilesets/Paths.png" id="7_4qtod"]
 [ext_resource type="PackedScene" uid="uid://dabvby2oye6tp" path="res://Modules/Entities/player/Player.tscn" id="8_hueuk"]
+[ext_resource type="Script" path="res://Modules/MapManager/package.gd" id="9_igovh"]
 [ext_resource type="Script" uid="uid://boola4hp3ojxa" path="res://main_camera.gd" id="9_p1a15"]
 [ext_resource type="PackedScene" uid="uid://ceb7pu6fs56q0" path="res://Modules/Components/EnvironmentComponent/rainparticles.tscn" id="10_0ye4e"]
-[ext_resource type="Script" uid="uid://pxsxks2srmxj" path="res://Modules/disasters/DebreeSpawner.gd" id="11_p1a15"]
 [ext_resource type="PackedScene" uid="uid://d41vjxdfvy6v" path="res://Modules/Components/EnvironmentComponent/Fire/FireScene.tscn" id="12_igovh"]
-[ext_resource type="Texture2D" uid="uid://buw6lx2nxbwjg" path="res://src/Item_icon/icon32.png" id="14_7txwb"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_s8ogb"]
 tile_data = PackedInt32Array(0, 65541, 0, 65536, 65541, 1, 1, 131077, 0, 65537, 131077, 1)
@@ -512,13 +512,12 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_t0h8y")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_asvt3"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_igovh"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_p1a15"]
-radius = 48.83966
-
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("package")]
 use_parent_material = true
+script = ExtResource("1_p1a15")
+package = NodePath("Package")
 
 [node name="TileMap" type="Node2D" parent="."]
 metadata/_edit_group_ = true
@@ -554,35 +553,26 @@ tile_set = SubResource("TileSet_0ye4e")
 collision_visibility_mode = 1
 navigation_visibility_mode = 1
 
-[node name="Camera2D" type="Camera2D" parent="." groups=["global_camera"]]
+[node name="rainComponent" parent="." instance=ExtResource("10_0ye4e")]
 position = Vector2(611, 252)
-zoom = Vector2(3, 3)
+
+[node name="FireScene" parent="." instance=ExtResource("12_igovh")]
+position = Vector2(613, 293)
+
+[node name="Package" type="Node2D" parent="."]
+script = ExtResource("9_igovh")
+
+[node name="GlobalCamera" type="Camera2D" parent="Package"]
 script = ExtResource("9_p1a15")
-follow_speed = 7.0
+metadata/_custom_type_script = "uid://boola4hp3ojxa"
 
-[node name="rainComponent" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("10_0ye4e")]
-position = Vector2(611, 252)
-camera = NodePath("../Camera2D")
-
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(656, 345)
-
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-texture = ExtResource("14_7txwb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_asvt3")
-
-[node name="Player" parent="." instance=ExtResource("8_hueuk")]
+[node name="Player" parent="Package" instance=ExtResource("8_hueuk")]
 position = Vector2(556, 237)
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="Node2D" parent="."]
-position = Vector2(611.5, 251.75)
-script = ExtResource("11_p1a15")
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(424, 235)
+collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D"]
-shape = SubResource("CircleShape2D_p1a15")
-
-[node name="FireScene" parent="." instance=ExtResource("12_igovh")]
-position = Vector2(542, 275)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_igovh")

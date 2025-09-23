@@ -6,6 +6,7 @@ var speed = 150
 @export var inventory : Inventory
 @onready var animated_Sprite = $AnimatedSprite2D
 @export var healthComponent:HealthComponent
+@onready var progress_bar: ProgressBar = $ProgressBar
 
 
 signal interactable_found
@@ -13,6 +14,8 @@ signal interactable_lost
 
 signal inventory_requested
 
+func _ready() -> void:
+	add_to_group("player")
 
 func _physics_process(_delta):
 	
