@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func generate_disaster():
-	await  get_tree().create_timer(2).timeout
+	await  get_tree().create_timer(10).timeout
 	if disaster_manager.curr_disaster == null:
 		disaster_manager.try_generate_disaster(self)
 	generate_disaster()
