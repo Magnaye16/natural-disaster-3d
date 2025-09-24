@@ -8,6 +8,7 @@ var speed = 150
 @export var healthComponent:HealthComponent
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var movement_component: MovementComponent = $ComponentManager/MovementComponent
+@onready var click_sfx: AudioStreamPlayer2D = $click_sfx
 
 
 signal interactable_found
@@ -30,6 +31,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 	if event.is_action_pressed("ui_inventory"):
+		click_sfx.play()
 		inventory_requested.emit()
 
 	if Input.is_key_pressed(KEY_0):

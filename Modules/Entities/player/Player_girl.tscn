@@ -315,13 +315,14 @@ texture = ExtResource("3_mngk2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6l3be")
 animation = &"walk"
-frame_progress = 0.26328605
+frame_progress = 0.79067355
 
 [node name="Label" type="Label" parent="AnimatedSprite2D"]
 offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
+visible = false
 position = Vector2(0, 7)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_c4hvf")
@@ -368,6 +369,7 @@ script = ExtResource("16_7fmhm")
 metadata/_custom_type_script = "uid://cpfjhdr0kceht"
 
 [node name="HurtBoxComponent" type="Area2D" parent="ComponentManager" node_paths=PackedStringArray("health_component")]
+visible = false
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("17_0eovw")
@@ -379,6 +381,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_2ob74")
 
 [node name="interactor_component" parent="ComponentManager" instance=ExtResource("18_tfnwx")]
+visible = false
 
 [node name="FireComponent" parent="ComponentManager" node_paths=PackedStringArray("Health") instance=ExtResource("19_jmvnr")]
 visible = false
