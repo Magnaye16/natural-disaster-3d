@@ -2,11 +2,12 @@ class_name PlayerController extends BaseController
 var moveCMD:MoveCommand = MoveCommand.new()
 @onready var animate_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 
-var IdleState:State = State.new("idle")
-var WalkingState:State = State.new("walk")
-var RunningState:State = State.new("Running")
-@onready var entity:Entity
+var IdleState:State = State.new("idle").set_manager(self)
+var WalkingState:State = State.new("walk").set_manager(self)
+var RunningState:State = State.new("Running").set_manager(self)
 
+
+@onready var entity:Entity
 
 
 func _all_ready() -> void:
@@ -63,7 +64,12 @@ func setup_walk()->void:
 				if move_params.direction == Vector2.ZERO:
 					change_state(IdleState)
 
+var start_rec_bal_cmd:StartRecoveringBalanceCommand = StartRecoveringBalanceCommand.new()
+
 func setup_Idle()->void:
+
+	IdleState._enter=func():
+		start_rec_bal_cmd.execute(entity)
 
 	IdleState._input=\
 	func():

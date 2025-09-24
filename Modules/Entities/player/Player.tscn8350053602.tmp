@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://dabvby2oye6tp"]
+[gd_scene load_steps=54 format=3 uid="uid://dabvby2oye6tp"]
 
 [ext_resource type="Script" uid="uid://ca8pmu6s4iate" path="res://Modules/Entities/player/Player.gd" id="1_6l3be"]
 [ext_resource type="Texture2D" uid="uid://0flrot5hrf4a" path="res://src/imgs/sprites/chars/person.png" id="2_3eeal"]
@@ -15,7 +15,6 @@
 [ext_resource type="Script" uid="uid://6fhpn2hvo65i" path="res://Modules/Components/HealthComponent/HurtBoxComponent.gd" id="10_csims"]
 [ext_resource type="Script" uid="uid://b75tptmnffbfl" path="res://Modules/Components/DisasterDetector/disaster_detector.gd" id="13_lmolj"]
 [ext_resource type="PackedScene" uid="uid://6qjeq4jtygd" path="res://Modules/Components/EnvironmentComponent/Fire/FireComponent.tscn" id="14_y3nja"]
-[ext_resource type="Script" uid="uid://bi47ydddta0mf" path="res://Modules/Entities/player/balance_component.gd" id="15_i764u"]
 [ext_resource type="Script" uid="uid://tgwgeopexuvj" path="res://Modules/Command/Controller/ControllerManager.gd" id="15_vyat6"]
 [ext_resource type="Script" uid="uid://ynjek7qxm25f" path="res://Modules/Entities/player/ShakingController.gd" id="17_rdu0r"]
 
@@ -367,10 +366,6 @@ shape = SubResource("RectangleShape2D_2ob74")
 [node name="FireComponent" parent="ComponentManager" node_paths=PackedStringArray("Health") instance=ExtResource("14_y3nja")]
 visible = false
 Health = NodePath("../HealthComponent")
-
-[node name="BalanceComponent" type="Node" parent="ComponentManager"]
-script = ExtResource("15_i764u")
-metadata/_custom_type_script = "uid://bi47ydddta0mf"
 
 [node name="ControllerManager" type="Node" parent="."]
 script = ExtResource("15_vyat6")
