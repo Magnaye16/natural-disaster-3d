@@ -1,16 +1,22 @@
-[gd_scene load_steps=55 format=3 uid="uid://dabvby2oye6tp"]
+[gd_scene load_steps=60 format=3 uid="uid://dabvby2oye6tp"]
+; [gd_scene load_steps=55 format=3 uid="uid://dabvby2oye6tp"]
 
 [ext_resource type="Script" uid="uid://ca8pmu6s4iate" path="res://Modules/Entities/player/Player.gd" id="1_6l3be"]
 [ext_resource type="Texture2D" uid="uid://0flrot5hrf4a" path="res://src/imgs/sprites/chars/person.png" id="2_3eeal"]
 [ext_resource type="Shader" uid="uid://dgox3oy7ki2ng" path="res://Modules/Entities/entity/cast_shadow.gdshader" id="2_iay8i"]
 [ext_resource type="Texture2D" uid="uid://cdqm3g1qjxmkx" path="res://icon.svg" id="3_iay8i"]
 [ext_resource type="Script" uid="uid://dqpn8josc5nfs" path="res://Modules/GlobalScript/Inventory.gd" id="5_iay8i"]
-[ext_resource type="Script" path="res://Modules/Components/componentManager.gd" id="5_x4sun"]
+[ext_resource type="Texture2D" uid="uid://bl3b2ac1rouaw" path="res://src/imgs/sprites/chars/onats sprite/1.png" id="5_u4yjq"]
+[ext_resource type="Script" uid="uid://dj6310rxj4ok8" path="res://Modules/Components/componentManager.gd" id="5_x4sun"]
+[ext_resource type="Texture2D" uid="uid://ctfv7t6j8ikco" path="res://src/imgs/sprites/chars/onats sprite/2.png" id="6_rxygn"]
 [ext_resource type="Script" uid="uid://b5wt7sbobq760" path="res://Modules/Components/HealthComponent/HealthComponent.gd" id="6_xyvnq"]
+[ext_resource type="Texture2D" uid="uid://devyuug4daoc2" path="res://src/imgs/sprites/chars/onats sprite/3.png" id="7_kmey3"]
 [ext_resource type="Script" uid="uid://bw645jlbwlb5l" path="res://Modules/Command/Controller/PlayerController.gd" id="7_l2e0d"]
+[ext_resource type="Texture2D" uid="uid://cwr2bhjxqom82" path="res://src/imgs/sprites/chars/onats sprite/4.png" id="8_10e16"]
 [ext_resource type="Script" uid="uid://c48rqlry15rsq" path="res://Modules/Components/MovementComponent.gd" id="8_c4hvf"]
 [ext_resource type="PackedScene" uid="uid://besiwigokw2yn" path="res://Modules/Components/InteractionComponents/interactor_component.tscn" id="8_nm665"]
 [ext_resource type="Script" uid="uid://ds0mapqlqyu8m" path="res://Modules/Entities/Status/Status_Manager.gd" id="9_csims"]
+[ext_resource type="Texture2D" uid="uid://bbbsogt0kj2tn" path="res://src/imgs/sprites/chars/onats sprite/5.png" id="9_gm5mn"]
 [ext_resource type="Script" uid="uid://cpfjhdr0kceht" path="res://Modules/Entities/Status/StatusContainer.gd" id="10_2ob74"]
 [ext_resource type="Script" uid="uid://6fhpn2hvo65i" path="res://Modules/Components/HealthComponent/HurtBoxComponent.gd" id="10_csims"]
 [ext_resource type="Script" uid="uid://b75tptmnffbfl" path="res://Modules/Components/DisasterDetector/disaster_detector.gd" id="13_lmolj"]
@@ -18,6 +24,7 @@
 [ext_resource type="Script" uid="uid://bi47ydddta0mf" path="res://Modules/Entities/player/balance_component.gd" id="15_i764u"]
 [ext_resource type="Script" uid="uid://tgwgeopexuvj" path="res://Modules/Command/Controller/ControllerManager.gd" id="15_vyat6"]
 [ext_resource type="Script" uid="uid://ynjek7qxm25f" path="res://Modules/Entities/player/ShakingController.gd" id="17_rdu0r"]
+[ext_resource type="AudioStream" uid="uid://hwtkdy8rgm6s" path="res://src/Sounds/SFX/CLICK.mp3" id="23_rxygn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xyvnq"]
 shader = ExtResource("2_iay8i")
@@ -171,6 +178,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("5_u4yjq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rxygn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kmey3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_10e16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_gm5mn")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_mud5u")
 }, {
 "duration": 1.0,
@@ -191,7 +218,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2ob74")
 }],
-"loop": false,
+"loop": true,
 "name": &"walk_down",
 "speed": 5.0
 }, {
@@ -243,7 +270,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_csims")
 }],
-"loop": false,
+"loop": true,
 "name": &"walk_right",
 "speed": 5.0
 }, {
@@ -269,7 +296,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_karg7")
 }],
-"loop": false,
+"loop": true,
 "name": &"walk_up",
 "speed": 5.0
 }]
@@ -298,7 +325,8 @@ texture = ExtResource("3_iay8i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6l3be")
-animation = &"crouch_front"
+animation = &"walk"
+frame_progress = 0.74168307
 
 [node name="Label" type="Label" parent="AnimatedSprite2D"]
 offset_right = 40.0
@@ -352,6 +380,7 @@ script = ExtResource("10_2ob74")
 metadata/_custom_type_script = "uid://cpfjhdr0kceht"
 
 [node name="HurtBoxComponent" type="Area2D" parent="ComponentManager" node_paths=PackedStringArray("health_component")]
+visible = false
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("10_csims")
@@ -363,6 +392,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_2ob74")
 
 [node name="interactor_component" parent="ComponentManager" instance=ExtResource("8_nm665")]
+visible = false
 
 [node name="FireComponent" parent="ComponentManager" node_paths=PackedStringArray("Health") instance=ExtResource("14_y3nja")]
 visible = false
@@ -398,6 +428,10 @@ grow_vertical = 0
 theme_override_styles/fill = SubResource("StyleBoxFlat_rdu0r")
 value = 74.0
 show_percentage = false
+
+[node name="click_sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("23_rxygn")
+volume_db = 1.0
 
 [connection signal="interactable_contacted" from="ComponentManager/interactor_component" to="." method="_on_interactor_component_interactable_contacted"]
 [connection signal="interactable_exited" from="ComponentManager/interactor_component" to="." method="_on_interactor_component_interactable_exited"]
