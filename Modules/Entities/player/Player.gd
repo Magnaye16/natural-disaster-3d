@@ -48,14 +48,16 @@ func update_Animation():
 	else:
 		if abs(velocity.x) > abs(velocity.y):
 			if velocity.x > 0:
-				animated_Sprite.play("walk_right")
+				animated_Sprite.flip_h = false
+				animated_Sprite.play("walk")
 			else:
-				animated_Sprite.play("walk_left")
-		else:
-			if velocity.y > 0:
-				animated_Sprite.play("walk_down")
-			else:
-				animated_Sprite.play("walk_up")
+				animated_Sprite.flip_h = true
+				animated_Sprite.play("walk")
+		#else:
+			#if velocity.y > 0:
+				#animated_Sprite.play("walk_down")
+			#else:
+				#animated_Sprite.play("walk_up")
 
 
 func _on_interactor_component_interactable_contacted() -> void:
