@@ -32,8 +32,10 @@ var velocity:Vector2:
 		#velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 	#
 	#
-	
+
 func _move(delta: float) -> void:
+	if move_direction.length() <= 0 and velocity.length() <= 0:return
+
 	if move_direction:
 		var product_speed: float = speed
 		# Apply status multipliers to speed
@@ -50,7 +52,7 @@ func _move(delta: float) -> void:
 
 func get_tile_speed():
 	var tile_speed = Tile_manager.get_tile_data(&"Tile_speed")
-	print("Tile friction under player: ", tile_speed)
+	#print("Tile friction under player: ", tile_speed)
 	if tile_speed == null or tile_speed == 0:
 		tile_speed = 1 # fall back to default
 	return tile_speed
