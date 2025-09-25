@@ -1,5 +1,4 @@
 [gd_scene load_steps=60 format=3 uid="uid://dabvby2oye6tp"]
-; [gd_scene load_steps=55 format=3 uid="uid://dabvby2oye6tp"]
 
 [ext_resource type="Script" uid="uid://ca8pmu6s4iate" path="res://Modules/Entities/player/Player.gd" id="1_6l3be"]
 [ext_resource type="Texture2D" uid="uid://0flrot5hrf4a" path="res://src/imgs/sprites/chars/person.png" id="2_3eeal"]
@@ -23,7 +22,6 @@
 [ext_resource type="PackedScene" uid="uid://6qjeq4jtygd" path="res://Modules/Components/EnvironmentComponent/Fire/FireComponent.tscn" id="14_y3nja"]
 [ext_resource type="Script" uid="uid://bi47ydddta0mf" path="res://Modules/Entities/player/balance_component.gd" id="15_i764u"]
 [ext_resource type="Script" uid="uid://tgwgeopexuvj" path="res://Modules/Command/Controller/ControllerManager.gd" id="15_vyat6"]
-[ext_resource type="Script" uid="uid://ynjek7qxm25f" path="res://Modules/Entities/player/ShakingController.gd" id="17_rdu0r"]
 [ext_resource type="AudioStream" uid="uid://hwtkdy8rgm6s" path="res://src/Sounds/SFX/CLICK.mp3" id="23_rxygn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xyvnq"]
@@ -311,11 +309,12 @@ size = Vector2(10, 24)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rdu0r"]
 bg_color = Color(1, 0.9723816, 0.29296875, 1)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inventory", "healthComponent") groups=["entity", "player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inventory", "healthComponent", "controller_manager") groups=["entity", "player"]]
 collision_mask = 0
 script = ExtResource("1_6l3be")
 inventory = NodePath("ComponentManager/Inventory")
 healthComponent = NodePath("ComponentManager/HealthComponent")
+controller_manager = NodePath("ControllerManager")
 
 [node name="shadow" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_xyvnq")
@@ -404,10 +403,6 @@ metadata/_custom_type_script = "uid://bi47ydddta0mf"
 
 [node name="ControllerManager" type="Node" parent="."]
 script = ExtResource("15_vyat6")
-
-[node name="ShakingPlayerController" type="Node" parent="ControllerManager"]
-script = ExtResource("17_rdu0r")
-metadata/_custom_type_script = "uid://ynjek7qxm25f"
 
 [node name="PlayerController" type="Node" parent="ControllerManager"]
 script = ExtResource("7_l2e0d")

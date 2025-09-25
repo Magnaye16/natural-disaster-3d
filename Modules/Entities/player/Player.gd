@@ -9,6 +9,7 @@ var speed = 150
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var movement_component: MovementComponent = $ComponentManager/MovementComponent
 @onready var click_sfx: AudioStreamPlayer2D = $click_sfx
+@export var controller_manager: ControllerManager
 
 
 signal interactable_found
@@ -20,7 +21,6 @@ func _ready() -> void:
 	add_to_group("player")
 
 func _physics_process(_delta):
-	
 	update_Animation()
 
 func _unhandled_input(event: InputEvent) -> void:

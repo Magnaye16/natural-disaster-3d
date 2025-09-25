@@ -28,7 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://ees2xw0pmuvh" path="res://Modules/MapManager/maps/map.tscn" id="21_urq11"]
 [ext_resource type="PackedScene" uid="uid://bi2pog25w52tj" path="res://Modules/Inventory/Scene/Inventory_UI.tscn" id="23_fowpm"]
 [ext_resource type="PackedScene" uid="uid://dqnfb71785qi0" path="res://Modules/Inventory/Scene/healthbar.tscn" id="23_twqns"]
-[ext_resource type="Script" uid="uid://b64qqdccfis2t" path="res://Modules/Components/shader_texture.gd" id="23_urq11"]
+[ext_resource type="Script" path="res://Modules/Components/shader_texture.gd" id="23_urq11"]
 
 [sub_resource type="Resource" id="Resource_w0vwb"]
 script = ExtResource("11_urq11")
