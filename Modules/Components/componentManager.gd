@@ -15,3 +15,6 @@ func register_component(node: Node) -> void:
 # Retrieve a component by class_name
 func get_component(type_class: GDScript) -> Node:
 	return components.get(type_class.get_global_name())
+
+func add_component(comp:Node)->void:
+	register_component(comp)
