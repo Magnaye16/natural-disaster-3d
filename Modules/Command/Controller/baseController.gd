@@ -54,21 +54,20 @@ func _setup_states()->State:
 
 
 func change_state(new_state:State):
-
 	prev_state = curr_state
 	curr_state = new_state
-
 	print(prev_state.name," -> ",curr_state.name)
-
 	prev_state._exit.call()
 	curr_state._enter.call()
 
 ## don't forget to call super.__process() when overriding this[br]
 ##calls curr_state_process
 func __process()->void:
+	if not curr_state:return
 	curr_state._process.call()
 
 ## don't forget to call super.__input() when overriding this[br]
 ##calls curr_state._input
 func __input()->void:
+	if not curr_state:return
 	curr_state._input.call()
