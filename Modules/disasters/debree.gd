@@ -5,7 +5,6 @@ class_name Debree
 
 func _on_hit_component_hit(hurtbox: HurtBoxComponent) -> void:
 	hurtbox.damage(damage)
-	queue_free()
 @onready var main_spritr: Sprite2D = $"main spritr"
 
 var DURATION:float = 0.5

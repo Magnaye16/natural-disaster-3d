@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://down8t71ly351"]
+[gd_scene load_steps=3 format=3 uid="uid://nhl0tvi58djn"]
 
-[ext_resource type="Script" path="res://Modules/disasters/DebreeSpawner.gd" id="1_kmb4m"]
+[ext_resource type="Script" uid="uid://pxsxks2srmxj" path="res://Modules/disasters/DebreeSpawner.gd" id="1_kmb4m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p1a15"]
 radius = 48.83966
