@@ -9,6 +9,7 @@ func _process_commands()->void:
 
 	var param:MoveCommand.Params=moveCMD.Params.new()
 
-	param.direction = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
+	param.direction = Input.get_vector(MoveDirection.MOVE_LEFT, MoveDirection.MOVE_RIGHT, 
+	MoveDirection.MOVE_UP, MoveDirection.MOVE_DOWN)
 
 	moveCMD.execute(entity,param)
