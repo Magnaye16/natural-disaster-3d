@@ -1,12 +1,10 @@
 extends Entity
 class_name  Player
 #variables
-var speed = 150
 
 @export var inventory : Inventory
 @onready var animated_Sprite = $AnimatedSprite2D
 @export var healthComponent:HealthComponent
-@onready var progress_bar: ProgressBar = $ProgressBar
 @onready var movement_component: MovementComponent = $ComponentManager/MovementComponent
 @onready var click_sfx: AudioStreamPlayer2D = $click_sfx
 @export var controller_manager: ControllerManager
@@ -46,15 +44,19 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func update_Animation():
 	if velocity == Vector2.ZERO:
-		animated_Sprite.set_frame_and_progress(5,1)
+		animated_Sprite.play("Idle")
+		#animated_Sprite.set_frame_and_progress(5,1)
 	else:
-		if abs(velocity.x) > abs(velocity.y):
-			if velocity.x > 0:
-				animated_Sprite.flip_h = false
-				animated_Sprite.play("walk")
-			else:
-				animated_Sprite.flip_h = true
-				animated_Sprite.play("walk")
+
+		if velocity.x > 0:
+			animated_Sprite.flip_h = false
+		elif velocity.x < 0:
+			animated_Sprite.flip_h = true
+
+		if velocity.length() >= movement_component.speed:
+			animated_Sprite.play("run")
+		else:
+			animated_Sprite.play("walk")
 		#else:
 			#if velocity.y > 0:
 				#animated_Sprite.play("walk_down")

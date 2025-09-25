@@ -15,24 +15,6 @@ var velocity:Vector2:
 	set(val):entity.velocity = val
 
 
-
-#func _move(delta: float) -> void:
-	#if move_direction:
-		#var product_speed:float = speed
-#
-		#for stat in status_multiplier.status_array:
-			#product_speed = stat.apply_multiplier(product_speed)
-		#speed = max(0.1, speed)
-		#velocity = velocity.lerp(move_direction * product_speed, acceleration * delta)
-	#var friction  = get_tile_data(&"tile_speed")
-	#if friction  == null:
-		#friction = self.friction
-	#else:
-		#
-		#velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
-	#
-	#
-
 func _move(delta: float) -> void:
 	if move_direction.length() <= 0 and velocity.length() <= 0:return
 
@@ -47,7 +29,6 @@ func _move(delta: float) -> void:
 		velocity = velocity.lerp(move_direction * product_speed, acceleration * delta)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, get_tile_friction() * delta)
-
 
 
 func get_tile_speed()->float:
