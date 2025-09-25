@@ -50,7 +50,8 @@ func _move(delta: float) -> void:
 
 
 
-func get_tile_speed():
+func get_tile_speed()->float:
+	if Tile_manager == null:return 1
 	var tile_speed = Tile_manager.get_tile_data(&"Tile_speed")
 	#print("Tile friction under player: ", tile_speed)
 	if tile_speed == null or tile_speed == 0:
@@ -59,6 +60,7 @@ func get_tile_speed():
 
 
 func get_tile_friction():
+	if Tile_manager == null:return friction
 	var tile_speed = Tile_manager.get_tile_data(&"Tile_speed")
 	print("Tile friction under player: ", tile_speed)
 	if tile_speed == null:
