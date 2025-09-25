@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name BalanceComponent
 
 
@@ -20,8 +20,8 @@ var recovery_amount:int = 1
 var recover_timer:Timer = Timer.new()
 
 
-@export var recovery_curve:Curve = Curve.new()
-
+@export var bar: ProgressBar
+var recovery_curve:Curve = Curve.new()
 
 
 
@@ -38,25 +38,36 @@ func _ready() -> void:
 	@warning_ignore("integer_division")
 	recovery_curve.add_point(Vector2(1.0,recovery_amount * 20))       # 100
 
-	#recovery_curve.bake_resolution = max_value
+	bar.hide()
+	bar.max_value = value
+	bar.value = value
+	value_changed.connect(
+		func(val):
+			bar.value = val
+			if bar.value / bar.max_value >= 1:
+				bar.hide()
+			else:
+				bar.show()
+	)
+
+	print(bar)
 
 func recover():
 	var p := float(value) / float(max_value)  # 0.0 -> 1.0
 	var recover_amnt = int(ceil(recovery_curve.sample(p)))
-	print("recover ", recover_amnt, " at %", p)
 	value += recover_amnt
 	if value >= max_value:
 		value = max_value
 		stop_recovery()
 
 func start_recovery()->void:
+	if not recover_timer.is_stopped() or value>=max_value:
+		return
 	recover_timer.start()
 	recover()
-	print("recovering ")
 
 func stop_recovery():
 	recover_timer.stop()
-	print("stop recovering")
 
 func reduce_balance(val:int):
 	value -= val

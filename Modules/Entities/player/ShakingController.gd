@@ -12,15 +12,12 @@ func check_and_update_tick(val:int)->bool:
 	if is_timeout:tick = 0
 	return is_timeout
 
-var bar:ProgressBar
 var balance_comp:BalanceComponent
 
 func _setup_states()->State:
 	super._setup_states()
 	_setup_tripped()
-	return IdleState
-
-
+	return WalkingState
 
 
 var tripped_dmg:int = 1
@@ -58,32 +55,27 @@ func _setup_tripped()->void:
 func _all_ready() -> void:
 	entity = get_manager().manager_owner
 	balance_comp = start_rec_bal_cmd.get_component(BalanceComponent,entity)
-	bar = (entity as Player).progress_bar
-
-	bar.max_value = balance_comp.value
-	bar.value = balance_comp.value
-	balance_comp.value_changed.connect(
-		func(val):
-			bar.value = val
-			if bar.value / bar.max_value >= 1:
-				bar.hide()
-			else:
-				bar.show()
-	)
 
 
-const RUNNING_BALANCE_COST:int = 20
-const WALKING_BALANCE_COST:int = 10
+const RUNNING_BALANCE_COST:int = 10
+const WALKING_BALANCE_COST:int = 3
+
+
+
+func __process()->void:
+	super.__process()
+
+	var game_mngr:GameManager = Global.get_game_manager()
+	if not game_mngr.disaster_manager.curr_disasters_has(EarthQuake):
+		get_manager().set_controller_by_class(PlayerController)
 
 
 func setup_walk()->void:
 	super.setup_walk()
-
 	WalkingState.state_connect(
 		balance_comp.value_depleted,
 		change_state.bind(TrippedState)
 	)
-
 	var old_proccess = WalkingState._process.bind()
 
 	WalkingState._process =\
