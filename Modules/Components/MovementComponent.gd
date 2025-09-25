@@ -26,8 +26,10 @@ func _move(delta: float) -> void:
 
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
+		
+	entity.move_and_slide()
 
 func set_movement_direction(direction: Vector2) -> void:
 	move_direction = direction
 	_move(0.01)
-	entity.move_and_slide()
+	
