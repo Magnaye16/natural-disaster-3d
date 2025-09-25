@@ -23,19 +23,18 @@ func _process(delta: float) -> void:
 		if status_multiplier:
 			natural_regen = status_multiplier.compute_value(natural_regen)
 		natural_regen = max(MIN_HEALTH_REGEN, natural_regen)
-
-
 		set_HP(value + natural_regen)
 		ticks = 0
 
 
 
 func set_HP(_value:int):
-	value = _value
+	value = clamp(_value,0,max_value)
 	updated.emit(value)
 
 func apply_DMG(DMG:int):
 	value -= DMG
 	updated.emit(value)
-	if value > 0 :return
-	depleted.emit()
+
+	if value < 1 :
+		depleted.emit()

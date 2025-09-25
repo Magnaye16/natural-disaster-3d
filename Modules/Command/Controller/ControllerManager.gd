@@ -29,29 +29,27 @@ func set_controller_by_class(ctrl_class: GDScript) -> void:
 		ctrl = ctrl_class.new()
 
 	add_controller(ctrl)
-	active_controller = ctrl
+	set_deferred("active_controller",ctrl)
 
 
 func add_controller(ctrl:BaseController)->void:
 	_cache_controller(ctrl)
 	add_child(ctrl)
-	ctrl.notification(NOTIFICATION_READY)
 
 
 func set_controller(ctrl: BaseController) -> void:
-	active_controller = ctrl
 	add_controller(ctrl)
+	set_deferred("active_controller",ctrl)
 
 
 func _cache_controller(cotroller:BaseController)->void:
 	controllers.set(cotroller.get_script().get_global_name(),cotroller)
 
 func _process(_delta: float) -> void:
-	await  get_tree().process_frame
+	await get_tree().process_frame
 	if active_controller == null:
 		set_process(false)
 		return
-
 	active_controller.__process()
 
 func _unhandled_key_input(_event: InputEvent) -> void:

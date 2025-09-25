@@ -68,9 +68,6 @@ var start_rec_bal_cmd:StartRecoveringBalanceCommand = StartRecoveringBalanceComm
 
 func setup_Idle()->void:
 
-	IdleState._enter=func():
-		start_rec_bal_cmd.execute(entity)
-
 	IdleState._input=\
 	func():
 		if Input.get_vector("ui_left","ui_right","ui_up","ui_down").length()>0:
@@ -78,4 +75,5 @@ func setup_Idle()->void:
 
 	IdleState._process=\
 	func ():
+		start_rec_bal_cmd.execute(entity)
 		moveCMD.execute(entity)

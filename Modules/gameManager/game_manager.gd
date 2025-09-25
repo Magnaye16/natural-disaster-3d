@@ -12,13 +12,14 @@ func _ready() -> void:
 
 
 func generate_disaster():
-	await  get_tree().create_timer(10).timeout
-	if disaster_manager.curr_disaster == null:
+	await  get_tree().create_timer(100).timeout
+	if disaster_manager.curr_disasters.size() < 2:
 		disaster_manager.try_generate_disaster(self)
 	generate_disaster()
 
 
 func _unhandled_key_input(_event: InputEvent) -> void:
+
 	if Input.is_key_pressed(KEY_P):
 		var dis:Disaster=disaster_manager.disasters.pick_random()
 		if dis:dis.trigger(self)

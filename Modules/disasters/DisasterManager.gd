@@ -2,14 +2,22 @@ class_name  DisasterManager
 extends Node
 
 @export var disasters: Array[Disaster] = []
-@export var curr_disaster:Disaster
+@export var curr_disasters:Array[Disaster]
 
 
 
 func try_generate_disaster(game_manager: GameManager) -> void:
 	for disaster in posible_disasters(game_manager):
 			disaster.trigger(game_manager)
+			curr_disasters.append(disaster)
 			alert_detectors(disaster)
+
+
+func curr_disasters_has(disaster_type:GDScript)->bool:
+	return curr_disasters.find_custom(
+		func(d:Disaster):return d.get_script().global_name() == disaster_type
+	) >= -1
+
 
 func alert_detectors(disaster:Disaster):
 		get_tree().call_group("detector","_disaster_detected",disaster)

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c4otthdp7tge2" path="res://Modules/disasters/effects/DisasterEffect.gd" id="1_j0xy1"]
 [ext_resource type="Script" uid="uid://b3p2fkir4o88v" path="res://Modules/disasters/types/earthquacke.gd" id="2_j0xy1"]
 [ext_resource type="Script" uid="uid://c0ftsqgnde17p" path="res://Modules/disasters/effects/Shake.gd" id="2_vx76t"]
-[ext_resource type="Script" path="res://Modules/disasters/effects/FallingDebrees.gd" id="3_ptrc0"]
+[ext_resource type="Script" uid="uid://dng1hmt0nrth6" path="res://Modules/disasters/effects/FallingDebrees.gd" id="3_ptrc0"]
 
 [sub_resource type="Resource" id="Resource_ptrc0"]
 script = ExtResource("2_vx76t")
@@ -16,6 +16,6 @@ metadata/_custom_type_script = "uid://dng1hmt0nrth6"
 [resource]
 script = ExtResource("2_j0xy1")
 disaster_name = "EarthQuake"
-chance = 0.5
+chance = 0.01
 effects = Array[ExtResource("1_j0xy1")]([SubResource("Resource_ptrc0"), SubResource("Resource_3vnfh")])
 metadata/_custom_type_script = "uid://b3p2fkir4o88v"
