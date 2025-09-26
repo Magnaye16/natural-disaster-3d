@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="EarthQuake" load_steps=7 format=3 uid="uid://ba2ldxg65c8ee"]
+[gd_resource type="Resource" script_class="EarthQuake" load_steps=11 format=3 uid="uid://ba2ldxg65c8ee"]
 
 [ext_resource type="Script" uid="uid://c4otthdp7tge2" path="res://Modules/disasters/effects/DisasterEffect.gd" id="1_j0xy1"]
-[ext_resource type="Script" uid="uid://b3p2fkir4o88v" path="res://Modules/disasters/types/earthquacke.gd" id="2_j0xy1"]
 [ext_resource type="Script" uid="uid://c0ftsqgnde17p" path="res://Modules/disasters/effects/Shake.gd" id="2_vx76t"]
 [ext_resource type="Script" uid="uid://dng1hmt0nrth6" path="res://Modules/disasters/effects/FallingDebrees.gd" id="3_ptrc0"]
+[ext_resource type="Script" uid="uid://b3p2fkir4o88v" path="res://Modules/disasters/types/earthquake.gd" id="4_ptrc0"]
+[ext_resource type="Script" uid="uid://lilotswqiyb4" path="res://Modules/disasters/effects/CameraShakeEffect.gd" id="4_tfumo"]
+[ext_resource type="Script" uid="uid://beo6hofpgoojk" path="res://Modules/disasters/effects/UnshakeEffect.gd" id="5_d0fbn"]
 
 [sub_resource type="Resource" id="Resource_ptrc0"]
 script = ExtResource("2_vx76t")
@@ -13,9 +15,19 @@ metadata/_custom_type_script = "uid://c0ftsqgnde17p"
 script = ExtResource("3_ptrc0")
 metadata/_custom_type_script = "uid://dng1hmt0nrth6"
 
+[sub_resource type="Resource" id="Resource_si6o6"]
+script = ExtResource("4_tfumo")
+metadata/_custom_type_script = "uid://lilotswqiyb4"
+
+[sub_resource type="Resource" id="Resource_d7300"]
+script = ExtResource("5_d0fbn")
+metadata/_custom_type_script = "uid://beo6hofpgoojk"
+
 [resource]
-script = ExtResource("2_j0xy1")
+script = ExtResource("4_ptrc0")
 disaster_name = "EarthQuake"
 chance = 0.01
-effects = Array[ExtResource("1_j0xy1")]([SubResource("Resource_ptrc0"), SubResource("Resource_3vnfh")])
+effects = Array[ExtResource("1_j0xy1")]([SubResource("Resource_ptrc0"), SubResource("Resource_3vnfh"), SubResource("Resource_si6o6")])
+exit_effects = Array[ExtResource("1_j0xy1")]([SubResource("Resource_d7300")])
+duration = 2
 metadata/_custom_type_script = "uid://b3p2fkir4o88v"

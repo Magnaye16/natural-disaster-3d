@@ -26,7 +26,7 @@ var recover_bal_cmd:SetBalanceCommand = SetBalanceCommand.new()
 func _setup_tripped()->void:
 	const MIN_DMG:int = 0
 	const MAX_DMG:int = 2
-	const  recover_amnt:int = 5
+	const recover_amnt:int = 5
 	var player:Player = entity
 
 	TrippedState.state_connect(
