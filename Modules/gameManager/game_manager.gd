@@ -4,8 +4,7 @@ extends Node
 @export var weather_manager: WeatherManager
 @export var season_manager:SeasonManager
 @export var disaster_manager:DisasterManager
-
-
+@export var sound_manager: SoundManager
 
 func _ready() -> void:
 	generate_disaster()
@@ -48,6 +47,8 @@ func advance_weather()->void:
 
 func _on_cool_dry_pressed() -> void:
 	set_starting_season("CoolDry")
+	sound_manager.switch_music()
+	sound_manager.switch_sfx()
 
 
 func _on_hot_dry_pressed() -> void:
@@ -55,7 +56,9 @@ func _on_hot_dry_pressed() -> void:
 
 func _on_rainy_pressed() -> void:
 	set_starting_season("Rainy")
+	sound_manager.switch_sfx()
+	
 
 
 func _on_typhoon_pressed() -> void:
-		set_starting_season("Typhoon")
+	set_starting_season("Typhoon")

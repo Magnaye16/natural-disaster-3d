@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://dastsqlbcs4fe"]
+[gd_scene load_steps=56 format=3 uid="uid://dastsqlbcs4fe"]
 
 [ext_resource type="Material" uid="uid://bh1r8knha0xvk" path="res://src/Main_game.tres" id="1_42up0"]
 [ext_resource type="Texture2D" uid="uid://cdqm3g1qjxmkx" path="res://icon.svg" id="2_ap48k"]
@@ -28,7 +28,64 @@
 [ext_resource type="PackedScene" uid="uid://ees2xw0pmuvh" path="res://Modules/MapManager/maps/map.tscn" id="21_urq11"]
 [ext_resource type="PackedScene" uid="uid://bi2pog25w52tj" path="res://Modules/Inventory/Scene/Inventory_UI.tscn" id="23_fowpm"]
 [ext_resource type="PackedScene" uid="uid://dqnfb71785qi0" path="res://Modules/Inventory/Scene/healthbar.tscn" id="23_twqns"]
-[ext_resource type="Script" path="res://Modules/Components/shader_texture.gd" id="23_urq11"]
+[ext_resource type="Script" uid="uid://b64qqdccfis2t" path="res://Modules/Components/shader_texture.gd" id="23_urq11"]
+[ext_resource type="Script" uid="uid://dew73ha17xkdv" path="res://Modules/gameManager/SoundManager.gd" id="30_disfg"]
+[ext_resource type="AudioStream" uid="uid://dnoji8iijbdfv" path="res://src/Sounds/SFX/Normal/NORMAL DAY FX.mp3" id="31_6aabe"]
+[ext_resource type="AudioStream" uid="uid://b3m2hbm7u27l3" path="res://src/Sounds/SFX/Rainy_and_Stormy/RAIN.mp3" id="32_j1mf4"]
+[ext_resource type="AudioStream" uid="uid://baqwd2p603mn" path="res://src/Sounds/SFX/Earthquake/SHOUTING IN EARTHQUAKE.mp3" id="33_c7sog"]
+[ext_resource type="AudioStream" uid="uid://c2qs3em14ras0" path="res://src/Sounds/Music/Normal Day/COZY BACKGROUND FX.mp3" id="33_j1mf4"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_c7sog"]
+clip_count = 3
+clip_0/name = &"CloudyWeather"
+clip_0/stream = ExtResource("31_6aabe")
+clip_0/auto_advance = 0
+clip_1/name = &"RainyWeather"
+clip_1/stream = ExtResource("32_j1mf4")
+clip_1/auto_advance = 0
+clip_2/name = &"Earthquake Fx"
+clip_2/stream = ExtResource("33_c7sog")
+clip_2/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 1,
+"to_time": 0
+},
+Vector2i(0, 1): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(1, 0): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+}
+}
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_44hf1"]
+clip_count = 1
+clip_0/name = &"CoolDrySeason"
+clip_0/stream = ExtResource("33_j1mf4")
+clip_0/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+}
+}
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_hhjt4"]
+clip_count = 1
+clip_0/name = &"CloudyWeather"
+clip_0/stream = ExtResource("31_6aabe")
+clip_0/auto_advance = 0
 
 [sub_resource type="Resource" id="Resource_w0vwb"]
 script = ExtResource("11_urq11")
@@ -113,12 +170,32 @@ font_size = 40
 
 [node name="Main_game" type="Node2D"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("weather_manager", "season_manager", "disaster_manager")]
+[node name="SoundManager" type="Node" parent="." node_paths=PackedStringArray("weather_manager", "season_manager", "sfx_player", "music_player")]
+script = ExtResource("30_disfg")
+weather_manager = NodePath("../GameManager/WeatherManager")
+season_manager = NodePath("../GameManager/SeasonManager")
+sfx_player = NodePath("SFXPlayer")
+music_player = NodePath("MusicPlayer")
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="SoundManager"]
+stream = SubResource("AudioStreamInteractive_c7sog")
+volume_db = 10.0
+bus = &"SFX"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="SoundManager"]
+stream = SubResource("AudioStreamInteractive_44hf1")
+volume_db = -25.0
+
+[node name="AmbiencePlayer" type="AudioStreamPlayer" parent="SoundManager"]
+stream = SubResource("AudioStreamInteractive_hhjt4")
+
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("weather_manager", "season_manager", "disaster_manager", "sound_manager")]
 unique_name_in_owner = true
 script = ExtResource("5_twqns")
 weather_manager = NodePath("WeatherManager")
 season_manager = NodePath("SeasonManager")
 disaster_manager = NodePath("DisasterManager")
+sound_manager = NodePath("../SoundManager")
 metadata/_custom_type_script = "uid://cj3lx2o5mbx44"
 
 [node name="WeatherManager" type="Node" parent="GameManager" node_paths=PackedStringArray("shader_texture")]

@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/COZY BACKGROUND FX.mp3-ec678130b84475fbbf485c
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4
