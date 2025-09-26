@@ -18,13 +18,13 @@ func _ready() -> void:
 		if current_map == null:
 			current_map = child
 			package = current_map.package
-			current_map.entry_map()
+			current_map._entry_map()
 		else:
 			child.clean()  # only keep the first map active
 
 	current_map = get_child(0)
 
-func _unhandled_key_input(event: InputEvent) -> void:
+func _unhandled_key_input(_event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_L):
 		switch_to_next_map()
 
