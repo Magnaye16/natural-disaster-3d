@@ -20,8 +20,7 @@ func generate_disaster():
 func _unhandled_key_input(_event: InputEvent) -> void:
 
 	if Input.is_key_pressed(KEY_P):
-		var dis:Disaster=disaster_manager.disasters.pick_random()
-		if dis:dis.trigger(self)
+		disaster_manager.trigger_random_disaster(self)
 
 
 func get_current_season()->Season:

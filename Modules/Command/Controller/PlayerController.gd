@@ -53,16 +53,16 @@ func setup_walk()->void:
 		func():
 			if Input.is_key_pressed(KEY_SHIFT):
 				return change_state(RunningState)
-			move_params.direction = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
+			move_params.direction = _get_movement_vector()
 			moveCMD.execute(entity)
 
-		WalkingState._process=\
-			func():
-				move_params.direction = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
-				moveCMD.execute(entity)
+		WalkingState._process =\
+		func():
+			move_params.direction = _get_movement_vector()
+			moveCMD.execute(entity)
 
-				if move_params.direction == Vector2.ZERO:
-					change_state(IdleState)
+			if move_params.direction == Vector2.ZERO:
+				change_state(IdleState)
 
 var start_rec_bal_cmd:StartRecoveringBalanceCommand = StartRecoveringBalanceCommand.new()
 
@@ -70,10 +70,13 @@ func setup_Idle()->void:
 
 	IdleState._input=\
 	func():
-		if Input.get_vector("ui_left","ui_right","ui_up","ui_down").length()>0:
+		if _get_movement_vector().length()>0:
 			return change_state(WalkingState)
 
 	IdleState._process=\
 	func ():
 		start_rec_bal_cmd.execute(entity)
 		moveCMD.execute(entity)
+		
+func _get_movement_vector() -> Vector2:
+	return Input.get_vector(MoveDirection.MOVE_LEFT,MoveDirection.MOVE_RIGHT,MoveDirection.MOVE_UP,MoveDirection.MOVE_DOWN)
