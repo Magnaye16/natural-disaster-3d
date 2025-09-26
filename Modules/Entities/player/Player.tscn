@@ -151,7 +151,7 @@ texture = ExtResource("3_iay8i")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-17, -45)
 sprite_frames = SubResource("SpriteFrames_6l3be")
-animation = &"walk"
+animation = &"run"
 autoplay = "Idle"
 frame_progress = 0.8368848
 centered = false
@@ -251,7 +251,7 @@ script = ExtResource("15_vyat6")
 script = ExtResource("7_l2e0d")
 metadata/_custom_type_script = "uid://bw645jlbwlb5l"
 
-[node name="click_sfx" type="AudioStreamPlayer2D" parent="."]
+[node name="ClickSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_rxygn")
 volume_db = 24.0
 
