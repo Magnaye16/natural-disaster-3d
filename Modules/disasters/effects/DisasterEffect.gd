@@ -16,5 +16,3 @@ func apply(_game_manager: GameManager):
 
 @abstract
 func _enter()
-
-func _exit():pass
