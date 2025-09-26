@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://baqwd2p603mn"
+path="res://.godot/imported/SHOUTING IN EARTHQUAKE.mp3-03ddbe393eec1569199204261c2d4768.mp3str"
+
+[deps]
+
+source_file="res://src/Sounds/SFX/Earthquake/SHOUTING IN EARTHQUAKE.mp3"
+dest_files=["res://.godot/imported/SHOUTING IN EARTHQUAKE.mp3-03ddbe393eec1569199204261c2d4768.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

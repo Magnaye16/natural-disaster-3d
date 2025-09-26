@@ -1,14 +1,17 @@
 extends Camera2D
 class_name GlobalCamera
 
-@export var follow_speed: float = 5.0
+@export var follow_speed: float = 7
 
 var target: Player
 
 
 func _ready() -> void:
+	add_to_group("global_camera")
 	await get_tree().process_frame
 	target = get_tree().get_first_node_in_group("player")
+	global_position = target.global_position
+	zoom = Vector2(1,1)*3
 
 
 var _shake_offset: Vector2 = Vector2.ZERO

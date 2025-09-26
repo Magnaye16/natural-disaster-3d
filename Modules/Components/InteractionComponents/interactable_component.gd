@@ -8,6 +8,8 @@ signal exit_contacteds
 signal interacted(entity:Entity)
 
 
+func contact():
+	contacted.emit()
 
 func interact(entity:Entity):
 	interacted.emit(entity)

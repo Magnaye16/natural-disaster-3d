@@ -11,9 +11,8 @@ const DEBREE = preload("uid://b0swruhjk24p0")
 
 func _ready() -> void:
 	await  get_tree().process_frame
-	player = get_tree().get_first_node_in_group("player")
+	player = Global.get_player()
 	start()
-
 
 func _physics_process(_delta: float) -> void:
 	follow_player()
@@ -30,8 +29,9 @@ func start():
 		var w:=collision_shape_2d.shape.get_rect().size.y/2 * randf_range(-1,1)
 		spawn(Vector2( l,w))
 
+	queue_free()
 
 func spawn(pos:Vector2):
 	var debree:Debree = DEBREE.instantiate()
-	debree.global_position += position + pos
-	get_parent().add_child(debree)
+	debree.global_position += global_position + pos
+	player.get_parent().add_child(debree)

@@ -8,7 +8,6 @@ extends Resource
 #@export var condition: DisasterCondition
 @export var effects: Array[DisasterEffect] = []
 
-
 func s():
 	effects = effects.filter(func (f:DisasterEffect):return not f.is_done())
 

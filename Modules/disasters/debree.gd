@@ -5,7 +5,6 @@ class_name Debree
 
 func _on_hit_component_hit(hurtbox: HurtBoxComponent) -> void:
 	hurtbox.damage(damage)
-	queue_free()
 @onready var main_spritr: Sprite2D = $"main spritr"
 
 var DURATION:float = 0.5
@@ -26,8 +25,9 @@ func animate_sprite():
 	tween.set_parallel(false)
 
 	tween.tween_callback(func():$"main spritr/HitComponent".monitoring = true)
-	tween.tween_callback(func():$"main spritr/HitComponent".monitoring = false)
+	tween.tween_callback(func():$"main spritr/HitComponent".monitoring = false).set_delay(0.2)
 	tween.tween_property(main_spritr,"modulate:a",0,1)
+	tween.tween_callback(queue_free)
 
 func animate_shadow():
 	get_material().set_shader_parameter("alpha",0.2)

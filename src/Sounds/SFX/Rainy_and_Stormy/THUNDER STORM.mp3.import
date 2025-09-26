@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cq6qy3p5whw8f"
+path="res://.godot/imported/THUNDER STORM.mp3-00d8302c3493aa564bcebd6fa59408a4.mp3str"
+
+[deps]
+
+source_file="res://src/Sounds/SFX/Rainy_and_Stormy/THUNDER STORM.mp3"
+dest_files=["res://.godot/imported/THUNDER STORM.mp3-00d8302c3493aa564bcebd6fa59408a4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
