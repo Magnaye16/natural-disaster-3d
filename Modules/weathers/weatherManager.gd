@@ -8,6 +8,9 @@ extends Node
 
 signal weather_advanced(weather)
 
+func get_current_name():
+	return get_current_weather().name
+
 func get_current_weather() -> Weather:
 	return _current_weather
 

@@ -6,8 +6,8 @@ class_name  Player
 @onready var animated_Sprite = $AnimatedSprite2D
 @export var healthComponent:HealthComponent
 @onready var movement_component: MovementComponent = $ComponentManager/MovementComponent
-@onready var click_sfx: AudioStreamPlayer2D = $click_sfx
 @export var controller_manager: ControllerManager
+@onready var click_sfx: AudioStreamPlayer = $ClickSFX
 
 
 signal interactable_found
@@ -29,8 +29,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 	if event.is_action_pressed("ui_inventory"):
-		click_sfx.play()
 		inventory_requested.emit()
+		click_sfx.play()
 
 	if Input.is_key_pressed(KEY_0):
 		apply_status(preload("uid://dvrca2v7avjus"))
