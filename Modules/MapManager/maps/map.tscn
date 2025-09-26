@@ -1,6 +1,6 @@
 [gd_scene load_steps=37 format=4 uid="uid://ees2xw0pmuvh"]
 
-[ext_resource type="Script" uid="uid://cy8yog0apqm2" path="res://Modules/MapManager/map.gd" id="1_18ddi"]
+[ext_resource type="Script" uid="uid://dhbcdqh3nfvfo" path="res://Map2.gd" id="1_esh8l"]
 [ext_resource type="PackedScene" uid="uid://ceb7pu6fs56q0" path="res://Modules/Components/EnvironmentComponent/rainparticles.tscn" id="2_qnkao"]
 [ext_resource type="PackedScene" uid="uid://d41vjxdfvy6v" path="res://Modules/Components/EnvironmentComponent/Fire/FireScene.tscn" id="3_7ucfc"]
 [ext_resource type="Script" uid="uid://dxv57et4ndi4p" path="res://Modules/MapManager/package.gd" id="4_d512a"]
@@ -726,7 +726,7 @@ scenes/1/scene = ExtResource("3_7ucfc")
 sources/0 = SubResource("TileSetScenesCollectionSource_igs4o")
 
 [node name="MAP2" type="Node2D" node_paths=PackedStringArray("package", "Tile_manager")]
-script = ExtResource("1_18ddi")
+script = ExtResource("1_esh8l")
 package = NodePath("Package")
 Tile_manager = NodePath("Tilemaps")
 

@@ -55,7 +55,6 @@ func _on_hot_dry_pressed() -> void:
 
 func _on_rainy_pressed() -> void:
 	set_starting_season("Rainy")
-	sound_manager.switch_sfx()
 	
 
 

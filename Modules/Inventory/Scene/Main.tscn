@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=4 uid="uid://cv64losnxwqso"]
 
-[ext_resource type="Script" uid="uid://cy8yog0apqm2" path="res://Modules/MapManager/map.gd" id="1_p1a15"]
+[ext_resource type="Script" uid="uid://dbu8drysgctwh" path="res://Modules/Inventory/Scene/main_test.gd" id="1_ko33a"]
 [ext_resource type="Texture2D" uid="uid://b52fx53i6ijjs" path="res://src/imgs/Tilesets/Water.png" id="2_h3nmf"]
 [ext_resource type="Script" uid="uid://cj766ssdxgv7t" path="res://Modules/MapManager/maps/tilemap_manager.gd" id="2_ko33a"]
 [ext_resource type="Texture2D" uid="uid://dt0mgjlxok6xg" path="res://src/imgs/Tilesets/Grass.png" id="3_hueuk"]
@@ -581,7 +581,7 @@ sources/0 = SubResource("TileSetAtlasSource_t0h8y")
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("package", "Tile_manager")]
 use_parent_material = true
-script = ExtResource("1_p1a15")
+script = ExtResource("1_ko33a")
 package = NodePath("Package")
 Tile_manager = NodePath("TileMap")
 

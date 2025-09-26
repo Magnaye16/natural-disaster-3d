@@ -4,7 +4,6 @@ class_name Map
 @export var always_reload: bool = false
 @export var package:PlayerCamPackage
 @export var Tile_manager:Tilemap_manager
-@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 @warning_ignore("unused_private_class_variable")
 var _last_player_position:Vector2
@@ -14,6 +13,7 @@ func _ready() -> void:
 		_entry_map()
 
 func _on_enter()->void:
+	
 	pass
 
 
