@@ -131,7 +131,7 @@ radius = 4.0
 height = 12.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ob74"]
-size = Vector2(10, 8)
+size = Vector2(11, 21)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rdu0r"]
 bg_color = Color(1, 0.9723816, 0.29296875, 1)
@@ -144,22 +144,21 @@ controller_manager = NodePath("ControllerManager")
 
 [node name="shadow" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_xyvnq")
-position = Vector2(0, 8)
 scale = Vector2(1, 0.8)
 texture = ExtResource("3_iay8i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1, -11)
+position = Vector2(-17, -45)
 sprite_frames = SubResource("SpriteFrames_6l3be")
 animation = &"run"
 autoplay = "Idle"
-
-[node name="Label" type="Label" parent="AnimatedSprite2D"]
-offset_right = 40.0
-offset_bottom = 23.0
+frame_progress = 0.8368848
+centered = false
+offset = Vector2(2, 0)
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
-position = Vector2(0, 7)
+position = Vector2(0, -4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_c4hvf")
 
@@ -205,6 +204,7 @@ script = ExtResource("10_2ob74")
 metadata/_custom_type_script = "uid://cpfjhdr0kceht"
 
 [node name="HurtBoxComponent" type="Area2D" parent="ComponentManager" node_paths=PackedStringArray("health_component")]
+position = Vector2(0, -11)
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("10_csims")
@@ -213,13 +213,14 @@ metadata/_custom_type_script = "uid://6fhpn2hvo65i"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ComponentManager/HurtBoxComponent"]
-position = Vector2(0, 5)
+position = Vector2(0.5, -1.5)
 shape = SubResource("RectangleShape2D_2ob74")
 
 [node name="interactor_component" parent="ComponentManager" instance=ExtResource("8_nm665")]
+position = Vector2(1, -6)
 
 [node name="FireComponent" parent="ComponentManager" node_paths=PackedStringArray("Health") instance=ExtResource("14_y3nja")]
-visible = false
+position = Vector2(0, -6)
 Health = NodePath("../HealthComponent")
 
 [node name="BalanceComponent" type="Node2D" parent="ComponentManager" node_paths=PackedStringArray("bar")]
@@ -227,14 +228,15 @@ script = ExtResource("15_i764u")
 bar = NodePath("ProgressBar")
 
 [node name="ProgressBar" type="ProgressBar" parent="ComponentManager/BalanceComponent"]
+clip_contents = true
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -22.0
-offset_top = -27.0
-offset_right = 23.0
-offset_bottom = -23.0
+offset_left = -22.5
+offset_top = -54.0
+offset_right = 22.5
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/fill = SubResource("StyleBoxFlat_rdu0r")
@@ -250,6 +252,7 @@ metadata/_custom_type_script = "uid://bw645jlbwlb5l"
 
 [node name="ClickSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_rxygn")
+volume_db = 24.0
 
 [connection signal="interactable_contacted" from="ComponentManager/interactor_component" to="." method="_on_interactor_component_interactable_contacted"]
 [connection signal="interactable_exited" from="ComponentManager/interactor_component" to="." method="_on_interactor_component_interactable_exited"]
