@@ -240,9 +240,11 @@ render_target_update_mode = 4
 script = ExtResource("3_wbnf2")
 metadata/_custom_type_script = "uid://bhh103ve148q2"
 
-[node name="Main" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("4_01ftw")]
+[node name="Main" parent="Main_viewport/SubViewportContainer/MapManager" node_paths=PackedStringArray("sound_manager") instance=ExtResource("4_01ftw")]
+sound_manager = NodePath("../../../../SoundManager")
 
-[node name="MAP" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("21_urq11")]
+[node name="MAP" parent="Main_viewport/SubViewportContainer/MapManager" node_paths=PackedStringArray("sound_manager") instance=ExtResource("21_urq11")]
+sound_manager = NodePath("../../../../SoundManager")
 
 [node name="shader_texture" type="ColorRect" parent="Main_viewport" groups=["shader"]]
 z_index = 7
