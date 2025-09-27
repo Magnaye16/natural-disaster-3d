@@ -47,21 +47,16 @@ func update_Animation():
 		animated_Sprite.play("Idle")
 		#animated_Sprite.set_frame_and_progress(5,1)
 	else:
-
 		if velocity.x > 0:
 			animated_Sprite.flip_h = false
 		elif velocity.x < 0:
 			animated_Sprite.flip_h = true
 
-		if velocity.length() >= movement_component.speed:
+		if velocity.length() - 0.1 > movement_component.speed:
 			animated_Sprite.play("run")
 		else:
 			animated_Sprite.play("walk")
-		#else:
-			#if velocity.y > 0:
-				#animated_Sprite.play("walk_down")
-			#else:
-				#animated_Sprite.play("walk_up")
+
 
 
 func _on_interactor_component_interactable_contacted() -> void:

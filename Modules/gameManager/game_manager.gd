@@ -55,7 +55,7 @@ func _on_hot_dry_pressed() -> void:
 
 func _on_rainy_pressed() -> void:
 	set_starting_season("Rainy")
-	
+
 
 
 func _on_typhoon_pressed() -> void:

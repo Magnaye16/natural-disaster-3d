@@ -77,6 +77,6 @@ func setup_Idle()->void:
 	func ():
 		start_rec_bal_cmd.execute(entity)
 		moveCMD.execute(entity)
-		
+
 func _get_movement_vector() -> Vector2:
 	return Input.get_vector(MoveDirection.MOVE_LEFT,MoveDirection.MOVE_RIGHT,MoveDirection.MOVE_UP,MoveDirection.MOVE_DOWN)
