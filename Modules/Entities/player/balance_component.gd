@@ -21,7 +21,6 @@ var value:int = max_value:
 var recovery_amount:int = 1
 var recover_timer:Timer = Timer.new()
 
-
 @export var bar: ProgressBar
 var recovery_curve:Curve = Curve.new()
 
@@ -51,8 +50,6 @@ func _ready() -> void:
 			else:
 				bar.show()
 	)
-
-	print(bar)
 
 func recover():
 	var p := float(value) / float(max_value)  # 0.0 -> 1.0

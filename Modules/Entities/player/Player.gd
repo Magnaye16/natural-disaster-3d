@@ -1,7 +1,5 @@
 extends Entity
 class_name  Player
-#variables
-
 @export var inventory : Inventory
 @onready var animated_Sprite = $ComponentManager/SpriteComponent
 @export var healthComponent:HealthComponent
@@ -23,10 +21,8 @@ func _physics_process(_delta):
 
 func _unhandled_input(event: InputEvent) -> void:
 
-
 	if Input.is_action_just_pressed("hit_btn"):
 		healthComponent.apply_DMG(1)
-
 
 	if event.is_action_pressed("ui_inventory"):
 		inventory_requested.emit()
@@ -46,7 +42,6 @@ func update_Animation():
 			animated_Sprite.flip_h = false
 		elif velocity.x < 0:
 			animated_Sprite.flip_h = true
-
 
 
 
