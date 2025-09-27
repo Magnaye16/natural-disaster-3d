@@ -42,21 +42,29 @@ func advance_day() -> void:
 
 func advance_weather()->void:
 	weather_manager.advance_weather(season_manager.get_current_season())
+	sound_manager.switch_music()
+	sound_manager.switch_sfx()
 
 
 func _on_cool_dry_pressed() -> void:
-	set_starting_season("CoolDry")
+	set_starting_season("ColdDry")
 	sound_manager.switch_music()
 	sound_manager.switch_sfx()
 
 
 func _on_hot_dry_pressed() -> void:
 	set_starting_season("HotDry")
+	sound_manager.switch_music()
+	sound_manager.switch_sfx()
 
 func _on_rainy_pressed() -> void:
 	set_starting_season("Rainy")
+	sound_manager.switch_music()
+	sound_manager.switch_sfx()
 
 
 
 func _on_typhoon_pressed() -> void:
 	set_starting_season("Typhoon")
+	sound_manager.switch_music()
+	sound_manager.switch_sfx()

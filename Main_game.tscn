@@ -69,9 +69,10 @@ Vector2i(1, 0): {
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_44hf1"]
 clip_count = 1
-clip_0/name = &"CoolDrySeason"
+clip_0/name = &"ColdDrySeason"
 clip_0/stream = ExtResource("33_j1mf4")
-clip_0/auto_advance = 0
+clip_0/auto_advance = 1
+clip_0/next_clip = 0
 _transitions = {
 Vector2i(-1, -1): {
 "fade_beats": 1.0,
@@ -185,6 +186,8 @@ bus = &"SFX"
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="SoundManager"]
 stream = SubResource("AudioStreamInteractive_44hf1")
 volume_db = -25.0
+autoplay = true
+bus = &"Music"
 
 [node name="AmbiencePlayer" type="AudioStreamPlayer" parent="SoundManager"]
 stream = SubResource("AudioStreamInteractive_hhjt4")
@@ -243,8 +246,7 @@ metadata/_custom_type_script = "uid://bhh103ve148q2"
 [node name="Main" parent="Main_viewport/SubViewportContainer/MapManager" node_paths=PackedStringArray("sound_manager") instance=ExtResource("4_01ftw")]
 sound_manager = NodePath("../../../../SoundManager")
 
-[node name="MAP" parent="Main_viewport/SubViewportContainer/MapManager" node_paths=PackedStringArray("sound_manager") instance=ExtResource("21_urq11")]
-sound_manager = NodePath("../../../../SoundManager")
+[node name="MAP" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("21_urq11")]
 
 [node name="shader_texture" type="ColorRect" parent="Main_viewport" groups=["shader"]]
 z_index = 7

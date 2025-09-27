@@ -5,9 +5,6 @@ class_name SoundManager
 @export var season_manager: SeasonManager
 @export var sfx_player: AudioStreamPlayer
 @export var music_player: AudioStreamPlayer
-var current_season: String #for music theme
-var current_disaster: String #for sfx
-var current_day: String 
 var music_volume: int
 var sfx_volume: int
 
@@ -19,6 +16,4 @@ func switch_sfx():
 
 func switch_music():
 	var season_name =  season_manager.get_season_name()
-	music_player.play()
 	music_player.get_stream_playback().switch_to_clip_by_name(season_name)
-	
