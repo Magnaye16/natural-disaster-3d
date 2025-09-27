@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://6qjeq4jtygd" path="res://Modules/Components/EnvironmentComponent/Fire/FireComponent.tscn" id="14_y3nja"]
 [ext_resource type="Script" uid="uid://bi47ydddta0mf" path="res://Modules/Entities/player/balance_component.gd" id="15_i764u"]
 [ext_resource type="Script" uid="uid://tgwgeopexuvj" path="res://Modules/Command/Controller/ControllerManager.gd" id="15_vyat6"]
-[ext_resource type="AudioStream" uid="uid://hwtkdy8rgm6s" path="res://src/Sounds/SFX/CLICK.mp3" id="23_rxygn"]
+[ext_resource type="AudioStream" uid="uid://hwtkdy8rgm6s" path="res://src/Sounds/SFX/Click/CLICK.mp3" id="23_rxygn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xyvnq"]
 shader = ExtResource("2_iay8i")
@@ -252,7 +252,7 @@ metadata/_custom_type_script = "uid://bw645jlbwlb5l"
 
 [node name="ClickSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_rxygn")
-volume_db = 24.0
+volume_db = 10.0
 
 [connection signal="interactable_contacted" from="ComponentManager/interactor_component" to="." method="_on_interactor_component_interactable_contacted"]
 [connection signal="interactable_exited" from="ComponentManager/interactor_component" to="." method="_on_interactor_component_interactable_exited"]

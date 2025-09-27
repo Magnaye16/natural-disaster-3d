@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dcebvyplvaojq"
+path="res://.godot/imported/Light Rain.mp3-8c0bb51483254b7c3f5d680109830dc4.mp3str"
+
+[deps]
+
+source_file="res://src/Sounds/SFX/Rainy_and_Stormy/Light Rain.mp3"
+dest_files=["res://.godot/imported/Light Rain.mp3-8c0bb51483254b7c3f5d680109830dc4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
