@@ -7,6 +7,8 @@ signal value_changed(val:int)
 signal value_depleted
 signal value_filled
 
+var is_full:bool:
+	get:return float(value)/float(max_value) == 1
 var max_value:int=50
 var value:int = max_value:
 	set(val):
