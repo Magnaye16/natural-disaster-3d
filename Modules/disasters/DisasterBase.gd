@@ -2,7 +2,10 @@
 class_name Disaster
 extends Resource
 
-@export var disaster_name: String
+@export var disaster_name: String:
+	get:return get_script().get_global_name()
+	set(v):return
+
 @export var description: String
 @export var chance: float = 0.9
 #@export var condition: DisasterCondition

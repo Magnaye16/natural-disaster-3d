@@ -23,7 +23,7 @@ func try_generate_disaster(game_manager: GameManager) -> void:
 
 func curr_disasters_has(disaster_type:GDScript)->bool:
 	return curr_disasters.find_custom(
-		func(d:Disaster):return d.get_script().global_name() == disaster_type
+		func(d:Disaster):return d.disaster_name == disaster_type.get_global_name()
 	) >= -1
 
 
