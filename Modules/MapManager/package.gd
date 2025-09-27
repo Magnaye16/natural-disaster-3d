@@ -18,7 +18,6 @@ func enter_map() -> void:
 	map.Tile_manager.entity = player
 
 
-
 func exit_map() -> void:
 	var map:Map = (get_parent() as Map)
 	map._last_player_position = player.global_position

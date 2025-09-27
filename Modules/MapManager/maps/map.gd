@@ -8,15 +8,18 @@ class_name Map
 @warning_ignore("unused_private_class_variable")
 var _last_player_position:Vector2
 
-func _ready() -> void:
-	if get_parent() is not MapManager:
-		_entry_map()
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_READY:
+		if get_parent() is not MapManager:
+			_entry_map()
+			print("?")
+
 
 func _on_enter()->void:
-
 	pass
 
-
+##[color=red]  Do not override this if not neccessary
 func _entry_map()->void:
 	_last_player_position = package.player.global_position
 	_activate()

@@ -3,7 +3,6 @@
 [ext_resource type="Material" uid="uid://bh1r8knha0xvk" path="res://src/Main_game.tres" id="1_42up0"]
 [ext_resource type="Texture2D" uid="uid://cdqm3g1qjxmkx" path="res://icon.svg" id="2_ap48k"]
 [ext_resource type="Script" uid="uid://bhh103ve148q2" path="res://Modules/MapManager/map_manager.gd" id="3_wbnf2"]
-[ext_resource type="PackedScene" uid="uid://cv64losnxwqso" path="res://Modules/Inventory/Scene/Main.tscn" id="4_01ftw"]
 [ext_resource type="Script" uid="uid://cj3lx2o5mbx44" path="res://Modules/gameManager/game_manager.gd" id="5_twqns"]
 [ext_resource type="Script" uid="uid://c16uvferikfqs" path="res://Modules/weathers/weatherManager.gd" id="6_42up0"]
 [ext_resource type="Script" uid="uid://wp631s7ycfpo" path="res://Modules/seasons/SeasonManager.gd" id="7_fowpm"]
@@ -25,12 +24,13 @@
 [ext_resource type="Script" uid="uid://crgmdcqk7oc5a" path="res://Modules/disasters/DisasterManager.gd" id="19_4s0sq"]
 [ext_resource type="PackedScene" uid="uid://bcmns2k3u5453" path="res://Modules/Inventory/Scene/Inventory_hotbar.tscn" id="20_ap48k"]
 [ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://src/Fonts/ARCADECLASSIC.TTF" id="21_twqns"]
-[ext_resource type="PackedScene" uid="uid://ees2xw0pmuvh" path="res://Modules/MapManager/maps/map.tscn" id="21_urq11"]
 [ext_resource type="PackedScene" uid="uid://bi2pog25w52tj" path="res://Modules/Inventory/Scene/Inventory_UI.tscn" id="23_fowpm"]
 [ext_resource type="PackedScene" uid="uid://dqnfb71785qi0" path="res://Modules/Inventory/Scene/healthbar.tscn" id="23_twqns"]
 [ext_resource type="Script" path="res://Modules/Components/shader_texture.gd" id="23_urq11"]
+[ext_resource type="PackedScene" uid="uid://brenpacqp6x0f" path="res://Modules/MapManager/maps/main_map.tscn" id="26_44hf1"]
+[ext_resource type="PackedScene" uid="uid://pkloke8vv2vf" path="res://Modules/MapManager/maps/area_tiles_testmaps.tscn" id="26_c7sog"]
 [ext_resource type="Script" uid="uid://dew73ha17xkdv" path="res://Modules/gameManager/SoundManager.gd" id="30_disfg"]
-[ext_resource type="AudioStream" uid="uid://dnoji8iijbdfv" path="res://src/Sounds/SFX/Normal/NORMAL DAY FX.mp3" id="31_6aabe"]
+[ext_resource type="AudioStream" uid="uid://dnoji8iijbdfv" path="res://src/Sounds/SFX/Normal Day/NORMAL DAY FX.mp3" id="31_6aabe"]
 [ext_resource type="AudioStream" uid="uid://b3m2hbm7u27l3" path="res://src/Sounds/SFX/Rainy_and_Stormy/RAIN.mp3" id="32_j1mf4"]
 [ext_resource type="AudioStream" uid="uid://baqwd2p603mn" path="res://src/Sounds/SFX/Earthquake/SHOUTING IN EARTHQUAKE.mp3" id="33_c7sog"]
 [ext_resource type="AudioStream" uid="uid://c2qs3em14ras0" path="res://src/Sounds/Music/Normal Day/COZY BACKGROUND FX.mp3" id="33_j1mf4"]
@@ -243,10 +243,9 @@ render_target_update_mode = 4
 script = ExtResource("3_wbnf2")
 metadata/_custom_type_script = "uid://bhh103ve148q2"
 
-[node name="Main" parent="Main_viewport/SubViewportContainer/MapManager" node_paths=PackedStringArray("sound_manager") instance=ExtResource("4_01ftw")]
-sound_manager = NodePath("../../../../SoundManager")
+[node name="efficient tile detection test map" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("26_c7sog")]
 
-[node name="MAP" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("21_urq11")]
+[node name="MAIN MAP" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("26_44hf1")]
 
 [node name="shader_texture" type="ColorRect" parent="Main_viewport" groups=["shader"]]
 z_index = 7
