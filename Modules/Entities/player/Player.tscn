@@ -1,9 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://dabvby2oye6tp"]
+[gd_scene load_steps=25 format=3 uid="uid://dabvby2oye6tp"]
 
 [ext_resource type="Script" uid="uid://ca8pmu6s4iate" path="res://Modules/Entities/player/Player.gd" id="1_6l3be"]
 [ext_resource type="Shader" uid="uid://dgox3oy7ki2ng" path="res://Modules/Entities/entity/cast_shadow.gdshader" id="2_iay8i"]
 [ext_resource type="Texture2D" uid="uid://cdqm3g1qjxmkx" path="res://icon.svg" id="3_iay8i"]
-[ext_resource type="Texture2D" uid="uid://g0s6322abwaq" path="res://src/imgs/sprites/chars/onats sprite/updated/onat.png" id="4_kmey3"]
 [ext_resource type="Script" uid="uid://dqpn8josc5nfs" path="res://Modules/GlobalScript/Inventory.gd" id="5_iay8i"]
 [ext_resource type="Script" uid="uid://dj6310rxj4ok8" path="res://Modules/Components/componentManager.gd" id="5_x4sun"]
 [ext_resource type="Script" uid="uid://b5wt7sbobq760" path="res://Modules/Components/HealthComponent/HealthComponent.gd" id="6_xyvnq"]
@@ -15,116 +14,17 @@
 [ext_resource type="Script" uid="uid://6fhpn2hvo65i" path="res://Modules/Components/HealthComponent/HurtBoxComponent.gd" id="10_csims"]
 [ext_resource type="Script" uid="uid://b75tptmnffbfl" path="res://Modules/Components/DisasterDetector/disaster_detector.gd" id="13_lmolj"]
 [ext_resource type="PackedScene" uid="uid://6qjeq4jtygd" path="res://Modules/Components/EnvironmentComponent/Fire/FireComponent.tscn" id="14_y3nja"]
+[ext_resource type="SpriteFrames" uid="uid://dvqdgcnfoss2p" path="res://Modules/Entities/player/PlayerSpriteFrames.tres" id="15_de6ry"]
 [ext_resource type="Script" uid="uid://bi47ydddta0mf" path="res://Modules/Entities/player/balance_component.gd" id="15_i764u"]
 [ext_resource type="Script" uid="uid://tgwgeopexuvj" path="res://Modules/Command/Controller/ControllerManager.gd" id="15_vyat6"]
-[ext_resource type="AudioStream" uid="uid://hwtkdy8rgm6s" path="res://src/Sounds/SFX/Click/CLICK.mp3" id="23_rxygn"]
+[ext_resource type="Script" uid="uid://dpd7bwqltva27" path="res://Modules/Entities/player/SpriteComponent.gd" id="16_de6ry"]
+[ext_resource type="Script" uid="uid://ynjek7qxm25f" path="res://Modules/Entities/player/ShakingController.gd" id="18_vo087"]
+[ext_resource type="AudioStream" uid="uid://hwtkdy8rgm6s" path="res://src/Sounds/SFX/CLICK.mp3" id="23_rxygn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xyvnq"]
 shader = ExtResource("2_iay8i")
 shader_parameter/radius = 0.06800000323
 shader_parameter/alpha = 0.2710000128725
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_10e16"]
-atlas = ExtResource("4_kmey3")
-region = Rect2(0, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gm5mn"]
-atlas = ExtResource("4_kmey3")
-region = Rect2(32, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v5x8g"]
-atlas = ExtResource("4_kmey3")
-region = Rect2(64, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vyyj5"]
-atlas = ExtResource("4_kmey3")
-region = Rect2(96, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i764u"]
-atlas = ExtResource("4_kmey3")
-region = Rect2(0, 48, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rxygn"]
-atlas = ExtResource("4_kmey3")
-region = Rect2(32, 48, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kmey3"]
-atlas = ExtResource("4_kmey3")
-region = Rect2(64, 48, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_omka1"]
-atlas = ExtResource("4_kmey3")
-region = Rect2(96, 48, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_de6ry"]
-atlas = ExtResource("4_kmey3")
-region = Rect2(32, 96, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vo087"]
-atlas = ExtResource("4_kmey3")
-region = Rect2(64, 96, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_21m1t"]
-atlas = ExtResource("4_kmey3")
-region = Rect2(96, 96, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u4yjq"]
-atlas = ExtResource("4_kmey3")
-region = Rect2(0, 96, 32, 48)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_6l3be"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_10e16")
-}, {
-"duration": 0.2,
-"texture": SubResource("AtlasTexture_gm5mn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v5x8g")
-}, {
-"duration": 0.2,
-"texture": SubResource("AtlasTexture_vyyj5")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 2.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i764u")
-}, {
-"duration": 0.6,
-"texture": SubResource("AtlasTexture_rxygn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kmey3")
-}, {
-"duration": 0.7,
-"texture": SubResource("AtlasTexture_omka1")
-}],
-"loop": true,
-"name": &"run",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_de6ry")
-}, {
-"duration": 0.7,
-"texture": SubResource("AtlasTexture_vo087")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_21m1t")
-}, {
-"duration": 0.7,
-"texture": SubResource("AtlasTexture_u4yjq")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 3.0
-}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c4hvf"]
 radius = 4.0
@@ -146,16 +46,6 @@ controller_manager = NodePath("ControllerManager")
 material = SubResource("ShaderMaterial_xyvnq")
 scale = Vector2(1, 0.8)
 texture = ExtResource("3_iay8i")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-17, -45)
-sprite_frames = SubResource("SpriteFrames_6l3be")
-animation = &"run"
-autoplay = "Idle"
-frame_progress = 0.8368848
-centered = false
-offset = Vector2(2, 0)
-flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
 position = Vector2(0, -4)
@@ -203,7 +93,15 @@ metadata/_custom_type_script = "uid://cpfjhdr0kceht"
 script = ExtResource("10_2ob74")
 metadata/_custom_type_script = "uid://cpfjhdr0kceht"
 
+[node name="SpriteComponent" type="AnimatedSprite2D" parent="ComponentManager"]
+position = Vector2(3, -21)
+sprite_frames = ExtResource("15_de6ry")
+animation = &"tripped"
+script = ExtResource("16_de6ry")
+metadata/_custom_type_script = "uid://dpd7bwqltva27"
+
 [node name="HurtBoxComponent" type="Area2D" parent="ComponentManager" node_paths=PackedStringArray("health_component")]
+visible = false
 position = Vector2(0, -11)
 collision_layer = 8
 collision_mask = 0
@@ -217,9 +115,11 @@ position = Vector2(0.5, -1.5)
 shape = SubResource("RectangleShape2D_2ob74")
 
 [node name="interactor_component" parent="ComponentManager" instance=ExtResource("8_nm665")]
+visible = false
 position = Vector2(1, -6)
 
 [node name="FireComponent" parent="ComponentManager" node_paths=PackedStringArray("Health") instance=ExtResource("14_y3nja")]
+visible = false
 position = Vector2(0, -6)
 Health = NodePath("../HealthComponent")
 
@@ -246,13 +146,28 @@ show_percentage = false
 [node name="ControllerManager" type="Node" parent="."]
 script = ExtResource("15_vyat6")
 
+[node name="ShakingPlayerController" type="Node" parent="ControllerManager"]
+script = ExtResource("18_vo087")
+metadata/_custom_type_script = "uid://ynjek7qxm25f"
+
 [node name="PlayerController" type="Node" parent="ControllerManager"]
 script = ExtResource("7_l2e0d")
 metadata/_custom_type_script = "uid://bw645jlbwlb5l"
 
 [node name="ClickSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_rxygn")
-volume_db = 10.0
+volume_db = 24.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = -93.99999
+offset_top = -69.0
+offset_right = 1795.9998
+offset_bottom = 68.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/font_size = 100
+text = "stateasdasdasda"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="interactable_contacted" from="ComponentManager/interactor_component" to="." method="_on_interactor_component_interactable_contacted"]
 [connection signal="interactable_exited" from="ComponentManager/interactor_component" to="." method="_on_interactor_component_interactable_exited"]

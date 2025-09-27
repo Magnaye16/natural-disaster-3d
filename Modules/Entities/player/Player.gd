@@ -3,7 +3,7 @@ class_name  Player
 #variables
 
 @export var inventory : Inventory
-@onready var animated_Sprite = $AnimatedSprite2D
+@onready var animated_Sprite = $ComponentManager/SpriteComponent
 @export var healthComponent:HealthComponent
 @onready var movement_component: MovementComponent = $ComponentManager/MovementComponent
 @export var controller_manager: ControllerManager
@@ -41,21 +41,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_8):
 		apply_status(preload("uid://6xa8o7r5m1mk"))
 
-
 func update_Animation():
-	if velocity == Vector2.ZERO:
-		animated_Sprite.play("Idle")
-		#animated_Sprite.set_frame_and_progress(5,1)
-	else:
 		if velocity.x > 0:
 			animated_Sprite.flip_h = false
 		elif velocity.x < 0:
 			animated_Sprite.flip_h = true
 
-		if velocity.length() - 0.1 > movement_component.speed:
-			animated_Sprite.play("run")
-		else:
-			animated_Sprite.play("walk")
 
 
 
