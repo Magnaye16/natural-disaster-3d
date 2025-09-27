@@ -30,7 +30,7 @@ var recovery_curve:Curve = Curve.new()
 func _ready() -> void:
 	add_child(recover_timer)
 
-	recover_timer.wait_time = 0.3
+	recover_timer.wait_time = 0.1
 	recover_timer.timeout.connect(recover)
 
 	recovery_curve.clear_points()
@@ -38,7 +38,7 @@ func _ready() -> void:
 
 	recovery_curve.add_point(Vector2(0.0, recovery_amount)) # 2
 	@warning_ignore("integer_division")
-	recovery_curve.add_point(Vector2(1.0,recovery_amount * 20))       # 100
+	recovery_curve.add_point(Vector2(1.0,recovery_amount * 10))       # 100
 
 	bar.hide()
 	bar.max_value = value

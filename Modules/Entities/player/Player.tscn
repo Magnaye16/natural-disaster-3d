@@ -14,12 +14,12 @@
 [ext_resource type="Script" uid="uid://6fhpn2hvo65i" path="res://Modules/Components/HealthComponent/HurtBoxComponent.gd" id="10_csims"]
 [ext_resource type="Script" uid="uid://b75tptmnffbfl" path="res://Modules/Components/DisasterDetector/disaster_detector.gd" id="13_lmolj"]
 [ext_resource type="PackedScene" uid="uid://6qjeq4jtygd" path="res://Modules/Components/EnvironmentComponent/Fire/FireComponent.tscn" id="14_y3nja"]
-[ext_resource type="SpriteFrames" uid="uid://dvqdgcnfoss2p" path="res://Modules/Entities/player/PlayerSpriteFrames.tres" id="15_de6ry"]
+[ext_resource type="SpriteFrames" uid="uid://t0i2eijyieex" path="res://Modules/Entities/player/PlayerSpriteFrames.tres" id="15_de6ry"]
 [ext_resource type="Script" uid="uid://bi47ydddta0mf" path="res://Modules/Entities/player/balance_component.gd" id="15_i764u"]
 [ext_resource type="Script" uid="uid://tgwgeopexuvj" path="res://Modules/Command/Controller/ControllerManager.gd" id="15_vyat6"]
-[ext_resource type="Script" uid="uid://dpd7bwqltva27" path="res://Modules/Entities/player/SpriteComponent.gd" id="16_de6ry"]
+[ext_resource type="Script" path="res://Modules/Entities/player/SpriteComponent.gd" id="16_de6ry"]
 [ext_resource type="Script" uid="uid://ynjek7qxm25f" path="res://Modules/Entities/player/ShakingController.gd" id="18_vo087"]
-[ext_resource type="AudioStream" uid="uid://hwtkdy8rgm6s" path="res://src/Sounds/SFX/CLICK.mp3" id="23_rxygn"]
+[ext_resource type="AudioStream" uid="uid://hwtkdy8rgm6s" path="res://src/Sounds/SFX/Click/CLICK.mp3" id="23_rxygn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xyvnq"]
 shader = ExtResource("2_iay8i")
@@ -96,7 +96,7 @@ metadata/_custom_type_script = "uid://cpfjhdr0kceht"
 [node name="SpriteComponent" type="AnimatedSprite2D" parent="ComponentManager"]
 position = Vector2(3, -21)
 sprite_frames = ExtResource("15_de6ry")
-animation = &"tripped"
+animation = &"walk"
 script = ExtResource("16_de6ry")
 metadata/_custom_type_script = "uid://dpd7bwqltva27"
 
