@@ -5,10 +5,13 @@ var IdleState:State = State.new("idle").set_manager(self)
 var WalkingState:State = State.new("walk").set_manager(self)
 var RunningState:State = State.new("Running").set_manager(self)
 var RecoveringState:State = State.new("Recovering").set_manager(self)
+var TrippedState = State.new("Tripped").set_manager(self)
 
-
+var tripped_dmg:int = 1
+var set_bal_CMD:SetBalanceCommand = SetBalanceCommand.new()
 
 var  playAnimationCMD:PlayAnimationCommand = PlayAnimationCommand.new()
+var start_rec_bal_cmd:StartRecoveringBalanceCommand = StartRecoveringBalanceCommand.new()
 
 func get_balance_comp(_player)->BalanceComponent:
 	return (_player.component_manager.get_component(BalanceComponent) as BalanceComponent)
@@ -19,7 +22,6 @@ func _activate(player:Player):
 		return change_state(IdleState)
 	change_state(RecoveringState)
 
-
 func _setup_states(_player)->State:
 	setup_Idle()
 	setup_walk()
@@ -27,6 +29,37 @@ func _setup_states(_player)->State:
 	set_recovering(_player)
 	return IdleState
 
+func _setup_tripped(player)->void:
+	const MIN_DMG:int = 0
+	const MAX_DMG:int = 2
+	const recover_amnt:int = 5
+
+	TrippedState.state_connect(
+		get_balance_comp(player).value_filled,
+		change_state.bind(IdleState)
+	)
+
+	TrippedState._enter = func (_player:Player):
+		if get_balance_comp(player).is_full:
+			return change_state(IdleState)
+		playAnimationCMD.params.animationName = &"tripped"
+		playAnimationCMD.execute(_player)
+		tripped_dmg = randi_range(MIN_DMG,
+		MAX_DMG + (1 if prev_state == RunningState else 0)
+		)
+		_player.healthComponent.apply_DMG(tripped_dmg)
+
+	TrippedState._input= func (_player):
+		if not Input.is_key_pressed(KEY_SPACE): return
+		var recover_ :int = ((MAX_DMG + (1 if prev_state == RunningState else 0) +1)
+		- tripped_dmg) * recover_amnt
+
+		set_bal_CMD.params.add_val = recover_
+		set_bal_CMD.execute(_player)
+
+	TrippedState._process=func (_player):
+		moveCMD.params.direction *=0
+		moveCMD.execute(_player)
 
 func set_recovering(_player)->void:
 	RecoveringState.state_connect(
@@ -49,6 +82,10 @@ func setup_run()->void:
 	1
 	)
 
+	RunningState._enter =func(player):
+			playAnimationCMD.params.animationName = &"run"
+			playAnimationCMD.execute(player)
+
 	RunningState._process = func(player):
 		player.apply_status(speed_up)
 		WalkingState._process.call(player)
@@ -62,6 +99,10 @@ func setup_run()->void:
 
 func setup_walk()->void:
 		var move_params:MoveCommand.Params = moveCMD.params
+
+		WalkingState._enter =func(player):
+			playAnimationCMD.params.animationName = &"walk"
+			playAnimationCMD.execute(player)
 
 		WalkingState._input =\
 		func(player):
@@ -80,8 +121,6 @@ func setup_walk()->void:
 
 			if move_params.direction == Vector2.ZERO:
 				change_state(IdleState)
-
-var start_rec_bal_cmd:StartRecoveringBalanceCommand = StartRecoveringBalanceCommand.new()
 
 func setup_Idle()->void:
 
