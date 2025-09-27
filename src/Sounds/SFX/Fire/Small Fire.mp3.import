@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://40be4l0rcbsv"
+path="res://.godot/imported/Small Fire.mp3-c0e3ec499e7a86e31b98d44bf04b71d3.mp3str"
+
+[deps]
+
+source_file="res://src/Sounds/SFX/Fire/Small Fire.mp3"
+dest_files=["res://.godot/imported/Small Fire.mp3-c0e3ec499e7a86e31b98d44bf04b71d3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

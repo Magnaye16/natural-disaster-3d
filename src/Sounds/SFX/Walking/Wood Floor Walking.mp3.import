@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ccvgqt4ctlps2"
+path="res://.godot/imported/Wood Floor Walking.mp3-26bf8ab4e30498bbdccb29db44055344.mp3str"
+
+[deps]
+
+source_file="res://src/Sounds/SFX/Walking/Wood Floor Walking.mp3"
+dest_files=["res://.godot/imported/Wood Floor Walking.mp3-26bf8ab4e30498bbdccb29db44055344.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

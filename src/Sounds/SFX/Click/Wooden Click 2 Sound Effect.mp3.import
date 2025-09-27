@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cktahmpxpsdmw"
+path="res://.godot/imported/Wooden Click 2 Sound Effect.mp3-b11c9c80d0e457e392cbbc91785a7c47.mp3str"
+
+[deps]
+
+source_file="res://src/Sounds/SFX/Click/Wooden Click 2 Sound Effect.mp3"
+dest_files=["res://.godot/imported/Wooden Click 2 Sound Effect.mp3-b11c9c80d0e457e392cbbc91785a7c47.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

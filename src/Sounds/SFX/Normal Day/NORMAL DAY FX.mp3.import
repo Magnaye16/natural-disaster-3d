@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://dnoji8iijbdfv"
-path="res://.godot/imported/NORMAL DAY FX.mp3-61409b960e47e8b5b3c8cd32db5fe345.mp3str"
+path="res://.godot/imported/NORMAL DAY FX.mp3-f71aefbb4953adc87cba74f73c0ce7a7.mp3str"
 
 [deps]
 
-source_file="res://src/Sounds/SFX/Normal/NORMAL DAY FX.mp3"
-dest_files=["res://.godot/imported/NORMAL DAY FX.mp3-61409b960e47e8b5b3c8cd32db5fe345.mp3str"]
+source_file="res://src/Sounds/SFX/Normal Day/NORMAL DAY FX.mp3"
+dest_files=["res://.godot/imported/NORMAL DAY FX.mp3-f71aefbb4953adc87cba74f73c0ce7a7.mp3str"]
 
 [params]
 
