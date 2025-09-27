@@ -13,7 +13,7 @@ func _ready() -> void:
 		_entry_map()
 
 func _on_enter()->void:
-	
+
 	pass
 
 

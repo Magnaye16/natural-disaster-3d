@@ -1,4 +1,4 @@
-﻿extends DisasterEffect
+extends DisasterEffect
 class_name UnshakeEffect
 
 func _enter():

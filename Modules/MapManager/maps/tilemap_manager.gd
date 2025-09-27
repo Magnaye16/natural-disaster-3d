@@ -7,7 +7,7 @@ var tilemaps
 
 func _ready() -> void:
 	tilemaps = get_children()
-	
+
 
 func get_tile_data(custom_data_name: StringName ) -> Variant:
 	tilemaps.reverse() # Reverse, so it checks top tilemap layers first

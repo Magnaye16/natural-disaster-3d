@@ -3,7 +3,7 @@ class_name FireScene
 
 var duration:int = 7
 var fire_damage:int = 1
-var radius:int  = 100 
+var radius:int  = 100
 var amount:int  = 1
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
 
@@ -27,11 +27,11 @@ func despawn_fire():
 	pass
 
 func check_burnable():
-	
+
 	pass
 
 func fire_spread():
-	
+
 	pass
 
 func _ready() -> void:
@@ -55,11 +55,11 @@ func _get_tile_data_from_tilemap(custom_data_name: StringName, tile: TileMapLaye
 		var tile_data = data.get_custom_data(custom_data_name)
 		return tile_data
 	return null
-	
+
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	var fire_component:FireComponent = area.get_parent()
 	var BURN = preload("uid://6xa8o7r5m1mk").duplicate()
 	BURN.flat_addition = fire_damage
-	
+
 	fire_component.apply_damage_fire_status(BURN)

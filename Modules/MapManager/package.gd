@@ -16,7 +16,7 @@ func enter_map() -> void:
 	player.movement_component.Tile_manager = map.Tile_manager
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	map.Tile_manager.entity = player
-	
+
 
 
 func exit_map() -> void:
