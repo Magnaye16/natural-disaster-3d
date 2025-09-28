@@ -6,7 +6,12 @@ var fire_damage:int = 1
 var radius:int  = 100
 var amount:int  = 1
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
+func _ready() -> void:
+	audio_stream_player_2d.play()
+	await get_tree().create_timer(duration).timeout
+	despawn_fire()
 
 func start():
 	for i in range(amount):
@@ -34,9 +39,7 @@ func fire_spread():
 
 	pass
 
-func _ready() -> void:
-	await get_tree().create_timer(duration).timeout
-	despawn_fire()
+
 
 
 func get_tile_data(custom_data_name: StringName) -> Variant:
