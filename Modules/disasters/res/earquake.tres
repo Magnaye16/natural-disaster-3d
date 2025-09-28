@@ -30,4 +30,5 @@ chance = 0.01
 effects = Array[ExtResource("1_j0xy1")]([SubResource("Resource_ptrc0"), SubResource("Resource_3vnfh"), SubResource("Resource_si6o6")])
 exit_effects = Array[ExtResource("1_j0xy1")]([SubResource("Resource_d7300")])
 duration = 2
+cooldown = 5
 metadata/_custom_type_script = "uid://b3p2fkir4o88v"
