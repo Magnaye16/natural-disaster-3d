@@ -1,6 +1,7 @@
 extends Entity
 class_name  Player
 @export var inventory : Inventory
+
 @onready var animated_Sprite = $ComponentManager/SpriteComponent
 @export var healthComponent:HealthComponent
 @onready var movement_component: MovementComponent = $ComponentManager/MovementComponent
@@ -38,11 +39,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		apply_status(preload("uid://6xa8o7r5m1mk"))
 
 func update_Animation():
-		if velocity.x > 0:
+		if movement_component.move_direction.x > 0:
 			animated_Sprite.flip_h = false
-		elif velocity.x < 0:
+		elif movement_component.move_direction.x < 0:
 			animated_Sprite.flip_h = true
-
 
 
 func _on_interactor_component_interactable_contacted() -> void:
