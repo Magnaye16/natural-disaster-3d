@@ -50,6 +50,6 @@ func get_tile_friction():
 
 
 func set_movement_direction(direction: Vector2) -> void:
-	move_direction = direction.normalized()
+	move_direction = direction
 	_move(0.01)
 	entity.move_and_slide()
