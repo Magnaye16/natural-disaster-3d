@@ -44,6 +44,13 @@ class ShakingTrippedState extends TrippedState:
 		playAnimationCMD.execute(_player)
 		manager.global_prev_state = self
 
+		tripped_dmg = randi_range(MIN_DMG,
+		MAX_DMG + (1 if manager.compare_states(manager.prev_state,manager.get_state(RunningState)) else 0)
+		)
+
+		_player.healthComponent.apply_DMG(tripped_dmg)
+
+
 	func _input(_player:Entity)->void:
 		if not Input.is_key_pressed(KEY_SPACE): return
 		var recover_ :int = ((MAX_DMG + (1 if manager.compare_states(manager.prev_state,RunningState.new()) else 0) +1)
@@ -51,6 +58,8 @@ class ShakingTrippedState extends TrippedState:
 
 		setbalCMD.params.add_val = recover_
 		setbalCMD.execute(_player)
+
+
 
 	func _process(_player:Entity)->void:
 		movementCMD.execute(_player)
