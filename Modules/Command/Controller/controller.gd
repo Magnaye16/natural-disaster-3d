@@ -1,2 +1,0 @@
-extends BaseController
-class_name Controller

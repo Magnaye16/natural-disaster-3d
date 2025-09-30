@@ -3,7 +3,7 @@ class_name StartRecoveringBalanceCommand
 
 ##It has no param to set
 class Params extends CommandParams:
-	pass
+	var _bal_comp:BalanceComponent
 
 ##this params is used as default in execute when there is no param passed[br]
 ##so you can set this before calling execute
@@ -14,3 +14,5 @@ func execute(entity:Node,_param:CommandParams = params) -> void:
 
 	if comp:
 		comp.start_recovery()
+
+	params._bal_comp = comp
