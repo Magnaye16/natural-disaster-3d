@@ -4,11 +4,8 @@ extends Node
 @export var disasters: Array[Disaster] = []
 @export var curr_disasters:Array[Disaster]
 
+@warning_ignore("unused_signal")
 signal disaster_ended
-
-
-#func _process(_delta: float) -> void:
-#	for current_disasters in curr_disasters:
 
 
 func try_generate_disaster(game_manager: GameManager) -> void:
