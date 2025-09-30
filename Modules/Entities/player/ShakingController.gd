@@ -76,7 +76,7 @@ class ShakingWakingState extends WalkingState:
 	func _enter(_player:Entity):
 		setbalCMD.params.add_val = 0
 		setbalCMD.execute(_player)
-
+		super._enter(_player)
 
 	func _get_dmg()->int:
 		return WALKING_BALANCE_COST

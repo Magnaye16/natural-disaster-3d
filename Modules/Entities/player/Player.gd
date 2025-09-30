@@ -7,6 +7,7 @@ class_name  Player
 @onready var movement_component: MovementComponent = $ComponentManager/MovementComponent
 @export var controller_manager: ControllerManager
 @onready var click_sfx: AudioStreamPlayer = $ClickSFX
+@onready var walking_sfx: AudioStreamPlayer = $WalkingSFX
 
 
 signal interactable_found
@@ -43,7 +44,21 @@ func update_Animation():
 			animated_Sprite.flip_h = false
 		elif movement_component.move_direction.x < 0:
 			animated_Sprite.flip_h = true
+		if movement_component.move_direction.length()>0:
+			update_player_audio("Walk")
+			return
+		update_player_audio("None")
 
+func update_player_audio(audio_name: String):
+	if audio_name == "None":
+		walking_sfx.stop()
+		return
+
+	if audio_name != walking_sfx["parameters/switch_to_clip"]:
+		walking_sfx.play()
+		#walking_sfx.get_stream_playback().switch_to_clip_by_name(audio_name)
+		walking_sfx["parameters/switch_to_clip"] = audio_name
+		pass
 
 func _on_interactor_component_interactable_contacted() -> void:
 	interactable_found.emit()

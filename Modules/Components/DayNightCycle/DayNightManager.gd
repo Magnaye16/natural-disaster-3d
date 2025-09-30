@@ -1,6 +1,10 @@
 extends Node
 class_name DayNightManager
 
+# name:type=val
+# name: type = val
+# paramter: name: type
+# var name_name2_name3 : type
 
 @export_range(1,99999,1,"hide_slider","or_greater") var ticks_per_hour:int = 1
 var TICKS_PER_DAY:int:
@@ -25,13 +29,14 @@ func advance(delta:float)->void:
 
 	if int(curr_ticks) % TICKS_PER_DAY == 0 and not advanced:
 		(%GameManager as GameManager).advance_day()
-		advanced =true
+		advanced = true
 		curr_ticks = 0
 
 	update_light_level()
 
 
-	if curr_ticks >=1 :advanced = false
+	if curr_ticks >= 1:
+		advanced = false
 
 func update_light_level():
 

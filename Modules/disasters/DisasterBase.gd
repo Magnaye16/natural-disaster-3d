@@ -12,7 +12,7 @@ extends Resource
 @export var effects: Array[DisasterEffect] = []
 @export var exit_effects: Array[DisasterEffect] = []
 @export var duration: int
-
+@export var cooldown: int
 
 func s():
 	effects = effects.filter(func (f:DisasterEffect):return not f.is_done())
