@@ -31,10 +31,17 @@ class PlayerState  extends State:
 	var movementCMD:MoveCommand = MoveCommand.new()
 	var setbalCMD:SetBalanceCommand = SetBalanceCommand.new()
 	var startRecBalCMD:StartRecoveringBalanceCommand = StartRecoveringBalanceCommand.new()
+	var interactorComp:InteractorComponent
+
+
 
 	func _get_movement_vector() -> Vector2:
 		var dir:Vector2 = Input.get_vector(MoveDirection.MOVE_LEFT,MoveDirection.MOVE_RIGHT,MoveDirection.MOVE_UP,MoveDirection.MOVE_DOWN)
 		return dir
+
+	func interact(_player:Player):
+		interactorComp = _player.component_manager.get_component(InteractorComponent)
+		interactorComp.interact()
 
 class RunningState extends WalkingState:
 
@@ -100,7 +107,11 @@ class IdleState extends PlayerState:
 		startRecBalCMD.execute(_entity)
 		movementCMD.params.direction *=0
 
-	func _input(_entity:Entity)-> void:
+	func _input(_player:Entity)-> void:
+
+		if Input.is_action_just_pressed("ui_add"):
+			interact(_player)
+
 		if _get_movement_vector().length()>0 :
 			return change_state(WalkingState)
 
