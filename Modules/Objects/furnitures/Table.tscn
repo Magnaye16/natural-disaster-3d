@@ -17,6 +17,7 @@ collision_mask = 0
 script = ExtResource("1_ithpk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
 texture = ExtResource("1_flveb")
 offset = Vector2(0, -12)
 hframes = 2

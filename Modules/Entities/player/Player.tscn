@@ -99,11 +99,10 @@ script = ExtResource("10_2ob74")
 metadata/_custom_type_script = "uid://cpfjhdr0kceht"
 
 [node name="SpriteComponent" type="AnimatedSprite2D" parent="ComponentManager"]
+position = Vector2(0, -23)
 scale = Vector2(-1, 1)
 sprite_frames = ExtResource("15_de6ry")
-animation = &"walk"
-frame_progress = 0.16859864
-offset = Vector2(2.5, -24)
+animation = &"cover"
 flip_h = true
 script = ExtResource("16_de6ry")
 
