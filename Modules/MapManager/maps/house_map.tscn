@@ -28,7 +28,7 @@ sources/1 = SubResource("TileSetScenesCollectionSource_4jqkd")
 
 [node name="Player" parent="Package" index="1"]
 y_sort_enabled = true
-position = Vector2(552, 252)
+position = Vector2(510, 314)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Tilemap_manager" index="0"]
 y_sort_enabled = true

@@ -15,7 +15,6 @@ func _set_initial_state()->GDScript:
 
 func _activate(player:Player):
 
-	print(global_prev_state.name)
 
 	if not global_prev_state :return
 	if compare_states(global_prev_state,get_state(TrippedState)):

@@ -2,7 +2,7 @@ extends Entity
 class_name  Player
 @export var inventory : Inventory
 
-@onready var animated_Sprite = $ComponentManager/SpriteComponent
+@onready var animated_Sprite:SpriteComponent = $ComponentManager/SpriteComponent
 @export var healthComponent:HealthComponent
 @onready var movement_component: MovementComponent = $ComponentManager/MovementComponent
 @export var controller_manager: ControllerManager
@@ -41,9 +41,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func update_Animation():
 		if movement_component.move_direction.x > 0:
-			animated_Sprite.flip_h = false
+			animated_Sprite.scale.x = -1
 		elif movement_component.move_direction.x < 0:
-			animated_Sprite.flip_h = true
+			animated_Sprite.scale.x = 1
 		if movement_component.move_direction.length()>0:
 			update_player_audio("Walk")
 			return
