@@ -15,7 +15,6 @@ func _activate(_player:Player):
 
 	change_state(IdleState)
 
-
 func _set_initial_state()->GDScript:
 	add_state(ShakingIdleState)
 	add_state(ShakingWakingState)
@@ -23,8 +22,6 @@ func _set_initial_state()->GDScript:
 	add_state(ShakingTrippedState)
 	add_state(RecoverState)
 	return ShakingIdleState
-
-
 
 class ShakingIdleState extends IdleState:
 	func _enter(_player:Entity):
@@ -47,7 +44,6 @@ class ShakingTrippedState extends TrippedState:
 		tripped_dmg = randi_range(MIN_DMG,
 		MAX_DMG + (1 if manager.compare_states(manager.prev_state,manager.get_state(RunningState)) else 0)
 		)
-
 		_player.healthComponent.apply_DMG(tripped_dmg)
 
 
@@ -99,7 +95,6 @@ class ShakingWakingState extends WalkingState:
 			change_state(TrippedState)
 
 		super._process(_player)
-
 
 class ShakingRunningState extends RunningState:
 	const RUNNING_BALANCE_COST:int = 10
