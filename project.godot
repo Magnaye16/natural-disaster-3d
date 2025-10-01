@@ -88,6 +88,7 @@ move_down={
 2d_physics/layer_5="entity_hurtbox"
 2d_physics/layer_6="fire_source"
 2d_physics/layer_7="fire_receiver"
+2d_physics/layer_32="solid_tiles"
 
 [rendering]
 

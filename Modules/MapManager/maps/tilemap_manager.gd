@@ -25,6 +25,8 @@ func _get_tile_data_from_tilemap(custom_data_name: StringName, tile: TileMapLaye
 	if data == null:
 		#print("No tile data found at cell in:", tile.name)
 		return null
-	var tile_data = data.get_custom_data(custom_data_name)
-	#print("Custom data [", custom_data_name, "] = ", tile_data)
+
+	var tile_data
+	if data.has_custom_data(custom_data_name):
+		tile_data = data.get_custom_data(custom_data_name)
 	return tile_data

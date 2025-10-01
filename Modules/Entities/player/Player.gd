@@ -1,6 +1,7 @@
 extends Entity
 class_name  Player
 @export var inventory : Inventory
+
 @onready var animated_Sprite = $ComponentManager/SpriteComponent
 @export var healthComponent:HealthComponent
 @onready var movement_component: MovementComponent = $ComponentManager/MovementComponent
@@ -39,22 +40,19 @@ func _unhandled_input(event: InputEvent) -> void:
 		apply_status(preload("uid://6xa8o7r5m1mk"))
 
 func update_Animation():
-		if velocity.x > 0:
+		if movement_component.move_direction.x > 0:
 			animated_Sprite.flip_h = false
-			update_player_audio("Walk")
-		elif velocity.x < 0:
+		elif movement_component.move_direction.x < 0:
 			animated_Sprite.flip_h = true
+		if movement_component.move_direction.length()>0:
 			update_player_audio("Walk")
-		elif velocity.y > 0:
-			update_player_audio("Walk")
-		elif velocity.y < 0:
-			update_player_audio("Walk")
-		else:
-			update_player_audio("None")
+			return
+		update_player_audio("None")
 
 func update_player_audio(audio_name: String):
 	if audio_name == "None":
 		walking_sfx.stop()
+		return
 
 	if audio_name != walking_sfx["parameters/switch_to_clip"]:
 		walking_sfx.play()

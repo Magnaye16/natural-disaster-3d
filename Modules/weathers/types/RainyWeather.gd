@@ -3,5 +3,5 @@ class_name RainyWeather
 
 #
 #
-func apply_effect(manager:WeatherManager)->void:
+func apply_effect(_manager:WeatherManager)->void:
 	pass

@@ -1,0 +1,3 @@
+@abstract
+extends BaseController
+class_name EntityController

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Status" load_steps=2 format=3 uid="uid://dltu75l766143"]
+
+[ext_resource type="Script" uid="uid://dp3d6ucdo4gf6" path="res://Modules/Entities/Status/Status_Template.gd" id="1_7p1c7"]
+
+[resource]
+script = ExtResource("1_7p1c7")
+Multiplier = 2.0
+Duration = 9999999999999.0
+Stackable = false
+metadata/_custom_type_script = "uid://dp3d6ucdo4gf6"

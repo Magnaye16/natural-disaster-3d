@@ -8,6 +8,9 @@ var _disaster_cooldowns: Dictionary[Disaster, Timer] = {}
 #func _process(_delta: float) -> void:
 #	for current_disasters in curr_disasters:
 
+@warning_ignore("unused_signal")
+signal disaster_ended
+
 func _ready() -> void:
 	print("Ready DM!")
 	for disaster in disasters:
@@ -20,10 +23,10 @@ func try_generate_disaster(game_manager: GameManager) -> void:
 	for disaster in posible_disasters(game_manager):
 		var disaster_timer : Timer = _disaster_cooldowns[disaster]
 		print(disaster_timer.is_stopped())
-		if !disaster_timer.is_stopped(): 
+		if !disaster_timer.is_stopped():
 			print("In Cooldown!")
 			return
-		
+
 		disaster.trigger(game_manager)
 		curr_disasters.append(disaster)
 		alert_detectors(disaster)
@@ -51,7 +54,7 @@ func exit_disaster(disaster: Disaster, game_manager: GameManager):
 func _create_disaster_timer(disaster: Disaster, game_manager: GameManager):
 	await get_tree().create_timer(disaster.duration).timeout
 	exit_disaster(disaster, game_manager)
-	
+
 func _start_disaster_timer(disaster: Disaster) -> void:
 	print(disaster.cooldown)
 	_disaster_cooldowns[disaster].start(disaster.cooldown)

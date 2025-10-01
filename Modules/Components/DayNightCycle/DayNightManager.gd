@@ -16,6 +16,7 @@ var TICKS_PER_DAY:int:
 var curr_ticks:float = 1
 #
 func _ready() -> void:
+	@warning_ignore("integer_division")
 	curr_ticks = TICKS_PER_DAY / 3
 
 func _process(delta: float) -> void:

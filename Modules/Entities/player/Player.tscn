@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dabvby2oye6tp"]
+[gd_scene load_steps=27 format=3 uid="uid://dabvby2oye6tp"]
 
 [ext_resource type="Script" uid="uid://ca8pmu6s4iate" path="res://Modules/Entities/player/Player.gd" id="1_6l3be"]
 [ext_resource type="Shader" uid="uid://dgox3oy7ki2ng" path="res://Modules/Entities/entity/cast_shadow.gdshader" id="2_iay8i"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://dqpn8josc5nfs" path="res://Modules/GlobalScript/Inventory.gd" id="5_iay8i"]
 [ext_resource type="Script" uid="uid://dj6310rxj4ok8" path="res://Modules/Components/componentManager.gd" id="5_x4sun"]
 [ext_resource type="Script" uid="uid://b5wt7sbobq760" path="res://Modules/Components/HealthComponent/HealthComponent.gd" id="6_xyvnq"]
-[ext_resource type="Script" uid="uid://bw645jlbwlb5l" path="res://Modules/Command/Controller/PlayerController.gd" id="7_l2e0d"]
+[ext_resource type="Script" uid="uid://bw645jlbwlb5l" path="res://Modules/Controllers_States/Controllers/PlayerController.gd" id="7_l2e0d"]
 [ext_resource type="Script" uid="uid://c48rqlry15rsq" path="res://Modules/Components/MovementComponent.gd" id="8_c4hvf"]
 [ext_resource type="PackedScene" uid="uid://besiwigokw2yn" path="res://Modules/Components/InteractionComponents/interactor_component.tscn" id="8_nm665"]
 [ext_resource type="Script" uid="uid://ds0mapqlqyu8m" path="res://Modules/Entities/Status/Status_Manager.gd" id="9_csims"]
@@ -16,8 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://6qjeq4jtygd" path="res://Modules/Components/EnvironmentComponent/Fire/FireComponent.tscn" id="14_y3nja"]
 [ext_resource type="SpriteFrames" uid="uid://t0i2eijyieex" path="res://Modules/Entities/player/PlayerSpriteFrames.tres" id="15_de6ry"]
 [ext_resource type="Script" uid="uid://bi47ydddta0mf" path="res://Modules/Entities/player/balance_component.gd" id="15_i764u"]
-[ext_resource type="Script" uid="uid://tgwgeopexuvj" path="res://Modules/Command/Controller/ControllerManager.gd" id="15_vyat6"]
-[ext_resource type="Script" uid="uid://dpd7bwqltva27" path="res://Modules/Entities/player/SpriteComponent.gd" id="16_de6ry"]
+[ext_resource type="Script" uid="uid://tgwgeopexuvj" path="res://Modules/Controllers_States/Controllers/ControllerManager.gd" id="15_vyat6"]
+[ext_resource type="Script" path="res://Modules/Entities/player/SpriteComponent.gd" id="16_de6ry"]
+[ext_resource type="Script" uid="uid://ynjek7qxm25f" path="res://Modules/Entities/player/ShakingController.gd" id="18_vo087"]
 [ext_resource type="AudioStream" uid="uid://b44k8gik5skly" path="res://src/Sounds/SFX/Walking/Dirt Walking_trimmed.mp3" id="20_vo087"]
 [ext_resource type="AudioStream" uid="uid://hwtkdy8rgm6s" path="res://src/Sounds/SFX/Click/CLICK.mp3" id="23_rxygn"]
 
@@ -25,10 +26,6 @@
 shader = ExtResource("2_iay8i")
 shader_parameter/radius = 0.06800000323
 shader_parameter/alpha = 0.2710000128725
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c4hvf"]
-radius = 4.0
-height = 12.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ob74"]
 size = Vector2(11, 21)
@@ -42,7 +39,12 @@ clip_0/name = &"Walk"
 clip_0/stream = ExtResource("20_vo087")
 clip_0/auto_advance = 0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c4hvf"]
+radius = 4.0
+height = 12.0
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inventory", "healthComponent", "controller_manager") groups=["entity", "player"]]
+collision_mask = 2147483648
 script = ExtResource("1_6l3be")
 inventory = NodePath("ComponentManager/Inventory")
 healthComponent = NodePath("ComponentManager/HealthComponent")
@@ -52,11 +54,6 @@ controller_manager = NodePath("ControllerManager")
 material = SubResource("ShaderMaterial_xyvnq")
 scale = Vector2(1, 0.8)
 texture = ExtResource("3_iay8i")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
-position = Vector2(0, -4)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_c4hvf")
 
 [node name="ComponentManager" type="Node2D" parent="."]
 script = ExtResource("5_x4sun")
@@ -74,7 +71,6 @@ metadata/_custom_type_script = "uid://dqpn8josc5nfs"
 script = ExtResource("8_c4hvf")
 entity = NodePath("../..")
 speed = 50.0
-acceleration = 20.0
 friction = 1000.0
 status_multiplier = NodePath("../StatusManager/MovementSpeedStatusContainer")
 metadata/_custom_type_script = "uid://c48rqlry15rsq"
@@ -91,6 +87,10 @@ script = ExtResource("9_csims")
 script = ExtResource("10_2ob74")
 metadata/_custom_type_script = "uid://cpfjhdr0kceht"
 
+[node name="BalanceRecoveryStatusContainer" type="Node" parent="ComponentManager/StatusManager"]
+script = ExtResource("10_2ob74")
+metadata/_custom_type_script = "uid://cpfjhdr0kceht"
+
 [node name="HealthRegenSpeedStatusContainer" type="Node" parent="ComponentManager/StatusManager"]
 script = ExtResource("10_2ob74")
 metadata/_custom_type_script = "uid://cpfjhdr0kceht"
@@ -102,9 +102,10 @@ metadata/_custom_type_script = "uid://cpfjhdr0kceht"
 [node name="SpriteComponent" type="AnimatedSprite2D" parent="ComponentManager"]
 position = Vector2(3, -21)
 sprite_frames = ExtResource("15_de6ry")
-animation = &"walk"
+animation = &"cover"
+offset = Vector2(-2, 0)
+flip_h = true
 script = ExtResource("16_de6ry")
-metadata/_custom_type_script = "uid://dpd7bwqltva27"
 
 [node name="HurtBoxComponent" type="Area2D" parent="ComponentManager" node_paths=PackedStringArray("health_component")]
 visible = false
@@ -129,8 +130,9 @@ visible = false
 position = Vector2(0, -6)
 Health = NodePath("../HealthComponent")
 
-[node name="BalanceComponent" type="Node2D" parent="ComponentManager" node_paths=PackedStringArray("bar")]
+[node name="BalanceComponent" type="Node2D" parent="ComponentManager" node_paths=PackedStringArray("status_multiplier", "bar")]
 script = ExtResource("15_i764u")
+status_multiplier = NodePath("../StatusManager/BalanceRecoveryStatusContainer")
 bar = NodePath("ProgressBar")
 
 [node name="ProgressBar" type="ProgressBar" parent="ComponentManager/BalanceComponent"]
@@ -151,6 +153,10 @@ show_percentage = false
 
 [node name="ControllerManager" type="Node" parent="."]
 script = ExtResource("15_vyat6")
+
+[node name="ShakingPlayerController" type="Node" parent="ControllerManager"]
+script = ExtResource("18_vo087")
+metadata/_custom_type_script = "uid://ynjek7qxm25f"
 
 [node name="PlayerController" type="Node" parent="ControllerManager"]
 script = ExtResource("7_l2e0d")
@@ -178,6 +184,11 @@ current = true
 [node name="WalkingSFX" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamInteractive_21m1t")
 bus = &"SFX"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
+position = Vector2(0, -4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_c4hvf")
 
 [connection signal="interactable_contacted" from="ComponentManager/interactor_component" to="." method="_on_interactor_component_interactable_contacted"]
 [connection signal="interactable_exited" from="ComponentManager/interactor_component" to="." method="_on_interactor_component_interactable_exited"]

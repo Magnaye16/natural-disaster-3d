@@ -21,7 +21,7 @@ func start():
 		spawn_fire(Vector2( l,w))
 
 
-func spawn_fire(pos:Vector2):
+func spawn_fire(_pos:Vector2):
 	pass
 	#var debree:Debree = DEBREE.instantiate()
 	#debree.global_position += position + pos
