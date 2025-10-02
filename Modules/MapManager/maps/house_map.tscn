@@ -30,6 +30,12 @@ sources/1 = SubResource("TileSetScenesCollectionSource_4jqkd")
 y_sort_enabled = true
 position = Vector2(552, 252)
 
+[node name="SpriteComponent" parent="Package/Player/ComponentManager" index="5"]
+position = Vector2(0, -23)
+scale = Vector2(-1, 1)
+animation = &"Idle"
+offset = Vector2(0, 0)
+
 [node name="TileMapLayer" type="TileMapLayer" parent="Tilemap_manager" index="0"]
 y_sort_enabled = true
 position = Vector2(42, 5)

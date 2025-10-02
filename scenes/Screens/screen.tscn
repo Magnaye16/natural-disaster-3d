@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dteocjat4xcbh"]
+[gd_scene load_steps=12 format=3 uid="uid://dteocjat4xcbh"]
 
 [ext_resource type="Script" uid="uid://dbv4v1m1kugg0" path="res://scenes/Screens/Screen.gd" id="1_ge4dy"]
 [ext_resource type="Texture2D" uid="uid://dl1to6fpcau6r" path="res://src/imgs/UI/Screen/screen.png" id="1_rgwv1"]
@@ -6,20 +6,113 @@
 [ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://src/Fonts/ARCADECLASSIC.TTF" id="4_sheco"]
 [ext_resource type="AudioStream" uid="uid://ds3xbf7rqyxqc" path="res://src/Sounds/Music/Title Screen/Cities_ Skylines OST - Main Theme.mp3" id="5_dvpse"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvpse"]
+bg_color = Color(0.07, 0, 0, 0.88235295)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p88y3"]
-bg_color = Color(1, 0.9723816, 0.29296875, 1)
+bg_color = Color(1, 0.9854167, 0.625, 1)
 
-[node name="Screen" type="Node2D"]
+[sub_resource type="Animation" id="Animation_dvpse"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("start/TextureRect2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1.8025004, 1.4142119),
+"update": 0,
+"values": [Vector2(65, 105.000015), Vector2(65, 150.00003)]
+}
+
+[sub_resource type="Animation" id="Animation_6aeus"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("start/TextureRect2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(65, 150.00003)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-5.0]
+}
+
+[sub_resource type="Animation" id="Animation_qbeqp"]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 1),
+"transitions": PackedFloat32Array(1, 2.3784146),
+"update": 0,
+"values": [Color(0.07, 0.0189, 0.0189, 0), Color(0.07, 0.0189, 0.0189, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(7.209997, 6.0628657),
+"update": 0,
+"values": [-5.0, -69.424]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qbeqp"]
+_data = {
+&"RESET": SubResource("Animation_6aeus"),
+&"idle": SubResource("Animation_dvpse"),
+&"start": SubResource("Animation_qbeqp")
+}
+
+[node name="Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_ge4dy")
+metadata/_edit_use_anchors_ = true
 
-[node name="Start Screen" type="Node2D" parent="."]
-visible = false
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_dvpse")
+volume_db = -5.0
+pitch_scale = 4.0
+autoplay = true
+parameters/looping = true
 
-[node name="Panel" type="Panel" parent="Start Screen"]
+[node name="start" type="Panel" parent="."]
+layout_mode = 0
 offset_right = 1154.0
 offset_bottom = 646.0
 
-[node name="TextureRect" type="TextureRect" parent="Start Screen/Panel"]
+[node name="TextureRect" type="TextureRect" parent="start"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,70 +126,47 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 texture = ExtResource("1_rgwv1")
 
-[node name="TextureRect2" type="TextureRect" parent="Start Screen/Panel"]
+[node name="Button" type="Button" parent="start"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -512.0
-offset_right = 512.0
-offset_bottom = 448.0
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -125.0
+offset_bottom = -68.0
 grow_horizontal = 2
-scale = Vector2(0.7, 0.7)
-pivot_offset = Vector2(525, 0)
-texture = ExtResource("2_p88y3")
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_sheco")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_dvpse")
+text = "Start"
 
-[node name="Button" type="Button" parent="Start Screen/Panel"]
+[node name="TextureRect2" type="TextureRect" parent="start"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -37.5
-offset_right = 75.0
-offset_bottom = 37.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("4_sheco")
-theme_override_font_sizes/font_size = 48
-text = "Start"
-
-[node name="Loading Screen" type="Node2D" parent="."]
-
-[node name="Panel" type="Panel" parent="Loading Screen"]
-offset_right = 1154.0
-offset_bottom = 646.0
-
-[node name="TextureRect" type="TextureRect" parent="Loading Screen/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 2.0
-offset_right = -3.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-texture = ExtResource("1_rgwv1")
-
-[node name="TextureRect2" type="TextureRect" parent="Loading Screen/Panel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
 offset_left = -512.0
+offset_top = -172.99997
 offset_right = 512.0
-offset_bottom = 448.0
+offset_bottom = 275.00903
 grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.7, 0.7)
 pivot_offset = Vector2(525, 0)
 texture = ExtResource("2_p88y3")
 
-[node name="ProgressBar" type="ProgressBar" parent="Loading Screen/Panel"]
+[node name="loading" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.47058824)
+layout_mode = 0
+offset_right = 1154.0
+offset_bottom = 646.0
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="loading"]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 12
@@ -104,18 +174,29 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 23.0
-offset_top = -66.0
+offset_top = -114.0
 offset_right = -31.0
-offset_bottom = -33.0
+offset_bottom = -81.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/fill = SubResource("StyleBoxFlat_p88y3")
 value = 74.0
 show_percentage = false
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_dvpse")
-volume_db = 24.0
-autoplay = true
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qbeqp")
+}
+autoplay = "idle"
 
-[connection signal="pressed" from="Start Screen/Panel/Button" to="." method="_on_button_pressed"]
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.07, 0.0189, 0.0189, 0)
+
+[connection signal="pressed" from="start/Button" to="." method="_on_button_pressed"]
