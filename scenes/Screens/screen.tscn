@@ -1,0 +1,115 @@
+[gd_scene load_steps=6 format=3 uid="uid://dteocjat4xcbh"]
+
+[ext_resource type="Script" uid="uid://dbv4v1m1kugg0" path="res://scenes/Screens/Screen.gd" id="1_ge4dy"]
+[ext_resource type="Texture2D" uid="uid://dl1to6fpcau6r" path="res://src/imgs/UI/Screen/screen.png" id="1_rgwv1"]
+[ext_resource type="Texture2D" uid="uid://cdkatq2vvr1ti" path="res://src/imgs/UI/Screen/green_title_biringna.png" id="2_p88y3"]
+[ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://src/Fonts/ARCADECLASSIC.TTF" id="4_sheco"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p88y3"]
+bg_color = Color(1, 0.9723816, 0.29296875, 1)
+
+[node name="Screen" type="Node2D"]
+script = ExtResource("1_ge4dy")
+
+[node name="Start Screen" type="Node2D" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="Start Screen"]
+offset_right = 1154.0
+offset_bottom = 646.0
+
+[node name="TextureRect" type="TextureRect" parent="Start Screen/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_right = -3.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource("1_rgwv1")
+
+[node name="TextureRect2" type="TextureRect" parent="Start Screen/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -512.0
+offset_right = 512.0
+offset_bottom = 448.0
+grow_horizontal = 2
+scale = Vector2(0.7, 0.7)
+pivot_offset = Vector2(525, 0)
+texture = ExtResource("2_p88y3")
+
+[node name="Button" type="Button" parent="Start Screen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -37.5
+offset_right = 75.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_sheco")
+theme_override_font_sizes/font_size = 48
+text = "Start"
+
+[node name="Loading Screen" type="Node2D" parent="."]
+
+[node name="Panel" type="Panel" parent="Loading Screen"]
+offset_right = 1154.0
+offset_bottom = 646.0
+
+[node name="TextureRect" type="TextureRect" parent="Loading Screen/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_right = -3.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource("1_rgwv1")
+
+[node name="TextureRect2" type="TextureRect" parent="Loading Screen/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -512.0
+offset_right = 512.0
+offset_bottom = 448.0
+grow_horizontal = 2
+scale = Vector2(0.7, 0.7)
+pivot_offset = Vector2(525, 0)
+texture = ExtResource("2_p88y3")
+
+[node name="ProgressBar" type="ProgressBar" parent="Loading Screen/Panel"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = -66.0
+offset_right = -31.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_p88y3")
+value = 74.0
+show_percentage = false
+
+[connection signal="pressed" from="Start Screen/Panel/Button" to="." method="_on_button_pressed"]
