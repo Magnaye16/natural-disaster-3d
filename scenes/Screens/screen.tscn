@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dteocjat4xcbh"]
+[gd_scene load_steps=7 format=3 uid="uid://dteocjat4xcbh"]
 
 [ext_resource type="Script" uid="uid://dbv4v1m1kugg0" path="res://scenes/Screens/Screen.gd" id="1_ge4dy"]
 [ext_resource type="Texture2D" uid="uid://dl1to6fpcau6r" path="res://src/imgs/UI/Screen/screen.png" id="1_rgwv1"]
 [ext_resource type="Texture2D" uid="uid://cdkatq2vvr1ti" path="res://src/imgs/UI/Screen/green_title_biringna.png" id="2_p88y3"]
 [ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://src/Fonts/ARCADECLASSIC.TTF" id="4_sheco"]
+[ext_resource type="AudioStream" uid="uid://ds3xbf7rqyxqc" path="res://src/Sounds/Music/Title Screen/Cities_ Skylines OST - Main Theme.mp3" id="5_dvpse"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p88y3"]
 bg_color = Color(1, 0.9723816, 0.29296875, 1)
@@ -111,5 +112,10 @@ grow_vertical = 0
 theme_override_styles/fill = SubResource("StyleBoxFlat_p88y3")
 value = 74.0
 show_percentage = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_dvpse")
+volume_db = 24.0
+autoplay = true
 
 [connection signal="pressed" from="Start Screen/Panel/Button" to="." method="_on_button_pressed"]
