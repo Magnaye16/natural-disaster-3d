@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfh3rsq8jn2jd"]
+
+[ext_resource type="Texture2D" uid="uid://mux4agw8bpku" path="res://src/imgs/Tilesets/furnitures_tiles.png" id="1_flveb"]
+[ext_resource type="Script" uid="uid://0wwymae1prva" path="res://Modules/Objects/furnitures/table.gd" id="1_ithpk"]
+[ext_resource type="Script" uid="uid://duiytml84u6fx" path="res://Modules/Components/InteractionComponents/interactable_component.gd" id="4_vdgmt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vxx60"]
+radius = 8.0
+height = 28.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ithpk"]
+size = Vector2(30, 23)
+
+[node name="table" type="StaticBody2D"]
+script = ExtResource("1_ithpk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_vxx60")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -11)
+texture = ExtResource("1_flveb")
+hframes = 2
+
+[node name="InteractableComponent" type="Area2D" parent="."]
+modulate = Color(1, 1, 1, 0.29803923)
+light_mask = 0
+visibility_layer = 0
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("4_vdgmt")
+metadata/_custom_type_script = "uid://duiytml84u6fx"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
+position = Vector2(0, -10.5)
+shape = SubResource("RectangleShape2D_ithpk")
+
+[connection signal="interacted" from="InteractableComponent" to="." method="_on_interactable_component_interacted"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://b732crfoi3kha"]
+[gd_scene load_steps=7 format=3 uid="uid://b732crfoi3kha"]
 
 [ext_resource type="PackedScene" uid="uid://ees2xw0pmuvh" path="res://Modules/MapManager/maps/map.tscn" id="1_xdxa6"]
 [ext_resource type="Texture2D" uid="uid://mux4agw8bpku" path="res://src/imgs/Tilesets/furnitures_tiles.png" id="2_mrrbq"]
+[ext_resource type="PackedScene" uid="uid://cfh3rsq8jn2jd" path="res://Modules/Objects/furnitures/Table.tscn" id="3_hlu83"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mrrbq"]
 resource_name = "table"
@@ -13,10 +14,15 @@ texture = ExtResource("2_mrrbq")
 2:0/size_in_atlas = Vector2i(2, 2)
 2:0/0 = 0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_4jqkd"]
+resource_name = "table"
+scenes/1/scene = ExtResource("3_hlu83")
+
 [sub_resource type="TileSet" id="TileSet_hlu83"]
 physics_layer_0/collision_layer = 2147483648
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_mrrbq")
+sources/1 = SubResource("TileSetScenesCollectionSource_4jqkd")
 
 [node name="HOUSEMAP" instance=ExtResource("1_xdxa6")]
 
@@ -27,7 +33,7 @@ position = Vector2(552, 252)
 [node name="TileMapLayer" type="TileMapLayer" parent="Tilemap_manager" index="0"]
 y_sort_enabled = true
 position = Vector2(42, 5)
-tile_map_data = PackedByteArray("AAAaABEAAAAAAAAAAAAYAA4AAAAAAAAAAAAUAAwAAAAAAAAAAAAOAA4AAAAAAAAAAAAPAAcAAAAAAAAAAAAfAAoAAAAAAAAAAAAmABYAAAAAAAAAAAAiAA4AAAAAAAAAAAAeAA4AAAAAAAAAAAAnAA4AAAAAAAAAAAAkAA0AAAAAAAAAAAAjAA8AAAAAAAAAAAA=")
+tile_map_data = PackedByteArray(0, 0, 19, 0, 21, 0, 1, 0, 0, 0, 0, 0, 1, 0, 21, 0, 22, 0, 1, 0, 0, 0, 0, 0, 1, 0, 25, 0, 22, 0, 1, 0, 0, 0, 0, 0, 1, 0, 29, 0, 20, 0, 1, 0, 0, 0, 0, 0, 1, 0)
 tile_set = SubResource("TileSet_hlu83")
 navigation_enabled = false
 
