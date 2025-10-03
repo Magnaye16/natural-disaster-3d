@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ees2xw0pmuvh"]
 
-[ext_resource type="Script" path="res://Modules/MapManager/maps/Map2.gd" id="1_esh8l"]
+[ext_resource type="Script" uid="uid://dhbcdqh3nfvfo" path="res://Modules/MapManager/maps/Map2.gd" id="1_esh8l"]
 [ext_resource type="PackedScene" uid="uid://ceb7pu6fs56q0" path="res://Modules/Components/EnvironmentComponent/rainparticles.tscn" id="2_qnkao"]
 [ext_resource type="Script" uid="uid://dxv57et4ndi4p" path="res://Modules/MapManager/package.gd" id="4_d512a"]
 [ext_resource type="Script" uid="uid://cj766ssdxgv7t" path="res://Modules/MapManager/maps/tilemap_manager.gd" id="4_esh8l"]
@@ -24,6 +24,11 @@ emitting = true
 [node name="rain" parent="rainComponent2" index="1"]
 emitting = true
 
+[node name="Tilemap_manager" type="CanvasGroup" parent="." node_paths=PackedStringArray("entity")]
+z_as_relative = false
+script = ExtResource("4_esh8l")
+entity = NodePath("../Package/Player")
+
 [node name="Package" type="Node2D" parent="."]
 z_as_relative = false
 y_sort_enabled = true
@@ -42,11 +47,13 @@ z_as_relative = false
 position = Vector2(551, 257)
 metadata/_edit_group_ = true
 
-[node name="Tilemap_manager" type="Node2D" parent="." node_paths=PackedStringArray("entity")]
-z_as_relative = false
-y_sort_enabled = true
-script = ExtResource("4_esh8l")
-entity = NodePath("../Package/Player")
-metadata/_custom_type_script = "uid://cj766ssdxgv7t"
+[node name="burn_timer" type="Timer" parent="."]
+autostart = true
+
+[node name="fire_spread" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="burn_timer" to="Tilemap_manager" method="burn_fire"]
+[connection signal="timeout" from="fire_spread" to="Tilemap_manager" method="fire_spread"]
 
 [editable path="rainComponent2"]

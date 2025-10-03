@@ -1,6 +1,11 @@
 extends StaticBody2D
 
+var entity:Entity
 
 
-func _on_interactable_component_interacted(entity: Entity) -> void:
-	entity.queue_free()
+func _on_interactable_component_interacted(_entity: Entity) -> void:
+	entity = _entity
+	var sprite:SpriteComponent =  entity.component_manager.get_component(SpriteComponent)
+	sprite.play(&"cover")
+	entity.collision_shape.disabled = true
+	entity.global_position = global_position + Vector2(0,-1)

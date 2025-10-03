@@ -13,6 +13,7 @@ config_version=5
 config/name="Natural disaster 3D"
 run/main_scene="uid://dastsqlbcs4fe"
 config/features=PackedStringArray("4.5", "Forward Plus")
+boot_splash/bg_color=Color(0.2142334, 0.3046875, 0.21988678, 1)
 config/icon="res://icon.svg"
 
 [autoload]
@@ -94,3 +95,4 @@ move_down={
 
 textures/canvas_textures/default_texture_filter=0
 textures/default_filters/use_nearest_mipmap_filter=true
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

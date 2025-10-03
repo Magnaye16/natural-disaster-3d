@@ -18,17 +18,19 @@
 [ext_resource type="Script" uid="uid://bi47ydddta0mf" path="res://Modules/Entities/player/balance_component.gd" id="15_i764u"]
 [ext_resource type="Script" uid="uid://tgwgeopexuvj" path="res://Modules/Controllers_States/Controllers/ControllerManager.gd" id="15_vyat6"]
 [ext_resource type="Script" path="res://Modules/Entities/player/SpriteComponent.gd" id="16_de6ry"]
-[ext_resource type="Script" uid="uid://ynjek7qxm25f" path="res://Modules/Entities/player/ShakingController.gd" id="18_vo087"]
 [ext_resource type="AudioStream" uid="uid://b44k8gik5skly" path="res://src/Sounds/SFX/Walking/Dirt Walking_trimmed.mp3" id="20_vo087"]
 [ext_resource type="AudioStream" uid="uid://hwtkdy8rgm6s" path="res://src/Sounds/SFX/Click/CLICK.mp3" id="23_rxygn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xyvnq"]
 shader = ExtResource("2_iay8i")
-shader_parameter/radius = 0.06800000323
+shader_parameter/radius = 0.0650000030875
 shader_parameter/alpha = 0.2710000128725
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ob74"]
 size = Vector2(11, 21)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vo087"]
+radius = 17.029387
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rdu0r"]
 bg_color = Color(1, 0.9723816, 0.29296875, 1)
@@ -38,6 +40,16 @@ clip_count = 1
 clip_0/name = &"Walk"
 clip_0/stream = ExtResource("20_vo087")
 clip_0/auto_advance = 0
+_transitions = {
+Vector2i(0, 0): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"filler_clip": 0,
+"from_time": 0,
+"to_time": 0,
+"use_filler_clip": true
+}
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c4hvf"]
 radius = 4.0
@@ -52,6 +64,7 @@ controller_manager = NodePath("ControllerManager")
 
 [node name="shadow" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_xyvnq")
+position = Vector2(0, -5)
 scale = Vector2(1, 0.8)
 texture = ExtResource("3_iay8i")
 
@@ -100,10 +113,9 @@ script = ExtResource("10_2ob74")
 metadata/_custom_type_script = "uid://cpfjhdr0kceht"
 
 [node name="SpriteComponent" type="AnimatedSprite2D" parent="ComponentManager"]
-position = Vector2(3, -21)
+position = Vector2(0, -24)
 sprite_frames = ExtResource("15_de6ry")
-animation = &"cover"
-offset = Vector2(-2, 0)
+animation = &"run"
 flip_h = true
 script = ExtResource("16_de6ry")
 
@@ -122,8 +134,12 @@ position = Vector2(0.5, -1.5)
 shape = SubResource("RectangleShape2D_2ob74")
 
 [node name="interactor_component" parent="ComponentManager" instance=ExtResource("8_nm665")]
-visible = false
 position = Vector2(1, -6)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ComponentManager/interactor_component"]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_vo087")
 
 [node name="FireComponent" parent="ComponentManager" node_paths=PackedStringArray("Health") instance=ExtResource("14_y3nja")]
 visible = false
@@ -154,10 +170,6 @@ show_percentage = false
 [node name="ControllerManager" type="Node" parent="."]
 script = ExtResource("15_vyat6")
 
-[node name="ShakingPlayerController" type="Node" parent="ControllerManager"]
-script = ExtResource("18_vo087")
-metadata/_custom_type_script = "uid://ynjek7qxm25f"
-
 [node name="PlayerController" type="Node" parent="ControllerManager"]
 script = ExtResource("7_l2e0d")
 metadata/_custom_type_script = "uid://bw645jlbwlb5l"
@@ -183,6 +195,8 @@ current = true
 
 [node name="WalkingSFX" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamInteractive_21m1t")
+volume_db = -80.0
+max_polyphony = 15
 bus = &"SFX"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
