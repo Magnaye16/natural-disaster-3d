@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ees2xw0pmuvh"]
+[gd_scene load_steps=8 format=3 uid="uid://ees2xw0pmuvh"]
 
 [ext_resource type="Script" uid="uid://dhbcdqh3nfvfo" path="res://Modules/MapManager/maps/Map2.gd" id="1_esh8l"]
 [ext_resource type="PackedScene" uid="uid://ceb7pu6fs56q0" path="res://Modules/Components/EnvironmentComponent/rainparticles.tscn" id="2_qnkao"]
 [ext_resource type="Script" uid="uid://dxv57et4ndi4p" path="res://Modules/MapManager/package.gd" id="4_d512a"]
 [ext_resource type="Script" uid="uid://cj766ssdxgv7t" path="res://Modules/MapManager/maps/tilemap_manager.gd" id="4_esh8l"]
+[ext_resource type="TileSet" uid="uid://n70025tcfmqy" path="res://Modules/MapManager/maps/tilesets/default_tileset.tres" id="4_qnkao"]
 [ext_resource type="Script" uid="uid://boola4hp3ojxa" path="res://main_camera.gd" id="5_7g6sp"]
 [ext_resource type="PackedScene" uid="uid://dabvby2oye6tp" path="res://Modules/Entities/player/Player.tscn" id="6_t5gdg"]
 
@@ -24,10 +25,15 @@ emitting = true
 [node name="rain" parent="rainComponent2" index="1"]
 emitting = true
 
-[node name="Tilemap_manager" type="CanvasGroup" parent="." node_paths=PackedStringArray("entity")]
+[node name="Tilemap_manager" type="CanvasGroup" parent="." node_paths=PackedStringArray("event_layer", "entity")]
 z_as_relative = false
 script = ExtResource("4_esh8l")
+event_layer = NodePath("event_layer")
 entity = NodePath("../Package/Player")
+
+[node name="event_layer" type="TileMapLayer" parent="Tilemap_manager"]
+position = Vector2(3, 0)
+tile_set = ExtResource("4_qnkao")
 
 [node name="Package" type="Node2D" parent="."]
 z_as_relative = false
