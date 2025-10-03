@@ -24,8 +24,8 @@ sources/0 = SubResource("TileSetAtlasSource_itio3")
 [node name="efficient tile detection test map" instance=ExtResource("1_av7y0")]
 metadata/_edit_horizontal_guides_ = [-108.0]
 
-[node name="Tilemap_manager" parent="." index="1" node_paths=PackedStringArray("burnable_tile_layers", "event_layer")]
-burnable_tile_layers = [NodePath("Object")]
+[node name="Tilemap_manager" parent="." index="1" node_paths=PackedStringArray("objects_layers", "event_layer")]
+objects_layers = [NodePath("Object")]
 event_layer = NodePath("event_layer")
 
 [node name="Ground" type="TileMapLayer" parent="Tilemap_manager" index="0" groups=["tilemap"]]

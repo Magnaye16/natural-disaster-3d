@@ -5,28 +5,54 @@ class_name Tilemap_manager
 class TILE_OBJ :
 	var coords:Vector2i
 	var source_id:int
+	var layer:TileMapLayer
+	var health:int = 3
+
+	func get_surrounding_cells(_layer:TileMapLayer = layer)->Array[Vector2i]:
+		return _layer.get_surrounding_cells(coords)
+
+	func queue_free():
+		layer.set_cell(coords,-1)
+
+	func _init(_coords:Vector2i,_layer:TileMapLayer) -> void:
+		coords = _coords
+		layer = _layer
 
 class DYNAMIC_TILE_OBJ extends  TILE_OBJ:
-	var health:int
-	var burnable:bool
+	var flamable:bool
 	var burning:bool
+	var resistance:int
+
+	func set_burning(_burning:bool)->DYNAMIC_TILE_OBJ:
+		burning = _burning
+		return self
+
+	func set_resistance(_resistance:int)->DYNAMIC_TILE_OBJ:
+		resistance = _resistance
+		return self
+
+	func set_hp(_hp:int)->DYNAMIC_TILE_OBJ:
+		health = _hp
+		return self
+
+	func set_flamable(_burnable:bool=true)->DYNAMIC_TILE_OBJ:
+		flamable = _burnable
+		return self
 
 class FIRE_TILE extends TILE_OBJ:
-	var lifespan:int
+	pass
+
+var _flamable_tiles:Dictionary[Vector2i, TILE_OBJ]
+var _burning_objs:Dictionary[Vector2i, TILE_OBJ]
 
 
-var _burnable_obj:Array[DYNAMIC_TILE_OBJ]
-var _burning_objs:Array[DYNAMIC_TILE_OBJ]
-
-
-@export var burnable_tile_layers:Array[TileMapLayer] = []
+@export var objects_layers:Array[TileMapLayer] = []
 @export var event_layer:TileMapLayer
 
 
 @export var entity:CharacterBody2D
 var tilemaps
 
-@onready var burn_tick: Timer = $"../Timer"
 
 
 @warning_ignore("unused_parameter")
@@ -37,73 +63,105 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _ready() -> void:
 	tilemaps = get_children()
+	cache_dynamic_tiles()
 
 const FIRE_SOURCE_ID:int = 14
 const FIRE_ATLAS_COORDS:Vector2 = Vector2(1,3)
-const BURNABLE:StringName = &"burnable"
+const FLAMABLE:StringName = &"flamable"
 const BURNING:StringName = &"burning"
 const HEALTH:StringName = &"health"
 const FIRE_RESISTANCE:StringName = &"fire_resistance"
 
+func cache_dynamic_tiles()->void:
+	for layer in objects_layers:
+		for tile in layer.get_used_cells():
+			var flamable:bool = get_custom_data(layer,tile,FLAMABLE)
+			if not flamable:continue
+
+			var burning:int = get_custom_data(layer,tile,BURNING)
+			var resistance:int = get_custom_data(layer,tile,FIRE_RESISTANCE)
+			var hp:int = get_custom_data(layer,tile,HEALTH)
+			var tile_obj:DYNAMIC_TILE_OBJ = DYNAMIC_TILE_OBJ.new(tile,layer)
+
+
+			tile_obj\
+			.set_flamable(flamable)\
+			.set_resistance(resistance)\
+			.set_hp(hp)\
+			.set_burning(burning)
+			_flamable_tiles.set(tile,tile_obj)
+
+	for tile in event_layer.get_used_cells():
+			var burning:int = get_custom_data(event_layer,tile,BURNING)
+
+			if not burning:continue
+			var hp:int = get_custom_data(event_layer,tile,HEALTH)
 
 
 
+			var tile_obj:FIRE_TILE = FIRE_TILE.new(tile,event_layer)
+
+
+			tile_obj\
+			.set_hp(hp)\
+			.set_burning()
+			_flamable_tiles.set(tile,tile_obj)
 
 func burn_fire():
 	add_fire_tile()
-	applly_object_tick()
 	apply_fire_tick()
 
 func add_fire_tile():
-	for  burnable_layer in burnable_tile_layers:
-		var used_cells:Array[Vector2i] = burnable_layer.get_used_cells()
-		for tile in used_cells:
-			var data:TileData  = burnable_layer.get_cell_tile_data(tile)
-			if data.has_custom_data(BURNING) and data.get_custom_data(BURNING):
-				event_layer.set_cell(tile,FIRE_SOURCE_ID,FIRE_ATLAS_COORDS)
+		for tile:DYNAMIC_TILE_OBJ in _flamable_tiles.values():
+			if tile.burning:continue
+			event_layer.set_cell(tile.coords,-1)
 
 func apply_fire_tick():
 	apply_burn_ticks(event_layer)
 
-func applly_object_tick():
-	for burnable_layer in burnable_tile_layers:
-		apply_burn_ticks(burnable_layer)
 
-func apply_burn_ticks(layer:TileMapLayer):
-		if not layer:return
-		var used_cell:Array[Vector2i] = layer.get_used_cells()
-		for tile in used_cell:
-			var data:TileData  = layer.get_cell_tile_data(tile)
-			if data.has_custom_data(BURNING) and data.get_custom_data(BURNING):
-				var hp:int = data.get_custom_data(HEALTH)
-				if hp<=0 : layer.set_cell(tile,-1)
-				set_custom_data(layer,tile,HEALTH,hp-1)
+func apply_burn_ticks(_layer:TileMapLayer):
+		for tile:TILE_OBJ in _burning_objs.values():
+			tile.health -= 1
+			print(tile.health)
+			if tile.health < 1:
+				_burning_objs.erase(tile.coords)
+				clear_fire(tile.coords)
+				tile.queue_free()
 
+
+func clear_fire(coords:Vector2i)->void:
+	event_layer.set_cell(coords,-1)
 
 func fire_spread():
-	return
-	#if not event_layer:return
-	#var used_cell:Array[Vector2i] = event_layer.get_used_cells()
-#
-	#var burnable_tile:TileMapLayer=burnable_tile_layers[0]
-#
-	#for tile in used_cell:
-		#var data:TileData  = event_layer.get_cell_tile_data(tile)
-		#if not data.has_custom_data(BURNING) or data.get_custom_data(BURNING):continue
-#
-		#var possible_tiles: = get_surrounding_burnable_tiles(burnable_tile,tile)
-#
-		#var picked_tile = possible_tiles.pick_random()
-		#if not picked_tile:return
-		#var fire_resistance:int = get_custom_data(burnable_tile,picked_tile,FIRE_RESISTANCE)
-		#set_custom_data(burnable_tile,picked_tile,FIRE_RESISTANCE,fire_resistance-1)
-#
-		#if fire_resistance -1 > 0:continue
-		#spawn_fire(tile)
+	for fire:TILE_OBJ in _burning_objs.values():
+		for layer in objects_layers:
+			var surrounding_tiles:Array[Vector2i] = fire.get_surrounding_cells(layer)
+
+			surrounding_tiles = surrounding_tiles.filter(
+				func(tile:Vector2i):
+					return get_custom_data(layer,tile,FLAMABLE)
+			)
+
+
+			if surrounding_tiles.size()<1:continue
+			var rand_tile:Vector2i = surrounding_tiles.pick_random()
+
+
+			if not rand_tile:continue
+
+			var fire_resistance:int = _flamable_tiles.get(rand_tile).resistance
+			print("fire resistance of tile %s === %f "%[rand_tile,fire_resistance])
+
+			if (fire_resistance -1) > 0:
+				(_flamable_tiles.get(rand_tile) as DYNAMIC_TILE_OBJ).resistance -= 1
+				continue
+			spawn_fire(rand_tile)
+
 
 func get_surrounding_burnable_tiles(layer:TileMapLayer,coords:Vector2i)->Array[Vector2i]:
 		return  layer.get_surrounding_cells(coords).filter(
-				func(tile):return get_custom_data(layer,tile,BURNABLE)
+				func(tile):return get_custom_data(layer,tile,FLAMABLE)
 			)
 
 func get_custom_data(layer:TileMapLayer, tile:Vector2i,custom_data:StringName):
@@ -115,13 +173,20 @@ func get_custom_data(layer:TileMapLayer, tile:Vector2i,custom_data:StringName):
 func set_custom_data(layer:TileMapLayer, tile:Vector2i,custom_data:StringName,val)->void:
 		var data:TileData = layer.get_cell_tile_data(tile)
 		if not data:return
-
-		print("custom data %s = %s "%[custom_data,val])
 		if data.has_custom_data(custom_data):
 			return data.set_custom_data(custom_data,val)
 
-func spawn_fire(coords:Vector2):
-	set_custom_data(burnable_tile_layers[0],coords,BURNING,true)
+func spawn_fire(coords:Vector2i)->void:
+	#set_custom_data(objects_layers[0],coords,BURNING,true)
+	var flamable_tile:DYNAMIC_TILE_OBJ= _flamable_tiles.get(coords)
+	if flamable_tile:
+		_burning_objs.set(coords,flamable_tile)
+		flamable_tile.set_burning(true)
+		event_layer.set_cell(coords,FIRE_SOURCE_ID,FIRE_ATLAS_COORDS)
+		return
+
+	event_layer.set_cell(coords,FIRE_SOURCE_ID,FIRE_ATLAS_COORDS)
+	_burning_objs.set(coords,FIRE_TILE.new(coords,event_layer))
 
 
 func get_tile_data(custom_data_name: StringName ) -> Variant:
