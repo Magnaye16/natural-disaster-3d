@@ -15,12 +15,10 @@ func _set_initial_state()->GDScript:
 
 func _activate(player:Player):
 
-	print(global_prev_state.name)
 
 	if not global_prev_state :return
 	if compare_states(global_prev_state,get_state(TrippedState)):
 		get_balance_comp(player).status_multiplier.add_status(preload("uid://dltu75l766143"))
-		print("tripppedddddddddddddd")
 		return change_state(TrippedState)
 
 
@@ -79,6 +77,7 @@ class WalkingState extends PlayerState:
 		return "WALK"
 
 	func  _enter(_entity:Entity):
+		_entity.collision_shape.disabled = false
 		playAnimationCMD.params.animationName = &"walk"
 		playAnimationCMD.execute(_entity)
 
