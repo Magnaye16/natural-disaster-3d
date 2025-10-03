@@ -1,12 +1,11 @@
-extends Node2D
+extends Area2D
 class_name FireComponent
 
-@export var status_container:StatusContainer
+@onready var status_container:StatusContainer = $StatusContainer
 @export var Health:HealthComponent
 var Damage:int = 0
 var ticks:float = 0
 var duration: float = 0.5
-
 
 func _process(_delta: float) -> void:
 	#if Damage < Health.max_value:
@@ -17,7 +16,7 @@ func _process(_delta: float) -> void:
 	ticks += _delta
 
 	if ticks > duration:
-		var Product_Damage
+		var Product_Damage = Damage
 		if status_container:
 			Product_Damage = status_container.compute_value(Damage)
 
@@ -26,6 +25,16 @@ func _process(_delta: float) -> void:
 
 func apply_damage_fire_status(status:Status):
 	status_container.add_status(status)
-	$Area2D.set_deferred("monitoring", false)
+	set_deferred("monitoring", false)
 	await get_tree().create_timer(duration).timeout
-	$Area2D.set_deferred("monitoring", true)
+	set_deferred("monitoring", true)
+
+
+func _on_fire_source_entered(body: Node2D) -> void:
+	var BURN = preload("uid://6xa8o7r5m1mk").duplicate()
+	BURN.flat_addition = 1
+	apply_damage_fire_status(BURN)
+
+
+func _on_fire_source_exited(body: Node2D) -> void:
+	pass # Replace with function body.
