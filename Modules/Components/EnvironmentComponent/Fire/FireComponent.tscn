@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://6qjeq4jtygd"]
+[gd_scene load_steps=7 format=3 uid="uid://6qjeq4jtygd"]
 
 [ext_resource type="Script" uid="uid://ctgrk6fwa4k1n" path="res://Modules/Components/EnvironmentComponent/Fire/FireComponent.gd" id="1_0cr4n"]
 [ext_resource type="Texture2D" uid="uid://82rd8kadpr4r" path="res://src/Item_icon/fire_column_medium/fire_column_medium_3.png" id="2_1p8vv"]
@@ -26,11 +26,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rcu08"]
-
-[node name="FireComponent" type="Node2D" node_paths=PackedStringArray("status_container")]
+[node name="Area2D" type="Area2D"]
+collision_layer = 0
+collision_mask = 32
 script = ExtResource("1_0cr4n")
-status_container = NodePath("StatusContainer")
+
+[node name="FireComponent" type="Node2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -29)
@@ -38,14 +39,9 @@ sprite_frames = SubResource("SpriteFrames_b8ire")
 autoplay = "default"
 frame_progress = 0.7432445
 
-[node name="Area2D" type="Area2D" parent="."]
-visible = false
-collision_layer = 64
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_rcu08")
-
 [node name="StatusContainer" type="Node" parent="."]
 script = ExtResource("5_1mcr8")
 metadata/_custom_type_script = "uid://cpfjhdr0kceht"
+
+[connection signal="body_entered" from="." to="." method="_on_fire_source_entered"]
+[connection signal="body_exited" from="." to="." method="_on_fire_source_exited"]

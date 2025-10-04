@@ -57,9 +57,6 @@ func update_player_audio(audio_name: String):
 	if audio_name != walking_sfx.stream.resource_name:
 		walking_sfx.play()
 
-		#walking_sfx.get_stream_playback().switch_to_clip_by_name(audio_name)
-		#walking_sfx["parameters/switch_to_clip"] = audio_name
-		print("playing walk")
 
 func _on_interactor_component_interactable_contacted() -> void:
 	interactable_found.emit()

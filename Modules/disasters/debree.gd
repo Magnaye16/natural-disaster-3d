@@ -3,6 +3,9 @@ class_name Debree
 
 @export var damage:int = 1
 
+
+var valid_frames:Array[int] = [17,16,41,42]
+
 func _on_hit_component_hit(hurtbox: HurtBoxComponent) -> void:
 	hurtbox.damage(damage)
 @onready var main_spritr: Sprite2D = $"main spritr"
@@ -13,6 +16,7 @@ var TRANS:Tween.TransitionType= Tween.TRANS_EXPO
 
 
 func _ready() -> void:
+	frame = valid_frames.pick_random()
 	animate_sprite()
 	animate_shadow()
 

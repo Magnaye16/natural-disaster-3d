@@ -8,8 +8,6 @@ func _ready() -> void:
 	var gm:GameManager = Global.get_game_manager()
 	if gm:sound_manager = gm.sound_manager
 
-@onready var ground: TileMapLayer = $Tilemap_manager/Ground
-
 
 
 func _on_enter():
