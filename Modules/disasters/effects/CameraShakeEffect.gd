@@ -1,4 +1,4 @@
-﻿extends ShakeEffect
+extends ShakeEffect
 class_name CameraShakeEffect
 
 var frequency:float = 100:
