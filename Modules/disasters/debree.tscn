@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0swruhjk24p0"]
+[gd_scene load_steps=8 format=3 uid="uid://b0swruhjk24p0"]
 
-[ext_resource type="Shader" path="res://Modules/Entities/entity/cast_shadow.gdshader" id="1_xxyhl"]
+[ext_resource type="Shader" uid="uid://dgox3oy7ki2ng" path="res://Modules/Entities/entity/cast_shadow.gdshader" id="1_xxyhl"]
 [ext_resource type="Texture2D" uid="uid://br6h7514itwa3" path="res://src/Item_icon/icon2.png" id="2_8anmm"]
 [ext_resource type="Script" uid="uid://nma6bluc30p8" path="res://Modules/disasters/debree.gd" id="3_vnadd"]
 [ext_resource type="Script" uid="uid://phnt8n8hoqi5" path="res://Modules/Components/HurtComponent/hitComponent.gd" id="4_6v5fd"]
+[ext_resource type="Texture2D" uid="uid://c2wdfmtqsxkl1" path="res://src/imgs/Tilesets/Basic Grass Biom things 1.png" id="4_8anmm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xxyhl"]
 resource_local_to_scene = true
@@ -20,7 +21,10 @@ script = ExtResource("3_vnadd")
 
 [node name="main spritr" type="Sprite2D" parent="."]
 position = Vector2(0, -100)
-texture = ExtResource("2_8anmm")
+texture = ExtResource("4_8anmm")
+hframes = 9
+vframes = 5
+frame = 41
 
 [node name="HitComponent" type="Area2D" parent="main spritr"]
 position = Vector2(0, 1)

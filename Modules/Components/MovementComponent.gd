@@ -43,7 +43,7 @@ func get_tile_speed()->float:
 func get_tile_friction():
 	if Tile_manager == null:return friction
 	var tile_speed = Tile_manager.get_tile_data(&"Tile_speed")
-	print("Tile friction under player: ", tile_speed)
+	#print("Tile friction under player: ", tile_speed)
 	if tile_speed == null:
 		tile_speed = 0  # fall back to default
 	return tile_speed + friction

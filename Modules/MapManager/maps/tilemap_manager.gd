@@ -12,16 +12,15 @@ var tilemaps
 
 
 @warning_ignore("unused_parameter")
-func _input(event: InputEvent) -> void:
-	print("S")
+func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		var pos:Vector2 = event_layer.to_local(get_global_mouse_position())
 		spawn_fire(event_layer.local_to_map(pos))
-		print(pos)
 
 func _ready() -> void:
 	tilemaps = get_children()
 	cache_dynamic_tiles()
+	print("?")
 
 const FIRE_SOURCE_ID:int = 14
 const FIRE_ATLAS_COORDS:Vector2 = Vector2(1,3)
@@ -34,14 +33,13 @@ func cache_dynamic_tiles()->void:
 
 	for layer in objects_layers:
 		for tile in layer.get_used_cells():
-			var flamable:bool = get_custom_data(layer,tile,FLAMABLE)
+			var flamable = get_custom_data(layer,tile,FLAMABLE)
 			if not flamable:continue
 
 			var burning:int = get_custom_data(layer,tile,BURNING)
 			var resistance:int = get_custom_data(layer,tile,FIRE_RESISTANCE)
 			var hp:int = get_custom_data(layer,tile,HEALTH)
 			var tile_obj:FlamableTile = FlamableTile.new(tile,layer)
-
 			tile_obj\
 			.set_resistance(resistance)\
 			.set_hp(hp)\
@@ -53,11 +51,7 @@ func cache_dynamic_tiles()->void:
 
 			if not burning:continue
 			var hp:int = get_custom_data(event_layer,tile,HEALTH)
-
-
-
 			var tile_obj:FireTile = FireTile.new(tile,event_layer)
-
 			tile_obj\
 			.set_hp(hp)\
 			.set_burning()
@@ -140,7 +134,6 @@ func spawn_fire(coords:Vector2i)->void:
 		flamable_tile.set_burning(true)
 		event_layer.set_cell(coords,FIRE_SOURCE_ID,FIRE_ATLAS_COORDS)
 		return
-
 	event_layer.set_cell(coords,FIRE_SOURCE_ID,FIRE_ATLAS_COORDS)
 	_burning_objs.set(coords,FireTile.new(coords,event_layer))
 

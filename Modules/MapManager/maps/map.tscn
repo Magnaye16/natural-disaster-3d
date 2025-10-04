@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ees2xw0pmuvh"]
+[gd_scene load_steps=9 format=3 uid="uid://ees2xw0pmuvh"]
 
 [ext_resource type="Script" uid="uid://dhbcdqh3nfvfo" path="res://Modules/MapManager/maps/Map2.gd" id="1_esh8l"]
 [ext_resource type="PackedScene" uid="uid://ceb7pu6fs56q0" path="res://Modules/Components/EnvironmentComponent/rainparticles.tscn" id="2_qnkao"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cj766ssdxgv7t" path="res://Modules/MapManager/maps/tilemap_manager.gd" id="4_esh8l"]
 [ext_resource type="TileSet" uid="uid://n70025tcfmqy" path="res://Modules/MapManager/maps/tilesets/default_tileset.tres" id="4_qnkao"]
 [ext_resource type="Script" uid="uid://boola4hp3ojxa" path="res://main_camera.gd" id="5_7g6sp"]
+[ext_resource type="TileSet" uid="uid://ciitne105473o" path="res://Modules/MapManager/maps/tilesets/objects.tres" id="5_7ucfc"]
 [ext_resource type="PackedScene" uid="uid://dabvby2oye6tp" path="res://Modules/Entities/player/Player.tscn" id="6_t5gdg"]
 
 [node name="MAP2" type="Node2D" node_paths=PackedStringArray("package", "Tile_manager")]
@@ -25,11 +26,16 @@ emitting = true
 [node name="rain" parent="rainComponent2" index="1"]
 emitting = true
 
-[node name="Tilemap_manager" type="CanvasGroup" parent="." node_paths=PackedStringArray("event_layer", "entity")]
+[node name="Tilemap_manager" type="CanvasGroup" parent="." node_paths=PackedStringArray("objects_layers", "event_layer", "entity")]
 z_as_relative = false
 script = ExtResource("4_esh8l")
+objects_layers = [NodePath("Object")]
 event_layer = NodePath("event_layer")
 entity = NodePath("../Package/Player")
+
+[node name="Object" type="TileMapLayer" parent="Tilemap_manager"]
+tile_map_data = PackedByteArray(0, 0, 50, 0, 15, 0, 2, 0, 4, 0, 3, 0, 0, 0)
+tile_set = ExtResource("5_7ucfc")
 
 [node name="event_layer" type="TileMapLayer" parent="Tilemap_manager"]
 position = Vector2(3, 0)
