@@ -59,17 +59,26 @@ func _change_state(new_state:GDScript):
 	var state:State = get_state(new_state)
 	requested_change_state.emit(state)
 
+##called everytime a new state entered
+func _new_state_entered(_entity)->void:
+	pass
+
 func change_state_re_enter(new_state:GDScript):
 	_change_state(new_state)
 
-## don't forget to call super.__process() when overriding this[br]
-##calls curr_state_process
+
+##called after curr_state.process
+func _state_process(manager_owner:Node)->void:
+	pass
+
+
+## don't OVERRIDE THIS
 func __process(manager_owner:Node)->void:
 	if not curr_state:return
 	curr_state._process(manager_owner)
+	_state_process(manager_owner)
 
-## don't forget to call super.__input() when overriding this[br]
-##calls curr_state._input
+## don't OVERRIDE THIS
 func __input(manager_owner:Node)->void:
 	if not curr_state:return
 	curr_state._input(manager_owner)
