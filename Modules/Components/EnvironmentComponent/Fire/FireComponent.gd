@@ -29,12 +29,10 @@ func apply_damage_fire_status(status:Status):
 	await get_tree().create_timer(duration).timeout
 	set_deferred("monitoring", true)
 
-
 func _on_fire_source_entered(_body: Node2D) -> void:
 	var BURN = preload("uid://6xa8o7r5m1mk").duplicate()
 	BURN.flat_addition = 1
 	apply_damage_fire_status(BURN)
-
 
 func _on_fire_source_exited(_body: Node2D) -> void:
 	pass # Replace with function body.

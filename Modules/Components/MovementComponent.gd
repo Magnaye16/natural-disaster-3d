@@ -1,7 +1,7 @@
 class_name MovementComponent
 extends Node
 
-@export var Tile_manager: Tilemap_manager
+var Tile_manager: Tilemap_manager
 @export var entity:CharacterBody2D
 @export var speed : float = 100.0
 @export var acceleration : float = 50.0
@@ -13,6 +13,10 @@ var move_direction : Vector2 = Vector2.ZERO # Save the move_direction so when we
 var velocity:Vector2:
 	get():return entity.velocity
 	set(val):entity.velocity = val
+
+
+
+
 
 
 func _move(delta: float) -> void:
@@ -39,7 +43,6 @@ func get_tile_speed()->float:
 		tile_speed = 1 # fall back to default
 	return tile_speed
 
-
 func get_tile_friction():
 	if Tile_manager == null:return friction
 	var tile_speed = Tile_manager.get_tile_data(&"Tile_speed")
@@ -47,7 +50,6 @@ func get_tile_friction():
 	if tile_speed == null:
 		tile_speed = 0  # fall back to default
 	return tile_speed + friction
-
 
 func set_movement_direction(direction: Vector2) -> void:
 	move_direction = direction
