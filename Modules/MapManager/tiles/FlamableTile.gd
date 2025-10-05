@@ -5,6 +5,8 @@ var burning:bool = false
 var health:int = 1
 var resistance:int = 2
 
+
+
 func set_burning(_burning:bool = true)->FlamableTile:
 	burning = _burning
 	return self

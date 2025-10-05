@@ -1,8 +1,12 @@
 extends CanvasGroup
 class_name Tilemap_manager
 
-var _flamable_tiles:Dictionary[Vector2i, DynamicTile]
-var _burning_objs:Dictionary[Vector2i, DynamicTile]
+var _flamable_tiles:Dictionary[Vector2i, FlamableTile]
+var _burning_objs:Dictionary[Vector2i, FlamableTile]
+
+var _dynamic_water_tiles:Dictionary[Vector2i, DynamicTile]
+
+
 
 @export var objects_layers:Array[TileMapLayer] = []
 @export var event_layer:TileMapLayer
@@ -13,14 +17,17 @@ var tilemaps
 
 @warning_ignore("unused_parameter")
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if Input.is_key_pressed(KEY_1):
 		var pos:Vector2 = event_layer.to_local(get_global_mouse_position())
 		spawn_fire(event_layer.local_to_map(pos))
+
+	if Input.is_key_pressed(KEY_2):
+		var pos:Vector2 = event_layer.to_local(get_global_mouse_position())
+		spawn_water(event_layer.local_to_map(pos))
 
 func _ready() -> void:
 	tilemaps = get_children()
 	cache_dynamic_tiles()
-	print("?")
 
 const FIRE_SOURCE_ID:int = 14
 const FIRE_ATLAS_COORDS:Vector2 = Vector2(1,3)
@@ -61,6 +68,7 @@ func burn_fire():
 	add_fire_tile()
 	apply_fire_tick()
 
+
 func add_fire_tile():
 		for tile:DynamicTile in _flamable_tiles.values():
 			if tile.burning:continue
@@ -68,7 +76,6 @@ func add_fire_tile():
 
 func apply_fire_tick():
 	apply_burn_ticks(event_layer)
-
 
 func apply_burn_ticks(_layer:TileMapLayer):
 		for tile:DynamicTile in _burning_objs.values():
@@ -79,12 +86,14 @@ func apply_burn_ticks(_layer:TileMapLayer):
 				clear_fire(tile.coords)
 				tile.queue_free()
 
-
 func clear_fire(coords:Vector2i)->void:
 	event_layer.set_cell(coords,-1)
 
 func fire_spread():
+	water_spread()
+
 	for fire:DynamicTile in _burning_objs.values():
+
 		for layer in objects_layers:
 			var surrounding_tiles:Array[Vector2i] = fire.get_surrounding_cells(layer)
 
@@ -108,6 +117,38 @@ func fire_spread():
 				continue
 			spawn_fire(rand_tile)
 
+func water_spread():
+
+	print(_dynamic_water_tiles.values().map(
+		func(w):return w.height
+	))
+
+	for water:DynamicWaterTile in _dynamic_water_tiles.values():
+		if water.updated or water.height <= 1 : continue
+
+		for layer:TileMapLayer in get_children():
+			if layer == event_layer:continue
+
+			var surrounding = water.get_surrounding_cells(layer)
+
+			for tile in surrounding:
+
+				if _dynamic_water_tiles.has(tile):
+					var w:DynamicWaterTile = _dynamic_water_tiles.get(tile)
+					if water.height <= w.height:continue
+					w.height += 1
+					w.updated = false
+					continue
+
+				var height = get_custom_data(layer,tile,&"height")
+				if not height:height = 0
+				if water.height < height :continue
+				spawn_water(tile,water.height-1)
+
+
+		water.updated = true
+		water.height -= 1
+
 
 func get_surrounding_burnable_tiles(layer:TileMapLayer,coords:Vector2i)->Array[Vector2i]:
 		return  layer.get_surrounding_cells(coords).filter(
@@ -129,14 +170,33 @@ func set_custom_data(layer:TileMapLayer, tile:Vector2i,custom_data:StringName,va
 func spawn_fire(coords:Vector2i)->void:
 	#set_custom_data(objects_layers[0],coords,BURNING,true)
 	var flamable_tile:DynamicTile= _flamable_tiles.get(coords)
+	var fire:FireTile = FireTile.new(coords,event_layer)
+	fire.spawn_tile()
+
 	if flamable_tile:
 		_burning_objs.set(coords,flamable_tile)
 		flamable_tile.set_burning(true)
-		event_layer.set_cell(coords,FIRE_SOURCE_ID,FIRE_ATLAS_COORDS)
 		return
-	event_layer.set_cell(coords,FIRE_SOURCE_ID,FIRE_ATLAS_COORDS)
-	_burning_objs.set(coords,FireTile.new(coords,event_layer))
+	_burning_objs.set(coords,fire)
 
+
+
+func spawn_water(coords:Vector2i,_height:int = 1)->void:
+
+	#get water tiles that is not yet spread itself
+	var existing_water:DynamicWaterTile = _dynamic_water_tiles.get(coords)
+
+	#
+	if existing_water:
+		print(existing_water.height)
+		existing_water.height +=1
+		existing_water.updated = false
+		return
+	var water:DynamicWaterTile = DynamicWaterTile.new(coords,event_layer)
+	water.set_height(_height)
+
+	water.spawn_tile()
+	_dynamic_water_tiles.set(coords,water)
 
 func get_tile_data(custom_data_name: StringName ) -> Variant:
 	tilemaps.reverse() # Reverse, so it checks top tilemap layers first

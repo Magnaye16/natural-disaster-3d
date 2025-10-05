@@ -20,6 +20,7 @@ func _process(delta: float) -> void:
 
 func _on_button_pressed() -> void:
 	$start/Button.hide()
-	$AnimationPlayer.play("start")
-	await $AnimationPlayer.animation_finished
+	Fade.fade_out(1,Color(),"Diamond")
+	await get_tree().create_timer(1.1).timeout
 	get_tree().change_scene_to_file("res://Main_game.tscn")
+	Fade.fade_in(1,Color(),"Diamond")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dabvby2oye6tp"]
+[gd_scene load_steps=31 format=3 uid="uid://dabvby2oye6tp"]
 
 [ext_resource type="Script" uid="uid://ca8pmu6s4iate" path="res://Modules/Entities/player/Player.gd" id="1_6l3be"]
 [ext_resource type="Shader" uid="uid://dgox3oy7ki2ng" path="res://Modules/Entities/entity/cast_shadow.gdshader" id="2_iay8i"]
@@ -12,12 +12,14 @@
 [ext_resource type="Script" uid="uid://ds0mapqlqyu8m" path="res://Modules/Entities/Status/Status_Manager.gd" id="9_csims"]
 [ext_resource type="Script" uid="uid://cpfjhdr0kceht" path="res://Modules/Entities/Status/StatusContainer.gd" id="10_2ob74"]
 [ext_resource type="Script" uid="uid://6fhpn2hvo65i" path="res://Modules/Components/HealthComponent/HurtBoxComponent.gd" id="10_csims"]
+[ext_resource type="Shader" uid="uid://k58fp851016f" path="res://Modules/Entities/player/shake.gdshader" id="12_u4yjq"]
+[ext_resource type="Texture2D" uid="uid://t6ny304ok3d5" path="res://src/imgs/sprites/chars/onats sprite/updated/flood_mask.png" id="13_21m1t"]
 [ext_resource type="Script" uid="uid://b75tptmnffbfl" path="res://Modules/Components/DisasterDetector/disaster_detector.gd" id="13_lmolj"]
 [ext_resource type="PackedScene" uid="uid://6qjeq4jtygd" path="res://Modules/Components/EnvironmentComponent/Fire/FireComponent.tscn" id="14_y3nja"]
 [ext_resource type="SpriteFrames" uid="uid://t0i2eijyieex" path="res://Modules/Entities/player/PlayerSpriteFrames.tres" id="15_de6ry"]
 [ext_resource type="Script" uid="uid://bi47ydddta0mf" path="res://Modules/Entities/player/balance_component.gd" id="15_i764u"]
 [ext_resource type="Script" uid="uid://tgwgeopexuvj" path="res://Modules/Controllers_States/Controllers/ControllerManager.gd" id="15_vyat6"]
-[ext_resource type="Script" path="res://Modules/Entities/player/SpriteComponent.gd" id="16_de6ry"]
+[ext_resource type="Script" uid="uid://dpd7bwqltva27" path="res://Modules/Entities/player/SpriteComponent.gd" id="16_de6ry"]
 [ext_resource type="AudioStream" uid="uid://b44k8gik5skly" path="res://src/Sounds/SFX/Walking/Dirt Walking_trimmed.mp3" id="20_vo087"]
 [ext_resource type="AudioStream" uid="uid://hwtkdy8rgm6s" path="res://src/Sounds/SFX/Click/CLICK.mp3" id="23_rxygn"]
 
@@ -25,6 +27,10 @@
 shader = ExtResource("2_iay8i")
 shader_parameter/radius = 0.0650000030875
 shader_parameter/alpha = 0.2710000128725
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxygn"]
+shader = ExtResource("12_u4yjq")
+shader_parameter/intensity = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ob74"]
 size = Vector2(11, 21)
@@ -67,7 +73,7 @@ controller_manager = NodePath("ControllerManager")
 
 [node name="shadow" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_xyvnq")
-position = Vector2(0, -5)
+position = Vector2(6, -21)
 scale = Vector2(1, 0.8)
 texture = ExtResource("3_iay8i")
 
@@ -115,14 +121,20 @@ metadata/_custom_type_script = "uid://cpfjhdr0kceht"
 script = ExtResource("10_2ob74")
 metadata/_custom_type_script = "uid://cpfjhdr0kceht"
 
-[node name="SpriteComponent" type="AnimatedSprite2D" parent="ComponentManager"]
-position = Vector2(0, -24)
-sprite_frames = ExtResource("15_de6ry")
-animation = &"run"
-flip_h = true
+[node name="SpriteComponent" type="Sprite2D" parent="ComponentManager"]
+texture = ExtResource("13_21m1t")
+offset = Vector2(0, 1)
 script = ExtResource("16_de6ry")
 
+[node name="animated_sprite" type="AnimatedSprite2D" parent="ComponentManager/SpriteComponent"]
+material = SubResource("ShaderMaterial_rxygn")
+position = Vector2(-1, -17)
+sprite_frames = ExtResource("15_de6ry")
+animation = &"walk"
+flip_h = true
+
 [node name="HurtBoxComponent" type="Area2D" parent="ComponentManager" node_paths=PackedStringArray("health_component")]
+visible = false
 position = Vector2(0, -11)
 collision_layer = 8
 collision_mask = 0
@@ -136,6 +148,7 @@ position = Vector2(0.5, -1.5)
 shape = SubResource("RectangleShape2D_2ob74")
 
 [node name="interactor_component" parent="ComponentManager" instance=ExtResource("8_nm665")]
+visible = false
 position = Vector2(1, -6)
 collision_layer = 0
 
@@ -144,6 +157,7 @@ position = Vector2(0, -14)
 shape = SubResource("CircleShape2D_vo087")
 
 [node name="FireComponent" parent="ComponentManager" node_paths=PackedStringArray("Health") instance=ExtResource("14_y3nja")]
+visible = false
 position = Vector2(0, -6)
 Health = NodePath("../HealthComponent")
 
@@ -205,9 +219,11 @@ max_polyphony = 15
 bus = &"SFX"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
+visible = false
 position = Vector2(1, -4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_c4hvf")
 
+[connection signal="animation_finished" from="ComponentManager/SpriteComponent/animated_sprite" to="ComponentManager/SpriteComponent" method="_on_animated_sprite_animation_finished"]
 [connection signal="interactable_contacted" from="ComponentManager/interactor_component" to="." method="_on_interactor_component_interactable_contacted"]
 [connection signal="interactable_exited" from="ComponentManager/interactor_component" to="." method="_on_interactor_component_interactable_exited"]

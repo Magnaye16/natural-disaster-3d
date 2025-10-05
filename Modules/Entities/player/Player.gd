@@ -2,7 +2,7 @@ extends Entity
 class_name  Player
 @export var inventory : Inventory
 
-@onready var animated_Sprite = $ComponentManager/SpriteComponent
+@onready var animated_Sprite:SpriteComponent = $ComponentManager/SpriteComponent
 @export var healthComponent:HealthComponent
 @onready var movement_component: MovementComponent = $ComponentManager/MovementComponent
 @export var controller_manager: ControllerManager
@@ -17,9 +17,6 @@ signal inventory_requested
 
 func _ready() -> void:
 	add_to_group("player")
-
-func _physics_process(_delta):
-	update_Animation()
 
 func _unhandled_input(event: InputEvent) -> void:
 
@@ -39,15 +36,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_8):
 		apply_status(preload("uid://6xa8o7r5m1mk"))
 
-func update_Animation():
-		if movement_component.move_direction.x > 0:
-			animated_Sprite.flip_h = false
-		elif movement_component.move_direction.x < 0:
-			animated_Sprite.flip_h = true
-		if movement_component.move_direction.length()>0:
-			update_player_audio("Walk")
-			return
-		update_player_audio("None")
+
 
 func update_player_audio(audio_name: String):
 	if audio_name == "None":
