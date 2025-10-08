@@ -50,7 +50,7 @@ visible = false
 z_as_relative = true
 position = Vector2(293, 527)
 
-[node name="fire_spread" parent="." index="4"]
+[node name="fire_spread" parent="." index="5"]
 wait_time = 0.3
 
 [editable path="rainComponent2"]

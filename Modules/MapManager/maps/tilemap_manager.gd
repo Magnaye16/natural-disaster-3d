@@ -62,8 +62,6 @@ func burn_fire():
 
 
 
-
-
 func apply_fire_tick():
 	apply_burn_ticks()
 
@@ -111,7 +109,7 @@ func fire_spread():
 			surrounding_tiles.append_array( get_surrounding_flamable_tiles(fire) )
 
 
-
+		if surrounding_tiles.is_empty():continue
 		var rand_tile:FlamableTile= surrounding_tiles.pick_random()
 		if not rand_tile:continue
 		surrounding_tiles.erase(rand_tile)
@@ -195,9 +193,7 @@ func spawn_fire(coords:Vector2i)->void:
 
 
 	if flamable_tile.burning:
-		print("burninnnngg")
 		if randf()<0.99:return
-		print("famge")
 		flamable_tile.health-=1
 
 	flamable_tile.set_burning(true)
