@@ -8,6 +8,10 @@
 
 config_version=5
 
+[addons]
+
+universal_fade/patterns_directory="res://addons/UniversalFade/Patterns"
+
 [application]
 
 config/name="Natural disaster 3D"
@@ -27,6 +31,10 @@ window/stretch/mode="canvas_items"
 [dotnet]
 
 project/assembly_name="Natural disaster 3D"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/marquee/plugin.cfg")
 
 [global_group]
 
