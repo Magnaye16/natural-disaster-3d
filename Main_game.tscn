@@ -244,12 +244,12 @@ render_target_update_mode = 4
 script = ExtResource("3_wbnf2")
 metadata/_custom_type_script = "uid://bhh103ve148q2"
 
-[node name="efficient tile detection test map" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("26_c7sog")]
-z_as_relative = true
-y_sort_enabled = false
-
 [node name="HOUSEMAP" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("25_44hf1")]
 position = Vector2(528.023, 278.7946)
+
+[node name="OUTSIDE" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("26_c7sog")]
+z_as_relative = true
+y_sort_enabled = false
 
 [node name="MAIN MAP" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("26_44hf1")]
 z_as_relative = true
@@ -325,6 +325,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="season_weather_disaster_debug_ui" type="Control" parent="Main_UI"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

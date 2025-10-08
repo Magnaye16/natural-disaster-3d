@@ -33,12 +33,21 @@ func _unhandled_key_input(_event: InputEvent) -> void:
 
 
 
-func switch_map(map_name:StringName, reload: bool = false) -> void:
+func switch_map(location:StringName, reload: bool = false) -> void:
+
+
+	var map_door:Array = location.split(":")
+
+	var map_name:StringName = map_door[0]
+	var map_id:StringName = map_door[1]
+
 	var map:Map = map_cache.get(map_name)
 
 	if not reload:
 		if current_map == map:return
 		#new map
+		map.spawn_to_door(map_id)
+
 		return switch_to_new_map_no_reload(map)
 
 	#need reload
@@ -48,7 +57,7 @@ func switch_map(map_name:StringName, reload: bool = false) -> void:
 	current_map = new_map
 
 	new_map.activate(old_map.player)
-
+	new_map.spawn_to_door(map_id)
 	add_child(new_map)
 	old_map.queue_free()
 

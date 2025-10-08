@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgm85j56xlo5d"]
+
+[ext_resource type="PackedScene" uid="uid://c8w25y8t3ednj" path="res://Modules/Components/InteractionComponents/interactable_component.tscn" id="1_0obyl"]
+[ext_resource type="Script" uid="uid://mbfa1xq1hx64" path="res://Modules/MapManager/maps/interactable_door.gd" id="2_m03gq"]
+
+[node name="a" instance=ExtResource("1_0obyl")]
+script = ExtResource("2_m03gq")
+need_interaction = false
+location = &""
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
+[connection signal="contacted" from="." to="." method="_on_contacted"]
+[connection signal="interacted" from="." to="." method="_on_interacted"]

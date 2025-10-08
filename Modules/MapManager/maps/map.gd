@@ -11,8 +11,11 @@ var sound_manager: SoundManager
 @warning_ignore("unused_private_class_variable")
 var _last_player_position:Vector2
 
-signal go_to_requested(map_name:StringName)
+signal go_to_requested(location:StringName)
 
+func spawn_to_door(door_id:StringName)->void:
+	var door:Interactable_door = get_node("DOOR_%s"%door_id)
+	_last_player_position = door.spawn_position
 
 
 func _notification(what: int) -> void:
@@ -25,13 +28,11 @@ func _notification(what: int) -> void:
 
 		return
 
-func go_to(map_name:StringName)->void:
-	go_to_requested.emit(map_name)
-
+func go_to(location:StringName)->void:
+	go_to_requested.emit(location)
 
 func _on_enter():
 	pass
-
 
 ##[color=red]  Do not override this if not neccessary
 ##activates and setups this map to run [br]

@@ -36,7 +36,7 @@ shader_parameter/intensity = 0.0
 size = Vector2(11, 21)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vo087"]
-radius = 26.019224
+radius = 20.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vo087"]
 size = Vector2(11, 19)
@@ -151,7 +151,7 @@ position = Vector2(1, -6)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ComponentManager/interactor_component"]
-position = Vector2(0, -14)
+position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_vo087")
 
 [node name="FireComponent" parent="ComponentManager" node_paths=PackedStringArray("Health") instance=ExtResource("14_y3nja")]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=4 uid="uid://b732crfoi3kha"]
+[gd_scene load_steps=4 format=4 uid="uid://b732crfoi3kha"]
 
 [ext_resource type="PackedScene" uid="uid://ees2xw0pmuvh" path="res://Modules/MapManager/maps/map.tscn" id="1_xdxa6"]
 [ext_resource type="TileSet" uid="uid://ciitne105473o" path="res://Modules/MapManager/maps/tilesets/objects.tres" id="2_2q67l"]
+[ext_resource type="PackedScene" uid="uid://dgm85j56xlo5d" path="res://Modules/MapManager/maps/interactable_door.tscn" id="3_hlu83"]
 
 [node name="HOUSEMAP" instance=ExtResource("1_xdxa6")]
 
@@ -47,6 +48,17 @@ wait_time = 3.0
 
 [node name="fire_spread" parent="." index="5"]
 wait_time = 0.05
+
+[node name="DOOR_A" parent="." index="6" node_paths=PackedStringArray("map") instance=ExtResource("3_hlu83")]
+position = Vector2(480, 438)
+map = NodePath("..")
+need_interaction = true
+location = &"OUTSIDE:A"
+
+[node name="Marker2D" type="Marker2D" parent="DOOR_A" index="1"]
+position = Vector2(1, -28)
+
+[connection signal="go_to" from="DOOR_A" to="." method="_on_door_a_go_to"]
 
 [editable path="rainComponent2"]
 [editable path="Package/Player"]
