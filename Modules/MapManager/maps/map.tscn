@@ -26,18 +26,33 @@ emitting = true
 [node name="rain" parent="rainComponent2" index="1"]
 emitting = true
 
-[node name="Tilemap_manager" type="CanvasGroup" parent="." node_paths=PackedStringArray("objects_layers", "event_layer", "entity")]
+[node name="Tilemap_manager" type="CanvasGroup" parent="." node_paths=PackedStringArray("fire_effects_layer", "water_effects_layer", "entity")]
 z_as_relative = false
 script = ExtResource("4_esh8l")
-objects_layers = [NodePath("Object")]
-event_layer = NodePath("event_layer")
+fire_effects_layer = NodePath("../effects_tile/fire_layer")
+water_effects_layer = NodePath("../effects_tile/dynamic_water_layer")
 entity = NodePath("../Package/Player")
 
 [node name="Object" type="TileMapLayer" parent="Tilemap_manager"]
+unique_name_in_owner = true
 tile_map_data = PackedByteArray(0, 0, 50, 0, 15, 0, 2, 0, 4, 0, 3, 0, 0, 0)
 tile_set = ExtResource("5_7ucfc")
 
-[node name="event_layer" type="TileMapLayer" parent="Tilemap_manager"]
+[node name="effects_tile" type="CanvasGroup" parent="."]
+z_as_relative = false
+
+[node name="fire_layer" type="TileMapLayer" parent="effects_tile"]
+unique_name_in_owner = true
+position = Vector2(3, 0)
+tile_set = ExtResource("4_qnkao")
+
+[node name="dynamic_water_layer" type="TileMapLayer" parent="effects_tile"]
+unique_name_in_owner = true
+position = Vector2(3, 0)
+tile_set = ExtResource("4_qnkao")
+
+[node name="effects_layer" type="TileMapLayer" parent="effects_tile"]
+unique_name_in_owner = true
 position = Vector2(3, 0)
 tile_set = ExtResource("4_qnkao")
 

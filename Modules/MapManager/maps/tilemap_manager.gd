@@ -1,121 +1,134 @@
 extends CanvasGroup
 class_name Tilemap_manager
 
+
+var _fire_tiles:Dictionary[Vector2i, FlamableTile]
 var _flamable_tiles:Dictionary[Vector2i, FlamableTile]
 var _burning_objs:Dictionary[Vector2i, FlamableTile]
+var _dynamic_water_tiles:Dictionary[Vector2i, DynamicWaterTile]
+var _static_tiles:Dictionary[Vector2i, BaseTile]
 
-var _dynamic_water_tiles:Dictionary[Vector2i, DynamicTile]
+var tile_groups:Dictionary[GDScript,Dictionary]={
+	BaseTile:_static_tiles,
+	DynamicWaterTile:_dynamic_water_tiles,
+	FireTile:_fire_tiles,
+	FlamableTile:_flamable_tiles,
+}
 
 
 
-@export var objects_layers:Array[TileMapLayer] = []
-@export var event_layer:TileMapLayer
+@export var fire_effects_layer:TileMapLayer
+@export var water_effects_layer:TileMapLayer
+
 
 @export var entity:CharacterBody2D
-var tilemaps
+var tile_map_layers
 
 
 @warning_ignore("unused_parameter")
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_1):
-		var pos:Vector2 = event_layer.to_local(get_global_mouse_position())
-		spawn_fire(event_layer.local_to_map(pos))
+		var pos:Vector2 = fire_effects_layer.to_local(get_global_mouse_position())
+		spawn_fire(fire_effects_layer.local_to_map(pos))
 
 	if Input.is_key_pressed(KEY_2):
-		var pos:Vector2 = event_layer.to_local(get_global_mouse_position())
-		spawn_water(event_layer.local_to_map(pos))
+		var pos:Vector2 = water_effects_layer.to_local(get_global_mouse_position())
+		spawn_water(water_effects_layer.local_to_map(pos))
+
+var cached:bool = false
+func _preload():
+	if cached:return
+	cache_dynamic_tiles()
+	cached = true
 
 func _ready() -> void:
-	tilemaps = get_children()
-	cache_dynamic_tiles()
+	tile_map_layers = get_children()
 
-const FIRE_SOURCE_ID:int = 14
-const FIRE_ATLAS_COORDS:Vector2 = Vector2(1,3)
-const FLAMABLE:StringName = &"flamable"
-const BURNING:StringName = &"burning"
-const HEALTH:StringName = &"health"
-const FIRE_RESISTANCE:StringName = &"fire_resistance"
+func _cache_tile(tile:BaseTile)->void:
+	tile_groups.get(tile.type).set(tile.coords,tile)
+	tile.init_datas()
+
 
 func cache_dynamic_tiles()->void:
 
-	for layer in objects_layers:
-		for tile in layer.get_used_cells():
-			var flamable = get_custom_data(layer,tile,FLAMABLE)
-			if not flamable:continue
+	for layer in tile_map_layers:
+		for cell in layer.get_used_cells():
+			var tile:BaseTile =  BaseTile.create_tile(cell,layer)
+			_cache_tile(tile)
 
-			var burning:int = get_custom_data(layer,tile,BURNING)
-			var resistance:int = get_custom_data(layer,tile,FIRE_RESISTANCE)
-			var hp:int = get_custom_data(layer,tile,HEALTH)
-			var tile_obj:FlamableTile = FlamableTile.new(tile,layer)
-			tile_obj\
-			.set_resistance(resistance)\
-			.set_hp(hp)\
-			.set_burning(burning)
-			_flamable_tiles.set(tile,tile_obj)
-
-	for tile in event_layer.get_used_cells():
-			var burning:int = get_custom_data(event_layer,tile,BURNING)
-
-			if not burning:continue
-			var hp:int = get_custom_data(event_layer,tile,HEALTH)
-			var tile_obj:FireTile = FireTile.new(tile,event_layer)
-			tile_obj\
-			.set_hp(hp)\
-			.set_burning()
-			_flamable_tiles.set(tile,tile_obj)
 
 func burn_fire():
-	add_fire_tile()
 	apply_fire_tick()
 
 
-func add_fire_tile():
-		for tile:DynamicTile in _flamable_tiles.values():
-			if tile.burning:continue
-			event_layer.set_cell(tile.coords,-1)
+
+
 
 func apply_fire_tick():
-	apply_burn_ticks(event_layer)
+	apply_burn_ticks()
 
-func apply_burn_ticks(_layer:TileMapLayer):
-		for tile:DynamicTile in _burning_objs.values():
+##updates lifetime of burning tiles
+func apply_burn_ticks():
+		for tile:FlamableTile in _burning_objs.values():
+
+			#print( 1/(float(tile.health ) + 5))
+
 			tile.health -= 1
-			print(tile.health)
-			if tile.health < 1:
-				_burning_objs.erase(tile.coords)
-				clear_fire(tile.coords)
-				tile.queue_free()
 
-func clear_fire(coords:Vector2i)->void:
-	event_layer.set_cell(coords,-1)
+			if tile.health < 1:
+				tile.queue_free()
+				#remove also the fire sprite
+				fire_effects_layer.erase_cell(tile.coords)
+				_burning_objs.erase(tile.coords)
+				_flamable_tiles.erase(tile.coords)
+				continue
+
+#
+			if 1/(float(tile.health ) + 5 )> randf():
+				tile.set_burning(false)
+
+				fire_effects_layer.erase_cell(tile.coords)
+				_burning_objs.erase(tile.coords)
+				#_flamable_tiles.set(tile.coords,tile)
+
+		for fire:FireTile in _fire_tiles.values():
+			fire.health -= 1
+
+			if fire.health < 1:
+				fire.queue_free()
+				#remove also the fire sprite
+				fire_effects_layer.erase_cell(fire.coords)
+				_burning_objs.erase(fire.coords)
+				_flamable_tiles.erase(fire.coords)
+
 
 func fire_spread():
-	water_spread()
+	var surrounding_tiles:Array[FlamableTile]
 
-	for fire:DynamicTile in _burning_objs.values():
+	for fire:FlamableTile in _burning_objs.values():
 
-		for layer in objects_layers:
-			var surrounding_tiles:Array[Vector2i] = fire.get_surrounding_cells(layer)
-
-			surrounding_tiles = surrounding_tiles.filter(
-				func(tile:Vector2i):
-					return get_custom_data(layer,tile,FLAMABLE)
-			)
+		for layer in tile_map_layers:
+			surrounding_tiles.append_array( get_surrounding_flamable_tiles(fire) )
 
 
-			if surrounding_tiles.size()<1:continue
-			var rand_tile:Vector2i = surrounding_tiles.pick_random()
+
+		var rand_tile:FlamableTile= surrounding_tiles.pick_random()
+		if not rand_tile:continue
+		surrounding_tiles.erase(rand_tile)
+
+		if surrounding_tiles.size()>0 and rand_tile.burning and 0.9 > randf() :
+			rand_tile= surrounding_tiles.pick_random()
 
 
-			if not rand_tile:continue
+		var fire_resistance:int = rand_tile.resistance
+		var coords:Vector2i = rand_tile.coords
 
-			var fire_resistance:int = _flamable_tiles.get(rand_tile).resistance
-			print("fire resistance of tile %s === %f "%[rand_tile,fire_resistance])
 
-			if (fire_resistance -1) > 0:
-				(_flamable_tiles.get(rand_tile) as DynamicTile).resistance -= 1
-				continue
-			spawn_fire(rand_tile)
+		if (fire_resistance -1) > 0:
+			rand_tile.resistance -= 1
+			continue
+
+		spawn_fire(coords)
 
 func water_spread():
 
@@ -127,9 +140,9 @@ func water_spread():
 		if water.updated or water.height <= 1 : continue
 
 		for layer:TileMapLayer in get_children():
-			if layer == event_layer:continue
+			if layer == water_effects_layer:continue
 
-			var surrounding = water.get_surrounding_cells(layer)
+			var surrounding = water.get_surrounding_cells()
 
 			for tile in surrounding:
 
@@ -139,27 +152,27 @@ func water_spread():
 					w.height += 1
 					w.updated = false
 					continue
-
-				var height = get_custom_data(layer,tile,&"height")
-				if not height:height = 0
-				if water.height < height :continue
-				spawn_water(tile,water.height-1)
+#
+				#var height = get_custom_data(layer,tile,&"height")
+				#if not height:height = 0
+				#if water.height < height :continue
+				#spawn_water(tile,water.height-1)
 
 
 		water.updated = true
 		water.height -= 1
 
 
-func get_surrounding_burnable_tiles(layer:TileMapLayer,coords:Vector2i)->Array[Vector2i]:
-		return  layer.get_surrounding_cells(coords).filter(
-				func(tile):return get_custom_data(layer,tile,FLAMABLE)
-			)
 
-func get_custom_data(layer:TileMapLayer, tile:Vector2i,custom_data:StringName):
-		var data:TileData = layer.get_cell_tile_data(tile)
-		if not data:return
-		if data.has_custom_data(custom_data):
-			return data.get_custom_data(custom_data)
+func get_surrounding_flamable_tiles(origin_tile:FlamableTile)->Array[FlamableTile]:
+		var tiles:Array[FlamableTile] = []
+		for cell in origin_tile.get_surrounding_cells():
+			var tile = _flamable_tiles.get(cell)
+			if not tile:continue
+			tiles.append(tile)
+		return tiles
+
+
 
 func set_custom_data(layer:TileMapLayer, tile:Vector2i,custom_data:StringName,val)->void:
 		var data:TileData = layer.get_cell_tile_data(tile)
@@ -168,39 +181,49 @@ func set_custom_data(layer:TileMapLayer, tile:Vector2i,custom_data:StringName,va
 			return data.set_custom_data(custom_data,val)
 
 func spawn_fire(coords:Vector2i)->void:
-	#set_custom_data(objects_layers[0],coords,BURNING,true)
-	var flamable_tile:DynamicTile= _flamable_tiles.get(coords)
-	var fire:FireTile = FireTile.new(coords,event_layer)
+	var flamable_tile:FlamableTile = _flamable_tiles.get(coords)
+	var fire:FireTile = FireTile.new(coords,fire_effects_layer)
+
 	fire.spawn_tile()
 
-	if flamable_tile:
-		_burning_objs.set(coords,flamable_tile)
-		flamable_tile.set_burning(true)
+
+	##empty space
+	if not flamable_tile :
+		_fire_tiles.set(coords,fire)
+
 		return
-	_burning_objs.set(coords,fire)
+
+
+	if flamable_tile.burning:
+		print("burninnnngg")
+		if randf()<0.99:return
+		print("famge")
+		flamable_tile.health-=1
+
+	flamable_tile.set_burning(true)
+	_burning_objs.set(coords,flamable_tile)
+
+
 
 
 
 func spawn_water(coords:Vector2i,_height:int = 1)->void:
-
 	#get water tiles that is not yet spread itself
 	var existing_water:DynamicWaterTile = _dynamic_water_tiles.get(coords)
-
 	#
 	if existing_water:
-		print(existing_water.height)
 		existing_water.height +=1
 		existing_water.updated = false
 		return
-	var water:DynamicWaterTile = DynamicWaterTile.new(coords,event_layer)
+	var water:DynamicWaterTile = DynamicWaterTile.new(coords,water_effects_layer)
 	water.set_height(_height)
 
 	water.spawn_tile()
 	_dynamic_water_tiles.set(coords,water)
 
 func get_tile_data(custom_data_name: StringName ) -> Variant:
-	tilemaps.reverse() # Reverse, so it checks top tilemap layers first
-	for tilemap in tilemaps:
+	tile_map_layers.reverse() # Reverse, so it checks top tilemap layers first
+	for tilemap in tile_map_layers:
 		var ret = _get_tile_data_from_tilemap(custom_data_name, tilemap)
 		if ret != null:
 			return ret
@@ -219,3 +242,7 @@ func _get_tile_data_from_tilemap(custom_data_name: StringName, tile: TileMapLaye
 	if data.has_custom_data(custom_data_name):
 		tile_data = data.get_custom_data(custom_data_name)
 	return tile_data
+
+
+func _on_housemap_entered() -> void:
+	_preload()
