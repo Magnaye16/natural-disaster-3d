@@ -1,12 +1,12 @@
 extends DisasterEffect
 class_name ShakeEffect
 
-@export var INTENSITY:int = 1
+@export var INTENSITY: float = 1
 
-var intensity:int:
+var intensity: float:
 	get:return INTENSITY * 2
 
-@export var duration:float = 5
+@export var duration: float = 5
 
 
 func _enter() -> void:
