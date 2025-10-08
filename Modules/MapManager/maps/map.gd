@@ -5,8 +5,14 @@ class_name Map
 @export var package:PlayerCamPackage
 @export var Tile_manager:Tilemap_manager
 
+var sound_manager: SoundManager
+@export var theme_music:StringName = &""
+
 @warning_ignore("unused_private_class_variable")
 var _last_player_position:Vector2
+
+signal go_to_requested(map_name:StringName)
+
 
 
 func _notification(what: int) -> void:
@@ -14,17 +20,34 @@ func _notification(what: int) -> void:
 		if get_parent() is not MapManager:
 			_entry_map()
 			print("?")
+		var gm:GameManager = Global.get_game_manager()
+		if gm:sound_manager = gm.sound_manager
+
+		return
+
+func go_to(map_name:StringName)->void:
+	go_to_requested.emit(map_name)
 
 
-func _on_enter()->void:
+func _on_enter():
 	pass
 
+
 ##[color=red]  Do not override this if not neccessary
+##activates and setups this map to run [br]
+##called by the map manager when this is the default scene
 func _entry_map()->void:
 	_last_player_position = package.player.global_position
 	_activate()
 	package.enter_map()
 	_on_enter()
+	play_music()
+
+
+func play_music()->void:
+	if not sound_manager:return
+	sound_manager.switch_music()
+	sound_manager.switch_sfx()
 
 func activate(new_package:PlayerCamPackage)->void:
 	_activate()
@@ -32,8 +55,10 @@ func activate(new_package:PlayerCamPackage)->void:
 	add_child(package)
 	package.enter_map()
 	_on_enter()
+	play_music()
 
 func _activate()->void:
+	Tile_manager._preload()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	show()
 

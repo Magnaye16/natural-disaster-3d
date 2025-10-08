@@ -36,8 +36,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_8):
 		apply_status(preload("uid://6xa8o7r5m1mk"))
 
-
-
 func update_player_audio(audio_name: String):
 	if audio_name == "None":
 		walking_sfx.stop()

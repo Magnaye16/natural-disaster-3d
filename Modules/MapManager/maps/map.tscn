@@ -26,12 +26,13 @@ emitting = true
 [node name="rain" parent="rainComponent2" index="1"]
 emitting = true
 
-[node name="Tilemap_manager" type="CanvasGroup" parent="." node_paths=PackedStringArray("fire_effects_layer", "water_effects_layer", "entity")]
+[node name="Tilemap_manager" type="CanvasGroup" parent="." node_paths=PackedStringArray("fire_effects_layer", "water_effects_layer", "entity", "effects_tile_layer")]
 z_as_relative = false
 script = ExtResource("4_esh8l")
 fire_effects_layer = NodePath("../effects_tile/fire_layer")
 water_effects_layer = NodePath("../effects_tile/dynamic_water_layer")
 entity = NodePath("../Package/Player")
+effects_tile_layer = NodePath("../effects_tile")
 
 [node name="Object" type="TileMapLayer" parent="Tilemap_manager"]
 unique_name_in_owner = true

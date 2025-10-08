@@ -8,13 +8,12 @@ var _burning_objs:Dictionary[Vector2i, FlamableTile]
 var _dynamic_water_tiles:Dictionary[Vector2i, DynamicWaterTile]
 var _static_tiles:Dictionary[Vector2i, BaseTile]
 
-var tile_groups:Dictionary[GDScript,Dictionary]={
+@export var tile_groups:Dictionary[GDScript,Dictionary]={
 	BaseTile:_static_tiles,
 	DynamicWaterTile:_dynamic_water_tiles,
 	FireTile:_fire_tiles,
 	FlamableTile:_flamable_tiles,
 }
-
 
 
 @export var fire_effects_layer:TileMapLayer
@@ -23,6 +22,7 @@ var tile_groups:Dictionary[GDScript,Dictionary]={
 
 @export var entity:CharacterBody2D
 var tile_map_layers
+@export var effects_tile_layer: CanvasGroup
 
 
 @warning_ignore("unused_parameter")
@@ -56,10 +56,13 @@ func cache_dynamic_tiles()->void:
 			var tile:BaseTile =  BaseTile.create_tile(cell,layer)
 			_cache_tile(tile)
 
+	for layer in effects_tile_layer.get_children():
+		for cell in layer.get_used_cells():
+			var tile:BaseTile =  BaseTile.create_tile(cell,layer)
+			_cache_tile(tile)
 
 func burn_fire():
 	apply_fire_tick()
-
 
 
 func apply_fire_tick():
@@ -226,8 +229,8 @@ func get_tile_data(custom_data_name: StringName ) -> Variant:
 	return null
 
 func _get_tile_data_from_tilemap(custom_data_name: StringName, tile: TileMapLayer) -> Variant:
-	var local_pos = tile.to_local(entity.global_position)
-	var cell: Vector2i = tile.local_to_map(local_pos)
+	var local_pos = entity.global_position
+	var cell: Vector2i = local_to_map(tile,local_pos)
 	#print("Tilemap:", tile.name, " Entity global:", entity.global_position, " Local:", local_pos, " Cell:", cell)
 	var data: TileData = tile.get_cell_tile_data(cell)
 	if data == null:
@@ -239,6 +242,10 @@ func _get_tile_data_from_tilemap(custom_data_name: StringName, tile: TileMapLaye
 		tile_data = data.get_custom_data(custom_data_name)
 	return tile_data
 
+func local_to_map(_layer:TileMapLayer,_position:Vector2):
+	var local_pos = _layer.to_local(_position)
+	var cell: Vector2i = _layer.local_to_map(local_pos)
+	return cell
 
 func _on_housemap_entered() -> void:
 	_preload()

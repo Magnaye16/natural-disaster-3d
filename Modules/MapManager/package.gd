@@ -14,11 +14,9 @@ func enter_map() -> void:
 	player.global_position = map._last_player_position
 	global_camera.global_position = player.global_position
 	player.movement_component.Tile_manager = map.Tile_manager
-	player.animated_Sprite.Tile_manager = map.Tile_manager
+	player.animated_Sprite.tilemap_manager = map.Tile_manager
 	process_mode = Node.PROCESS_MODE_ALWAYS
-
 	map.Tile_manager.entity = player
-
 
 func exit_map() -> void:
 	var map:Map = (get_parent() as Map)

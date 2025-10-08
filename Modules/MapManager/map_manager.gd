@@ -11,9 +11,12 @@ func _ready() -> void:
 
 	for child in get_children():
 		if child  is GlobalCamera:continue
+
 		assert(child is Map,"This child node:%s is not inherent from MAP"%child.name)
 		print(child.name)
+
 		map_cache.set(child.name,child)
+		(child as Map).go_to_requested.connect(switch_map)
 
 		if current_map == null:
 			current_map = child
@@ -28,7 +31,10 @@ func _unhandled_key_input(_event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_L):
 		switch_to_next_map()
 
-func switch_map(map: Map, reload: bool = false) -> void:
+
+
+func switch_map(map_name:StringName, reload: bool = false) -> void:
+	var map:Map = map_cache.get(map_name)
 
 	if not reload:
 		if current_map == map:return
@@ -46,7 +52,6 @@ func switch_map(map: Map, reload: bool = false) -> void:
 	add_child(new_map)
 	old_map.queue_free()
 
-
 func switch_to_new_map_no_reload(map:Map)->void:
 	var old_map:Map = current_map
 	current_map = map
@@ -57,11 +62,11 @@ func reload_map() -> void:
 	if current_map == null:
 		push_warning("No map to reload.")
 		return
-	switch_map(current_map, true)
+	switch_map(current_map.name, true)
 
 func switch_to_next_map() -> void:
 	if map_cache.is_empty():
 		push_warning("No maps available to cycle through.")
 		return
 	var next_map_idx = (current_map.get_index()+1)% map_cache.size()
-	switch_map(get_child(next_map_idx))
+	switch_map(get_child(next_map_idx).name)

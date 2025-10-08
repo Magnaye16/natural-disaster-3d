@@ -3,8 +3,7 @@ class_name SpriteComponent
 @onready var animated_sprite: AnimatedSprite2D = $animated_sprite
 
 signal animation_finished
-var Tile_manager: Tilemap_manager
-
+var tilemap_manager: Tilemap_manager
 
 var flip:bool:
 	set(val):animated_sprite.flip_h = val
@@ -12,14 +11,16 @@ var flip:bool:
 func play(_name:StringName):
 	animated_sprite.play(_name)
 
-
 func get_tile_height()->int:
-	if Tile_manager == null:return 0
-	var tile_height = Tile_manager.get_tile_data(&"height")
-	if tile_height == null:
-		tile_height = 0# fall back to default
-	return tile_height
+	var water_tiles:Dictionary = tilemap_manager.tile_groups.get(DynamicWaterTile)
+	var tile_layer:TileMapLayer = tilemap_manager.water_effects_layer
 
+	var water_tile:DynamicWaterTile = water_tiles.get(tilemap_manager.local_to_map(tile_layer,global_position))
+
+	var height:int = 0 if not water_tile else water_tile.height
+	print(height)
+
+	return height
 
 
 func update(x_dir:float):
