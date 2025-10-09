@@ -1,17 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://cln1q1625txgg"]
+[gd_scene load_steps=6 format=3 uid="uid://cln1q1625txgg"]
 
-[ext_resource type="Texture2D" uid="uid://b5n2o4kx0rfoe" path="res://src/imgs/UI/Panels/announcement-dialogue panel.png" id="1_bp20x"]
-[ext_resource type="Script" uid="uid://dfnbhtj0l6cjp" path="res://addons/marquee/marquee.gd" id="2_f2en1"]
-[ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://src/Fonts/ARCADECLASSIC.TTF" id="3_4w35d"]
+[ext_resource type="Script" uid="uid://cdofri2erusgn" path="res://UI/Panels/WarningPanel.gd" id="1_arr7l"]
+[ext_resource type="Texture2D" uid="uid://b5n2o4kx0rfoe" path="res://src/imgs/UI/Panels/announcement-dialogue panel.png" id="2_66d80"]
+[ext_resource type="Script" uid="uid://dfnbhtj0l6cjp" path="res://addons/marquee/marquee.gd" id="3_jlwij"]
+[ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://src/Fonts/ARCADECLASSIC.TTF" id="4_1qci2"]
 
 [sub_resource type="Theme" id="Theme_b3w1q"]
 
-[node name="DialogPanel" type="Control"]
+[node name="WarningPanel" type="Control"]
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 grow_horizontal = 2
+script = ExtResource("1_arr7l")
 
 [node name="HBoxContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -26,7 +28,7 @@ grow_horizontal = 2
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("1_bp20x")
+texture = ExtResource("2_66d80")
 
 [node name="Marquee" type="Control" parent="HBoxContainer/TextureRect"]
 clip_contents = true
@@ -44,7 +46,7 @@ offset_bottom = 52.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_b3w1q")
-script = ExtResource("2_f2en1")
+script = ExtResource("3_jlwij")
 delay = 0.0
 duration = 10.0
 lines = Array[String](["WARING / PREPARE /  WARNING / PREPARE", "WARING / PREPARE / WARNING / PREPARE"])
@@ -61,6 +63,6 @@ offset_right = 296.0
 offset_bottom = 153.0
 grow_horizontal = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3_4w35d")
+theme_override_fonts/font = ExtResource("4_1qci2")
 theme_override_font_sizes/font_size = 105
 text = "FLASH FLOOD"
