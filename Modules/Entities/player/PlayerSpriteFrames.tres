@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=25 format=3 uid="uid://t0i2eijyieex"]
+[gd_resource type="SpriteFrames" load_steps=28 format=3 uid="uid://t0i2eijyieex"]
 
 [ext_resource type="Texture2D" uid="uid://g0s6322abwaq" path="res://src/imgs/sprites/chars/onats sprite/updated/onat.png" id="1_anv5u"]
 [ext_resource type="Texture2D" uid="uid://c8h5yg88c8hxq" path="res://src/imgs/sprites/chars/onats sprite/updated/onat2t.png" id="2_anv5u"]
@@ -34,6 +34,18 @@ region = Rect2(40, 192, 40, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_eytys"]
 atlas = ExtResource("1_anv5u")
 region = Rect2(80, 192, 40, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rlea"]
+atlas = ExtResource("1_anv5u")
+region = Rect2(80, 188, 40, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5an3"]
+atlas = ExtResource("1_anv5u")
+region = Rect2(40, 188, 40, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vw66t"]
+atlas = ExtResource("1_anv5u")
+region = Rect2(0, 188, 40, 47)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_anv5u"]
 atlas = ExtResource("1_anv5u")
@@ -133,14 +145,14 @@ animations = [{
 "speed": 7.0
 }, {
 "frames": [{
-"duration": 2.0,
-"texture": SubResource("AtlasTexture_eytys")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rlea")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8j307")
+"texture": SubResource("AtlasTexture_d5an3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cmn11")
+"texture": SubResource("AtlasTexture_vw66t")
 }],
 "loop": false,
 "name": &"recover",

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2ihv6k8tptfc"
-path="res://.godot/imported/1.svg-88619477e6566c18b212caa36e7ea39d.ctex"
+uid="uid://xglgr5142o2b"
+path="res://.godot/imported/onatss high res-export.png-a89a538635b79bee0ddf82c3e23c99dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/imgs/sprites/chars/1.svg"
-dest_files=["res://.godot/imported/1.svg-88619477e6566c18b212caa36e7ea39d.ctex"]
+source_file="res://src/imgs/sprites/chars/onats sprite/updated/onatss high res-export.png"
+dest_files=["res://.godot/imported/onatss high res-export.png-a89a538635b79bee0ddf82c3e23c99dd.ctex"]
 
 [params]
 
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

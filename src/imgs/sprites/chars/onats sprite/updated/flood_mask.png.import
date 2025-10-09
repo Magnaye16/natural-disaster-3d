@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://devyuug4daoc2"
-path="res://.godot/imported/3.png-6a933d20c4c3eb338735edb0686f2b16.ctex"
+uid="uid://t6ny304ok3d5"
+path="res://.godot/imported/flood_mask.png-6a081c86baa4a6143de161f473791e84.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/imgs/sprites/chars/onats sprite/3.png"
-dest_files=["res://.godot/imported/3.png-6a933d20c4c3eb338735edb0686f2b16.ctex"]
+source_file="res://src/imgs/sprites/chars/onats sprite/updated/flood_mask.png"
+dest_files=["res://.godot/imported/flood_mask.png-6a081c86baa4a6143de161f473791e84.ctex"]
 
 [params]
 

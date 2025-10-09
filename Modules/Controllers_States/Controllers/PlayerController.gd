@@ -1,6 +1,9 @@
 class_name PlayerController extends BaseController
 
-
+func _state_process(manager_owner:Node)->void:
+	var player:Player =(manager_owner as Player)
+	var sprite:SpriteComponent =player.animated_Sprite
+	sprite.update(PlayerState._get_movement_vector().x)
 
 func get_balance_comp(_player)->BalanceComponent:
 	return (_player.component_manager.get_component(BalanceComponent) as BalanceComponent)
@@ -14,8 +17,6 @@ func _set_initial_state()->GDScript:
 
 
 func _activate(player:Player):
-
-
 	if not global_prev_state :return
 	if compare_states(global_prev_state,get_state(TrippedState)):
 		get_balance_comp(player).status_multiplier.add_status(preload("uid://dltu75l766143"))
@@ -33,7 +34,7 @@ class PlayerState  extends State:
 
 
 
-	func _get_movement_vector() -> Vector2:
+	static func _get_movement_vector() -> Vector2:
 		var dir:Vector2 = Input.get_vector(MoveDirection.MOVE_LEFT,MoveDirection.MOVE_RIGHT,MoveDirection.MOVE_UP,MoveDirection.MOVE_DOWN)
 		return dir
 
@@ -58,6 +59,7 @@ class RunningState extends WalkingState:
 	func  _enter(_entity:Entity):
 		playAnimationCMD.params.animationName = &"run"
 		playAnimationCMD.execute(_entity)
+
 
 	func _process(_player:Entity):
 		_player.apply_status(speed_up)

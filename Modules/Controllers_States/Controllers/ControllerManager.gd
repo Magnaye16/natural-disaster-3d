@@ -78,6 +78,7 @@ func change_state(new_state:State):
 
 	old_state._exit(manager_owner)
 	new_state._enter(manager_owner)
+	active_controller._new_state_entered(manager_owner)
 
 func _process(_delta: float) -> void:
 	if active_controller == null:

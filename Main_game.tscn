@@ -26,7 +26,7 @@
 [ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://src/Fonts/ARCADECLASSIC.TTF" id="21_twqns"]
 [ext_resource type="PackedScene" uid="uid://bi2pog25w52tj" path="res://Modules/Inventory/Scene/Inventory_UI.tscn" id="23_fowpm"]
 [ext_resource type="PackedScene" uid="uid://dqnfb71785qi0" path="res://Modules/Inventory/Scene/healthbar.tscn" id="23_twqns"]
-[ext_resource type="Script" uid="uid://b64qqdccfis2t" path="res://Modules/Components/shader_texture.gd" id="23_urq11"]
+[ext_resource type="Script" path="res://Modules/Components/shader_texture.gd" id="23_urq11"]
 [ext_resource type="PackedScene" uid="uid://b732crfoi3kha" path="res://Modules/MapManager/maps/house_map.tscn" id="25_44hf1"]
 [ext_resource type="PackedScene" uid="uid://brenpacqp6x0f" path="res://Modules/MapManager/maps/main_map.tscn" id="26_44hf1"]
 [ext_resource type="PackedScene" uid="uid://pkloke8vv2vf" path="res://Modules/MapManager/maps/area_tiles_testmaps.tscn" id="26_c7sog"]
@@ -247,7 +247,7 @@ metadata/_custom_type_script = "uid://bhh103ve148q2"
 [node name="HOUSEMAP" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("25_44hf1")]
 position = Vector2(528.023, 278.7946)
 
-[node name="efficient tile detection test map" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("26_c7sog")]
+[node name="OUTSIDE" parent="Main_viewport/SubViewportContainer/MapManager" instance=ExtResource("26_c7sog")]
 z_as_relative = true
 y_sort_enabled = false
 
@@ -325,6 +325,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="season_weather_disaster_debug_ui" type="Control" parent="Main_UI"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
