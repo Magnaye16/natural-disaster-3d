@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://cln1q1625txgg"]
+
+[ext_resource type="Texture2D" uid="uid://b5n2o4kx0rfoe" path="res://src/imgs/UI/Panels/announcement-dialogue panel.png" id="1_bp20x"]
+[ext_resource type="Script" uid="uid://dfnbhtj0l6cjp" path="res://addons/marquee/marquee.gd" id="2_f2en1"]
+[ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://src/Fonts/ARCADECLASSIC.TTF" id="3_4w35d"]
+
+[sub_resource type="Theme" id="Theme_b3w1q"]
+
+[node name="DialogPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -442.5
+offset_right = 442.5
+offset_bottom = 230.0
+grow_horizontal = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_bp20x")
+
+[node name="Marquee" type="Control" parent="HBoxContainer/TextureRect"]
+clip_contents = true
+custom_minimum_size = Vector2(328, 23)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -255.0
+offset_top = 12.0
+offset_right = 245.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_b3w1q")
+script = ExtResource("2_f2en1")
+delay = 0.0
+duration = 10.0
+lines = Array[String](["WARING / PREPARE /  WARNING / PREPARE", "WARING / PREPARE / WARNING / PREPARE"])
+metadata/_custom_type_script = "uid://dfnbhtj0l6cjp"
+
+[node name="Label" type="Label" parent="HBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -295.0
+offset_top = 46.0
+offset_right = 296.0
+offset_bottom = 153.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_4w35d")
+theme_override_font_sizes/font_size = 105
+text = "FLASH FLOOD"

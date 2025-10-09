@@ -32,6 +32,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="Natural disaster 3D"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/marquee/plugin.cfg")
+
 [global_group]
 
 healthbar=""
