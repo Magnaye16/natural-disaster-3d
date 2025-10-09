@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dsu5r1be85w0h"]
 
-[ext_resource type="Script" uid="uid://dk10slks0eqr7" path="res://Modules/GlobalScript/Item.gd" id="1_dpyjg"]
-[ext_resource type="Script" uid="uid://cmy8p48lmqgby" path="res://Modules/GlobalScript/Item_resource.gd" id="2_1qabr"]
+[ext_resource type="Script" uid="uid://dk10slks0eqr7" path="res://Modules/Inventory/item/Item.gd" id="1_dpyjg"]
+[ext_resource type="Script" uid="uid://cmy8p48lmqgby" path="res://Modules/Inventory/item/Item_resource.gd" id="2_1qabr"]
 [ext_resource type="PackedScene" uid="uid://c8w25y8t3ednj" path="res://Modules/Components/InteractionComponents/interactable_component.tscn" id="2_oavj4"]
 
 [sub_resource type="Resource" id="Resource_75egc"]

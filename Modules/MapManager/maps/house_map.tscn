@@ -24,7 +24,6 @@ collision_visibility_mode = 1
 navigation_enabled = false
 
 [node name="Object" parent="Tilemap_manager" index="2"]
-tile_map_data = PackedByteArray()
 collision_visibility_mode = 1
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Tilemap_manager" index="3"]

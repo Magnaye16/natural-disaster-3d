@@ -52,10 +52,4 @@ func adjust_Drop_position(position):
 	return position
 
 func drop_Item(item_Data:ItemResource, drop_Position):
-	var item_Scene = load(Item.scene_path)
-	var item_Instance:Item = item_Scene.instantiate()
-	item_Data.item_Qty = 1
-	item_Instance.set_item_resource(item_Data)
-	drop_Position = adjust_Drop_position(drop_Position)
-	item_Instance.global_position = drop_Position
-	get_tree().current_scene.add_child(item_Instance)
+	Global.get_map_manager()
