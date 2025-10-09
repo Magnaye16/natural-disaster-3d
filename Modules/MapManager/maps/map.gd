@@ -45,6 +45,7 @@ func _entry_map()->void:
 	play_music()
 
 
+
 func play_music()->void:
 	if not sound_manager:return
 	sound_manager.switch_music()
@@ -55,8 +56,12 @@ func activate(new_package:PlayerCamPackage)->void:
 	package = new_package
 	add_child(package)
 	package.enter_map()
+	await get_tree().create_timer(.3).timeout
+	Fade.fade_in(.7,Color.BLACK,"DIAMOND")
 	_on_enter()
 	play_music()
+
+
 
 func _activate()->void:
 	Tile_manager._preload()

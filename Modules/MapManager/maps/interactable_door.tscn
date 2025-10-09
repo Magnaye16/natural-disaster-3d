@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://mbfa1xq1hx64" path="res://Modules/MapManager/maps/interactable_door.gd" id="2_m03gq"]
 
 [node name="a" instance=ExtResource("1_0obyl")]
+process_mode = 3
 script = ExtResource("2_m03gq")
 need_interaction = false
 location = &""

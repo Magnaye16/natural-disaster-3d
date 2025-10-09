@@ -68,7 +68,7 @@ func change_state_re_enter(new_state:GDScript):
 
 
 ##called after curr_state.process
-func _state_process(manager_owner:Node)->void:
+func _state_process(_manager_owner:Node)->void:
 	pass
 
 

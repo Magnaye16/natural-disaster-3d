@@ -2,7 +2,7 @@
 extends InteractableComponent
 class_name Interactable_door
 
-signal go_to(location:String)
+
 
 var marker:Marker2D:
 	set(val):
@@ -49,17 +49,18 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 	return warnings
 
-
 func _on_child_entered_tree(_node: Node) -> void:
 	if _node is Marker2D:marker = _node
-
 
 func _on_child_exiting_tree(_node: Node) -> void:
 	if _node is Marker2D:marker = null
 
 
-func _on_interacted(entity: Entity) -> void:
+func _on_interacted(_entity: Entity) -> void:
+	map.process_mode = Node.PROCESS_MODE_DISABLED
+	await Fade.fade_out(.6,Color.BLACK,"DIAMOND").finished
 	map.go_to(location)
+
 
 func _on_contacted(entity:Entity) -> void:
 	if not need_interaction:_on_interacted(entity)
