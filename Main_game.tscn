@@ -238,6 +238,7 @@ stretch = true
 mouse_target = true
 
 [node name="MapManager" type="SubViewport" parent="Main_viewport/SubViewportContainer" groups=["map_manager"]]
+unique_name_in_owner = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4

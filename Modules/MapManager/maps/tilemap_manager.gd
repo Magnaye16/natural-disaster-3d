@@ -1,7 +1,6 @@
 extends CanvasGroup
 class_name Tilemap_manager
 
-
 var _fire_tiles:Dictionary[Vector2i, FlamableTile]
 var _flamable_tiles:Dictionary[Vector2i, FlamableTile]
 var _burning_objs:Dictionary[Vector2i, FlamableTile]
@@ -14,16 +13,14 @@ var _static_tiles:Dictionary[Vector2i, BaseTile]
 	FireTile:_fire_tiles,
 	FlamableTile:_flamable_tiles,
 }
-
-
+var tile_map_layers
 @export var fire_effects_layer:TileMapLayer
 @export var water_effects_layer:TileMapLayer
+@export var entity:CharacterBody2D:
+	set(val):
+		entity=val
 
-
-@export var entity:CharacterBody2D
-var tile_map_layers
 @export var effects_tile_layer: CanvasGroup
-
 
 @warning_ignore("unused_parameter")
 func _unhandled_input(event: InputEvent) -> void:
@@ -48,9 +45,7 @@ func _cache_tile(tile:BaseTile)->void:
 	tile_groups.get(tile.type).set(tile.coords,tile)
 	tile.init_datas()
 
-
 func cache_dynamic_tiles()->void:
-
 	for layer in tile_map_layers:
 		for cell in layer.get_used_cells():
 			var tile:BaseTile =  BaseTile.create_tile(cell,layer)
@@ -59,11 +54,11 @@ func cache_dynamic_tiles()->void:
 	for layer in effects_tile_layer.get_children():
 		for cell in layer.get_used_cells():
 			var tile:BaseTile =  BaseTile.create_tile(cell,layer)
+			print(tile.type.get_global_name())
 			_cache_tile(tile)
 
 func burn_fire():
 	apply_fire_tick()
-
 
 func apply_fire_tick():
 	apply_burn_ticks()
@@ -163,8 +158,6 @@ func water_spread():
 		water.updated = true
 		water.height -= 1
 
-
-
 func get_surrounding_flamable_tiles(origin_tile:FlamableTile)->Array[FlamableTile]:
 		var tiles:Array[FlamableTile] = []
 		for cell in origin_tile.get_surrounding_cells():
@@ -172,7 +165,6 @@ func get_surrounding_flamable_tiles(origin_tile:FlamableTile)->Array[FlamableTil
 			if not tile:continue
 			tiles.append(tile)
 		return tiles
-
 
 
 func set_custom_data(layer:TileMapLayer, tile:Vector2i,custom_data:StringName,val)->void:
@@ -201,10 +193,6 @@ func spawn_fire(coords:Vector2i)->void:
 
 	flamable_tile.set_burning(true)
 	_burning_objs.set(coords,flamable_tile)
-
-
-
-
 
 func spawn_water(coords:Vector2i,_height:int = 1)->void:
 	#get water tiles that is not yet spread itself

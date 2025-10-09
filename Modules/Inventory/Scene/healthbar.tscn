@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqnfb71785qi0"]
+[gd_scene load_steps=4 format=3 uid="uid://dqnfb71785qi0"]
 
-[ext_resource type="Texture2D" uid="uid://b34gl36ormauc" path="res://src/Item_icon/icon29.png" id="1_ni5ls"]
 [ext_resource type="Script" uid="uid://gutnkunogu0i" path="res://Modules/Inventory/Scene/healthbar.gd" id="1_o686k"]
+[ext_resource type="Texture2D" uid="uid://de5w0xhrw13b6" path="res://src/imgs/UI/Heart/Heart.png" id="2_ekp2m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irl22"]
+atlas = ExtResource("2_ekp2m")
+region = Rect2(401.09106, 14.818188, 72.727295, 66.36366)
 
 [node name="healthbar" type="Control" groups=["healthbar"]]
 layout_mode = 3
@@ -19,51 +23,81 @@ offset_bottom = 40.0
 columns = 10
 
 [node name="TextureRect" type="TextureRect" parent="GridContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture = ExtResource("1_ni5ls")
-stretch_mode = 1
+texture = SubResource("AtlasTexture_irl22")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="TextureRect2" type="TextureRect" parent="GridContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture = ExtResource("1_ni5ls")
-stretch_mode = 1
+texture = SubResource("AtlasTexture_irl22")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="TextureRect3" type="TextureRect" parent="GridContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture = ExtResource("1_ni5ls")
-stretch_mode = 1
+texture = SubResource("AtlasTexture_irl22")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="TextureRect4" type="TextureRect" parent="GridContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture = ExtResource("1_ni5ls")
-stretch_mode = 1
+texture = SubResource("AtlasTexture_irl22")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="TextureRect5" type="TextureRect" parent="GridContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture = ExtResource("1_ni5ls")
-stretch_mode = 1
+texture = SubResource("AtlasTexture_irl22")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="TextureRect6" type="TextureRect" parent="GridContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture = ExtResource("1_ni5ls")
-stretch_mode = 1
+texture = SubResource("AtlasTexture_irl22")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="TextureRect7" type="TextureRect" parent="GridContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture = ExtResource("1_ni5ls")
-stretch_mode = 1
+texture = SubResource("AtlasTexture_irl22")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="TextureRect8" type="TextureRect" parent="GridContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture = ExtResource("1_ni5ls")
-stretch_mode = 1
+texture = SubResource("AtlasTexture_irl22")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="TextureRect9" type="TextureRect" parent="GridContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture = ExtResource("1_ni5ls")
-stretch_mode = 1
+texture = SubResource("AtlasTexture_irl22")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="TextureRect10" type="TextureRect" parent="GridContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture = ExtResource("1_ni5ls")
-stretch_mode = 1
+texture = SubResource("AtlasTexture_irl22")
+expand_mode = 2
+stretch_mode = 5
