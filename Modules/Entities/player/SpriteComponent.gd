@@ -12,6 +12,8 @@ func play(_name:StringName):
 	animated_sprite.play(_name)
 
 func get_tile_height()->int:
+	if not tilemap_manager:return 0
+
 	var water_tiles:Dictionary = tilemap_manager.tile_groups.get(DynamicWaterTile)
 	var tile_layer:TileMapLayer = tilemap_manager.water_effects_layer
 	var water_tile:DynamicWaterTile = water_tiles.get(tilemap_manager.local_to_map(tile_layer,global_position))

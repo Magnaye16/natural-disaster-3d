@@ -11,7 +11,10 @@ func _ready():
 	#Initialize the contents with 3D slots
 	contents.resize(inventorysize)
 
-func add_Item(item:ItemResource)->bool:
+func add_Item(_item:Item)->bool:
+
+	var item:ItemResource = _item.item_resource
+
 	for i in range(contents.size()):
 		if contents[i] != null and contents[i].item_Name== item.item_Name and contents[i].item_Effect == item.item_Effect:
 			contents[i].item_Qty += item.item_Qty

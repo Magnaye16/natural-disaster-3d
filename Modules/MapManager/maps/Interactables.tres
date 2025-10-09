@@ -1,0 +1,19 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bacdwxxa5u303"]
+
+[ext_resource type="Texture2D" uid="uid://bsxrvli0j1th1" path="res://src/imgs/Tilesets/items/Medkit.png" id="1_6upxv"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rvg6p"]
+texture = ExtResource("1_6upxv")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[resource]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 0
+sources/1 = SubResource("TileSetAtlasSource_rvg6p")

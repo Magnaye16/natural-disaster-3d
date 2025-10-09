@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h3qcs3koiwva"
-valid=false
+uid="uid://bsxrvli0j1th1"
+path="res://.godot/imported/Medkit.png-4dc459f5f5b273060208bca9f3b116f5.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://src/imgs/UI/Medkit.png"
+source_file="res://src/imgs/Tilesets/items/Medkit.png"
+dest_files=["res://.godot/imported/Medkit.png-4dc459f5f5b273060208bca9f3b116f5.ctex"]
 
 [params]
 

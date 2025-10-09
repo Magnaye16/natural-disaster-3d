@@ -7,7 +7,7 @@
 atlas = ExtResource("2_ekp2m")
 region = Rect2(401.09106, 14.818188, 72.727295, 66.36366)
 
-[node name="healthbar" type="Control" groups=["healthbar"]]
+[node name="healthbar" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

@@ -36,6 +36,7 @@ var cached:bool = false
 func _preload():
 	if cached:return
 	cache_dynamic_tiles()
+
 	cached = true
 
 func _ready() -> void:
@@ -56,6 +57,8 @@ func cache_dynamic_tiles()->void:
 			var tile:BaseTile =  BaseTile.create_tile(cell,layer)
 			print(tile.type.get_global_name())
 			_cache_tile(tile)
+
+
 
 func burn_fire():
 	apply_fire_tick()
@@ -230,7 +233,7 @@ func _get_tile_data_from_tilemap(custom_data_name: StringName, tile: TileMapLaye
 		tile_data = data.get_custom_data(custom_data_name)
 	return tile_data
 
-func local_to_map(_layer:TileMapLayer,_position:Vector2):
+static  func local_to_map(_layer:TileMapLayer,_position:Vector2):
 	var local_pos = _layer.to_local(_position)
 	var cell: Vector2i = _layer.local_to_map(local_pos)
 	return cell

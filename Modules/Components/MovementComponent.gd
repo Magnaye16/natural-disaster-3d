@@ -15,10 +15,7 @@ var velocity:Vector2:
 	set(val):entity.velocity = val
 
 
-
-
-
-
+signal moved(move_direction:Vector2)
 func _move(delta: float) -> void:
 	if move_direction.length() <= 0 and velocity.length() <= 0:return
 
@@ -33,7 +30,7 @@ func _move(delta: float) -> void:
 		velocity = velocity.lerp(move_direction * product_speed, acceleration * delta)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, get_tile_friction() * delta)
-
+	moved.emit(move_direction)
 
 func get_tile_speed()->float:
 	if Tile_manager == null:return 1

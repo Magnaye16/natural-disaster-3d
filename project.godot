@@ -38,13 +38,9 @@ enabled=PackedStringArray("res://addons/marquee/plugin.cfg")
 
 [global_group]
 
-healthbar=""
-shader=""
-global_camera=""
 player=""
-entity=""
-disaster_detector=""
 map_manager=""
+game_manager=""
 
 [input]
 

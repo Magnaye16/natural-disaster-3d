@@ -1,14 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://ees2xw0pmuvh"]
+[gd_scene load_steps=10 format=3 uid="uid://ees2xw0pmuvh"]
 
 [ext_resource type="Script" uid="uid://dhbcdqh3nfvfo" path="res://Modules/MapManager/maps/Map2.gd" id="1_esh8l"]
 [ext_resource type="PackedScene" uid="uid://ceb7pu6fs56q0" path="res://Modules/Components/EnvironmentComponent/rainparticles.tscn" id="2_qnkao"]
+[ext_resource type="TileSet" uid="uid://bacdwxxa5u303" path="res://Modules/MapManager/maps/Interactables.tres" id="4_7ucfc"]
 [ext_resource type="Script" uid="uid://dxv57et4ndi4p" path="res://Modules/MapManager/package.gd" id="4_d512a"]
 [ext_resource type="Script" uid="uid://cj766ssdxgv7t" path="res://Modules/MapManager/maps/tilemap_manager.gd" id="4_esh8l"]
 [ext_resource type="TileSet" uid="uid://n70025tcfmqy" path="res://Modules/MapManager/maps/tilesets/default_tileset.tres" id="4_qnkao"]
 [ext_resource type="Script" uid="uid://boola4hp3ojxa" path="res://main_camera.gd" id="5_7g6sp"]
 [ext_resource type="PackedScene" uid="uid://dabvby2oye6tp" path="res://Modules/Entities/player/Player.tscn" id="6_t5gdg"]
-
-[sub_resource type="TileSet" id="TileSet_qnkao"]
+[ext_resource type="Script" uid="uid://c11bubd0cyy33" path="res://Modules/MapManager/maps/interactable_tiles_manager.gd" id="9_d512a"]
 
 [node name="MAP2" type="Node2D" node_paths=PackedStringArray("package", "Tile_manager")]
 z_as_relative = false
@@ -28,16 +28,21 @@ emitting = true
 emitting = true
 
 [node name="Tilemap_manager" type="CanvasGroup" parent="." node_paths=PackedStringArray("fire_effects_layer", "water_effects_layer", "entity", "effects_tile_layer")]
-z_as_relative = false
 script = ExtResource("4_esh8l")
 fire_effects_layer = NodePath("../effects_tile/fire_layer")
 water_effects_layer = NodePath("../effects_tile/dynamic_water_layer")
 entity = NodePath("../Package/Player")
 effects_tile_layer = NodePath("../effects_tile")
+metadata/_custom_type_script = "uid://cj766ssdxgv7t"
 
-[node name="Object" type="TileMapLayer" parent="Tilemap_manager"]
+[node name="InteractableTileManager" type="CanvasGroup" parent="." node_paths=PackedStringArray("interactable_tilelayer")]
+script = ExtResource("9_d512a")
+interactable_tilelayer = NodePath("Object")
+metadata/_custom_type_script = "uid://c11bubd0cyy33"
+
+[node name="Object" type="TileMapLayer" parent="InteractableTileManager"]
 unique_name_in_owner = true
-tile_set = SubResource("TileSet_qnkao")
+tile_set = ExtResource("4_7ucfc")
 
 [node name="effects_tile" type="CanvasGroup" parent="."]
 z_as_relative = false
@@ -80,8 +85,5 @@ autostart = true
 
 [node name="fire_spread" type="Timer" parent="."]
 autostart = true
-
-[connection signal="timeout" from="burn_timer" to="Tilemap_manager" method="burn_fire"]
-[connection signal="timeout" from="fire_spread" to="Tilemap_manager" method="fire_spread"]
 
 [editable path="rainComponent2"]

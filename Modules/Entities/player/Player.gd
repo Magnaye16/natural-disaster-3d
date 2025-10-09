@@ -8,6 +8,7 @@ class_name  Player
 @export var controller_manager: ControllerManager
 @onready var click_sfx: AudioStreamPlayer = $ClickSFX
 @onready var walking_sfx: AudioStreamPlayer = $WalkingSFX
+@onready var interactor_component: InteractorComponent = $ComponentManager/interactor_component
 
 
 signal interactable_found
@@ -17,6 +18,7 @@ signal inventory_requested
 
 func _ready() -> void:
 	add_to_group("player")
+	movement_component.moved.connect(interactor_component.set_dir)
 
 func _unhandled_input(event: InputEvent) -> void:
 

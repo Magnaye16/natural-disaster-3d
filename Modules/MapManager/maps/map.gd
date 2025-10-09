@@ -1,9 +1,18 @@
+@tool
 extends Node2D
 class_name Map
 
 @export var always_reload: bool = false
 @export var package:PlayerCamPackage
-@export var Tile_manager:Tilemap_manager
+@export var Tile_manager:Tilemap_manager:
+	set(val):
+		update_configuration_warnings()
+		Tile_manager = val
+
+@onready var tilemap_manager: Tilemap_manager = $Tilemap_manager
+@onready var interactable_tile_manager: InteractableTileManager = $InteractableTileManager
+
+
 
 var sound_manager: SoundManager
 @export var theme_music:StringName = &""
@@ -45,7 +54,6 @@ func _entry_map()->void:
 	play_music()
 
 
-
 func play_music()->void:
 	if not sound_manager:return
 	sound_manager.switch_music()
@@ -62,9 +70,9 @@ func activate(new_package:PlayerCamPackage)->void:
 	play_music()
 
 
-
 func _activate()->void:
 	Tile_manager._preload()
+	interactable_tile_manager._cash_tiles()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	show()
 
@@ -77,3 +85,9 @@ func deactivate()->void:
 func clean():
 	package.queue_free()
 	deactivate()
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings:Array[String]
+	if not Tile_manager :warnings.append("Tile_manager is not set!")
+	return warnings

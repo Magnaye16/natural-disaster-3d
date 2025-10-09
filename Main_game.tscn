@@ -193,7 +193,7 @@ bus = &"Music"
 [node name="AmbiencePlayer" type="AudioStreamPlayer" parent="SoundManager"]
 stream = SubResource("AudioStreamInteractive_hhjt4")
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("weather_manager", "season_manager", "disaster_manager", "sound_manager")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("weather_manager", "season_manager", "disaster_manager", "sound_manager") groups=["game_manager"]]
 unique_name_in_owner = true
 script = ExtResource("5_twqns")
 weather_manager = NodePath("WeatherManager")
@@ -256,7 +256,7 @@ y_sort_enabled = false
 z_as_relative = true
 y_sort_enabled = false
 
-[node name="shader_texture" type="ColorRect" parent="Main_viewport" groups=["shader"]]
+[node name="shader_texture" type="ColorRect" parent="Main_viewport"]
 z_index = 7
 z_as_relative = false
 material = ExtResource("1_42up0")
